@@ -1,16 +1,148 @@
-\documentclass[]{article}
+% !TeX encoding = utf8
+% !TeX program = pdflatex
+% !TeX spellcheck = de-DE	
 
-% opening
-\title{Titel}
-\author{Markus Tobias Geschonneck}
+% Titelseite muss NICHT verändert werden! Nur die \work packages in preamble/misc anpassen
 
-% packages
-\usepackage{amsmath}
+% ========================================================================
+\documentclass[
+    a4paper,                           % !DIN A4 paper
+    twoside, openright
+    fontsize=12pt,					% default font size
+    titlepage,						% title page environment
+    numbers=noenddot,				% headline numbering without dot	
+    parskip=half,					% Absatz halbe Zeile Abstand (mit -,+,*, modifizierbar)
+    abstracton,
+    toc = bibiography,
+]{scrreprt}							% !KOMA-script Klasse (scrreprt, scrartcl, scrbook)
+
+% ======================== PREAMBEL ========================
+% ==========================================================
+\include{preambel/packages}							% loaded packages
+\include{preambel/misc}									% => !VOR BEGINN AUSFÜLLEN!
 
 \begin{document}
 
-\maketitle
+% ====================== BIBLIOGRAPHY ======================
+% ==========================================================
+%\usepackage[backend= biber, style=numeric]{biblatex}
+%\bibliography{ch/bibliography}			% include the .bib file
 
+% ================ BEGINNING AND DIRECTORIES ===============
+% ==========================================================
+\setcounter{page}{1}										% {page}-counter to 1
+\pagenumbering{Roman}										% BIG roman page numbering
+
+\include{ch/ch00_titlepage}							% title page
+\newpage \thispagestyle{empty}
+\include{ch/ch00_after_titlepage}
+
+
+% NUR bei Abschlussarbeiten ->...
+\onehalfspacing
+\include{ch/ch00_Danksagung}
+\ % The empty page
+\thispagestyle{empty}
+\include{ch/ch00_abstractDE}
+% Zusammenfassung
+% ...<- für Projektberichte auskommentieren
+
+
+%% list of contents
+\doublespacing
+\tableofcontents
+\cleardoublepage
+
+%% list of figures
+\addcontentsline{toc}{chapter}{\bfseries Abbildungsverzeichnis}
+\renewcommand{\listfigurename}{Abbildungsverzeichnis}
+\listoffigures
+\cleardoublepage
+
+%% list of tables
+\addcontentsline{toc}{chapter}{\bfseries Tabellenverzeichnis}
+\listoftables
+\cleardoublepage
+
+%% Abkürzungsverzeichnis muss HÄNDISCH eingetragen werden
+\singlespacing
+\addcontentsline{toc}{chapter}{\bfseries Abkürzungsverzeichnis}
+\listof{figure}{Abkürzungs- und Symbolverzeichnis}
+\newcommand{\acrounit}[1]{
+    \acroextra{
+        \hspace{-21mm}\makebox[18mm][l]{\si[per=frac,fraction=nice]{#1}}
+    }
+}
+\begin{acronym}[LONGEST]
+    %\acro{KÜRZEL}[ABKÜRZUNG]\quad{\acroextra{\makebox[22mm][l]{\si{ EINHEIT }}}BESCHREIBUNG}
+    \large{\acro{Abk}[Abkürzung]~{\acroextra{\makebox[22mm][l]{\si{ \textbf{Einheit} }}}\textbf{Beschreibung}}}
+    % \normalsize{
+    %     \acro{Abc}[Abc]\quad{\acroextra{\makebox[22mm][l]{\si{ $^\circ$ }}}Alphabet}
+    %     \acro{Bcd}[Bcd]\quad{\acroextra{\makebox[22mm][l]{\si{ $B_{cd}$ }}}Test}
+
+
+    % }
+\end{acronym}
+\cleardoublepage
+
+
+%Formelverzeichnis
+\doublespacing
+\addcontentsline{toc}{chapter}{\bfseries Formelverzeichnis}
+\newcommand{\listequationsname}{Formelverzeichnis}
+\newlistof{myequations}{equ}{\listequationsname}
+\newcommand{\myequations}[1]{%
+    \addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}\par}
+
+\listofmyequations
+
+\cleardoublepage
+
+
+
+
+% ========================= CONTENT ========================
+% ==========================================================
+\newpage
+\onehalfspacing
+
+\newcounter{savepage}                                                   % Fortlaufende Nummerierung der Seiten
+\setcounter{savepage}{\number\value{page}}                              % Fortlaufende Nummerierung der Seiten
+
+\pagenumbering{arabic}                                                  % arabic page numbering
+\setcounter{page}{1}
+%\setcounter{page}{\number\value{savepage}}								% Fortlaufende Nummerierung der Seiten
+
+\include{ch/ch01_Einleitung}
+\include{ch/ch02_StandTechnik} % include chapter
+\include{ch/ch03_Drittes Kapitel}
+
+% ========================= APPENDIX =========================
+% ============================================================
+\cleardoublepage
+\setcounter{savepage}{\number\value{page}}                              % Fortlaufende Nummerierung der Seiten
+\pagenumbering{Roman}                                                   % roman page numbering
+\setcounter{page}{\number\value{savepage}}								% Fortlaufende Nummerierung	der Seiten	
+
+% \printbibliography[											% print bibliography
+%     heading = bibintoc,											% add to toc
+%     title={Literaturverzeichnis}
+% ]
+% \bibliographystyle{plain}
+% \bibliography{ch/bibliography}
+
+\addcontentsline{toc}{chapter}{\bfseries Literaturverzeichnis}
+\bibliographystyle{ieeetr}
+\bibliography{ch/bibliography}
+% Ich Sobald ich auf
+% \bibliographystyle{maas}
+% gewechselt habe, aktualisiert sich das Verzeichnis nicht mehr. Dann muss einmalig der \bibliography{} Befehl auskommentiert werden und das Verzeichnis kann neu kompiliert werden.
+% Klappt leider noch nicht.
+% Wenn alles auskommentiert ist kann ich die Quellen mit \cite{} normal schreiben und das aktualisiert dann auch, der obige Teil wenn die Kapitel einkommentiert sind macht aber leider nix.
+
+\cleardoublepage
+
+\include{ch/ch99_appendix}							% Anhang
 
 
 \end{document}

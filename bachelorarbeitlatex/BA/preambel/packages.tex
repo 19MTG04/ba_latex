@@ -1,0 +1,158 @@
+% ========================================================================
+\usepackage[utf8]{inputenc}							% !UTF-8
+%
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 1. Einige Pakete müssen vor allen anderen geladen werden
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\usepackage{xspace} 								% Define commands that don't eat spaces.
+\usepackage[ngerman]{babel}					% Languagesetting: Sprachpaket wird in \documentclass für gesamtes Dokument festgelegt
+
+\usepackage[hyperref]{xcolor} 			% benutzerdefinierte Farben
+\usepackage[]{graphicx} 	 					% für Bilder
+%\usepackage[fleqn]{amsmath}					% Amsmath - Mathematik Basispaket fl=flush left = linksbündig
+\usepackage{amsmath}                            % Amsmath - Mathematik Basispaket zentriert
+\usepackage{tikz}		    						% für Graphiken und Zeichnen
+\usepackage{pgfplots}								% Für MATLAB2Latex export
+
+
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% Fonts und Seitenränder
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\usepackage[T1]{fontenc} 							% T1 Schrift Encoding (notwendig für die meisten Type 1 Schriften)
+\usepackage{textcomp}
+\usepackage{lmodern}
+
+
+\usepackage[            
+	left=3.5cm,										% linke Randbreite                                                                     
+	right=2cm,										% rechte Randbreite                                                                  
+	top=2.7cm,										% oberer Rand                                                                         
+	bottom=3cm									% unterer Rand
+]{geometry}											% Seitenlayout verändern                    
+
+%%%% Head and Footline
+\usepackage[
+	headsepline,
+	plainheadsepline,
+	automark,
+]{scrlayer-scrpage}
+\addtokomafont{pagehead}{\normalfont \sffamily}
+\chead*{} 
+%\ohead*{\headmark}
+%\automark{chapter}
+\ofoot*{\pagemark} 
+\cfoot*{}        
+
+%% Inhaltsverzeichnis
+
+\usepackage{tocloft}
+
+\renewcommand{\cftchapfont}{\subsectionfont}
+\renewcommand{\cftsecfont}{\subsectionfont}
+\renewcommand{\cftsubsecfont}{\subsectionfont}
+
+\renewcommand{\cftchappagefont}{\numberfont}
+\renewcommand{\cftsecpagefont}{\numberfont}
+\renewcommand{\cftsubsecpagefont}{\numberfont}
+
+\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} % for parts
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}} % for chapters
+
+\setlength{\cftbeforechapskip}{3pt}
+
+%\usepackage{tocstyle}  Die folgenden 3 Zeilen mussten auskommentiert werden. Welche Auswirkungen das hat, weiß ich nicht.
+%\settocfeature[toc][0]{entryhook}{}                                                                
+%\settocfeature[0]{entryvskip}{0.5em plus 1pt}
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  
+% 3. Text related packages                                                                                  
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  
+\usepackage[hyphens]{url} 							% Setzen von URLs. In Verbindung mit hyperref sind diese auch aktive Links.
+                                                                                                         
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  
+% 4. PDF related packages                                                                                   
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  
+\usepackage[                                                                                      
+	colorlinks=true,	        						% Links erhalten Farben statt Kaestchen                                      
+	urlcolor=black,
+	filecolor=black, 
+	linkcolor=black, 
+	citecolor=black,                                                               
+]{hyperref}											% Aktivierung für Referenzen zur Erstellung der pdf                                   
+                                                   
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  
+% 5. Tables (Tabular)                                                                                       
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+\usepackage{booktabs}								% horizontale Linien in Tabellen
+\usepackage{multirow}								% Um in Tabellen über mehrere Zeilen gleichzeitig schreiben zu können
+\usepackage{longtable}              % Tabellen über mehrere Seiten          
+                                                                                                           
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  
+% 7. Figures and placement                                                                                  
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  
+\graphicspath{{fig/}}								% Pfad für Bilder. Kann im folgenden Dokument dann weggelassen werden          
+\usepackage{float}									% Stellt die Option [H] für Floats zur Verfgung:\begin{figure}[H]
+                                                                                                   
+%========================== Zeilenabstand ================================                                  
+\usepackage{setspace}								% Zeilenabstand festlegen; generell oder im Fließtext mit Befehl               
+%\doublespacing	        							% 2-facher Abstand                                                             
+%\onehalfspacing  									% 1,5-facher Abstand                                                              
+%\singlespacing										% 1-facher Abstand                                                                 
+                                                                                                         
+%==================== Captions (Schrift, Aussehen) =======================
+\usepackage{caption}								% Aussehen der Captions
+\captionsetup{
+	margin = 10pt,
+	font = {small,rm},
+	labelfont = {small,bf, sf},
+	format = plain, 								% oder 'hang'
+	indention = 0em,	 							% Einruecken der Beschriftung
+	labelsep = colon, 								%period, space, quad, newline
+	justification = RaggedRight, 					% justified, centering
+	singlelinecheck = true, 						% false (true=bei einer Zeile immer zentrieren)
+	position = bottom 								% top
+}
+%%% Bugfix Workaround
+\DeclareCaptionOption{parskip}[]{}
+\DeclareCaptionOption{parindent}[]{}
+% Aussehen der Captions fuer subfigures (subfig-Paket)
+\captionsetup[subfloat]{
+	margin = 10pt,
+	font = {small,sf},
+	labelfont = {small,bf},
+	format = plain, 								% oder 'hang'
+	indention = 0em,	 							% Einruecken der Beschriftung
+	labelsep = space, 								%period, space, quad, newline
+	justification = RaggedRight, 					% justified, centering
+	singlelinecheck = true, 						% false (true=bei einer Zeile immer zentrieren)
+	position = bottom, 								% top
+	labelformat = parens 							% simple, empty % Wie die Bezeichnung gesetzt wird
+}
+%\renewcaptionname{ngerman}{\contentsname}{Inhalt}
+\renewcaptionname{ngerman}{\listfigurename}{Abbildungen}
+%\renewcaptionname{ngerman}{\listtablename}{Tabellen}
+%\renewcaptionname{ngerman}{\figurename}{Bild}
+\renewcaptionname{ngerman}{\tablename}{Tabelle}
+%
+%======== Fussnoten =============================================================
+\usepackage{footnote}								% fußnoten in beschriftung am fuß der ganzen seite
+
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+% 9. WEITERE / EXTRAS
+% ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+%Abkürzungsverzeichnis-Packages
+\usepackage{acronym}
+\usepackage{siunitx}
+\usepackage{amsmath}
+\usepackage{tocloft}
+
+%Excel2Latex
+\usepackage{multicol}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+
+%Leere Seiten
+\usepackage{afterpage}

@@ -1,0 +1,22 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\appendix
+\chapter{Anhang}\label{ch:anhang}
+Hier kommen die grossen Bilder, Diagramme und Grafiken rein, welche im Text den Lesefluss stören würden. Dabei ist trotzdem auf den korrekten Verweis zu achten:
+
+z.B.: \gans{siehe Anhang Bild \ref{beispiel_abbildung2}}
+
+Die Leserichtung der Grafiken muss entweder von links nach rechts oder, bei ganzseitig-gedrehten Grafiken, von unten nach oben sein (vgl. Bild \ref{beispiel_abbildung2} und Bild \ref{beispiel_abbildung3}):
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.3\textwidth]{ch99_beispielBild2}
+    \caption{Beispielbild normale Ausrichtung}
+    \label{beispiel_abbildung2}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[angle=90, width=0.1\textwidth]{ch99_beispielBild2}
+    \caption{Beispielbild normale Ausrichtung}
+    \label{beispiel_abbildung3}
+\end{figure}
+

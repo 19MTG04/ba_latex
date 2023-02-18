@@ -78,3 +78,13 @@ docs/_build
 
 # Mypy Cache
 .mypy_cache/
+*.aux
+bachelorarbeitlatex/BA/main.bbl
+bachelorarbeitlatex/BA/main.blg
+bachelorarbeitlatex/BA/main.equ
+bachelorarbeitlatex/BA/main.lof
+bachelorarbeitlatex/BA/main.log
+bachelorarbeitlatex/BA/main.lot
+bachelorarbeitlatex/BA/main.out
+bachelorarbeitlatex/BA/main.synctex.gz
+bachelorarbeitlatex/BA/main.toc

@@ -23,10 +23,6 @@
 
 \begin{document}
 
-% ====================== BIBLIOGRAPHY ======================
-% ==========================================================
-%\usepackage[backend= biber, style=numeric]{biblatex}
-%\bibliography{ch/bibliography}			% include the .bib file
 
 % ================ BEGINNING AND DIRECTORIES ===============
 % ==========================================================
@@ -47,9 +43,8 @@
 % Zusammenfassung
 % ...<- für Projektberichte auskommentieren
 
-
-%% list of contents
 \doublespacing
+%% list of contents
 \tableofcontents
 \cleardoublepage
 
@@ -64,7 +59,7 @@
 \listoftables
 \cleardoublepage
 
-%% Abkürzungsverzeichnis muss HÄNDISCH eingetragen werden
+% Abkürzungsverzeichnis muss HÄNDISCH eingetragen werden
 \singlespacing
 \addcontentsline{toc}{chapter}{\bfseries Abkürzungsverzeichnis}
 \listof{figure}{Abkürzungs- und Symbolverzeichnis}
@@ -74,7 +69,6 @@
     }
 }
 \begin{acronym}[LONGEST]
-    %\acro{KÜRZEL}[ABKÜRZUNG]\quad{\acroextra{\makebox[22mm][l]{\si{ EINHEIT }}}BESCHREIBUNG}
     \large{\acro{Abk}[Abkürzung]~{\acroextra{\makebox[22mm][l]{\si{ \textbf{Einheit} }}}\textbf{Beschreibung}}}
     % \normalsize{
     %     \acro{Abc}[Abc]\quad{\acroextra{\makebox[22mm][l]{\si{ $^\circ$ }}}Alphabet}
@@ -98,9 +92,6 @@
 
 \cleardoublepage
 
-
-
-
 % ========================= CONTENT ========================
 % ==========================================================
 \newpage
@@ -115,7 +106,18 @@
 
 \include{ch/ch01_Einleitung}
 \include{ch/ch02_StandTechnik} % include chapter
-\include{ch/ch03_Drittes Kapitel}
+\include{ch/ch03_DrittesKapitel}
+
+% ====================== BIBLIOGRAPHY ======================
+% ==========================================================
+
+\bibliography{ch/bibliography}			% include the .bib file
+\bibliographystyle{ieeetr}
+\addcontentsline{toc}{chapter}{\bfseries Literaturverzeichnis}
+
+% Wenn maas als style eingestellt ist kommen Fehlermeldungen und ein zweiter Kompilierungsvorgang kann nötig sein.
+% Daher lieber ieeetr einstellen.
+
 
 % ========================= APPENDIX =========================
 % ============================================================
@@ -124,25 +126,8 @@
 \pagenumbering{Roman}                                                   % roman page numbering
 \setcounter{page}{\number\value{savepage}}								% Fortlaufende Nummerierung	der Seiten	
 
-% \printbibliography[											% print bibliography
-%     heading = bibintoc,											% add to toc
-%     title={Literaturverzeichnis}
-% ]
-% \bibliographystyle{plain}
-% \bibliography{ch/bibliography}
-
-\addcontentsline{toc}{chapter}{\bfseries Literaturverzeichnis}
-\bibliographystyle{ieeetr}
-\bibliography{ch/bibliography}
-% Ich Sobald ich auf
-% \bibliographystyle{maas}
-% gewechselt habe, aktualisiert sich das Verzeichnis nicht mehr. Dann muss einmalig der \bibliography{} Befehl auskommentiert werden und das Verzeichnis kann neu kompiliert werden.
-% Klappt leider noch nicht.
-% Wenn alles auskommentiert ist kann ich die Quellen mit \cite{} normal schreiben und das aktualisiert dann auch, der obige Teil wenn die Kapitel einkommentiert sind macht aber leider nix.
-
 \cleardoublepage
 
 \include{ch/ch99_appendix}							% Anhang
-
 
 \end{document}

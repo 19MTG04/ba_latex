@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.12) (preloaded format=xelatex 2023.2.16)  16 FEB 2023 18:52
+This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.12) (preloaded format=xelatex 2023.2.16)  18 FEB 2023 15:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1133,7 +1133,7 @@ Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \c@LT@chunks=\count328
 \LT@p@ftn=\toks41
 )
-Class scrreprt Info: longtable captions redefined on input line 89.
+Class scrreprt Info: longtable captions redefined on input line 92.
  (C:\Users\gesc_ma\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count329
@@ -1343,7 +1343,7 @@ LaTeX Warning: Unused global option(s):
 
 (main.aux (ch/ch00_titlepage.aux) (ch/ch00_after_titlepage.aux)
 (ch/ch00_Danksagung.aux) (ch/ch00_abstractDE.aux) (ch/ch01_Einleitung.aux)
-(ch/ch02_StandTechnik.aux) (ch/ch03_Drittes Kapitel.aux
+(ch/ch02_StandTechnik.aux) (ch/ch03_DrittesKapitel.aux
 
 LaTeX Warning: Label `ch_StandTechnik' multiply defined.
 
@@ -1543,338 +1543,7 @@ File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 (ch/ch00_abstractDE.tex [5
 
 
-]) [6] (main.toc
-main.toc:2: Undefined control sequence.
-\cftchapfont ->\subsectionfont 
-                               
-l.2 ...ries Abbildungsverzeichnis}{IX}{chapter*.2}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:2: Undefined control sequence.
-\cftchappagefont ->\numberfont 
-                               
-l.2 ...ries Abbildungsverzeichnis}{IX}{chapter*.2}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:3: Undefined control sequence.
-\cftchapfont ->\subsectionfont 
-                               
-l.3 ...series Tabellenverzeichnis}{XI}{chapter*.2}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:3: Undefined control sequence.
-\cftchappagefont ->\numberfont 
-                               
-l.3 ...series Tabellenverzeichnis}{XI}{chapter*.2}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:4: Undefined control sequence.
-\cftchapfont ->\subsectionfont 
-                               
-l.4 ...es Abkürzungsverzeichnis}{XIII}{chapter*.2}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:4: Undefined control sequence.
-\cftchappagefont ->\numberfont 
-                               
-l.4 ...es Abkürzungsverzeichnis}{XIII}{chapter*.2}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:5: Undefined control sequence.
-\cftchapfont ->\subsectionfont 
-                               
-l.5 ...bfseries Formelverzeichnis}{XV}{chapter*.3}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:5: Undefined control sequence.
-\cftchappagefont ->\numberfont 
-                               
-l.5 ...bfseries Formelverzeichnis}{XV}{chapter*.3}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:6: Undefined control sequence.
-\cftchapfont ->\subsectionfont 
-                               
-l.6 ...r}{\numberline {1}Einleitung}{1}{chapter.1}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:6: Undefined control sequence.
-\cftchappagefont ->\numberfont 
-                               
-l.6 ...r}{\numberline {1}Einleitung}{1}{chapter.1}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:7: Undefined control sequence.
-\cftchapfont ->\subsectionfont 
-                               
-l.7 ...berline {2}Stand der Technik}{7}{chapter.2}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:7: Undefined control sequence.
-\cftchappagefont ->\numberfont 
-                               
-l.7 ...berline {2}Stand der Technik}{7}{chapter.2}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:8: Undefined control sequence.
-\cftsecfont ->\subsectionfont 
-                              
-l.8 ...e {2.1}Erstes Unterkapitel}{7}{section.2.1}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:8: Undefined control sequence.
-\cftsecpagefont ->\numberfont 
-                              
-l.8 ...e {2.1}Erstes Unterkapitel}{7}{section.2.1}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:9: Undefined control sequence.
-\cftsecfont ->\subsectionfont 
-                              
-l.9 ...{2.2}Zweites Unterkapitel}{11}{section.2.2}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:9: Undefined control sequence.
-\cftsecpagefont ->\numberfont 
-                              
-l.9 ...{2.2}Zweites Unterkapitel}{11}{section.2.2}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:10: Undefined control sequence.
-\cftsubsecfont ->\subsectionfont 
-                                 
-l.10 ...Unter- Unterkapitel}{12}{subsection.2.2.1}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:10: Undefined control sequence.
-\cftsubsecpagefont ->\numberfont 
-                                 
-l.10 ...Unter- Unterkapitel}{12}{subsection.2.2.1}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:11: Undefined control sequence.
-\cftsubsecfont ->\subsectionfont 
-                                 
-l.11 ...Unter- Unterkapitel}{12}{subsection.2.2.2}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:11: Undefined control sequence.
-\cftsubsecpagefont ->\numberfont 
-                                 
-l.11 ...Unter- Unterkapitel}{12}{subsection.2.2.2}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:12: Undefined control sequence.
-\cftsecfont ->\subsectionfont 
-                              
-l.12 ...2.3}Drittes Unterkapitel}{13}{section.2.3}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:12: Undefined control sequence.
-\cftsecpagefont ->\numberfont 
-                              
-l.12 ...2.3}Drittes Unterkapitel}{13}{section.2.3}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:13: Undefined control sequence.
-\cftsecfont ->\subsectionfont 
-                              
-l.13 ...2.4}Viertes Unterkapitel}{13}{section.2.4}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:13: Undefined control sequence.
-\cftsecpagefont ->\numberfont 
-                              
-l.13 ...2.4}Viertes Unterkapitel}{13}{section.2.4}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:14: Undefined control sequence.
-\cftchapfont ->\subsectionfont 
-                               
-l.14 ...berline {3}Drittes Kapitel}{16}{chapter.3}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:14: Undefined control sequence.
-\cftchappagefont ->\numberfont 
-                               
-l.14 ...berline {3}Drittes Kapitel}{16}{chapter.3}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:15: Undefined control sequence.
-\cftchapfont ->\subsectionfont 
-                               
-l.15 ...ies Literaturverzeichnis}{XVII}{chapter.3}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:15: Undefined control sequence.
-\cftchappagefont ->\numberfont 
-                               
-l.15 ...ies Literaturverzeichnis}{XVII}{chapter.3}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:16: Undefined control sequence.
-\cftchapfont ->\subsectionfont 
-                               
-l.16 ...r}{\numberline {A}Anhang}{XIX}{appendix.A}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-main.toc:16: Undefined control sequence.
-\cftchappagefont ->\numberfont 
-                               
-l.16 ...r}{\numberline {A}Anhang}{XIX}{appendix.A}
-                                                  %
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-)
+]) [6] (main.toc)
 \tf@toc=\write5
 \openout5 = `main.toc'.
 
@@ -1887,8 +1556,8 @@ Package scrlayer-scrpage Warning: \headheight to low.
 (scrlayer-scrpage)                processing, but you should do this yourself,
 (scrlayer-scrpage)                e.g., setting geometry's option
 (scrlayer-scrpage)                `head=22.00473pt'.
-(scrlayer-scrpage)                I'll also decrease \topmargin on input line 5
-4.
+(scrlayer-scrpage)                I'll also decrease \topmargin on input line 4
+9.
 
 
 Overfull \vbox (5.00473pt too high) has occurred while \output is active []
@@ -1903,7 +1572,7 @@ Package scrlayer-scrpage Warning: \footheight to low.
 (scrlayer-scrpage)                e.g., using
 (scrlayer-scrpage)                  \setlength{\footheight}{22.00473pt}
 (scrlayer-scrpage)                in your preamble.
-(scrlayer-scrpage)                I'll also increase \footskip on input line 54
+(scrlayer-scrpage)                I'll also increase \footskip on input line 49
 .
 
 [7
@@ -1935,7 +1604,7 @@ Class scrreprt Warning: \float@listhead detected!
 (scrreprt)              Loading of package `scrhack' may help to
 (scrreprt)              avoid this warning, if you are using a
 (scrreprt)              a package that still implements the
-(scrreprt)              deprecated \float@listhead interface on input line 70.
+(scrreprt)              deprecated \float@listhead interface on input line 65.
 
 (main.lof)
 \tf@lof=\write8
@@ -1944,14 +1613,14 @@ Class scrreprt Warning: \float@listhead detected!
 
 
 LaTeX Warning: Hyper reference `acro:Abk' on page XIII undefined on input line 
-78.
+72.
 
 
 LaTeX Warning: Hyper reference `acro:Abk' on page XIII undefined on input line 
-78.
+72.
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 78.
+(Font)              <12> on input line 72.
 [13
 
 ] [14
@@ -2012,21 +1681,16 @@ chapter 2.
 
 
 ] [8] [9] [10] [11] [12] [13]) [14] [15]
-\openout2 = `"ch/ch03_Drittes Kapitel.aux"'.
+\openout2 = `ch/ch03_DrittesKapitel.aux'.
 
- (ch/ch03_Drittes Kapitel.tex
+ (ch/ch03_DrittesKapitel.tex
 chapter 3.
-
-LaTeX Warning: Citation `ifmelectronic.2004' on page 16 undefined on input line
- 6.
-
 ) [16
 
 
 
 
 ] (main.bbl) [17
-
 
 
 
@@ -2044,15 +1708,15 @@ File: fig//ch99_beispielBild2.png Graphic file (type bmp)
 ) [19
 
 
+
 ]
 
-Package caption Warning: Unused \captionsetup[subfloat] on input line 130.
+Package caption Warning: Unused \captionsetup[subfloat] on input line 133.
 See the caption package documentation for explanation.
 
 (main.aux (ch/ch00_titlepage.aux) (ch/ch00_after_titlepage.aux)
 (ch/ch00_Danksagung.aux) (ch/ch00_abstractDE.aux) (ch/ch01_Einleitung.aux)
-(ch/ch02_StandTechnik.aux) (ch/ch03_Drittes Kapitel.aux) (ch/ch99_appendix.aux)
-)
+(ch/ch02_StandTechnik.aux) (ch/ch03_DrittesKapitel.aux) (ch/ch99_appendix.aux))
 
 LaTeX Warning: There were undefined references.
 
@@ -2063,10 +1727,10 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 42891 strings out of 411566
- 1031588 string characters out of 2819778
+ 42892 strings out of 411566
+ 1031585 string characters out of 2819778
  1854973 words of memory out of 3000000
- 62358 multiletter control sequences out of 15000+600000
+ 62359 multiletter control sequences out of 15000+600000
  592458 words of font info for 69 fonts, out of 8000000 for 9000
  1350 hyphenation exceptions out of 8191
  108i,20n,106p,10690b,871s stack positions out of 10000i,1000n,20000p,200000b,80000s

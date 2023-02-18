@@ -384,8 +384,9 @@ FUNCTION {url.comment}
 { ", Zugriff am " }
 
 FUNCTION {format.url}
-{ url empty$
-{ skip$ }
+{ 
+url empty$
+{ "" }
 { urldate empty$
 { "\urlprefix\url{" url * "}" * }
 { "\urlprefix\url{" url * "}" * url.comment * urldate * "." * }
@@ -401,46 +402,19 @@ INTEGERS { nameptr namesleft numnames }
 STRINGS  { bibinfo}
 
 FUNCTION {format.names}
-{ 'bibinfo :=
-  duplicate$ empty$ 'skip$ {
-  's :=
-  "" 't :=
+{ 's :=
   #1 'nameptr :=
   s num.names$ 'numnames :=
   numnames 'namesleft :=
     { namesleft #0 > }
-    { s nameptr
-      "{ff~}{vv~}{ll}{, jj}"
-      format.name$
-      bibinfo bibinfo.check
-      't :=
+    { s nameptr "{vv~}{ll}{, jj}{, f.}" format.name$ 't :=
       nameptr #1 >
         {
-          nameptr #2
-          #1 + =
-          numnames #3
-          > and
-            { "others" 't :=
-              #1 'namesleft := }
-            'skip$
-          if$
-          namesleft #1 >
-            { "; " * t * }
+          nameptr numnames = t "others" =
+            { "et~al." * }
             {
-              s nameptr "{ll}" format.name$ duplicate$ "others" =
-                { 't := }
-                { pop$ }
-              if$
-              t "others" =
-                {
-                  " " * bbl.etal *
-                  bib.name.font
-                }
-                {
-                  bbl.and
-                  space.word * t *
-                }
-              if$
+              "," *
+              s nameptr "{vv~}{ll}{, jj}{, f.}" format.name$ 't :=
             }
           if$
         }
@@ -450,11 +424,6 @@ FUNCTION {format.names}
       namesleft #1 - 'namesleft :=
     }
   while$
-  t "others" =
-    'skip$
-    { bib.name.font }
-  if$
-  } if$
 }
 FUNCTION {format.names.ed}
 {

@@ -19,7 +19,7 @@
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 % Fonts und Seitenränder
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\usepackage[T1]{fontenc} 							% T1 Schrift Encoding (notwendig für die meisten Type 1 Schriften)
+\usepackage[T1, EU1]{fontenc} 							% T1 Schrift Encoding (notwendig für die meisten Type 1 Schriften)
 \usepackage{textcomp}
 \usepackage{lmodern}
 
@@ -32,17 +32,28 @@
 ]{geometry}											% Seitenlayout verändern                    
 
 %%%% Head and Footline
-\usepackage[
-	headsepline,
-	plainheadsepline,
-	automark,
-]{scrlayer-scrpage}
-\addtokomafont{pagehead}{\normalfont \sffamily}
-\chead*{} 
-%\ohead*{\headmark}
-%\automark{chapter}
-\ofoot*{\pagemark} 
-\cfoot*{}        
+\usepackage{fancyhdr} % for page style customization
+
+% define a new page style for chapter pages
+\fancypagestyle{chapterstart}{%
+    \fancyhf{}% clear header and footer
+    \renewcommand{\headrulewidth}{0pt}% remove horizontal line
+}
+
+% set the chapter start page style as 'plain' for all chapter pages
+\let\origchapter\chapter
+\renewcommand\chapter{\clearpage\thispagestyle{chapterstart}\origchapter}
+
+% set the fancyhdr page style for the rest of the document
+\pagestyle{fancy}
+\fancyhf{} % clear header and footer
+\fancyfoot[RO,LE]{\thepage} % set page number to outer position
+\fancyhead[RO]{\sffamily\nouppercase{\rightmark}}
+\fancyhead[LE]{\sffamily\nouppercase{\leftmark}}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+
+
 
 %% Inhaltsverzeichnis
 
@@ -84,7 +95,8 @@
 ]{hyperref}											% Aktivierung für Referenzen zur Erstellung der pdf                                   
                                                    
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                  
-% 5. Tables (Tabular)                                                                                       
+% 5. Tables (Tabular)
+\usepackage{colortbl}
 % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 \usepackage{booktabs}								% horizontale Linien in Tabellen
 \usepackage{multirow}								% Um in Tabellen über mehrere Zeilen gleichzeitig schreiben zu können

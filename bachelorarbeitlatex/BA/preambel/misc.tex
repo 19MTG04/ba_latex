@@ -4,8 +4,8 @@
 
 \newcommand{\workTyp}{Bachelorarbeit\xspace}										% <Typ> der Arbeit, z.B. Bachelorarbeit oder Projektarbeit
 \newcommand{\workTitel}{<Titel der Arbeit>\xspace}								% <Titel> der Arbeit
-\newcommand{\workAutor}{Felix Maas\xspace}					% <Name> des Autors
-\newcommand{\workMatrikelnummer}{11131764\xspace}	% <Matrikelnummer> des Studierenden
+\newcommand{\workAutor}{Markus Tobias Geschonneck\xspace}					% <Name> des Autors
+\newcommand{\workMatrikelnummer}{11131469\xspace}	% <Matrikelnummer> des Studierenden
 \newcommand{\workAbgabe}{<Datum der Abgabe>\xspace}	%\today für aktuelles Datum			% <Datum> der Abgabe (TT.MM.JJJ)
 \newcommand{\workAusgabe}{<Datum der Ausgabe des Themas>\xspace}				% <Datum> der Ausgabe es Themas (TT.MM.JJJ)
 \newcommand{\workReferent}{<Referent>\xspace}		% <Referent> der Arbeit, z.B. Prof. Dr.-Ing. Mohieddine Jelali
@@ -49,3 +49,16 @@
     \addtocounter{page}{-1}
     \newpage
     }
+
+% define custom page style for empty pages
+\fancypagestyle{empty_with_pagenumber}{
+    \fancyhf{} % clear header and footer
+    \fancyfoot[RO,LE]{\thepage} % set page number to outer position
+    \renewcommand{\headrulewidth}{0pt} % remove header rule
+    \renewcommand{\footrulewidth}{0pt} % remove footer rule
+}
+\newcommand\emptywithpagenumber{
+    \null
+    \thispagestyle{empty_with_pagenumber}
+    \newpage
+}

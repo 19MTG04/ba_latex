@@ -3,15 +3,20 @@
 % !TeX spellcheck = de-DE
 %\clearpage \thispagestyle{empty}
 \chapter*{Abstract}
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.   
+Dies soll eine Vorlage für den Einstieg in LaTeX darstellen.
+Notwendig für die Nutzung dieser ist VSCode mit den entsprechenden Einstellungen in der settings.json, Strawberry Pearl sowie MikTex.
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.   
+Generell ist das Hauptdokument die Main.tex. Die ist die einizge Datei die letztlich ausgeführt wird. Alle anderen Dateien sollten in diese Datei eingebunden werden.
 
-Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.   
+In der Documentclass in der Main.tex sowie in der Packages.tex entscheidet sich das Layout des Berichts. In der Misc.tex werden Informationen für die Titelseite hinzugefügt.
+Es ist sehr empfehelnswert für jedes Kapitel eine neue *.tex Datei im Ordner \gans{ch} hinzuzufügen. Das Ergebnis der Kompilierung zeigt immer die Main.pdf.
 
-Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.   
+Schreibt man einfach nur In VSCode in eine neue Zeile wird in der entstehenden pdf einfach in der selben Zeile weiter geschrieben.
+Dennoch ist es sehr nützlich in neue Zeilen zu schreiben, sodass nachträglich zu korrigierende Sätze nicht in ewig langen Passagen untergehen. \\
+Vor diesem Satz wurde nicht nur eine neue Zeile in VSCode eingefügt, sondern auch ein Doppel-Backslash \gans{\textbackslash\textbackslash} ans Ende der letzten Zeile gestellt. Dadurch entsteht eine neue Zeile ohne Abstand zum vorigen Abschnitt.
 
-Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.   
+Lässt man eine Zeile in VSCode leer, entsteht ein wie oben gezeigter Abstand zwischen den verschiedenen Sätzen.\\
 
-At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, At accusam aliquyam diam diam dolore dolores duo eirmod eos erat, et nonumy sed tempor et et invidunt justo labore Stet clita ea et gubergren, kasd magna no rebum. sanctus sea sed takimata ut vero voluptua. est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.   
+Lässt man eine Leerzeile und fügt sogar noch ein Doppel-Backslash \gans{\textbackslash\textbackslash} ans Ende des vorangestellten Abschnittes, so entsteht dieser Textabstand.
 
+Gerade zu Beginn eines Kapitels oder Abschnittes hilft manchmal der \gans{\textbackslash noindent}-Befehl um das Einrücken zu Beginn einer Passage zu verhindern.

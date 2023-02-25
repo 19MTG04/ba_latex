@@ -62,28 +62,6 @@ cleardoublepage=plain,
 \listoftables
 \cleardoublepage
 
-% Abkürzungsverzeichnis muss HÄNDISCH eingetragen werden
-\phantomsection
-\singlespacing
-\addcontentsline{toc}{chapter}{\bfseries Abkürzungsverzeichnis}
-\listof{figure}{Abkürzungs- und Symbolverzeichnis}
-\newcommand{\acrounit}[1]{
-    \acroextra{
-        \hspace{-21mm}\makebox[18mm][l]{\si[per=frac,fraction=nice]{#1}}
-    }
-}
-\begin{acronym}[LONGEST]
-    \large{\acro{Abk}[Abkürzung]~{\acroextra{\makebox[22mm][l]{\si{ \textbf{Einheit} }}}\textbf{Beschreibung}}}
-    % \normalsize{
-    %     \acro{Abc}[Abc]\quad{\acroextra{\makebox[22mm][l]{\si{ $^\circ$ }}}Alphabet}
-    %     \acro{Bcd}[Bcd]\quad{\acroextra{\makebox[22mm][l]{\si{ $B_{cd}$ }}}Test}
-
-
-    % }
-\end{acronym}
-\cleardoublepage
-
-
 %Formelverzeichnis
 \phantomsection
 \doublespacing
@@ -94,7 +72,10 @@ cleardoublepage=plain,
     \addcontentsline{equ}{myequations}{\protect\numberline{\theequation}#1}\par}
 
 \listofmyequations
+\cleardoublepage
 
+% Abkürzungsverzeichnis muss HÄNDISCH eingetragen werden
+\include{ch/ch00_abkuerzungen}
 \cleardoublepage
 
 % ========================= CONTENT ========================
@@ -109,9 +90,9 @@ cleardoublepage=plain,
 \setcounter{page}{1}
 %\setcounter{page}{\number\value{savepage}}								% Fortlaufende Nummerierung der Seiten
 
-\include{ch/ch01_Einleitung}
-\include{ch/ch02_StandTechnik} % include chapter
-\include{ch/ch03_DrittesKapitel}
+\include{ch/ch01_Einleitung} \cleardoublepage
+\include{ch/ch02_StandTechnik} \cleardoublepage
+\include{ch/ch03_DrittesKapitel} \cleardoublepage
 
 % ====================== BIBLIOGRAPHY ======================
 % ==========================================================

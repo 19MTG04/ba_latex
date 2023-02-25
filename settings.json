@@ -1,0 +1,654 @@
+{
+    "editor.wordWrap": "on",
+    "editor.rulers": [
+        80
+    ],
+    "security.workspace.trust.enabled": false,
+    "editor.minimap.enabled": true,
+    "explorer.confirmDragAndDrop": false,
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications",
+    "editor.formatOnType": false,
+    "editor.find.cursorMoveOnType": true,
+    "editor.fontSize": 18,
+    "explorer.confirmDelete": false,
+    "explorer.decorations.colors": false,
+    "editor.fontFamily": "Consolas",
+    // "editor.fontFamily": "Courier New", //Old
+    "workbench.iconTheme": "vscode-icons",
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.detectIndentation": false,
+    "workbench.editor.pinnedTabSizing": "compact",
+    "files.autoSave": "onFocusChange",
+    "search.useGlobalIgnoreFiles": true,
+    // -------------------------------------------------------------------------
+    // ------------------------------ Terminal ---------------------------------
+    // -------------------------------------------------------------------------
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.shell.windows": "C:\\WINDOWS\\System32\\cmd.exe",
+    "terminal.integrated.profiles.windows": {
+        "Git Bash": {
+            "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+            "args": [
+                "--login"
+            ]
+        },
+    },
+    // So that bash loads the .user_profile. 
+    // "terminal.integrated.shellArgs.windows": [
+    //     "-l"
+    // ],
+    // -------------------------------------------------------------------------
+    // ------------------------------ Testing ----------------------------------
+    // -------------------------------------------------------------------------
+    "testing.defaultGutterClickAction": "debug",
+    // -------------------------------------------------------------------------
+    // ------------------------------- MATLAB ----------------------------------
+    // -------------------------------------------------------------------------
+    "files.associations": {
+        "*.m": "matlab"
+    },
+    "matlab.lintOnSave": true,
+    "[matlab]": {
+        "files.encoding": "windows1252"
+    },
+    "matlab-runner.matlabPath": "C:\\Program Files\\MATLAB\\R2018b\\bin\\matlab",
+    // -------------------------------------------------------------------------
+    // ------------------------------ MarkDown ---------------------------------
+    // -------------------------------------------------------------------------
+    "markdown-toc.depthFrom": 2,
+    "markdown-toc.orderedList": true,
+    "markdown.extension.toc.githubCompatibility": true,
+    "markdown.extension.toc.levels": "2..6",
+    "mdmath.macros": {},
+    "mdmath.delimiters": "gitlab",
+    "markdown.preview.breaks": true,
+    // ---------------------------------------------------------------------
+    // ----------------------------- Python --------------------------------
+    // ---------------------------------------------------------------------
+    "python.languageServer": "Pylance",
+    "python.testing.pytestEnabled": true,
+    "python.formatting.provider": "yapf",
+    "python.formatting.yapfArgs": [
+        "--style={based_on_style: google}"
+    ],
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "[python]": {
+        "editor.formatOnSaveMode": "file",
+        "editor.formatOnType": true,
+    },
+    "python.analysis.typeCheckingMode": "basic",
+    // -------------------------------------------------------------------------
+    // --------------------------------- Git -----------------------------------
+    // -------------------------------------------------------------------------
+    "git.untrackedChanges": "separate",
+    // -------------------------------------------------------------------------
+    // --------------------------------- C++ -----------------------------------
+    // -------------------------------------------------------------------------
+    "C_Cpp.formatting": "default",
+    "C_Cpp.clang_format_style": "{ BasedOnStyle: Google, UseTab: Never, IndentWidth: 4, TabWidth: 4}",
+    "cpp.creator.useHPPEnding": false,
+    // ---------------------------------------------------------------------
+    // ------------------------------ Latex --------------------------------
+    // ---------------------------------------------------------------------
+    "latex-workshop.latex.recipes": [
+        
+        {
+            "name": "xelatex -> bibtex -> xelatex*2",
+            "tools": [
+                "xelatex",
+                "bibtex",
+                "xelatex",
+                "xelatex"
+            ]
+        },      
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "xelatex",
+            "command": "xelatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.outDir": "%DIR%/build",
+    "[latex]": {
+        "editor.quickSuggestions": {
+            "comments": "off",
+            "strings": "off",
+            "other": "off"
+        },
+        "editor.formatOnSave": true
+    },
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "latex-workshop.chktex.enabled": true,
+    "latex-workshop.chktex.path": "",
+    "ltex.additionalRules.motherTongue": "de-DE",
+    "ltex.additionalRules.enablePickyRules": true,
+    // ---------------------------------------------------------------------
+    // ------------------------------- CSV ---------------------------------
+    // ---------------------------------------------------------------------
+    "[csv]": {
+        "editor.wordWrap": "off",
+    },
+    // -------------------------------------------------------------------------
+    // ----------------------------- Extensions --------------------------------
+    // -------------------------------------------------------------------------
+    // --------------- GitLens ------------------
+    "gitlens.currentLine.enabled": false,
+    // ----------------- TODO -------------------
+    "todo.embedded.regex": "(?:<!-- *)?(?:#|%|//|/\\*+|<!--|--|\\* @|{!|{{!--|{{!) *(TODO|FIXME|BUG|UGLY|HACK|NOTE|IDEA|REVIEW|OPTIMIZE)(?:\\s*\\([^)]+\\))?:?(?!\\w)(?: *-->| *\\*/| *!}| *--}}| *}}|(?= *(?:[^:]//|/\\*+|<!--|@|--|{!|{{!--|{{!))|((?: +[^\\n@]*?)(?= *(?:[^:]//|/\\*+|<!--|@|--(?!>)|{!|{{!--|{{!))|(?: +[^@\\n]+)?))",
+    "todo.colors.types": {
+        "TODO": "#ffcc00",
+        "FIXME": "#00ccff",
+        "FIX": "#cc0000",
+        "BUG": "#cc0000",
+        "UGLY": "#cc0000",
+        "DEBUG": "#cc0000",
+        "HACK": "#cc0000",
+        "REVIEW": "#00ccff",
+        "OPTIMIZE": "#00ccff",
+        "TSC": "#00ccff",
+        "NOTE": "#cc00cc",
+        "IDEA": "#cc00cc"
+    },
+    "todo.embedded.exclude": [
+        "**/.*",
+        "**/.*/**",
+        "**/_output/**",
+        "**/bower_components/**",
+        "**/build/**",
+        "**/dist/**",
+        "**/node_modules/**",
+        "**/out/**",
+        "**/output/**",
+        "**/static/**",
+        "**/target/**",
+        "**/third_party/**",
+        "**/vendor/**",
+        "**/*.min.*",
+        "**/*.map",
+        "**/*.{3ds,3g2,3gp,7z,a,aac,adp,ai,aif,aiff,alz,ape,apk,ar,arj,asf,au,avi,bak,baml,bh,bin,bk,bmp,btif,bz2,bzip2,cab,caf,cgm,class,cmx,cpio,cr2,csv,cur,dat,dcm,deb,dex,djvu,dll,dmg,dng,doc,docm,docx,dot,dotm,dra,DS_Store,dsk,dts,dtshd,dvb,dwg,dxf,ecelp4800,ecelp7470,ecelp9600,egg,eol,eot,epub,exe,f4v,fbs,fh,fla,flac,fli,flv,fpx,fst,fvt,g3,gif,graffle,gz,gzip,h261,h263,h264,icns,ico,ief,img,ipa,iso,jar,jpeg,jpg,jpgv,jpm,jxr,key,ktx,lha,lib,lvp,lz,lzh,lzma,lzo,m3u,m4a,m4v,mar,mdi,mht,mid,midi,mj2,mka,mkv,mmr,mng,mobi,mov,movie,mp3,mp4,mp4a,mpeg,mpg,mpga,mxu,nef,npx,numbers,o,oga,ogg,ogv,one,otf,pages,pbm,pcx,pdb,pdf,pea,pgm,pic,png,pnm,pot,potm,potx,ppa,ppam,ppm,pps,ppsm,ppsx,ppt,pptm,pptx,psd,pya,pyc,pyo,pyv,qt,rar,ras,raw,resources,rgb,rip,rlc,rmf,rmvb,rtf,rz,s3m,s7z,scpt,sgi,shar,sil,sketch,slk,smv,so,sub,swf,tar,tbz,tbz2,tga,tgz,thmx,tif,tiff,tlz,ttc,ttf,txz,udf,uvh,uvi,uvm,uvp,uvs,uvu,viv,vob,war,wav,wax,wbmp,wdp,weba,webm,webp,whl,wim,wm,wma,wmv,wmx,woff,woff2,wvx,xbm,xif,xla,xlam,xls,xlsb,xlsm,xlsx,xlt,xltm,xltx,xm,xmind,xpi,xpm,xwd,xz,z,zip,zipx}"
+    ],
+    // ----------- Better Comments --------------
+    "better-comments.tags": [
+        {
+            "tag": "!",
+            "color": "#FF2D00",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "?",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "//",
+            "color": "#474747",
+            "strikethrough": true,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "todo",
+            "color": "#FF8C00",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        },
+        {
+            "tag": "*",
+            "color": "#98C379",
+            "strikethrough": false,
+            "backgroundColor": "transparent"
+        }
+    ],
+    // ---------------- cSpell ------------------
+    "cSpell.enableFiletypes": [
+        "asciidoc",
+        "c",
+        "cpp",
+        "csharp",
+        "css",
+        "git-commit",
+        "git-rebase",
+        "go",
+        "handlebars",
+        "html",
+        "jade",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "jupyter",
+        "latex",
+        "less",
+        "markdown",
+        "matlab",
+        "pdf",
+        "php",
+        "plaintext",
+        "pub",
+        "python",
+        "restructuredtext",
+        "rust",
+        "scss",
+        "tex",
+        "text",
+        "todo",
+        "typescript",
+        "typescriptreact",
+        "yml"
+    ],
+    "cSpell.language": "en,de,de-DE",
+    "cSpell.diagnosticLevel": "Hint",
+    "cSpell.allowCompoundWords": true,
+    "cSpell.userWords": [
+        "addiotional",
+        "aming",
+        "bilinearies",
+        "defocus",
+        "defocuses",
+        "discretization",
+        "disp",
+        "dompc",
+        "fprintf",
+        "Geschonneck",
+        "linearization",
+        "measuerd",
+        "metta",
+        "MIMO",
+        "nargin",
+        "parrallel",
+        "pytest",
+        "Simulink",
+        "stral",
+        "struct",
+        "varargin",
+        "zanger"
+    ],
+    // ------------- Comment Bars ---------------
+    "commentbars.commentDelimsFallback": {
+        "javascript": {
+            "start": "// ",
+            "end": " //"
+        },
+        "batch": {
+            "start": "REM "
+        },
+        "c": {
+            "start": "/* ",
+            "end": " */"
+        },
+        "csharp": {
+            "start": "// ",
+            "end": " //"
+        },
+        "cpp": {
+            "start": "// ",
+            "end": " //"
+        },
+        "css": {
+            "start": "/* ",
+            "end": " */"
+        },
+        "clojure": {
+            "start": "; "
+        },
+        "coffeescript": {
+            "start": "# "
+        },
+        "dockerfile": {
+            "start": "# ",
+            "end": " #"
+        },
+        "fsharp": {
+            "start": "// "
+        },
+        "go": {
+            "start": "// "
+        },
+        "groovy": {
+            "start": "// "
+        },
+        "hlsl": {
+            "start": "// ",
+            "end": " //"
+        },
+        "html": {
+            "start": "<!--",
+            "end": "-->"
+        },
+        "handlebars": {
+            "start": "{{!-- ",
+            "end": " --}}"
+        },
+        "ignore": {
+            "start": "#",
+            "end": "#"
+        },
+        "ini": {
+            "start": "# ",
+            "end": " #"
+        },
+        "jsonc": {
+            "start": "// "
+        },
+        "java": {
+            "start": "// ",
+            "end": " //"
+        },
+        "javascriptreact": {
+            "start": "// ",
+            "end": " //"
+        },
+        "jinja": {
+            "start": "{# ",
+            "end": " #}"
+        },
+        "less": {
+            "start": "// ",
+            "end": " //"
+        },
+        "lua": {
+            "start": "-- "
+        },
+        "makefile": {
+            "start": "# ",
+            "end": " #"
+        },
+        "markdown": {
+            "start": "<!--",
+            "end": "-->"
+        },
+        "matlab": {
+            "start": "% ",
+            "end": " %"
+        },
+        "objective-c": {
+            "start": "// ",
+            "end": " //"
+        },
+        "objective-cpp": {
+            "start": "// ",
+            "end": " //"
+        },
+        "php": {
+            "start": "// ",
+            "end": " //"
+        },
+        "perl": {
+            "start": "# "
+        },
+        "powershell": {
+            "start": "<# ",
+            "end": " #>"
+        },
+        "jade": {
+            "start": "//- ",
+            "emd": " -//"
+        },
+        "python": {
+            "start": "# ",
+            "end": " #"
+        },
+        "r": {
+            "start": "# "
+        },
+        "razor": {
+            "start": "@* ",
+            "end": " *@"
+        },
+        "ruby": {
+            "start": "# ",
+            "end": " #"
+        },
+        "rust": {
+            "start": "// "
+        },
+        "scss": {
+            "start": "// ",
+            "end": " //"
+        },
+        "shaderlab": {
+            "start": "// ",
+            "end": " //"
+        },
+        "shellscript": {
+            "start": "# ",
+            "end": " #"
+        },
+        "swift": {
+            "start": "// ",
+            "end": " //"
+        },
+        "typescript": {
+            "start": "// ",
+            "end": " //"
+        },
+        "typescriptreact": {
+            "start": "// ",
+            "end": " //"
+        },
+        "vb": {
+            "start": "'"
+        },
+        "xml": {
+            "start": "<!--",
+            "end": "-->"
+        },
+        "yaml": {
+            "start": "# ",
+            "emd": " #"
+        },
+        "pip-requirements": {
+            "start": "# ",
+            "end": " #"
+        }
+    },
+    "commentbars.quickPresets": [
+        {
+            "label": "Heavy",
+            "fillChar": "-",
+            "width": 72,
+            "thickness": 3,
+            "seamlessFill": true
+        },
+        {
+            "label": "Medium",
+            "fillChar": "=",
+            "width": 60,
+            "thickness": 3
+        },
+        {
+            "label": "Normal",
+            "fillChar": "-",
+            "width": 45,
+            "thickness": 1
+        },
+        {
+            "label": "Light",
+            "fillChar": "-",
+            "width": 30,
+            "thickness": 1
+        }
+    ],
+    // ------------ Latex Workshop --------------
+    "latex-workshop.view.pdf.viewer": "tab",
+    // -------------- Auto Align ----------------
+    "autoalign.moveableItems": [
+        "=",
+        "+=",
+        "-=",
+        // "-"
+    ],
+    // ----------- VS Intelligence --------------
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    // ----------------- Sync -------------------
+    // ------------ Auto Docstring --------------
+    "autoDocstring.docstringFormat": "google",
+    "autoDocstring.generateDocstringOnEnter": true,
+    // -------------- PSI Header ----------------
+    "psi-header.config": {
+        "author": "David Zanger",
+        "authorEmail": "david.zanger@dlr.de",
+        "company": "German Aerospace Center (DLR)",
+        "initials": "DZ",
+        "forceToTop": true
+    },
+    "psi-header.changes-tracking": {
+        "isActive": true,
+        "modDateFormat": "Do MMMM YYYY",
+        "autoHeader": "manualSave",
+        "exclude": [
+            "markdown",
+            "json",
+            "matlab"
+        ],
+    },
+    "psi-header.lang-config": [
+        {
+            "language": "python",
+            "begin": "###############################################################################",
+            "prefix": "# ",
+            "suffix": "#",
+            "end": "###############################################################################",
+            "blankLinesAfter": 2,
+            "lineLength": 79,
+        },
+        {
+            "language": "matlab",
+            "begin": "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+            "prefix": "% ",
+            "end": "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%",
+            "blankLinesAfter": 2,
+            "lineLength": 80,
+        },
+    ],
+    "psi-header.templates": [
+        {
+            "language": "*",
+            "template": [
+                "File Created: <<filecreated('Do MMMM YYYY')>>",
+                "Author 1: <<author>> (<<authoremail>>)",
+                "-----",
+                "Last Modified: <<dateformat('Do MMMM YYYY')>>",
+                "Modified By: <<author>> (<<authoremail>>)",
+                "-----",
+                "Company: <<company>>",
+                "-----",
+                "Description:"
+            ]
+        },
+        {
+            "language": "python",
+            "template": [
+                "File Created: <<filecreated('Do MMMM YYYY')>>",
+                "Author 1: <<author>> (<<authoremail>>)",
+                "-----",
+                "Company: <<company>>",
+                "-----",
+                "Description:"
+            ]
+        }
+    ],
+    // ------------- SVG Preview ----------------
+    "svgPreview.style": {
+        "html": {
+            "background": "white"
+        }
+    },
+    // ------------- Markdown PDF ---------------
+    "markdown-pdf.displayHeaderFooter": false,
+    "vsicons.dontShowNewVersionMessage": true,
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "ltex.dictionary": {
+        "en-US": [
+            "Adamy",
+            "Ausra",
+            "Barstow",
+            "Belhomme",
+            "BIBO",
+            "circumsolar",
+            "eigendynamics",
+            "Hautus",
+            "heliostat",
+            "heliostats",
+            "HFLCAL",
+            "Jülich",
+            "Kalman",
+            "Lipps",
+            "LQR",
+            "Lyapunov",
+            "Metaheuristic",
+            "MILP",
+            "overflux",
+            "Sanlúcar",
+            "SISO",
+            "STRAL",
+            "Vant"
+        ]
+    },
+    "[cpp]": {
+        "editor.defaultFormatter": "ms-vscode.cpptools"
+    },
+    "jupyter.sendSelectionToInteractiveWindow": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "cmake.configureOnOpen": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "git.confirmSync": false,
+    "sync.gist": "15c9a411fd8e382ca327980476e8c83f",
+    "workbench.colorTheme": "Bespin",
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "jupyter.jupyterServerType": "remote",
+    "remote.SSH.remotePlatform": {
+        "192.168.178.2": "linux",
+        "nextcloud": "linux",
+        "oisp.lan": "linux"
+    },
+    "idf.gitPath": "C:\\Users\\kevin\\.espressif\\tools\\idf-git\\2.30.1\\cmd\\git.exe",
+    "idf.espIdfPathWin": "C:\\Users\\kevin\\esp\\esp-idf",
+    "idf.pythonBinPathWin": "C:\\Users\\kevin\\.espressif\\python_env\\idf4.4_py3.8_env\\Scripts\\python.exe",
+    "idf.toolsPathWin": "C:\\Users\\kevin\\.espressif",
+    "idf.customExtraPaths": "C:\\Users\\kevin\\.espressif\\tools\\xtensa-esp32-elf\\esp-2021r2-patch2-8.4.0\\xtensa-esp32-elf\\bin;C:\\Users\\kevin\\.espressif\\tools\\xtensa-esp32s2-elf\\esp-2021r2-patch2-8.4.0\\xtensa-esp32s2-elf\\bin;C:\\Users\\kevin\\.espressif\\tools\\xtensa-esp32s3-elf\\esp-2021r2-patch2-8.4.0\\xtensa-esp32s3-elf\\bin;C:\\Users\\kevin\\.espressif\\tools\\riscv32-esp-elf\\esp-2021r2-patch2-8.4.0\\riscv32-esp-elf\\bin;C:\\Users\\kevin\\.espressif\\tools\\esp32ulp-elf\\2.28.51-esp-20191205\\esp32ulp-elf-binutils\\bin;C:\\Users\\kevin\\.espressif\\tools\\esp32s2ulp-elf\\2.28.51-esp-20191205\\esp32s2ulp-elf-binutils\\bin;C:\\Users\\kevin\\.espressif\\tools\\cmake\\3.20.3\\bin;C:\\Users\\kevin\\.espressif\\tools\\openocd-esp32\\v0.11.0-esp32-20211220\\openocd-esp32\\bin;C:\\Users\\kevin\\.espressif\\tools\\ninja\\1.10.2;C:\\Users\\kevin\\.espressif\\tools\\idf-exe\\1.0.3;C:\\Users\\kevin\\.espressif\\tools\\ccache\\4.3\\ccache-4.3-windows-64;C:\\Users\\kevin\\.espressif\\tools\\dfu-util\\0.9\\dfu-util-0.9-win64",
+    "idf.customExtraVars": "{\"OPENOCD_SCRIPTS\":\"C:\\\\Users\\\\kevin\\\\.espressif\\\\tools\\\\openocd-esp32\\\\v0.11.0-esp32-20211220/openocd-esp32/share/openocd/scripts\",\"IDF_CCACHE_ENABLE\":\"1\"}",
+    "workbench.startupEditor": "none",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "git.autofetch": true,
+    "settingsSync.ignoredSettings": [
+    
+    ],
+    "ltex.language": "de-DE",
+    "window.zoomLevel": -1,
+    // -------------------------------------------------------------------------
+    // --------------------------------- New -----------------------------------
+    // -------------------------------------------------------------------------
+}

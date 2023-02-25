@@ -37,12 +37,10 @@ cleardoublepage=plain,
 
 % NUR bei Abschlussarbeiten ->...
 \onehalfspacing
-\include{ch/ch00_Danksagung}
-\ % The empty page
-\thispagestyle{empty}
-\include{ch/ch00_abstractDE}
+\include{ch/ch00_Danksagung} \cleardoublepage
 % Zusammenfassung
 % ...<- für Projektberichte auskommentieren
+\include{ch/ch00_abstractDE} \cleardoublepage
 
 \doublespacing
 %% list of contents
@@ -102,7 +100,8 @@ cleardoublepage=plain,
 \addcontentsline{toc}{chapter}{\bfseries Literaturverzeichnis}
 
 % Wenn maas als style eingestellt ist kommen Fehlermeldungen und ein zweiter Kompilierungsvorgang kann nötig sein.
-% Daher lieber ieeetr einstellen.
+% Daher lieber zunächst ieeetr einstellen und erst als letzte Aktion auf maas wechseln.
+% Wenn maas ausgewählt wurde und es nicht wieder auf ieeetr zurückstellbar ist, kann es hilfreich sein, die 3 Bibliografie-Zeilen einmal vollständig auszukommentieren.
 
 
 % ========================= APPENDIX =========================

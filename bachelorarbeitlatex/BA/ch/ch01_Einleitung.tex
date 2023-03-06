@@ -1,87 +1,19 @@
-\chapter{Einleitung}\label{ch_ersteskapitel}
-Die wichtigsten Befehle sind wohl die für die Einführung eines Kapitels \gans{\textbackslash chapter\{XX\}} oder \gans{\textbackslash section{}}. Generell beginnen auch alle anderen Befehle mit einem Backslash.
+\chapter{Einleitung} \label{ch_Einleitung}
+Paar einleitende Worte.
 
-Das hier ist ein Kapitel. Der \textit{label} Befehl dient dazu, später auf das Kapitel zu referenzieren. Dies gilt auch für Sections, Subsections, Bilder, Tabellen, usw.\\
+\section{Motivation} \label{sec_Motivation}
+Motivation, siehe Davids Masterarbeit, siehe Gall Diss.
 
-\section{Erstes Unterkapitel}
-\label{sec_erstesunterkapitel}
-Das hier ist ein Unterkapitel. Es befindet sich in Kapitel \ref{ch_ersteskapitel}. Mithilfe des \textit{ref}-Befehls wird auf das Label des Kapitels Bezug genommen.
-Die Nummerierung geschieht dann Latex-intern von alleine.
-
-
-\subsection{Unterkapitel vom Unterkapitel}
-\label{subsec_unterkapitelvomunterkapitel}
-Das hier ist ein Unterkapitel vom Unterkapitel und befindet sich in Kapitel \ref{sec_erstesunterkapitel}.
-
-\subsection{Grafiken}
-\label{Grafiken}
-Eine Grafik wird wie folgt eingebunden:\\
-\begin{figure}[h!]
-    \centering
-    \setlength{\fboxsep}{1pt}
-    \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.45\textwidth]{fig/ch02_beispielBild.png}}
-    \caption[EintragAbbildungsverzeichnis]{Bildunterschrift}
-    \label{Label}
-\end{figure}
-
-Oben steht nun Abbildung \ref{Label}
-
-Anmerkung: Lässt man die eckigen Klammern bei der Caption weg, so wird im Abbildungsverzeichnis automatisch der Inhalt der geschweiften Klammern übernommen.
-Zweite Anmerkung: Der Befehl \textit{fbox} setzt einen Rahmen um das Bild. Kann natürlich auch entfernt werden. Die Abbildung wird automatisch im Abbildungsverzeichnis eingetragen!
-
-\subsection{Formeln}
-\label{Formeln}
-
-Eine Formel geht wie folgt:\\
-\begin{equation} \label{eq_Label}
-    a^2+b^2
-\end{equation}
-\centerline{\textbf{Formel \ref{eq_Label}:} Beschriftung}
-\myequations{EintragFormelverzeichnis}
-
-Auch die Formel \ref{eq_Label} wird auf diese Weise automatisch in das Formelverzeichnis übernommen.
-
-\subsection{Tabellen}
-\label{Tabellen}
-Eine Tabelle wird zum Beispiel über ein Excel-Tool eingefügt. Der Link dazu ist: \url{https://ctan.org/pkg/excel2latex?lang=de}.
-Dies kann dann in Excel aktiviert werden und Tabellen extrahiert werden.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%Die nachfolgende Tabelle wurde automatisch über das Latex2Excel-Tool erstellt.
-\begin{table}[htbp]
-    \centering
-    \caption{Erste Tabelle}
-    \begin{tabular}{lrll}
-        \toprule
-        \multicolumn{1}{c}{\textbf{Name}}          & \multicolumn{1}{c}{\textbf{Alter}} & \multicolumn{1}{c}{\textbf{Stadt}} & \multicolumn{1}{c}{\textbf{Land}} \\
-        \midrule
-        \rowcolor[rgb]{ .851,  .851,  .851} Tobias & 23                                 & Leverkusen                         & Deutschland                       \\
-        Julia                                      & 19                                 & Wuppertal                          & Deutschland                       \\
-        \rowcolor[rgb]{ .851,  .851,  .851} David  & 19                                 & Leverkusen                         & Deutschland                       \\
-        \bottomrule
-    \end{tabular}%
-    \label{tab_erste Tabelle}%
-\end{table}%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Die Tabelle \ref{tab_erste Tabelle} wird automatisch im Tabellenverzeichnis eingetragen!
-
-\subsection{Fußnoten}
-\label{subsec_Fußnoten}
-Wenn man einen Text schreibt, dann kann man z.B. hier eine Fußnote\footnote{Und dann steht hier eine Zusatzinformation} einfügen. Andere nette Spielerin sind das einfügen von Links wie der hier: \url{https://www.wwf-jugend.de/blogs/5830/5830/unbekannter-und-bedrohter-fisch-der-blobfisch}.
-
-
-\subsection{Zitieren}
-\label{subsec_Zitieren}
-
-So macht man ein Zitat \cite{Follinger.2016}. Oder so \cite{ifmelectronic.2004}\\
-Dafür wird in diesem Falle Citavi benutzt. In einem Citavi Projekt sollte für LaTeX-Vorlagen dieser Art immer folgendermaßen eine Quelle eingebunden werden:
+\section{Zielsetzung} \label{sec_Zielsetzung}
+Zielsetzung, siehe Zielsetzung an Kim und auf Bachelorarbeit Einreichung.
+Außerdem siehe David Ziele was die Simulationen angeht:
 \begin{itemize}
-    \item Auf das $+$ klicken, um einen Titel hinzuzufügen.
-    \item Unabhängig von der realen Art der Quelle sollte IMMER \glqq Buch (Monographie)\grqq{} oder wenn nötig \glqq Buch (Sammelwerk)\grqq{} gewählt werden.
-    \item Autor, Titel sowie Online-Adresse und ISBN wenn vorhanden angeben. Zuletzt geprüft am: Sollte z.B. mit: \glqq 23.07.2021 um 12:44 Uhr\grqq{} ausgefüllt werden.
-    \item In Citavi kann unter Datei, Exportieren, das Format \glqq BibTeX\grqq{} gewählt werden (LaTeX Notation verwenden) und anschließend als .bib Datei gespeichert werden.
-    \item Diese Datei muss anschließend im LaTeX Programm hochgeladen werden. Im Main Dokument darauf achten, dass die Bezeichnung der bib Datei richtig referenziert wird.
+    \item Wie viel besser ist der MPC, wenn er von den Wolken weiß?
+    \item Wo sind zu jedem Szenario die Grenzen? Also wie viel \% darf die MPC Vorhersage vor der eigentlichen Simulation abweichen?
 \end{itemize}
-Mit ein bisschen Recherche kann alles so angepasst werden wie man es braucht. Einfach mal Googeln oder jemanden fragen.\\
-Das wars. Viel Spaß.
+Außerdem hat David schon hier seine Quelle drin, wie man einen Controller auslegt. \cite{Follinger.2016}
+Wohin mit diesem Inhalt?
+
+\section{Struktur der Arbeit} \label{sec_Struktur}
+Hier die Struktur hin.
+

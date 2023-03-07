@@ -103,8 +103,10 @@ cleardoublepage=plain,
 \bibliographystyle{ieeetr}
 \addcontentsline{toc}{chapter}{\bfseries Literaturverzeichnis}
 
-% Wenn maas als style eingestellt ist kommen Fehlermeldungen und ein zweiter Kompilierungsvorgang kann nötig sein.
-% Daher lieber zunächst ieeetr einstellen und erst als letzte Aktion auf maas wechseln.
+% Um maas style zu nutzen muss in den VSCode Einstellungen unter Punkt "latex-workshop.latex.outDir": "%DIR%/build" stehen.
+% Allerdings ist das "/build" aus anderen Gründen (pdf Darstellung in Browser etc) nicht voreingestellt.
+% Außerdem: Wenn maas als style eingestellt ist kommen Fehlermeldungen und ein zweiter Kompilierungsvorgang kann nötig sein.
+% Daher lieber zunächst ieeetr oder plain einstellen und erst als letzte Aktion auf maas wechseln.
 % Wenn maas ausgewählt wurde und es nicht wieder auf ieeetr zurückstellbar ist, kann es hilfreich sein, die 3 Bibliografie-Zeilen einmal vollständig auszukommentieren.
 
 
@@ -115,8 +117,7 @@ cleardoublepage=plain,
 \pagenumbering{Roman}                                                   % roman page numbering
 \setcounter{page}{\number\value{savepage}}								% Fortlaufende Nummerierung	der Seiten	
 
-\cleardoublepage
 
-\include{ch/ch99_appendix}							% Anhang
+\include{ch/ch99_appendix} \cleardoublepage					% Anhang
 
 \end{document}

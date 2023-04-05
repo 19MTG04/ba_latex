@@ -11,8 +11,10 @@
 \usepackage[]{graphicx} 	 					% für Bilder
 %\usepackage[fleqn]{amsmath}					% Amsmath - Mathematik Basispaket fl=flush left = linksbündig
 \usepackage{amsmath}                            % Amsmath - Mathematik Basispaket zentriert
+\usepackage{amssymb}
 \usepackage{tikz}		    						% für Graphiken und Zeichnen
 \usepackage{pgfplots}								% Für MATLAB2Latex export
+\usepackage{varwidth}
 
 
 
@@ -53,6 +55,8 @@
 \renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
 
+% Stop Latex from stretching vertically, which is activated for twosided documents automatically
+\raggedbottom
 
 
 %% Inhaltsverzeichnis

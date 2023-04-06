@@ -5,21 +5,21 @@ Ebenfalls relevant ist der Vergleich der verwendeten Zielpunktregelung und des N
 
 \section{Solartürme} \label{sec_Solartürme}
 Am Forschungszentrum in Jülich ist der Solarturm beheimatet, für den im Rahmen dieser Arbeit eine Regelung entwickelt wird.
-Die nachfolgende Abbildung \ref{fig_Solarturm} zeigt diesen 60 Meter hohen Turm \cite{XXX https://www.dlr.de/sf/desktopdefault.aspx/tabid-8560/15527_read-44867/}, inklusive der Spiegel, sog. \textit{Heliostaten}, die das Sonnenlicht in Richtung des Receivers fokussieren.
+Die nachfolgende Abbildung \ref{fig_Solarturm} zeigt diesen 60 Meter hohen Turm \cite{DLRSolartürmeBild}, inklusive der Spiegel, sog. \textit{Heliostaten}, die das Sonnenlicht in Richtung des Receivers fokussieren.
 
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.7\textwidth]{fig/SolarkraftwerkJuelich.jpg}}
-    \caption[Solarthermisches Demonstrations- und Versuchskraftwerk Jülich]{Solarthermisches Demonstrations- und Versuchskraftwerk Jülich \cite{XXX https://www.dlr.de/sf/Portaldata/73/Resources/images/Abt__STS/BeideSolartuerme_Luft_580x387.jpg}}
+\caption[Solarthermisches Demonstrations- und Versuchskraftwerk Jülich]{Solarthermisches Demonstrations- und Versuchskraftwerk Jülich \cite{DLRSolartürmeBild}}
     \label{fig_Solarturm}
 \end{figure}
 
 Ein Solarturmkraftwerk wandelt konzentrierte Sonnenstrahlung in elektrische Energie um oder nutzt sie zur Unterstützung thermochemischer Prozesse.
 Diese konzentrierte Strahlung entsteht durch gezielte Ausrichtung einer großen Anzahl an Heliostaten auf die Spitze des Solarturms, an der sich der \textit{Receiver} befindet.
 Dort wird sie von einem Wärmeträgermedium absorbiert, welches anschließend klassischerweise zum Betrieb eines Energieumwandlungsprozesses zur Stromerzeugung verwendet wird.
-Alternativ kann das erhitzte Medium auch in einem Energiespeicher zur späteren Verwendung zwischengespeichert werden. \cite{David MA Q10 ISBN 9783844002591}
+Alternativ kann das erhitzte Medium auch in einem Energiespeicher zur späteren Verwendung zwischengespeichert werden. \cite[S. 11]{DissBelhomme}
 Eine schematische Darstellung eines Solarturmkraftwerkes zeigt die Abbildung \ref{fig_SchemaSolarturmkraftwerk}.
 
 \begin{figure}[h!]
@@ -27,7 +27,7 @@ Eine schematische Darstellung eines Solarturmkraftwerkes zeigt die Abbildung \re
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.9\textwidth]{fig/solar_tower_plant_1.pdf}}
-    \caption[Vereinfachte schematische Darstellung eines Solarturmkraftwerkes]{Vereinfachte schematische Darstellung eines Solarturmkraftwerkes \cite{XXX Davids MA zitieren}}
+\caption[Vereinfachte schematische Darstellung eines Solarturmkraftwerkes]{Vereinfachte schematische Darstellung eines Solarturmkraftwerkes \cite[S. 5]{DissZanger}}
     \label{fig_SchemaSolarturmkraftwerk}
 \end{figure}
 
@@ -37,30 +37,30 @@ Im Gegensatz dazu sind das Heliostatenfeld sowie der Receiver und der Einfluss d
 
 
 \subsection{Heliostaten} \label{subsec_Heliostaten}
-Die Heliostaten bündeln die direkte Sonneneinstrahlung (siehe Kapitel XXX) auf den Receiver.
+Die Heliostaten bündeln die Sonneneinstrahlung auf den Receiver.
 Dabei bestimmt ihr jeweiliger Zielpunkt, an welcher Stelle der Receiver getroffen wird, sodass sich die Konzentration des Lichtes durch die Nähe der einzelnen Zielpunkte ergibt.
 
 Um seiner Funktion der Sonnenreflexion nachzukommen, besteht jeder Heliostat aus einer reflektierenden Fläche, einer tragenden Struktur und einem Nachführmechanismus.
 Letzterer ist erforderlich, um den Receiver auch bei wechselnden Sonnenständen an der jeweils identischen Stelle treffen zu können.
 Dafür verfolgt eine integrierte Steuereinheit den Sonnenstand und verstellt die in der Regel bidirektional bewegliche, reflektierende Fläche entsprechend.
-Dabei sind die beiden Freiheitsgrade der Heliostaten die Elevations- und die Azimut-Ebene, wie sie in Abbildung \ref{fig_FreiheitsgradeHeliostat} dargestellt sind. \cite{XXX Quelle 10 David MA}
+Dabei sind die beiden Freiheitsgrade der Heliostaten die Elevations- und die Azimut-Ebene, wie sie in Abbildung \ref{fig_FreiheitsgradeHeliostat} dargestellt sind. \cite[S. 13]{DissBelhomme}
 
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.7\textwidth]{fig/FreiheitsgradeHeliostat.pdf}}
-    \caption[Darstellung der Elevations- und Azimut-Ebene]{Darstellung der Elevations- und Azimut-Ebene \cite{XXX Davids Masterarbeit}}
+\caption[Darstellung der Elevations- und Azimut-Ebene]{Darstellung der Elevations- und Azimut-Ebene \cite[S. 6]{DissZanger}}
     \label{fig_FreiheitsgradeHeliostat}
 \end{figure}
 
 Größe, Form und Art der spiegelnden Fläche unterscheiden sich bei verschiedenen Heliostaten-Typen sehr stark.
 Um eine bestimmte Brennweite zu erreichen ist es beispielsweise denkbar die Oberfläche auf kleinere einzelne Flächen, sog. \textit{Facetten}, aufzuteilen, welche sich in einer Ebene oder zueinander gekippt befinden.
-Weiterhin sind die Spiegel zumeist rechteckig angeordnet, eine Krümmung der Fläche nach innen, erzielt eine höhere Konzentration der Strahlung. \cite{XXX Quelle 10 David MA, Quelle 11 auch}.
+Weiterhin sind die Spiegel zumeist rechteckig angeordnet, eine Krümmung der Fläche nach innen, erzielt eine höhere Konzentration der Strahlung. \cite[S. 5]{DissZanger}
 
-Der tragende Körper der Heliostaten ist in der Regel aus wirtschaftlichen Gründen als T-Struktur vorgesehen \cite{Quelle 11 XXX}.
-Die Heliostaten am Betrachtungsstandort Jülich bestehen aus lediglich einer ebenen, rechteckigen Facette auf einem T-Träger und sind mit einer Reflexionsfläche von $8.3m^2$ vergleichsweise klein \cite{XXX Gall Diss}.
-Auf der \textit{PS10} (Planta Solar 10) bei Sevilla befinden sich beispielsweise Heliostaten mit $120m^2$ Reflexionsfläche in 28 Facetten \cite{XXX}. % https://www.researchgate.net/profile/Manuel-Silva-22/publication/257128243_PS10_CONSTRUCTION_OF_A_11MW_SOLAR_THERMAL_TOWER_PLANT_IN_SEVILLE_SPAIN/links/00b7d5245b98dac9eb000000/PS10-CONSTRUCTION-OF-A-11MW-SOLAR-THERMAL-TOWER-PLANT-IN-SEVILLE-SPAIN.pdf?origin=publication_detail
+Der tragende Körper der Heliostaten ist in der Regel aus wirtschaftlichen Gründen als T-Struktur vorgesehen \cite[S. 97]{ScottAJones}.
+Die Heliostaten am Betrachtungsstandort Jülich bestehen aus lediglich einer ebenen, rechteckigen Facette auf einem T-Träger und sind mit einer Reflexionsfläche von $8.3m^2$ vergleichsweise klein \cite[S. 4]{DissGall}\cite[S. 13]{DissBelhomme}.
+Auf der \textit{PS10} (Planta Solar 10) bei Sevilla befinden sich beispielsweise Heliostaten mit $120m^2$ Reflexionsfläche in 28 Facetten \cite[S. 5]{ManuelSilva}.
 Die nachfolgende Abbildung \ref{fig_DarstellungHeliostat} soll die grundsätzliche Ähnlichkeit im Aufbau der Heliostaten auch bei unterschiedlicher Größe zeigen.
 
 \begin{figure}[h!]
@@ -68,7 +68,7 @@ Die nachfolgende Abbildung \ref{fig_DarstellungHeliostat} soll die grundsätzlic
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=1\textwidth]{fig/Heliostat.png}}
-    \caption[Ausra Heliostat am Forschungsstandort Jülich mit $8.3m^2$  und Sanlúcar-120-Heliostat auf der PS10 bei Sevilla mit $120m^2$ Reflexionsfläche]{Ausra Heliostat am Forschungsstandort Jülich mit $8.3m^2$  (links) und Sanlúcar-120-Heliostat auf der PS10 bei Sevilla mit $120m^2$ Reflexionsfläche (rechts) \cite{Quelle 10 MA XXX}}
+\caption[Ausra Heliostat am Forschungsstandort Jülich mit $8.3m^2$  und Sanlúcar-120-Heliostat auf der PS10 bei Sevilla mit $120m^2$ Reflexionsfläche]{Ausra Heliostat am Forschungsstandort Jülich mit $8.3m^2$  (links) und Sanlúcar-120-Heliostat auf der PS10 bei Sevilla mit $120m^2$ Reflexionsfläche (rechts) \cite[S. 13]{DissBelhomme}}
     \label{fig_DarstellungHeliostat}
 \end{figure}
 
@@ -84,7 +84,7 @@ Wie in Abbildung \ref{fig_Solarturm} zu sehen ist, handelt es sich in Jülich um
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=1\textwidth]{fig/Vergleich_Heliostatenfelder.png}}
-    \caption[Verschiedene Heliostatfeld-Layouts auf der Nordhalbkugel: Rundum-Feld und Nordfeld]{Verschiedene Heliostatfeld-Layouts auf der Nordhalbkugel: Rundum-Feld (links) und Nordfeld (rechts) \cite{XXX Quelle 10 MA}}
+\caption[Verschiedene Heliostatfeld-Layouts auf der Nordhalbkugel: Rundum-Feld und Nordfeld]{Verschiedene Heliostatfeld-Layouts auf der Nordhalbkugel: Rundum-Feld (links) und Nordfeld (rechts) \cite[S. 14]{DissBelhomme}}
     \label{fig_AnordnungHeliostatfeld}
 \end{figure}
 
@@ -95,32 +95,32 @@ Durch Konvektion wird die gespeicherte Energie dann an ein Wärmeträgermedium w
 Receiver, die in Solarturmkraftwerken genutzt werden, unterscheiden sich in ihrem Aufbau und ihren physikalischen Grenzen. Diese Eigenschaften werden im Folgenden kurz untersucht.
 
 Grundsätzlich muss zwischen zylindrischen und rechteckigen Receivern unterscheiden werden.
-Erstere sind dann notwendig, wenn die Spiegel rund um den Solarturm angeordnet sind. Bei Nord- oder Südfeldern kommen rechteckige Receiver zum Einsatz, welche je nach Standort und Anwendungsfall auch nach innen gebogen sind, um vor Wärmeverlust durch zu schnelle Windgeschwindigkeiten an der Receiver Vorderseite zu schützen. \cite{XXX https://core.ac.uk/download/pdf/77230689.pdf}
+Erstere sind dann notwendig, wenn die Spiegel rund um den Solarturm angeordnet sind. Bei Nord- oder Südfeldern kommen rechteckige Receiver zum Einsatz, welche je nach Standort und Anwendungsfall auch nach innen gebogen sind, um vor Wärmeverlust durch zu schnelle Windgeschwindigkeiten an der Receiver Vorderseite zu schützen. \cite{Flesch}
 
 Das Material des Receivers ist abhängig vom genutzten Wärmeträgermedium.
-Typische Medien sind Luft, geschmolzene Salze, Wasser oder flüssige Metalle \cite{XXX Masterarbeit 16}; die Receiver bestehen in der Regel aus Metallröhren unterschiedlicher Legierungen für den Durchfluss von z.B. Salzschmelzen und Wasser oder aber aus poröser Keramik \cite{XXX Masterarbeit 17}\cite{https://www.osti.gov/pages/servlets/purl/1365805 XXX}.
+Typische Medien sind Luft, geschmolzene Salze, Wasser oder flüssige Metalle; die Receiver bestehen in der Regel aus Metallröhren unterschiedlicher Legierungen für den Durchfluss von z.B. Salzschmelzen und Wasser oder aber aus poröser Keramik \cite{Barlev}\cite{Ho2017}.
 
-Wenn Eigenschaften wie die maximal zulässigen thermischen Spannungen des Receivers überschritten werden, kann dieser beschädigt werden \cite{XXX MA 18}.
+Wenn Eigenschaften wie die maximal zulässigen thermischen Spannungen des Receivers überschritten werden, kann dieser beschädigt werden \cite{AlbertoSanchez}.
 Bei einem Empfänger, der von Salzschmelze durchströmt wird, hängt diese beispielsweise mit der lokalen Salztemperatur und -geschwindigkeit
-sowie der Windgeschwindigkeit zusammen \cite{XXX MA 19}.
+sowie der Windgeschwindigkeit zusammen \cite{VantHull}.
 Dabei wird die lokale Salztemperatur direkt durch die Einstrahlung (Flussdichte) auf dem Receiver beeinflusst.
 
 Eine Möglichkeit die Einhaltung der maximalen thermischen Spannungen zu gewährleisten ist also unter anderem die Einführung einer maximalen Flussdichte am Receiver, die auf der Grundlage seiner spezifischen Eigenschaften berechnet werden kann.
 Dabei ist der zulässige Wert auch stark vom verwendeten Kühlmedium abhängig.
-Für Röhrenreceiver, die mit flüssigem Natrium gekühlt werden, sind beispielsweise maximale Strahlungsflussdichten von $2,5MW/m^2$ erlaubt, während bei luftgekühlten Röhrenreceivern nur $200kW/m^2$ \cite{XXX MA 10} erreicht werden dürfen.
+Für Röhrenreceiver, die mit flüssigem Natrium gekühlt werden, sind beispielsweise maximale Strahlungsflussdichten von $2,5MW/m^2$ erlaubt, während bei luftgekühlten Röhrenreceivern nur $200kW/m^2$ \cite[S. 17]{DissBelhomme} erreicht werden dürfen.
 
 Die Flussdichte $\phi$ ist dabei als Strahlungsfluss $F$ pro Fläche $A$ zu verstehen, wobei $F$ das Verhältnis aus absorbierter Strahlungsenergie $Q$ pro Zeiteinheit darstellt (siehe Formel \ref{eq_Strahlungsfluss} und \ref{eq_Flussdichte}).
 
 \begin{equation} \label{eq_Strahlungsfluss}
     F = \frac{\text{d}Q}{\text{d} t}
 \end{equation}
-\centerline{\textbf{Formel \ref{eq_Strahlungsfluss}:} Berechnung des Strahlungsflusses $F$}
+\centerline{\small{\textsf{\textbf{Formel \ref{eq_Strahlungsfluss}:}} Berechnung des Strahlungsflusses $F$}}
 \myequations{\quad Berechnung des Strahlungsflusses $F$}
 
 \begin{equation} \label{eq_Flussdichte}
     \phi = \frac{\text{d}F}{\text{d} A}
 \end{equation}
-\centerline{\textbf{Formel \ref{eq_Flussdichte}:} Berechnung der Flussdichte $\phi$}
+\centerline{\small{\textsf{\textbf{Formel \ref{eq_Flussdichte}:}} Berechnung der Flussdichte $\phi$}}
 \myequations{\quad Berechnung der Flussdichte $\phi$}
 
 Zur Bestimmung der Brutto-Leistung, die dem System auf diese Weise zugeführt wird, kann die Flussdichte an jeder Receiveröffnung zur Hilfe genommen werden.
@@ -129,7 +129,7 @@ Sie ergibt sich aus der Integration der Flussdichte $\phi$ über der Fläche des
 \begin{equation} \label{eq_LeistungReceiver}
     P = \int_{A}\phi~\text{d} A
 \end{equation}
-\centerline{\textbf{Formel \ref{eq_LeistungReceiver}:} Berechnung Bruttoleistung $P$ auf dem Receiver}
+\centerline{\small{\textsf{\textbf{Formel \ref{eq_LeistungReceiver}:}} Berechnung Bruttoleistung $P$ auf dem Receiver}}
 \myequations{\quad Berechnung Bruttoleistung $P$ auf dem Receiver}
 
 Es ist durchaus vorstellbar, dass je nach Anwendungsfall auch ein Limit für die minimal erlaubte Flussdichte auf dem Receiver existiert, um beispielsweise ein Problem von Verfestigung von Salzschmelzen zu vermeiden.
@@ -148,105 +148,101 @@ Dieser Winkel bestimmt die effektive Reflexionsfläche, welche senkrecht zur Ein
 Wie in Abbildung \ref{fig_KosinusVerlust} dargestellt ist, entspricht das Verhältnis zwischen der effektiven Fläche und der Gesamtfläche jedes Heliostaten dem Kosinus des Winkels zwischen der Einfallsrichtung und der Hauptnormalen der Spiegelfläche.
 Wenn der Winkel $\beta$ größer wird, also stumpfere Lichteinfallswinkel vorliegen, nimmt die effektive Fläche ab und die Effizienz der Heliostaten wird geringer.
 Diese wird mit dem Kosinus-Wirkungsgrad $\cos\beta$ ausgedrückt, der also in direktem Zusammenhang mit der reflektierten Sonnenleistung steht.
-Der immense Einfluss der Kosinus-Verluste zeigt sich beispielsweise an Untersuchungen am Solar One Tower in Süd-Kalifornien, wo auch das Solarturmkraftwerk mit der höchsten Nennleistung beheimatet ist \cite{XXX https://solarpaces.nrel.gov/project/ivanpah-solar-electric-generating-system}.
-Zwischen $0,65$ und $0,9$ schwankt der Kosinus-Wirkungsgrad jährlich in dieser Gegend, je nach Sonnenstand und damit verbundener Heliostaten Position. \cite{XXX MA 13}
+Der immense Einfluss der Kosinus-Verluste zeigt sich beispielsweise an Untersuchungen am Solar One Tower in Süd-Kalifornien, wo auch das Solarturmkraftwerk mit der höchsten Nennleistung beheimatet ist \cite{Ivanpah}.
+Zwischen $0,65$ und $0,9$ schwankt der Kosinus-Wirkungsgrad jährlich in dieser Gegend, je nach Sonnenstand und damit verbundener Heliostaten Position. \cite{Holl}
 
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.6\textwidth]{fig/KosinusVerluste}}
-    \caption[Seitenansicht eines Heliostaten zur Verdeutlichung des Winkels $\beta$ im Kontext der Kosinus-Verluste]{Seitenansicht eines Heliostaten zur Verdeutlichung des Winkels $\beta$ im Kontext der Kosinus-Verluste \cite{XXX Davids MA}}
+\caption[Seitenansicht eines Heliostaten zur Verdeutlichung des Winkels $\beta$ im Kontext der Kosinus-Verluste]{Seitenansicht eines Heliostaten zur Verdeutlichung des Winkels $\beta$ im Kontext der Kosinus-Verluste \cite[S. 7]{DissZanger}}
     \label{fig_KosinusVerlust}
 \end{figure}
 
 Als schwerwiegender optischer Verlust durch die Heliostaten an sich sind die Reflexionsverluste zu nennen.
 Wenn das Sonnenlicht auf die Spiegel trifft, wird ein Teil davon absorbiert, was die Menge des reflektierten Lichts verringert.
 Diese Verringerung des Reflexionsvermögens kann zusätzlich durch Umweltfaktoren wie Regen und Staub noch verstärkt werden.
-Reflektieren saubere Spiegeloberflächen normalerweise zwischen $87 \%$ und $94 \%$ des auf sie treffenden Sonnenlichts, sinkt dieser Wert durch umweltbedingte Verschmutzung auch schnell auf $80 \%$. \cite{XXX MA 10}
+Reflektieren saubere Spiegeloberflächen normalerweise zwischen $87 \%$ und $94 \%$ des auf sie treffenden Sonnenlichts, sinkt dieser Wert durch umweltbedingte Verschmutzung auch schnell auf $80 \%$. \cite[S. 14]{DissBelhomme}
 
 Je nach Sonnenstand, Feldanordnung und Objekten mit signifikantem Schattenwurf, wie dem Turm, können Heliostaten verschattet werden oder andere Heliostaten \gans{blockieren}.
 Im Falle einer Abschattung ist der direkte Weg zwischen Sonne und Heliostat (teilweise) versperrt, sodass die Sonnenstrahlung nicht ungehindert auf die Spiegelfläche treffen kann.
 Bei der Blockierung ist der Weg zwischen Heliostat und Receiver betroffen; die reflektierte Strahlung eines Heliostaten wird durch einen anderen Heliostaten (teilweise) blockiert.
 Abbildung \ref{fig_AbschattungBlockieren} stellt die beiden Problematiken visuell dar.
 Das Problem der Abschattung tritt besonders bei niedrigen Sonnenständen auf, während von der Blockierung zumeist die hinteren Heliostatenreihen betroffen sind.
-Durch ein geeignetes Felddesign kann diesen Verlusten entgegengewirkt werden. \cite{XXX MA 14}
+Durch ein geeignetes Felddesign kann diesen Verlusten entgegengewirkt werden. \cite[S. 686]{Wei2014}
 
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=1\textwidth]{fig/BlockingShading.png}}
-    \caption[Blockierung und Abschattung von Heliostaten]{Blockierung (links) und Abschattung (rechts) von Heliostaten \cite{David MA XXX}}
+\caption[Blockierung und Abschattung von Heliostaten]{Blockierung (links) und Abschattung (rechts) von Heliostaten \cite[S. 15]{DissBelhomme}}
     \label{fig_AbschattungBlockieren}
 \end{figure}
 
 Ein weiterer optischer Verlustfaktor sind die Spiegelfehler.
 Als solche werden Abweichungen eines Spiegels von seiner idealen Form genannt, welche den Spiegel wellig erscheinen lässt.
 Hervorgerufen wird dieser Fehler beispielsweise durch innere Spannungen in der Heliostatenstruktur als Folge von Wind oder Temperaturschwankungen oder aber durch normale Ungenauigkeiten in der Herstellung.
-Die Größe des Fehlers wird als Winkel zwischen dem tatsächlichen Normalvektor des Spiegels und dem idealen Normalvektor gemessen und liegt in der Regel zwischen $0,08^\circ$ und $0,14^\circ$. \cite{XXX MA 10}
+Die Größe des Fehlers wird als Winkel zwischen dem tatsächlichen Normalvektor des Spiegels und dem idealen Normalvektor gemessen und liegt in der Regel zwischen $0,08^\circ$ und $0,14^\circ$. \cite[S. 16]{DissBelhomme}
 
 Als Streuung bezeichnet man den Teil der reflektierten Sonnenstrahlung, der den Receiver ungewollt verfehlt und nicht in nutzbare Energie umgewandelt werden kann.
-Dies geschieht beispielsweise auch durch die oben genannten Spiegelfehler oder wenn der Abstand zwischen Heliostat und Receiver so groß ist, dass das Abbild der Reflexion auf dem Receiver größer ist als der Receiver selbst. \cite{XXX MA 10}
+Dies geschieht beispielsweise auch durch die oben genannten Spiegelfehler oder wenn der Abstand zwischen Heliostat und Receiver so groß ist, dass das Abbild der Reflexion auf dem Receiver größer ist als der Receiver selbst. \cite[S. 15-16]{DissBelhomme}
 
 Der letzte nennenswerte optische Fehler, welcher durch die Heliostaten selbst ausgelöst wird, ist der sogenannte \textit{Tracking Error}.
 Dieser beschreibt einen Fehler bei der Ausrichtung der Heliostaten.
-Er kann Ursachen wie Schmutz oder Verschleiß an den Nachführachsen, oder Ungenauigkeiten bei der Motorausrichtung und Sonnenstandsmessung als Ursache haben \cite{XXX MA 15}. Auch dieser Fehler wird als Winkel gemessen und liegt normalerweise bei $0,03^\circ$ bis $0,1^\circ$ \cite{XXX MA 10}.
+Er kann Ursachen wie Schmutz oder Verschleiß an den Nachführachsen, oder Ungenauigkeiten bei der Motorausrichtung und Sonnenstandsmessung als Ursache haben \cite[S. 7]{Richter}. Auch dieser Fehler wird als Winkel gemessen und liegt normalerweise bei $0,03^\circ$ bis $0,1^\circ$ \cite[S. 17]{DissBelhomme}.
 
-Für die Analyse des Systems wird nachfolgend mit vorberechneten Strahlungskarten aus dem in \cite{10 MA XXX} vorgestellten Programm \textit{STRAL} verwendet.
+Für die Analyse des Systems wird nachfolgend mit vorberechneten Strahlungskarten aus dem in \cite[S. 53ff]{DissBelhomme} vorgestellten Programm \textit{STRAL} verwendet.
 Die Software berücksichtigt das reale Heliostatenfeld am Standort Jülich und bietet auch die Möglichkeit optische Verluste zu einem gewissen Grad mit einzubeziehen.
 
 
 \section{Nowcasting-Systeme zur Wettervorhersage} \label{sec_Nowcasting}
 Wie eingangs beschrieben, liegt ein wesentlicher Schwerpunkt dieser Arbeit in der Analyse des Wolkeneinflusses, welcher den besagten meteorologischen optischen Verlust darstellt, auf das Gesamtsystem des Solarturms.
 Um eine zuverlässige Regelung hinsichtlich der im Kapitel \ref{subsec_Receiver} beschriebenen Receivertemperaturbegrenzung zu gewährleisten, ist eine möglichst genaue Wolkenvorhersage unerlässlich.
-In der Praxis wird dies durch die sogenannten \textit{Nowcasting Systeme} erreicht, die in Ergänzung zu den klassischen Modellen der Wettervorhersage durch zeitlich und räumlich hochauflösende Beobachtungen genauere Vorhersagen liefern \cite{XXX https://www.dwd.de/DE/forschung/wettervorhersage/met_fachverfahren/nowcasting/nowcasting_node.html}.
+In der Praxis wird dies durch die sogenannten \textit{Nowcasting Systeme} erreicht, die in Ergänzung zu den klassischen Modellen der Wettervorhersage durch zeitlich und räumlich hochauflösende Beobachtungen genauere Vorhersagen liefern \cite{DWD1}.
 
 Die sensorischen Möglichkeiten um solch präzise Vorhersagen generieren zu können sind sehr vielfältig.
-Für deutschlandweit flächendeckende Vorhersagen nutzt der deutsche Wetterdienst beispielsweise Radarsysteme und Satellitenbilder \cite{XXX https://www.dwd.de/DE/forschung/wettervorhersage/met_fachverfahren/nowcasting/nowcast_mix_node.html UND https://www.dwd.de/DE/forschung/wettervorhersage/met_fachverfahren/nowcasting/cellmos_verfahren_node.html}.
+Für deutschlandweit flächendeckende Vorhersagen nutzt der deutsche Wetterdienst beispielsweise Radarsysteme und Satellitenbilder \cite{DWD1}.
 Durch Abruf und Verarbeitung dieser Daten im 5-Minutentakt können regionale Prognosen für die kommenden zwei Stunden generiert werden.
 Diese enthalten dann Informationen über Regenfälle und Hagel, sowie Böen, Blitze und Schneefall.
 
 Für den Anwendungsfall des Solarturms ist eine solche Prognose jedoch aus mehreren Gründen nicht optimal.
 Je präziser die jeweils lokale Vorhersage für das Heliostatenfeld ist, desto mehr Information steht der Regelung für eine präzise Regelung zur Verfügung.
-Da die Auflösung der deutschlandweiten Vorhersage lediglich rund $1km$ x $1km$ beträgt \cite{https://www.dwd.de/DE/forschung/wettervorhersage/met_fachverfahren/nowcasting/konrad_node.html, UND https://www.dwd.de/DE/forschung/wettervorhersage/met_fachverfahren/nowcasting/cellmos_verfahren_node.html} während sich das Heliostatenfeld auf eine Fläche von rund $330m$ x $310m$ beschränkt, sind lediglich sehr grobe Vorhersagen zu erwarten.
-Darüber hinaus ist auch die zeitliche Auflösung von 5 Minuten \cite{https://www.dwd.de/DE/forschung/wettervorhersage/met_fachverfahren/nowcasting/cellmos_verfahren_node.html XXX} unterhalb der Möglichkeiten anderer Nowcasting Systeme \cite{XXX https://www.dlr.de/sf/desktopdefault.aspx/tabid-10946/19311_read-44861/ AND https://www.sciencedirect.com/science/article/pii/S0038092X14000486?via%3Dihub}
-}.
+Da die Auflösung der deutschlandweiten Vorhersage lediglich rund $1km$ x $1km$ beträgt \cite{DWD1}\cite{DWD2} während sich das Heliostatenfeld auf eine Fläche von rund $330m$ x $310m$ beschränkt, sind lediglich sehr grobe Vorhersagen zu erwarten.
+Darüber hinaus ist auch die zeitliche Auflösung von 5 Minuten \cite{DWD2} unterhalb der Möglichkeiten anderer Nowcasting Systeme \cite{DLRNowcasting}\cite[S. 272]{QuesadaRuiz}.
 
 Ein beliebtes Instrument für zeitlich und räumlich hochauflösende Vorhersagen sind die sogenannten \textit{ASIs}, kurz für \gans{All-sky imagers}.
 Dabei handelt es sich um nach oben gerichtete Kameras mit dem Zweck der Wolkenüberwachung.
-Der Prozess zur Erstellung von Nowcasting Vorhersagen auf Basis dieser Bilder wird beispielsweise in \cite{XXX in elib.
-    dlr Paper sogar mit Seitenzahl angegeben https://www.sciencedirect.com/science/article/pii/S0038092X14000486?via%3Dihub}
-} beschrieben. \cite{https://elib.dlr.de/188116/1/202208_SolarIrradianceNowcastingSystemTrialAndEvaluationForIslandMicrogridControlPurposes_Samu.pdf}
+Der Prozess zur Erstellung von Nowcasting Vorhersagen auf Basis dieser Bilder wird beispielsweise in \cite{QuesadaRuiz} beschrieben. \cite{Samu}
 
-% https://elib.dlr.de/188116/1/202208_SolarIrradianceNowcastingSystemTrialAndEvaluationForIslandMicrogridControlPurposes_Samu.pdf
 Das DLR verwendet in Spanien bereits ein Nowcasting System auf Basis der ASIs.
 Es erstellt in subminütlicher Auflösung Einstrahlungskarten des betrachteten Solarfeldes.
-Räumlich gesehen können auf diese Weise Vorhersagen auf bis zu $20m$ x $20m$ getroffen werden. \cite{XXX https://elib.dlr.de/188116/1/202208_SolarIrradianceNowcastingSystemTrialAndEvaluationForIslandMicrogridControlPurposes_Samu.pdf UND https://www.dlr.de/sf/desktopdefault.aspx/tabid-10946/19311_read-44861/}
+Räumlich gesehen können auf diese Weise Vorhersagen auf bis zu $20m$ x $20m$ getroffen werden. \cite[S. 13]{Samu}\cite{DLRNowcasting}
 
 Die nachfolgende Abbildung \ref{fig_Nowcasting_Kamerabilder} zeigt links exemplarisch Bilder, die von solchen ASIs auf der PSA (Plataforma Solar de Almería) in Spanien, einem weiteren Standort eines Solarturmkraftwerkes, entstanden sind.
 Für die Erstellung dieser konkreten Bilder wurden 4 Kameras mit jeweils $500$ bis $1000m$ Entfernung voneinander am Heliostatenfeld aufgestellt.
-Aus diesen können anschlißend die in Abbildung \ref{fig_Nowcasting_Kamerabilder} rechts sichtbaren Wolkenmasken erstellt und damit die benötigten hochauflösenden Einstrahlungskarten berechnet werden. \cite{XXX https://www.dlr.de/sf/desktopdefault.aspx/tabid-10946/19311_read-44861/}
+Aus diesen können anschlißend die in Abbildung \ref{fig_Nowcasting_Kamerabilder} rechts sichtbaren Wolkenmasken erstellt und damit die benötigten hochauflösenden Einstrahlungskarten berechnet werden. \cite{DLRNowcasting}
 
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=1\textwidth]{fig/Nowcasting}}
-    \caption[Aufnahmen der ASIs auf der PSA  und die daraus extrahierten Wolknemaske]{Aufnahmen der ASIs auf der PSA (links) und die daraus extrahierten Wolknemasken (rechts) \cite{XXX https://www.dlr.de/sf/desktopdefault.aspx/tabid-10946/19311_read-44861/}}
+\caption[Aufnahmen der ASIs auf der PSA  und die daraus extrahierten Wolknemaske]{Aufnahmen der ASIs auf der PSA (links) und die daraus extrahierten Wolknemasken (rechts) \cite{DLRNowcasting}}
     \label{fig_Nowcasting_Kamerabilder}
 \end{figure}
 
 
 \section{Modellprädiktive Regelung} \label{sec_ModellprädiktiveRegelung}
 Das Ziel eines Reglers ist im Allgemeinen, bestimmte Modellparameter, meist Ausgangsgrößen technischer Prozesse, so einzustellen, dass sie vorgegebenen Führungsgrößen entsprechen.
-Änderungen dieser Führungsgrößen soll möglichst genau gefolgt werden und unvorhersehbare Störungen sollen die Regelstrecke so wenig wie möglich beeinflussen. \cite{David MA 22 XXX} \\
+Änderungen dieser Führungsgrößen soll möglichst genau gefolgt werden und unvorhersehbare Störungen sollen die Regelstrecke so wenig wie möglich beeinflussen. \cite{Abel} \\
 Im Anwendungsfall dieser Arbeit ist dabei von besonderer Bedeutung, dass auch zukünftige Modellzustände in die Regelung prädiktiv einbezogen werden können.
-Aus diesem Grund sind klassische Regler wie der PID Regler, die lediglich auf Basis der Abweichung von aktuellen Soll- und Istwerten Stellgrößen für das System vorgeben \ref[S. 408]{XXX Lunze Buch}, nicht ausreichend und es wird ein modellprädiktiver Regler (kurz \textit{MPC}) gewählt.
+Aus diesem Grund sind klassische Regler wie der PID Regler, die lediglich auf Basis der Abweichung von aktuellen Soll- und Istwerten Stellgrößen für das System vorgeben \ref[S. 408]{Lunze}, nicht ausreichend und es wird ein modellprädiktiver Regler (kurz \textit{MPC}) gewählt.
 
 \subsection{Grundlagen} \label{subsec_GrundlagenMPC}
 Neben der Möglichkeit zur Inbezugnahme von Vorhersagen ist ein großer Vorteil der MPC die Fähigkeit komplexe nicht-lineare \textit{MIMO}-Systeme (\textbf{M}ulti \textbf{I}nput \textbf{M}ulti \textbf{O}utput) zu regeln.
-Der wohl bedeutendste Grund dafür, dass MPC in der Praxis mit dem PID-Regler den Stand der Technik ausmacht \cite[S. viii]{XXX Kouvaritakis}, ist jedoch die zusätzliche Möglichkeit Limitierungen auf Inputs und Outputs des Systems, sogenannte \textit{Constraints}, festlegen zu können; nachteilig ist jedoch der damit direkt verbundene, hohe Rechenaufwand. \cite[S. 1-2]{XXX Kouvaritakis}
+Der wohl bedeutendste Grund dafür, dass MPC in der Praxis mit dem PID-Regler den Stand der Technik ausmacht \cite[S. viii]{Kouvaritakis}, ist jedoch die zusätzliche Möglichkeit Limitierungen auf Inputs und Outputs des Systems, sogenannte \textit{Constraints}, festlegen zu können; nachteilig ist jedoch der damit direkt verbundene, hohe Rechenaufwand. \cite[S. 1-2]{Kouvaritakis}
 
 Der Grund für diese besonderen Features des MPC sind in seinem Aufbau zu finden.
 Der Controller an sich besteht aus einer Komposition einer Optimierungseinheit und einem Modell des zu regelnden Systems.
@@ -259,7 +255,7 @@ Für die konkrete Anwendung würde der Solarturm die \gans{Plant} darstellen, in
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=1\textwidth]{fig/Regelkreis.drawio.pdf}}
-    \caption[Geschlossener Regelkreis mit einem MPC]{Geschlossener Regelkreis mit einem MPC gemäß\cite[S. 2]{XXX MPC Paper}}
+\caption[Geschlossener Regelkreis mit einem MPC]{Geschlossener Regelkreis mit einem MPC gemäß\cite[S. 2]{Schwenzer}}
     \label{fig_RegelkreisMPC}
 \end{figure}
 
@@ -268,14 +264,14 @@ Es ist erkennbar, dass der Regler zum Zeitpunkt $k$ über die Dauer des gesamten
 Die Berechnung geschieht dabei in der durch die \textit{Sample Time} $T_s$ vorgegebenen Frequenz.
 Dafür kalkuliert er für den \textit{Regelungshorizont} von Zeitpunkt $k+N_1$ bis $k+N_u$ die optimalen Stellgrößen $u$, sodass sich $y$ der Referenztrajektorie $r$ so gut wie möglich annähert.
 Der Abstand zwischen der Referenztrajektorie und der Ausgangsgröße wird mit dem Fehler $e$ bezeichnet, den es zu minimieren gilt.
-Nach jedem Zeitschritt $T_s$ verschieben sich die Horizonte entsprechend, es wird eine neue Stellgröße an das System weitergegeben und die Optimierung wird erneut durchgeführt. \cite[S. 3]{XXX MPC Paper}
+Nach jedem Zeitschritt $T_s$ verschieben sich die Horizonte entsprechend, es wird eine neue Stellgröße an das System weitergegeben und die Optimierung wird erneut durchgeführt. \cite[S. 3]{Schwenzer}
 
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=1\textwidth]{fig/mpcprinciple}}
-    \caption[Funktionsprinzip eines MPC]{Funktionsprinzip eines MPC nach \cite[S. 3]{XXX MPC Paper} gemäß} %\cite{XXX https://www.sciencedirect.com/science/article/abs/pii/0005109878900018?via%3Dihub}}
+\caption[Funktionsprinzip eines MPC]{Funktionsprinzip eines MPC nach \cite[S. 3]{Schwenzer} gemäß} \cite{Richalet}
     \label{fig_MPCVerhalten}
 \end{figure}
 
@@ -283,41 +279,37 @@ Nach jedem Zeitschritt $T_s$ verschieben sich die Horizonte entsprechend, es wir
 Ein grundlegender Baustein zur erfolgreichen Regelung mit einem modellprädiktiven Regler ist die Abbildung des zu regelnden Systems durch mathematische Formeln – die Modellbildung.
 Dabei kann das System sowohl in diskreter als auch kontinuierlicher Form vorliegen; für die Optimierung werden kontinuierliche Systeme aus Differenzialgleichungen und algebraischen Gleichungen jedoch in aller Regel diskretisiert, sodass das System letztlich wie in den Gleichungen \ref{eq_Modellbildung1} - \ref{eq_Modellbildung3} zu beschreiben ist.
 Dabei steht $x$ für die dynamischen Modellzustände, $u$ für die Stellgrößen, $z$ für algebraische Größen und $p$ bzw.
-$p_{tv}$ für (zeitabhängige, \textbf{t}ime \textbf{v}arying) Modellparameter. \cite{XXX}% (vgl. \cite{XXX MPC Paper Seite 3 UND XXX https://www.do-mpc.com/en/latest/theory_orthogonal_collocation.html#secorthogonalpoly UND https://www.do-mpc.com/en/latest/getting_started.html})
+$p_{tv}$ für (zeitabhängige, \textbf{t}ime \textbf{v}arying) Modellparameter. \cite[S. 3]{Schwenzer}\cite{Dompc1}
 
 \begin{equation} \label{eq_Modellbildung1}
     x_{k+1} = f(x_k, u_k, z_k, p_{tv,k}, p)
 \end{equation}
-% \centerline{\textbf{Formel \ref{eq_Label}:} Beschriftung}
 \myequations{\quad Diskrete Zustandsgleichung in der Modellbildung}
 \vspace*{-2.5\baselineskip}
 \begin{equation} \label{eq_Modellbildung2}
     0 = g(x_k, u_k, z_k, p_{tv,k}, p)
 \end{equation}
-% \centerline{\textbf{Formel \ref{eq_Label}:} Beschriftung}
 \myequations{\quad Gleichheitsbedingungen in der Modellbildung}
 \vspace*{-2.5\baselineskip}
 \begin{equation} \label{eq_Modellbildung3}
     y_k = h(x_k, u_k, z_k, p_{tv,k}, p)
 \end{equation}
-\centerline{\textbf{Formel \ref{eq_Modellbildung1} - \ref{eq_Modellbildung3}:} Diskretisierte mathematische Modelldarstellung}
+\centerline{\small{\textsf{\textbf{Formel \ref{eq_Modellbildung1} - \ref{eq_Modellbildung3}:}} Diskretisierte mathematische Modelldarstellung}}
 \myequations{\quad Ausgangsgleichung in der Modellbildung}
 
 
 \subsection{Kostenfunktion} \label{subsec_Modellbildung}
 Liegt dem Controller ein hinreichend mathematisch beschriebenes Modell vor, kann eine sogenannte Kostenfunktion aufgestellt werden.
 Während des Optimierungsprozesses wird der in Abbildung \ref{fig_RegelkreisMPC} dargestellte Optimizer diese Funktion minimieren.
-In der Kostenfunktion sollte der Vergleich der zu regelnden Ausgangsvariablen mit der Referenztrajektorie über den Regelungshorizont in quadratischer Form abgebildet sein \cite[S.
-    24]{XXX https://reader.elsevier.com/reader/sd/pii/S0959152419303592?token=9116B5F797959599B3BD2DBA2B22FBB70A5B3698AFC41837C28DE3FD61DB022DEB6C080BDDA6D75AFB434B863D095055&originRegion=eu-west-1&originCreation=20230402125017 UND Paper S. 3}.
+In der Kostenfunktion sollte der Vergleich der zu regelnden Ausgangsvariablen mit der Referenztrajektorie über den Regelungshorizont in quadratischer Form abgebildet sein \cite[S. 24]{Diehl}\cite[S. 3]{Schwenzer}.
 Weiterhin ist es zumeist zielführend die Veränderung der Eingangsvariablen in jedem Zeitschritt in die Kostenfunktion mit aufzunehmen, um einem ruckartigen Regelverhalten vorzubeugen.
-Zuletzt ist es auch möglich einen Term in die Kostenfunktion einzubinden, welcher nicht über den gesamten Kontrollhorizont berechnet wird, sondern lediglich die abschließende Güte der Regelung bewertet \cite[S.
-    24]{XXX https://reader.elsevier.com/reader/sd/pii/S0959152419303592?token=9116B5F797959599B3BD2DBA2B22FBB70A5B3698AFC41837C28DE3FD61DB022DEB6C080BDDA6D75AFB434B863D095055&originRegion=eu-west-1&originCreation=20230402125017}.
-Ein mathematisches Beispiel einer solchen Kostenfunktion ist in Formel \ref{eq_Kostenfunktion} zu sehen, dabei stehen $W_1$, $W_2$ und $W_u$ für Gewichtungsfaktoren und $y(k+i\rvert k)$ für die zum Zeitpunkt $k$ bezüglich des Zeitpunktes $k+i$ vorhergesagte Ausgangsvariable. \cite[S. 3]{Paper XXX und https://www.do-mpc.com/en/latest/getting_started.html}
+Zuletzt ist es auch möglich einen Term in die Kostenfunktion einzubinden, welcher nicht über den gesamten Kontrollhorizont berechnet wird, sondern lediglich die abschließende Güte der Regelung bewertet \cite[S. 24]{Diehl}.
+Ein mathematisches Beispiel einer solchen Kostenfunktion ist in Formel \ref{eq_Kostenfunktion} zu sehen, dabei stehen $W_1$, $W_2$ und $W_u$ für Gewichtungsfaktoren und $y(k+i\rvert k)$ für die zum Zeitpunkt $k$ bezüglich des Zeitpunktes $k+i$ vorhergesagte Ausgangsvariable. \cite[S. 3]{Schwenzer}
 
 \begin{equation} \label{eq_Kostenfunktion}
     J = \sum_{i=N_1}^{N_2-1}\left(\lVert r(k+i\rvert k)-y(k+i\rvert k)\rVert_{W_1} + \Delta u_i^T W_u \Delta u_i\right) + \lVert r(N_2\rvert k)-y(N_2\rvert k)\rVert_{W_2}
 \end{equation}
-\centerline{\textbf{Formel \ref{eq_Kostenfunktion}:} Beispielhafte Kostenfunktion für den MPC}
+\centerline{\small{\textsf{\textbf{Formel \ref{eq_Kostenfunktion}:}} Beispielhafte Kostenfunktion für den MPC}}
 \myequations{\quad Beispielhafte Kostenfunktion für den MPC}
 
 
@@ -327,25 +319,27 @@ Während der Optimierung der Kostenfunktion wird bei Einbindung von Constraints 
 Dabei ist zwischen den sogenannten \textit{hard constraints} und \textit{soft constraints} zu unterscheiden.
 Nicht zu überschreitende, harte Limitierungen treten zumeist bei den Eingangsgrößen auf; beispielhaft kann das maximale Drehmoment eines Motors genannt werden.
 Im Gegensatz dazu sind harte Beschränkungen auf Ausgangsgrößen eher nur gewünscht als wirklich erforderlich und können das Optimierungsproblem unlösbar machen.
-Ein zusätzlicher Freiheitsgrad wird durch die Einführung von soft constraints und sogenannten \textit{Slack Variablen} $\xi$ geschaffen. \cite[S. 4]{XXX Paper}
+Ein zusätzlicher Freiheitsgrad wird durch die Einführung von soft constraints und sogenannten \textit{Slack Variablen} $\xi$ geschaffen. \cite[S. 4]{Schwenzer}
 
 Mathematisch lässt sich die in Gleichung \ref{eq_Kostenfunktion} dann um die constraints auf das gesamte Optimierungsproblem erweitern (siehe \ref{eq_Optimierungsproblem}).
-Dazu werden weitere Gewichtungsmatrizen nach \cite[S. 4]{Paper XXX}$W_w$ und $W_\xi$ in der Kostenfunktion eingefügt, letztere als trade-off zwischen Dauer und Höhe der constraint Überschreitung \cite{XXX in Paper steht 101 als Quelle}.
+Dazu werden weitere Gewichtungsmatrizen nach \cite[S. 4]{Schwenzer}$W_w$ und $W_\xi$ in der Kostenfunktion eingefügt, letztere als trade-off zwischen Dauer und Höhe der constraint Überschreitung \cite{Rawlings}.
 Die Indizes \textit{lb} und \textit{ub} kennzeichnen die lower bzw. upper bound, also die untere und obere Variablengrenze.
 
 \begin{equation} \label{eq_Optimierungsproblem}
-    \underset{u,\xi}{\text{min}} \quad (\ref{eq_Kostenfunktion})_{W_w} + \underbrace{\lVert_\xi(k+i\rvert k)\rVert_{W_\xi}}_{softening}
+\begin{gathered}
+    \min_{u, \xi} \quad (2.7)_{W_w}+\underbrace{\left\|_{\xi}(k+i \mid k)\right\|_{W_{\xi}}}_{\text {softening }} \qquad\\
+    u_{l b} \leq(u(k+j \mid k)) \leq u_{u b}, \\
+    y_{l b}-(\xi(k+i \mid k)) \leq(y(k+j \mid k)) \leq y_{u b}+(\xi(k+i \mid k)), \\
+    \text { where } \xi \geq 0 \\
+    \forall i \in\left\{N_1, \ldots, N_2-i\right\} \text { and } j \in\left\{0, \ldots, N_u\right\}
+\end{gathered}
 \end{equation}
-\myequations{\quad Beispielhaftes Optimierungsproblem für den MPC}
 
-\vspace*{-\baselineskip}
-subject to:
-\vspace*{-\baselineskip}
-$$u_{lb}\leq \left(u(k+j\rvert k)\right) \leq u_{ub},$$
-$$y_{lb} - \left(\xi(k+i\rvert k)\right) \leq \left(y(k+j\rvert k)\right) \leq y_{ub} + \left(\xi(k+i\rvert k)\right),$$
-$$\text{where } \xi \geq 0$$
-$$\forall~i \in \left\{ N_1, ..., N_2-i \right\} \text{and } j \in \left\{0, ..., N_u\right\}$$
-\enlargethispage*{\baselineskip}\centerline{\textbf{Formel \ref{eq_Optimierungsproblem}:} Beispielhaftes Optimierungsproblem für den MPC}
+\vspace*{-5.2\baselineskip}
+\qquad subject to:
+\vspace*{4.2\baselineskip}
+\myequations{\quad Beispielhaftes Optimierungsproblem für den MPC}
+\centerline{\small{\textsf{\textbf{Formel \ref{eq_Optimierungsproblem}:}} Beispielhaftes Optimierungsproblem für den MPC}}
 
 
 \section{Zielpunktregelung} \label{sec_Zielpunktregelung}
@@ -358,39 +352,44 @@ Eine optimale Ausrichtung der Heliostaten wird erreicht, wenn die Temperatur an 
 Aufgrund der Tatsache, dass ein Heliostat allerdings mit verschiedenen diskreten Teilen des Receivers, im folgenden \textit{Cups} genannt, korreliert, kann die Temperatur eines einzelnen Cups nicht durch einen Heliostaten angepasst werden, ohne die Temperatur der anderen Cups zu beeinflussen.
 Aus diesem Grund kann es unmöglich sein, die perfekte Lösung zu finden, bei an jedem Cup des Receivers die maximale Temperatur vorliegt.
 Das Optimierungsproblem sollte also nicht auf die Temperatur der einzelnen Cups abzielen, sondern die insgesamt aufgenommene Leistung $P_{receiver}$ unter Einhaltung der Grenztemperatur maximieren.
-Das zugehörige Optimierungsproblem ergibt sich dann gemäß Gleichung \ref{eq_OptimierungZielpunkte}, wobei $T_{absorber,i}$ die jeweilige Temperatur am Cup $i$ darstellt und $(x_{z,h}, y_{z,h})$ the Zielpunktkoordinaten eines jeden Heliostaten $h$ darstellen. \cite{David MA XXX}
+Das zugehörige Optimierungsproblem ergibt sich dann gemäß Gleichung \ref{eq_OptimierungZielpunkte}, wobei $T_{absorber,i}$ die jeweilige Temperatur am Cup $i$ darstellt und $(x_{z,h}, y_{z,h})$ the Zielpunktkoordinaten eines jeden Heliostaten $h$ darstellen. \cite[S. 15]{DissZanger}
 
 \begin{equation} \label{eq_OptimierungZielpunkte}
-    \text{max} \quad P_{receiver}
+\begin{gathered}
+    \max \quad P_{\text {receiver }}  \qquad \\
+    \begin{aligned}
+        T_{front,i} \leq T_{front,max}, \qquad                 & \forall~i \in \left\{1, ..., n_{cups} \right\}       \\
+        \left(x_{z,h}, y_{z,h}\right) \in \mathbb{R}^2, \qquad & \forall~h \in \left\{1, ..., n_{heliostats} \right\}
+    \end{aligned}
+\end{gathered}
 \end{equation}
-\myequations{\quad Kontinuierliches Optimierungsproblem der Zielpunktregelung}
 
-\vspace*{-\baselineskip}
-subject to:
-\vspace*{-2\baselineskip}
-\begin{align*}
-    T_{front,i} \leq T_{front,max}, \qquad                 & \forall~i \in \left\{1, ..., n_{cups} \right\}       \\
-    \left(x_{z,h}, y_{z,h}\right) \in \mathbb{R}^2, \qquad & \forall~h \in \left\{1, ..., n_{heliostats} \right\}
-\end{align*}
-\centerline{\textbf{Formel \ref{eq_OptimierungZielpunkte}:} Kontinuierliches Optimierungsproblem der Zielpunktregelung}
+\vspace*{-2.95\baselineskip}
+\qquad subject to:
+\vspace*{1.95\baselineskip}
+\myequations{\quad Kontinuierliches Optimierungsproblem der Zielpunktregelung}
+\centerline{\small{\textsf{\textbf{Formel \ref{eq_OptimierungZielpunkte}:}} Kontinuierliches Optimierungsproblem der Zielpunktregelung}}
 
 Wie bereits in Kapitel \ref{subsec_Modellbildung} erwähnt ist eine Diskretisierung des Modells zumeist hilfreich.
 Die kontinuierliche Gleichung \ref{eq_OptimierungZielpunkte} erlaubt dem Heliostaten alle möglichen Zielpunkte in der Ebene $\mathbb{R}^2$.
 Eine Diskretisierung durch Definition einer Teilmenge möglicher Zielpunktkoordinaten $A$ erlaubt eine mathematische Beschreibung des Problems wie in Gleichung \ref{eq_OptimierungZielpunkteDiskret}.
 
 \begin{equation} \label{eq_OptimierungZielpunkteDiskret}
-    \text{max} \quad P_{receiver}
+\begin{gathered}
+    \max \quad P_{\text {receiver }}  \qquad \\
+    \begin{aligned}
+        T_{front,i} \leq T_{front,max}, \qquad      & \forall~i \in \left\{1, ..., n_{cups} \right\}       \\
+        \left(x_{z,h}, y_{z,h}\right) \in A, \qquad & \forall~h \in \left\{1, ..., n_{heliostats} \right\}
+    \end{aligned}
+\end{gathered}
 \end{equation}
-\myequations{\quad Diskretes Optimierungsproblem der Zielpunktregelung}
 
-\vspace*{-\baselineskip}
-subject to:
-\vspace*{-2\baselineskip}
-\begin{align*}
-    T_{front,i} \leq T_{front,max}, \qquad      & \forall~i \in \left\{1, ..., n_{cups} \right\}       \\
-    \left(x_{z,h}, y_{z,h}\right) \in A, \qquad & \forall~h \in \left\{1, ..., n_{heliostats} \right\}
-\end{align*}
-\centerline{\textbf{Formel \ref{eq_OptimierungZielpunkteDiskret}:} Diskretes Optimierungsproblem der Zielpunktregelung}
+\enlargethispage*{2\baselineskip}
+\vspace*{-2.95\baselineskip}
+\qquad subject to:
+\vspace*{1.95\baselineskip}
+\myequations{\quad Diskretes Optimierungsproblem der Zielpunktregelung}
+\centerline{\small{\textsf{\textbf{Formel \ref{eq_OptimierungZielpunkteDiskret}:}} Diskretes Optimierungsproblem der Zielpunktregelung}}
 
 Um die Streuung der Heliostaten möglichst gering zu halten und somit die Energieeffizienz des Kraftwerkes zu verbessern, werden die Heliostaten bevorzugt auf die Mitte gerichtet.
 Werden jedoch alle Heliostaten auf die Mitte ausgerichtet, wird die zulässige Temperatur der Receiver-Front überschritten.
@@ -401,7 +400,7 @@ Da sie die gleiche Leistung reflektieren, aber über eine kleinere Fläche als w
 Es ist zu beachten, dass eine optimale Lösung des in Gleichung \ref{eq_OptimierungZielpunkteDiskret} formulierten Problems nicht die optimale Lösung in Bezug auf das reale System ist, da das reale System Störungen unterworfen ist.
 Die in Abschnitt \ref{subsec_OptischeVerluste} beschriebenen optischen Verluste sowie Wolken als meteorologische Einflüsse, wie in Abschnitt \ref{sec_Nowcasting} erwähnt, werden als Störgrößen betrachtet.
 Sie verändern die Flussdichteverteilungen der Heliostaten und können daher die abgefangene Leistung einzelner Cups beeinflussen.
-Durch den Tracking-Error beispielsweise könnte die erlaubte Temperatur des Receivers verletzt überschritten werden, wenn die Verschiebung hin zu einem bereits kritisch heißen Cup geschieht. \cite{David MA XXX}
+Durch den Tracking-Error beispielsweise könnte die erlaubte Temperatur des Receivers verletzt überschritten werden, wenn die Verschiebung hin zu einem bereits kritisch heißen Cup geschieht. \cite[S. 16]{DissZanger}
 
 Wolken reduzieren die reflektierte Strahlung während ihres Durchzuges, was die Möglichkeit bietet, die Zielpunkte weiter in Richtung Zentrum zu verschieben.
 Zieht die Wolke weiter, während die Heliostaten immer noch stark in Richtung Receiver-Zentrum fokussieren, kann dies zu einer Überschreitung der maximalen Temperatur oder in dieser Arbeit nicht weiter betrachteter Temperaturgradienten führen.
@@ -420,35 +419,35 @@ Die Details der Zusammenhänge dieser Größen werden in Kapitel \ref{sec_Ausgan
 \end{figure}
 
 \subsection{Existierende Algorithmen} \label{subsec_ZielpunktregelungLiteratur}
-Eine präzise Übersicht über verschiedene Algorithmen zur Zielpunktregelung wurde von Oberkirsch in \cite{XXX Diss Oberkirsch} aufgestellt.
+Eine präzise Übersicht über verschiedene Algorithmen zur Zielpunktregelung wurde von Oberkirsch in \cite{DissOberkirsch} aufgestellt.
 An dieser Stelle werden beispielhaft einige dieser Regelungen kurz vorgestellt bevor nachfolgend in Absatz \ref{subsec_ZielpunktregelungGarcia} die in dieser Arbeit genutzte Zielpunktregelung detaillierter vorgestellt wird.
 
-Maldonado \textit{et al.} \cite{XXX Diss Laurin 7 UND 202} entwickelte beispielsweise einen iterativen Algorithmus mit dem Namen \textit{Local Search}.
+Maldonado \textit{et al.} \cite{Maldonado}\cite{Maldonado2} entwickelte beispielsweise einen iterativen Algorithmus mit dem Namen \textit{Local Search}.
 Dieser beginnt bei einer initialen Lösung zur Zielpunktverteilung und untersucht für jeden Zeitschritt, ob eine Verschiebung zu diskreten benachbarten Zielpunkten im Hinblick auf die Gesamtleistung des Receivers einen Vorteil bringt.
 Der jeweilige Heliostat ändert seine Ausrichtung dann so, dass die Leistung maximal gesteigert wird, sofern eine Steigerung möglich ist.
 Auf diese Weise wird nach und nach über jeden benachbarten Zielpunkt und über alle Heliostaten iteriert.
 
-In einer Arbeit von Cruz \textit{et al.} \cite{Garcia Paper Quelle 3} wird ein Algorithmus zur Zielpunktsteuerung vorgeschlagen, der eine gewünschte Flussdichteverteilung auf dem Receiver erreichen soll.
+In einer Arbeit von Cruz \textit{et al.} \cite{Cruz} wird ein Algorithmus zur Zielpunktsteuerung vorgeschlagen, der eine gewünschte Flussdichteverteilung auf dem Receiver erreichen soll.
 Das Problem wird durch eine zweistufige Optimierung gelöst; die erste Stufe bestimmt mittels eines meta-heuristischen Algorithmus die zu optimierenden Heliostaten und die zweite Stufe legt mit einem gradientenbasierten Suchverfahren die Zielpunkte dieser Heliostaten fest. Erfolgreiche Tests dieses Verfahrens werden in der Veröffentlichung jedoch nur mit 50 aktiven Heliostaten beschrieben.
 
 
-Vant-Hull \textit{et al.} \cite{Diss Laurin 14 und 15} hat unter anderem das \textit{Dynamic Aimpoint Processing System} (\textit{DAPS}) entwickelt; eine Regelung die im Wesentlichen das Überschreiten maximaler Flussdichten verhindern soll.
+Vant-Hull \textit{et al.} \cite{VantHull2}\cite{VantHull3} hat unter anderem das \textit{Dynamic Aimpoint Processing System} (\textit{DAPS}) entwickelt; eine Regelung die im Wesentlichen das Überschreiten maximaler Flussdichten verhindern soll.
 Dazu wird der Cup des Receivers mit der höchsten überschrittenen Flussdichte gemessen und simulativ bestimmt und anschließend identifiziert, welcher Heliostat den größten Einfluss auf diesen Cup nimmt; dieser Heliostat wird anschließend defokussiert.
 In einem iterativen Prozess wird dieses Verfahren wiederholt, bis die Flussdichte an keinem Cup mehr überschritten wird.
 
-García \textit{et al.} stellte einen Algorithmus vor, der das Problem nicht als \textit{MIMO} (\textbf{M}ulti \textbf{I}nput \textbf{M}ulti \textbf{O}utput) System definiert, also mit allen Heliostaten als Eingangsgrößen und allen Zielpunkten als separat zu berechnende Ausgangsgrößen, sondern als System aus 6 \textit{SISO} (\textbf{S}ingle \textbf{I}nput \textbf{S}ingle \textbf{O}utput) Subsystemen.
+García \textit{et al.} \cite{Garcia1} stellte einen Algorithmus vor, der das Problem nicht als \textit{MIMO} (\textbf{M}ulti \textbf{I}nput \textbf{M}ulti \textbf{O}utput) System definiert, also mit allen Heliostaten als Eingangsgrößen und allen Zielpunkten als separat zu berechnende Ausgangsgrößen, sondern als System aus 6 \textit{SISO} (\textbf{S}ingle \textbf{I}nput \textbf{S}ingle \textbf{O}utput) Subsystemen.
 Dazu werden die Heliostaten in drei Gruppen eingeteilt, je nach Entfernung zum Receiver.
 Für jede Gruppe werden dann zwei Faktoren eingeführt: Ein Faktor, der das \textit{shifting}, also die Verschiebung der Zielpunktmitte jeder Gruppe vom Zentrum her beschreibt und einer, der die \textit{dispersion}, also die Streuung der Heliostaten von dieser Gruppenmitte ausangibt.
 Auf diese Weise werden sechs Subsysteme gebildet, die von separaten \textit{PID}-Reglern geregelt werden.
 
 Die Algorithmen, die nicht auf Basis einer Gruppierung von Heliostaten funktionieren, haben einen hohen Rechen- und Zeitaufwand in der Optimierung.
 Weiterhin ist der DAPS-Algorithmus aufgrund anderer Nachteile für diese Arbeit ungeeignet; dazu zählt die Tatsache, dass er nicht für die Inbezugnahme von Wolken ausgelegt ist.
-Darüber hinaus besteht die Notwendigkeit einer extrem präzisen Modellbildung, um den exakten Einfluss einzelner Heliostaten nutzen zu können und durch seinen Aufbau wird immer der Heliostat mit dem größten Einfluss manipuliert, welcher nicht zwangsläufig der beste Heliostat ist. \cite[S. 35]{Diss Laurin XXX}
-Die Einteilung des Systems in SISO-Subsysteme ist für stark gekoppelte Systeme mit großen Abhängigkeiten nicht sinnvoll. \cite[S. 33]{MA David XXX}
+Darüber hinaus besteht die Notwendigkeit einer extrem präzisen Modellbildung, um den exakten Einfluss einzelner Heliostaten nutzen zu können und durch seinen Aufbau wird immer der Heliostat mit dem größten Einfluss manipuliert, welcher nicht zwangsläufig der beste Heliostat ist. \cite[S. 35]{DissOberkirsch}
+Die Einteilung des Systems in SISO-Subsysteme ist für stark gekoppelte Systeme mit großen Abhängigkeiten nicht sinnvoll. \cite[S. 33]{DissZanger}
 
 
 \subsection{Vorstellung des gewählten Algorithmus} \label{subsec_ZielpunktregelungGarcia}
-Gewählt wird ein Algorithmus zur Zielpunktverteilung, welcher ebenfalls von Garcia \textit{et al.} \cite{XXX Paper Garcia} vorgestellt wurde und mit Gruppierung von Heliostaten und der oben angesprochenen \textit{dispersion} der Heliostaten arbeitet.
+Gewählt wird ein Algorithmus zur Zielpunktverteilung, welcher ebenfalls von Garcia \textit{et al.} \cite{Garcia2} vorgestellt wurde und mit Gruppierung von Heliostaten und der oben angesprochenen \textit{dispersion} der Heliostaten arbeitet.
 Er ist ursprünglich für zylindrische Receiver gedacht, die Grundidee kann jedoch problemlos auf rechteckige Receiver übertragen werden.
 Außerdem liegt auch bei diesem Ansatz der Fokus auf einer Regelung der maximal erlaubten Flussdichte; zu diesem Zweck wird ein Regelkreis mit einem MPC vorgestellt.
 Für diese Arbeit wird jedoch lediglich der Algorithmus zur Bewegung der Zielpunkte benötigt und in das Modell des Solarturms Jülich eingebaut.
@@ -460,14 +459,14 @@ Da García in seiner Forschung ein Rundum-Heliostatenfeld (vgl. \ref{subsec_Heli
 Anschließend wird jede dieser Gruppen noch dreifach unterteilt.
 Einerseits entstehen zwei Gruppen mit einem Radius von $<400m$ Entfernung zum Receiver, welche im gleichen Teil des Feldes stehen und eine ähnliche Leistung zum Receiver reflektieren können.
 Die dritte Gruppe umfasst alle weiteren Heliostaten mit größerem Abstand zum Receiver.
-Abbildung \ref{fig_VerteilungHeliostateGarcia} zeigt diese Einteilung in 18x3 Gruppen von Heliostaten; die Gruppen sind farblich in Rot, Grün und Blau dargestellt. \cite[S. 8-10]{XXX Garcia Paper}
+Abbildung \ref{fig_VerteilungHeliostateGarcia} zeigt diese Einteilung in 18x3 Gruppen von Heliostaten; die Gruppen sind farblich in Rot, Grün und Blau dargestellt. \cite[S. 8-10]{Garcia2}
 
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.6\textwidth]{fig/GarciaFeld}}
-    \caption[Einteilung des Heliostatenfeldes des Gemasolar-Kraftwerkes in Sevilla in 54 Gruppen]{Einteilung des Heliostatenfeldes des Gemasolar-Kraftwerkes in Sevilla in 54 Gruppen \cite[S. 10]{XXX Garcia Paper}}
+\caption[Einteilung des Heliostatenfeldes des Gemasolar-Kraftwerkes in Sevilla in 54 Gruppen]{Einteilung des Heliostatenfeldes des Gemasolar-Kraftwerkes in Sevilla in 54 Gruppen \cite[S. 10]{Garcia2}}
     \label{fig_VerteilungHeliostateGarcia}
 \end{figure}
 
@@ -476,7 +475,7 @@ Weiterhin unterscheiden sich in dieser Ausarbeitung auch die erste und zweite Gr
 
 \subsubsection*{Verhalten der Heliostaten innerhalb einer Gruppe} \label{subsubsec_Gruppenverhalten}
 Das von Garía vorgestellte Verfahren besitzt zwei Parameter, um das Verhalten der einzelnen Heliostaten innerhalb der Gruppe zu beeinflussen.
-Einerseits den \textit{dispersion factor} $\kappa$, der Auskunft über die Streuung der Heliostaten innerhalb der Gruppe gibt und andererseits den Parameter $y_{cent}$, der die vertikale Position des \gans{Schwerpunktes} aller Zielpunkte auf dem Receiver beeinflussen kann \cite[S. 5]{XXX garcia Paper}.
+Einerseits den \textit{dispersion factor} $\kappa$, der Auskunft über die Streuung der Heliostaten innerhalb der Gruppe gibt und andererseits den Parameter $y_{cent}$, der die vertikale Position des \gans{Schwerpunktes} aller Zielpunkte auf dem Receiver beeinflussen kann \cite[S. 5]{Garcia2}.
 Zweiterer ist bei zylindrischen Parametern notwendig, kann aber nachfolgend vernachlässigt werden und wird zu $y_{cent} = 0$ gesetzt.
 Da sowohl nachfolgend als auch in der Arbeit von García auch $x_{cent} = 0$ gilt, wird sichergestellt, dass der Schwerpunkt aller drei betrachteter Gruppen im Zentrum des Receivers bei $(0,0)$ liegt.
 Abbildung \ref{fig_DispersionVeranschaulichung} zeigt den Einfluss der beiden Stellgrößen exemplarisch, wobei erkennbar ist, dass $\kappa_1 > \kappa_2$, da die Streuung an dieser Stelle größer ist.
@@ -486,7 +485,7 @@ Abbildung \ref{fig_DispersionVeranschaulichung} zeigt den Einfluss der beiden St
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.6\textwidth]{fig/GarciaDispersionSymbolisch}}
-    \caption[Symbolische Veranschaulichung der Stellgrößen des gewählten Algorithmus]{Symbolische Veranschaulichung der Stellgrößen des gewählten Algorithmus \cite[S. 7]{XXX Paper Garcia}}
+\caption[Symbolische Veranschaulichung der Stellgrößen des gewählten Algorithmus]{Symbolische Veranschaulichung der Stellgrößen des gewählten Algorithmus \cite[S. 7]{Garcia2}}
     \label{fig_DispersionVeranschaulichung}
 \end{figure}
 
@@ -505,7 +504,7 @@ Ein statischer Parameter $a$ wird verwendet, um die Heliostaten einer Gruppe zu 
     \text{\myequations{\quad Berechnung des individuellen Heliostatenparameters $\alpha$}}
     \text{Mit:\qquad}\Delta\alpha = \frac{2\alpha}{n-1}, \quad \forall~\left\{n \in \mathbb{N} \mid x > 1 \right\} \qquad\qquad \label{eq_GarciaDeltaAlpha}
 \end{gather}
-\centerline{\textbf{Formel \ref{eq_GarciaAlpha} und \ref{eq_GarciaDeltaAlpha}:} Berechnung des individuellen Heliostatenparameters $\alpha$}
+\centerline{\small{\textsf{\textbf{Formel \ref{eq_GarciaAlpha} und \ref{eq_GarciaDeltaAlpha}:}} Berechnung des individuellen Heliostatenparameters $\alpha$}}
 \myequations{\quad Berechnung von $\Delta\alpha$}
 
 Daraus kann für jeden Heliostaten der Radius $r$ berechnet werden, der den Mindestabstand zu benachbarten Zielpunkten vorgibt.
@@ -516,7 +515,7 @@ Er ergibt sich gemäß \ref{eq_GarciaMindestabstand}, wobei $\kappa$ wie beschri
 \end{equation}
 \begin{center}
     \begin{varwidth}{0.95\textwidth}
-        \textbf{Formel \ref{eq_GarciaMindestabstand}:} Bestimmung des Mindestabstandes eines jeden Zielpunktes zum nächstgelegenen Zielpunkt der Heliostatengruppe
+\small{\textsf{\textbf{Formel \ref{eq_GarciaMindestabstand}:}} Bestimmung des Mindestabstandes eines jeden Zielpunktes zum nächstgelegenen Zielpunkt der Heliostatengruppe}
     \end{varwidth}
 \end{center}
 \myequations{\quad Bestimmung des Mindestabstandes eines jeden Zielpunktes zum nächstgelegenen\\\hspace*{0.3cm} Zielpunkt der Heliostatengruppe}
@@ -529,15 +528,15 @@ Es ist erkennbar, dass die Wahl hoher Werte für $\alpha$ kleine Abstände zwisc
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.5\textwidth]{fig/GarciaVerteilungAlpha.png}}
-    \caption[Minimalabstände der Zielpunkte je $\alpha$-Wert]{Minimalabstände der Zielpunkte je $\alpha$-Wert \cite[S. 9]{XXX Garcia Paper}}
+\caption[Minimalabstände der Zielpunkte je $\alpha$-Wert]{Minimalabstände der Zielpunkte je $\alpha$-Wert \cite[S. 9]{Garcia2}}
     \label{fig_Verteilunglpha}
 \end{figure}
 
 Auf den durch $\kappa$ festgelegten Mindestabständen aufbauend, ergeben sich, sofern noch kein Gleichgewichtszustand erreicht ist, Bewegungen der Heliostaten und Zielpunkte.
 Die Distanz, die zwischen zwei Zielpunkten zurückgelegt werden muss, ist in der Arbeit mit $\Delta D$ benannt und setzt sich aus $\Delta x$ und $\Delta y$ zusammen; Strecken in beiden Dimensionen, die auf dem Receiver zwischen zwei Zielpunkten zurückgelegt werden müssen.
-Die Arbeit von García präsentiert außerdem die Berechnungsvorschrift, aus der hervorgeht, wie weit sich jeder einzelne der beiden Zielpunkte nun in jede Richtung bewegen muss \cite[S. 9-10]{XXX Garcia Paper}.
-Um sicherzustellen, dass die Abstände eines jeden Zielpunktes zu allen anderen Zielpunkten der Gruppe eingehalten wird, wiederholen sich diese Berechnungsvorschriften für jedes mögliche Pärchen aus Heliostaten \cite[S. 9]{XXX Paper Garcia}.
-Anschließend wird der Durchschnitt der berechneten Distanzen eines Zielpunktes relativ zu den anderen Heliostaten ($\Delta x_{TP_i}$) und ($\Delta y_{TP_i}$) errechnet \cite[S. 10]{XXX Paper Garcia}.
+Die Arbeit von García präsentiert außerdem die Berechnungsvorschrift, aus der hervorgeht, wie weit sich jeder einzelne der beiden Zielpunkte nun in jede Richtung bewegen muss \cite[S. 9-10]{Garcia2}.
+Um sicherzustellen, dass die Abstände eines jeden Zielpunktes zu allen anderen Zielpunkten der Gruppe eingehalten wird, wiederholen sich diese Berechnungsvorschriften für jedes mögliche Pärchen aus Heliostaten \cite[S. 9]{Garcia2}.
+Anschließend wird der Durchschnitt der berechneten Distanzen eines Zielpunktes relativ zu den anderen Heliostaten ($\Delta x_{TP_i}$) und ($\Delta y_{TP_i}$) errechnet \cite[S. 10]{Garcia2}.
 
 
 \textit{Kriterium 2:}
@@ -549,19 +548,19 @@ Er berechnet sich nach Gleichung \ref{eq_GarciaGruppenzentrumbewegung}, wobei $k
 \begin{equation} \label{eq_GarciaGruppenzentrumbewegung}
     \Delta D_{Centroid} = k_2 \cdot \sqrt{\left(x_{Cent}-x_{Actual Centroid}\right)^2+\left(y_{Cent}-y_{Actual Centroid}\right)^2}
 \end{equation}
-\centerline{\textbf{Formel \ref{eq_GarciaGruppenzentrumbewegung}:} Erforderliche Schwerpunktverschiebung der Zielpunktgruppe}
+\centerline{\small{\textsf{\textbf{Formel \ref{eq_GarciaGruppenzentrumbewegung}:}} Erforderliche Schwerpunktverschiebung der Zielpunktgruppe}}
 \myequations{\quad Erforderliche Schwerpunktverschiebung der Zielpunktgruppe}
 
-Darauf aufbauend ergeben sich mathematisch erneut die erforderlichen Verschiebungen der Gruppe $\Delta X_{Group}$ und $\Delta Y_{Group}$ nach \cite[S. 10]{XXX Garcia Paper}.
+Darauf aufbauend ergeben sich mathematisch erneut die erforderlichen Verschiebungen der Gruppe $\Delta X_{Group}$ und $\Delta Y_{Group}$ nach \cite[S. 10]{Garcia2}.
 Zuletzt können die tatsächlichen Koordinaten eines jeden Zielpunktes im nächsten Zeitschritt durch Verschiebung der vorigen Koordinaten um $\Delta x,y_{TP_i}$ und $\Delta X,Y_{Group}$ bestimmt werden.
-Die vollständige Darstellung des hier vorgestellten Algorithmus nach García \textit{et al.} \cite{XXX Paper Garcia} zeigt demnach Abbildung \ref{fig_GarciaAlg}.
+Die vollständige Darstellung des hier vorgestellten Algorithmus nach García \textit{et al.} \cite{Garcia2} zeigt demnach Abbildung \ref{fig_GarciaAlg}.
 
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.65\textwidth]{fig/GarciaAlgorithmus.png}}
-    \caption[Übersicht der vollständigen Zielpunktstrategie nach García]{Übersicht der vollständigen Zielpunktstrategie nach García \cite[S. 10]{XXX Paper Garcia}}
+\fbox{\includegraphics[width=0.65\textwidth]{fig/AlgorithmusGarcia.pdf}}
+\caption[Übersicht der vollständigen Zielpunktstrategie nach García]{Übersicht der vollständigen Zielpunktstrategie nach García \cite[S. 10]{Garcia2}}
     \label{fig_GarciaAlg}
 \end{figure}
 
@@ -574,7 +573,7 @@ Aufgrund des individuellen Parameters $\alpha$ sind die erforderlichen Mindestab
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.75\textwidth]{fig/GarciaZielpunkte}}
-    \caption[Beispielhafte Zielpunktverteilungen für einen zunehmenden $\kappa$ Wert]{Beispielhafte Zielpunktverteilungen für einen zunehmenden $\kappa$ Wert \cite[S. 11]{XXX Paper Garcia}}
+\caption[Beispielhafte Zielpunktverteilungen für einen zunehmenden $\kappa$ Wert]{Beispielhafte Zielpunktverteilungen für einen zunehmenden $\kappa$ Wert \cite[S. 11]{Garcia2}}
     \label{fig_GarciaZielpunkte}
 \end{figure}
 
@@ -588,18 +587,18 @@ Dies sorgt für eine gute Kompatibilität in der Modellbildung des gesamten Syst
 
 \section{Verwendete Hard- und Software} \label{sec_HardSoftware}
 Die Modellbildung und die Simulationen in den nachfolgenden Kapiteln werden mithilfe der Programmiersprache \textit{Python} umgesetzt.
-Dabei handelt es sich Stand März 2023 um die populärste Programmiersprache weltweit \cite{XXX https://de.statista.com/statistik/daten/studie/678732/umfrage/beliebteste-programmiersprachen-weltweit-laut-pypl-index/}.
-Nicht zuletzt aufgrund der Echtzeitfähigkeit \cite[S. 9]{https://brochure.getpython.info/media/releases/psf-python-brochure-vol.-i-final-download.pdf/at_download/file XXX} und einfachen Syntax hat es sich besonders im Bereich des \textit{machine learning}s als Stand der Technik etabliert.
-Darüber hinaus zeichnet sich Python durch seine große Anzahl an professionellen Frameworks und Bibliotheken aus, welche es Entwicklern ermöglichen, auch komplexe Probleme mit geringem Aufwand zu lösen \cite[S. 3]{https://brochure.getpython.info/media/releases/psf-python-brochure-vol.-i-final-download.pdf/at_download/file XXX}.
+Dabei handelt es sich Stand März 2023 um die populärste Programmiersprache weltweit \cite{Statista}.
+Nicht zuletzt aufgrund der Echtzeitfähigkeit \cite[S. 9]{Python} und einfachen Syntax hat es sich besonders im Bereich des \textit{machine learning}s als Stand der Technik etabliert.
+Darüber hinaus zeichnet sich Python durch seine große Anzahl an professionellen Frameworks und Bibliotheken aus, welche es Entwicklern ermöglichen, auch komplexe Probleme mit geringem Aufwand zu lösen \cite[S. 3]{Python}.
 Zwei wesentliche Beispiele für solche Frameworks, die auch in dieser Arbeit Verwendung finden sind \gans{CasADi} und \gans{do-mpc}.
 
 CasADi ist eine Open-Source Bibliothek für MATLAB/Octave, C++ und Python.
 Sie dient der gradientenbasierten numerischen Optimierung mit einem besonderen Fokus auf der Regelungstechnik.
-Durch CasADi soll besonders die dymbolische Formulierung von gewöhnlichen Differentialgleichungen (ODEs) und differential-algebraischen Gleichungen (DAEs) erleichtert und damit die Formulierung und Lösung nicht-linearer Programme und Regelungsprobleme ermöglicht werden. \cite{XXX Docs}
+Durch CasADi soll besonders die dymbolische Formulierung von gewöhnlichen Differentialgleichungen (ODEs) und differential-algebraischen Gleichungen (DAEs) erleichtert und damit die Formulierung und Lösung nicht-linearer Programme und Regelungsprobleme ermöglicht werden. \cite{Casadi}
 
 Do-mpc ist ebenfalls eine Open-Source Toolbox.
 Sie basiert auf CasADi und ermöglicht die einfache Handhabung von Problemen mit Modellprädiktiven Regelung und der Zusatndsvorhersage mittels \textit{moving horizon estimation} (MHE).
-Ihre Modelle vereinen modular Simulations- Vorhersage- und Regelungskomponeten aus diesem Bereich. \cite{https://www.do-mpc.com/en/v4.1.1/ XXX}
+Ihre Modelle vereinen modular Simulations- Vorhersage- und Regelungskomponeten aus diesem Bereich. \cite{Dompc2}
 Die gesamte Modellbildung, wie sie nachfolgend in Kapitel \ref{ch_Modellbildung} beschrieben ist, wird in do-mpc realisiert und ausgewertet.
 
 Für die Simulation der Ergebnisse wird in dieser Arbeit ein 4-Kern Intel Core i7-1185G7 Prozessor mit einem Basistakt von 3,0 GHz verwendet.

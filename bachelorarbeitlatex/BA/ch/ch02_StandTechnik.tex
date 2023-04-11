@@ -1,4 +1,4 @@
-\chapter{Grundlagen und Literaturübersicht} \label{ch_StandTechnik}
+\chapter{Grundlagen und Stand der Technik} \label{ch_StandTechnik}
 Das nachfolgende Kapitel zum Stand der Technik soll alle relevanten Grundlagen bezüglich der verwendeten Komponenten am Solarturm wiedergeben.
 Darüber hinaus wird auch ein Einblick in die Theorie der modellprädiktiven Regelung gegeben.
 Ebenfalls wichtig ist der Vergleich der verwendeten Zielpunktregelung und des Nowcasting-Systems mit Alternativen aus der Literatur.
@@ -305,7 +305,7 @@ $p_{tv}$ für (zeitabhängige, \textbf{t}ime \textbf{v}arying) Modellparameter. 
 
 
 \subsection{Kostenfunktion} \label{subsec_Kostenfunktion}
-Liegt dem Controller ein mathematisch hinreichend beschriebenes Modell vor, kann eine sogenannte Kostenfunktion aufgestellt werden.
+Liegt dem Controller ein mathematisch hinreichend beschriebenes Modell vor, kann eine sogenannte Kostenfunktion aufgestellt werden, welche die Abweichung zwischen dem vorliegenden und dem gewünschten Systemzustand beschreibt.
 Während des Optimierungsprozesses wird der in Abbildung \ref{fig_RegelkreisMPC} dargestellte Optimizer diese Funktion minimieren und somit den Fehler $e$ reduzieren.
 In der Kostenfunktion sollte der Vergleich der zu regelnden Ausgangsvariablen mit der Referenztrajektorie über den Regelungshorizont in quadratischer Form abgebildet sein \cite[S.24]{Diehl}\cite[S.3]{Schwenzer}.
 Weiterhin ist es zumeist zielführend, die Veränderung der Eingangsvariablen in jedem Zeitschritt in die Kostenfunktion mit aufzunehmen, um einem ruckartigen Regelverhalten vorzubeugen.
@@ -420,7 +420,7 @@ Die Details der Zusammenhänge dieser Größen werden in Kapitel \ref{sec_Ausgan
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.75\textwidth]{fig/PassingCloud}}
+\fbox{\includegraphics[width=0.65\textwidth]{fig/PassingCloud}}
     \caption[Darstellung der potenziellen Gefahr einer durchziehenden Wolke]{Darstellung der potenziellen Gefahr einer durchziehenden Wolke}
     \label{fig_EinflussWolke}
 \end{figure}
@@ -605,7 +605,7 @@ Durch CasADi soll besonders die symbolische Formulierung von gewöhnlichen Diffe
 
 Do-mpc ist ebenfalls eine Open-Source Toolbox.
 Sie basiert auf CasADi und ermöglicht die einfache Handhabung von Problemen mit Modellprädiktiver Regelung und der Zustandsvorhersage mittels \textit{moving horizon estimation} (MHE).
-Ihre Modelle vereinen modular Simulations-, Vorhersage- und Regelungskomponenten aus diesem Bereich \cite{Dompc2}.
+Ihre Modelle vereinen modular \mbox{Simulations-,} Vorhersage- und Regelungskomponenten aus diesem Bereich \cite{Dompc2}.
 Die gesamte Modellbildung, wie sie nachfolgend in Kapitel \ref{ch_Modellbildung} beschrieben ist, wird in do-mpc realisiert und ausgewertet.
 
 Für die Simulation der Ergebnisse wird in dieser Arbeit ein 4-Kern Intel Core i7-1185G7 Prozessor mit einem Basistakt von 3,0 GHz verwendet.

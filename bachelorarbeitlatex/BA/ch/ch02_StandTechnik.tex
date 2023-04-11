@@ -1,7 +1,7 @@
-\chapter{Stand der Technik} \label{ch_StandTechnik}
-Das nachfolgende Kapitel zum Stand der Technik soll alle relevanten Grundlagen bezüglich der verwendeten Komponenten am Solarturm schaffen.
+\chapter{Grundlagen und Literaturübersicht} \label{ch_StandTechnik}
+Das nachfolgende Kapitel zum Stand der Technik soll alle relevanten Grundlagen bezüglich der verwendeten Komponenten am Solarturm wiedergeben.
 Darüber hinaus wird auch ein Einblick in die Theorie der modellprädiktiven Regelung gegeben.
-Ebenfalls relevant ist der Vergleich der verwendeten Zielpunktregelung und des Nowcasting-Systems mit Alternativen aus der Literatur.
+Ebenfalls wichtig ist der Vergleich der verwendeten Zielpunktregelung und des Nowcasting-Systems mit Alternativen aus der Literatur.
 Zum Abschluss des Kapitels wird die für diese Arbeit genutzte Hard- und Software vorgestellt.
 
 \section{Solartürme} \label{sec_Solartürme}
@@ -56,8 +56,8 @@ Dabei sind die beiden Freiheitsgrade der Heliostaten die Elevations- und die Azi
 \end{figure}
 
 Größe, Form und Art der spiegelnden Fläche unterscheiden sich bei verschiedenen Heliostaten-Typen sehr stark.
-Um eine bestimmte Brennweite zu erreichen ist es beispielsweise denkbar die Oberfläche auf kleinere einzelne Flächen, sog. \textit{Facetten}, aufzuteilen, welche sich in einer Ebene oder zueinander gekippt befinden.
-Weiterhin sind die Spiegel zumeist rechteckig angeordnet, eine Krümmung der Fläche nach innen, erzielt eine höhere Konzentration der Strahlung. \cite[S.5]{DissZanger}
+Um eine bestimmte Brennweite zu erreichen ist es beispielsweise denkbar die Spiegeloberfläche auf kleinere einzelne Flächen, sog. \textit{Facetten}, aufzuteilen, welche sich in einer Ebene oder zueinander gekippt befinden.
+Weiterhin sind die Spiegel zumeist rechteckig angeordnet, eine Krümmung der Fläche nach innen erzielt eine höhere Konzentration der Strahlung. \cite[S.5]{DissZanger}
 
 Der tragende Körper der Heliostaten ist in der Regel aus wirtschaftlichen Gründen als T-Struktur vorgesehen \cite[S.97]{ScottAJones}.
 Die Heliostaten am Betrachtungsstandort Jülich bestehen aus lediglich einer ebenen, rechteckigen Facette auf einem T-Träger und sind mit einer Reflexionsfläche von $8.3m^2$ vergleichsweise klein \cite[S.4]{DissGall}\cite[S.13]{DissBelhomme}.
@@ -74,7 +74,7 @@ Die nachfolgende Abbildung \ref{fig_DarstellungHeliostat} soll die grundsätzlic
 \end{figure}
 
 Die Gesamtheit der Heliostaten, die um den Receiver eines Solarstromturms angeordnet sind, wird Heliostatenfeld bezeichnet.
-Diese bestehen normalerweise aus identischen Heliostaten, welche in Reihen oder konzentrischen Kreisen angeordnet sind.
+Dieses besteht normalerweise aus identischen Heliostaten, welche in Reihen oder konzentrischen Kreisen angeordnet sind.
 Denkbare Anordnungen sind Rundum-, Nord- und Südfelder (siehe Abbildung \ref{fig_AnordnungHeliostatfeld}); die effizienteste Anordnung ist jeweils besonders von der geografischen Lage abhängig.
 Effektiv sind Solarturmkraftwerke vor allem bei steilen Einfallswinkeln der Sonne auf die Spiegel (vgl. Kapitel \ref{subsubsec_KosinusVerluste}), sodass sich zwangsläufig in Polnähe bei Rundum-Feldern eine geringe Feldausbeute auf einer Seite ergibt.
 Wie in Abbildung \ref{fig_Solarturm} zu sehen ist, handelt es sich in Jülich um ein einseitiges, nach Norden ausgerichtetes Feld, bestehend aus 2153 Heliostaten.
@@ -91,7 +91,7 @@ Wie in Abbildung \ref{fig_Solarturm} zu sehen ist, handelt es sich in Jülich um
 \subsection{Receiver} \label{subsec_Receiver}
 
 Wie erwähnt ist die Aufgabe des Receivers die Absorption der reflektierten Sonneneinstrahlung oben am Turm.
-Durch Konvektion wird die gespeicherte Energie dann an ein Wärmeträgermedium weitergegeben, das dann zur weiteren Verwertung oder Speicherung zur Verfügung steht.
+Durch Konvektion wird die gespeicherte Energie an ein Wärmeträgermedium weitergegeben, das dann zur weiteren Verwertung oder Speicherung zur Verfügung steht.
 Receiver, die in Solarturmkraftwerken genutzt werden, unterscheiden sich in ihrem Aufbau und ihren physikalischen Grenzen. Diese Eigenschaften werden im Folgenden kurz untersucht.
 
 Grundsätzlich muss zwischen zylindrischen und rechteckigen Receivern unterscheiden werden.
@@ -105,7 +105,7 @@ Bei einem Empfänger, der von Salzschmelze durchströmt wird, hängt diese beisp
 sowie der Windgeschwindigkeit zusammen \cite{VantHull}.
 Dabei wird die lokale Salztemperatur direkt durch die Einstrahlung (Flussdichte) auf dem Receiver beeinflusst.
 
-Eine Möglichkeit die Einhaltung der maximalen thermischen Spannungen zu gewährleisten ist also unter anderem die Einführung einer maximalen Flussdichte am Receiver, die auf der Grundlage seiner spezifischen Eigenschaften berechnet werden kann.
+Eine Möglichkeit, die Einhaltung der maximalen thermischen Spannungen zu gewährleisten, ist also unter anderem die Einführung einer maximalen Flussdichte am Receiver, die auf der Grundlage seiner spezifischen Eigenschaften berechnet werden kann.
 Dabei ist der zulässige Wert auch stark vom verwendeten Kühlmedium abhängig.
 Für Röhrenreceiver, die mit flüssigem Natrium gekühlt werden, sind beispielsweise maximale Strahlungsflussdichten von $2,5MW/m^2$ erlaubt, während bei luftgekühlten Röhrenreceivern nur $200kW/m^2$ \cite[S.17]{DissBelhomme} erreicht werden dürfen.
 
@@ -144,13 +144,13 @@ Auf meteorologische Einflüsse wird in Kapitel \ref{sec_Nowcasting} näher einge
 
 \subsubsection*{Kosinus-Verluste} \label{subsubsec_KosinusVerluste}
 Die \textit{Kosinus-Verluste} sind ein besonders schwerwiegender Einflussfaktor geografischer Natur.
-Die Sonnenstrahlen treffen auf die Spiegeloberfläche unter einem bestimmten Winkel, der davon abhängt, wo die Sonne steht und wie der Spiegel ausgerichtet ist.
+Die Sonnenstrahlen treffen auf die Spiegeloberfläche unter einem bestimmten Winkel, abhängig von Sonnenstand und Ausrichtung des Spiegels.
 Dieser Winkel bestimmt die effektive Reflexionsfläche, welche senkrecht zur Einfallsrichtung der Strahlung projiziert wird.
 Wie in Abbildung \ref{fig_KosinusVerlust} dargestellt ist, entspricht das Verhältnis zwischen der effektiven Fläche und der Gesamtfläche jedes Heliostaten dem Kosinus des Winkels zwischen der Einfallsrichtung und der Hauptnormalen der Spiegelfläche.
-Bei zunehmendem Winkel $\beta$ größer wird, also ungünstigeren Lichteinfallswinkeln, nimmt die effektive Fläche ab und die Effizienz der Heliostaten wird geringer.
+Bei zunehmendem Winkel $\beta$, also ungünstiger werdenden Lichteinfallswinkeln, nimmt die effektive Fläche ab und die Effizienz der Heliostaten wird geringer.
 Diese wird mit dem Kosinus-Wirkungsgrad $\cos\beta$ ausgedrückt, der also in direktem Zusammenhang mit der reflektierten Sonnenleistung steht.
 Der immense Einfluss der Kosinus-Verluste zeigt sich beispielsweise an Untersuchungen am Solar One Tower in Süd-Kalifornien, wo auch das Solarturmkraftwerk mit der höchsten Nennleistung beheimatet ist \cite{Ivanpah}.
-Zwischen $0,65$ und $0,9$ schwankt der Kosinus-Wirkungsgrad jährlich in dieser Gegend, je nach Sonnenstand und damit verbundener Heliostaten Position. \cite{Holl}
+Zwischen $0,65$ und $0,9$ schwankt der Kosinus-Wirkungsgrad in dieser Gegend jährlich, je nach Sonnenstand und damit verbundener Heliostaten Position. \cite{Holl}
 
 \begin{figure}[h!]
     \centering
@@ -162,7 +162,7 @@ Zwischen $0,65$ und $0,9$ schwankt der Kosinus-Wirkungsgrad jährlich in dieser 
 \end{figure}
 
 \subsubsection*{Reflexionsverluste} \label{subsubsec_Reflexionsverluste}
-Als schwerwiegender optischer Verlust durch die Heliostaten an sich ist der \textit{Reflexionsverlust} zu nennen.
+Als einflussreicher optischer Verlust durch die Heliostaten an sich ist der \textit{Reflexionsverlust} zu nennen.
 Wenn das Sonnenlicht auf die Spiegel trifft, wird ein Teil davon absorbiert, was die Menge des reflektierten Lichts verringert.
 Diese Verringerung des Reflexionsvermögens kann zusätzlich durch Umweltfaktoren wie Regen und Staub noch verstärkt werden.
 Reflektieren saubere Spiegeloberflächen normalerweise zwischen $87 \%$ und $94 \%$ des auf sie treffenden Sonnenlichts, sinkt dieser Wert durch umweltbedingte Verschmutzung womöglich bis auf $80 \%$. \cite[S.14]{DissBelhomme}
@@ -171,7 +171,7 @@ Reflektieren saubere Spiegeloberflächen normalerweise zwischen $87 \%$ und $94 
 Je nach Sonnenstand, Feldanordnung und Objekten mit signifikantem Schattenwurf, wie dem Turm, können Heliostaten verschattet werden oder andere Heliostaten \gans{blockieren}.
 Im Falle einer \textit{Abschattung} ist der direkte Weg zwischen Sonne und Heliostat (teilweise) versperrt, sodass die Sonnenstrahlung nicht ungehindert auf die Spiegelfläche treffen kann.
 Bei der \textit{Blockierung} ist der Weg zwischen Heliostat und Receiver betroffen; die reflektierte Strahlung eines Heliostaten wird durch einen anderen Heliostaten (teilweise) blockiert.
-Abbildung \ref{fig_AbschattungBlockieren} stellt die beiden Problematiken visuell dar.
+Abbildung \ref{fig_AbschattungBlockieren} visualisiert diese beiden Problematiken.
 Das Problem der Abschattung tritt besonders bei niedrigen Sonnenständen auf, während von der Blockierung zumeist die hinteren Heliostatenreihen betroffen sind.
 Durch ein geeignetes Felddesign kann diesen Verlusten entgegengewirkt werden. \cite[S.686]{Wei2010}
 
@@ -192,7 +192,7 @@ Die Größe des Fehlers wird als Winkel zwischen dem tatsächlichen Normalvektor
 
 \subsubsection*{Streuung} \label{subsubsec_Streuung}
 Als \textit{Streuung} bezeichnet man den Teil der reflektierten Sonnenstrahlung, der den Receiver ungewollt verfehlt und nicht in nutzbare Energie umgewandelt werden kann.
-Dies geschieht beispielsweise auch durch die oben genannten Spiegelfehler oder wenn der Abstand zwischen Heliostat und Receiver so groß ist, dass das Abbild der Reflexion auf dem Receiver größer ist als der Receiver selbst. \cite[S.15-16]{DissBelhomme}
+Dies geschieht beispielsweise durch die oben genannten Spiegelfehler oder wenn der Abstand zwischen Heliostat und Receiver so groß ist, dass das Abbild der Reflexion auf dem Receiver größer ist als der Receiver selbst. \cite[S.15-16]{DissBelhomme}
 
 \subsubsection*{Nachführfehler} \label{subsubsec_Nachführfehler}
 Der letzte nennenswerte optische Fehler, welcher durch die Heliostaten selbst ausgelöst wird, ist der sogenannte \textit{Nachführfehler}.
@@ -208,14 +208,14 @@ Wie eingangs beschrieben, liegt ein wesentlicher Schwerpunkt dieser Arbeit in de
 Um eine zuverlässige Regelung hinsichtlich der im Kapitel \ref{subsec_Receiver} beschriebenen Receivertemperaturbegrenzung zu gewährleisten, ist eine möglichst genaue Wolkenvorhersage unerlässlich.
 In der Praxis wird dies durch die sogenannten \textit{Nowcasting Systeme} erreicht, die in Ergänzung zu den klassischen Modellen der Wettervorhersage durch zeitlich und räumlich hochauflösende Beobachtungen genauere Vorhersagen liefern \cite{DWD1}.
 
-Die sensorischen Möglichkeiten um solch präzise Vorhersagen generieren zu können sind sehr vielfältig.
+Die sensorischen Möglichkeiten, um solch präzise Vorhersagen generieren zu können, sind sehr vielfältig.
 Für deutschlandweit flächendeckende Vorhersagen nutzt der deutsche Wetterdienst beispielsweise Radarsysteme und Satellitenbilder \cite{DWD1}.
 Durch Abruf und Verarbeitung dieser Daten im 5-Minutentakt können regionale Prognosen für die kommenden zwei Stunden generiert werden.
 Diese enthalten dann Informationen über Regenfälle und Hagel, sowie Böen, Blitze und Schneefall.
 
 Für den Anwendungsfall des Solarturms ist eine solche Prognose jedoch aus mehreren Gründen nicht optimal.
 Je präziser die jeweils lokale Vorhersage für das Heliostatenfeld ist, desto mehr Information steht der Regelung für eine präzise Regelung zur Verfügung.
-Da die Auflösung der deutschlandweiten Vorhersage lediglich rund $1km$ x $1km$ beträgt \cite{DWD1}\cite{DWD2} während sich das Heliostatenfeld auf eine Fläche von rund $330m$ x $310m$ beschränkt, sind lediglich sehr grobe Vorhersagen zu erwarten.
+Da die Auflösung der deutschlandweiten Vorhersage lediglich rund $1km$ x $1km$ beträgt \cite{DWD1}\cite{DWD2}, während sich das Heliostatenfeld auf eine Fläche von rund $330m$ x $310m$ beschränkt, sind lediglich sehr grobe Vorhersagen zu erwarten.
 Darüber hinaus ist auch die zeitliche Auflösung von 5 Minuten \cite{DWD2} unterhalb der Möglichkeiten anderer Nowcasting Systeme \cite{DLRNowcasting}\cite[S.272]{QuesadaRuiz}.
 
 Ein beliebtes Instrument für zeitlich und räumlich hochauflösende Vorhersagen sind die sogenannten \textit{ASIs}, kurz für \gans{All-sky imagers}.
@@ -228,7 +228,7 @@ Räumlich gesehen können auf diese Weise Vorhersagen auf bis zu $20m$ x $20m$ g
 
 Die nachfolgende Abbildung \ref{fig_Nowcasting_Kamerabilder} zeigt links exemplarisch Bilder, die von solchen ASIs auf der PSA (Plataforma Solar de Almería) in Spanien, einem weiteren Standort eines Solarturmkraftwerkes, entstanden sind.
 Für die Erstellung dieser konkreten Bilder wurden 4 Kameras mit jeweils $500$ bis $1000m$ Entfernung voneinander am Heliostatenfeld aufgestellt.
-Aus diesen können anschlißend die in Abbildung \ref{fig_Nowcasting_Kamerabilder} rechts sichtbaren Wolkenmasken erstellt und damit die benötigten hochauflösenden Einstrahlungskarten berechnet werden. \cite{DLRNowcasting}
+Aus diesen können anschließend die in Abbildung \ref{fig_Nowcasting_Kamerabilder} rechts sichtbaren Wolkenmasken erstellt und damit die benötigten hochauflösenden Einstrahlungskarten berechnet werden. \cite{DLRNowcasting}
 
 \begin{figure}[h!]
     \centering
@@ -244,15 +244,15 @@ Aus diesen können anschlißend die in Abbildung \ref{fig_Nowcasting_Kamerabilde
 Das Ziel eines Reglers ist im Allgemeinen, bestimmte Modellparameter, meist Ausgangsgrößen technischer Prozesse, so einzustellen, dass sie vorgegebenen Führungsgrößen entsprechen.
 Änderungen dieser Führungsgrößen soll möglichst genau gefolgt werden und unvorhersehbare Störungen sollen die Regelstrecke so wenig wie möglich beeinflussen. \cite{Abel} \\
 Im Anwendungsfall dieser Arbeit ist dabei von besonderer Bedeutung, dass auch zukünftige Modellzustände in die Regelung prädiktiv einbezogen werden können.
-Aus diesem Grund sind klassische Regler wie der PID Regler, die lediglich auf Basis der Abweichung von aktuellen Soll- und Istwerten Stellgrößen für das System vorgeben \cite[S.408]{Lunze}, nicht ausreichend und es wird ein modellprädiktiver Regler (kurz \textit{MPC}) gewählt.
+Aus diesem Grund sind klassische Regler wie der PID-Regler, die lediglich auf Basis der Abweichung von aktuellen Soll- und Istwerten Stellgrößen für das System vorgeben \cite[S.408]{Lunze}, nicht ausreichend und es wird ein modellprädiktiver Regler (kurz \textit{MPC}) gewählt.
 
 \subsection{Grundlagen} \label{subsec_GrundlagenMPC}
-Neben der Möglichkeit zur Inbezugnahme von Vorhersagen ist ein großer Vorteil der MPC die Fähigkeit komplexe nicht-lineare \textit{MIMO}-Systeme (\textbf{M}ulti \textbf{I}nput \textbf{M}ulti \textbf{O}utput) ohne besonders hohen Aufwand zu regeln.
-Der wohl bedeutendste Grund dafür, dass MPC in der Praxis mit dem PID-Regler den Stand der Technik ausmacht \cite[S.viii]{Kouvaritakis}, ist jedoch die zusätzliche Möglichkeit Limitierungen auf Inputs und Outputs des Systems, sogenannte \textit{Constraints}, festlegen zu können; nachteilig ist jedoch der damit direkt verbundene, hohe Rechenaufwand. \cite[S.1-2]{Kouvaritakis}
+Neben der Möglichkeit zur Inbezugnahme von Vorhersagen ist ein großer Vorteil der MPC die Fähigkeit, komplexe nicht-lineare \textit{MIMO}-Systeme (\textbf{M}ulti \textbf{I}nput \textbf{M}ulti \textbf{O}utput) ohne besonders hohen Aufwand zu regeln.
+Der wohl bedeutendste Grund dafür, dass MPC in der Praxis mit dem PID-Regler den Stand der Technik ausmacht \cite[S.viii]{Kouvaritakis}, ist jedoch die zusätzliche Möglichkeit, Limitierungen auf Inputs und Outputs des Systems, sogenannte \textit{Constraints}, festlegen zu können; nachteilig ist jedoch der damit direkt verbundene hohe Rechenaufwand. \cite[S.1-2]{Kouvaritakis}
 
-Der Grund für diese besonderen Features des MPC sind in seinem Aufbau zu finden.
-Der Controller an sich besteht aus einer Komposition einer Optimierungseinheit und einem Modell des zu regelnden Systems.
-Je präziser das zu regelnde Realmodell in der Modellbildung (vgl. Kapitel \ref{subsec_Modellbildung}) mathematisch beschrieben wird, desto genauer werden logischerweise auch die Ergebnisse der Regelung.
+Der MPC-Controller hat diese speziellen Features aufgrund seines Aufbaus.
+Er besteht aus zwei Hauptkomponenten: einer Optimierungseinheit und einem mathematischen Modell des zu regelnden Systems.
+Je präziser das zu regelnde Realmodell in der Modellbildung (vgl. Kapitel \ref{subsec_Modellbildung}) mathematisch beschrieben wird, desto genauer werden auch die Ergebnisse der Regelung.
 Abbildung \ref{fig_RegelkreisMPC} zeigt den Aufbau eines Regelkreises mit dem MPC.
 Für die konkrete Anwendung würde der Solarturm die Anlage (\gans{Plant}) darstellen, in dieser Arbeit wird jedoch nur ein Modell dessen simuliert.
 
@@ -260,23 +260,23 @@ Für die konkrete Anwendung würde der Solarturm die Anlage (\gans{Plant}) darst
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=1\textwidth]{fig/Regelkreis.drawio.pdf}}
+\fbox{\includegraphics[width=0.95\textwidth]{fig/Regelkreis.drawio.pdf}}
 \caption[Geschlossener Regelkreis mit einem MPC]{Geschlossener Regelkreis mit einem MPC gemäß\cite[S.2]{Schwenzer}}
     \label{fig_RegelkreisMPC}
 \end{figure}
 
 Zum besseren Verständnis des Funktionsprinzips eines modellprädiktiven Reglers dient die nachfolgende Abbildung \ref{fig_MPCVerhalten}.
-Es ist erkennbar, dass der Regler zum Zeitpunkt $k$ über die Dauer des gesamten \textit{Prädiktionshorizontes} $N_2$ mittels des hinterlegten Modells die Ausgangsgröße $y$ simuliert.
+Es ist erkennbar, dass der Regler zum Zeitpunkt $k$ über die Dauer des gesamten \textit{Prädiktionshorizontes} $N_2$ mittels des hinterlegten Modells die \textit{Ausgangsgröße} $y$ simuliert.
 Die Berechnung geschieht dabei in der durch die \textit{Sample Time} $T_s$ vorgegebenen Frequenz.
-Dafür kalkuliert er für den \textit{Regelungshorizont} von Zeitpunkt $k+N_1$ bis $k+N_u$ die optimalen Stellgrößen $u$, sodass sich $y$ der Referenztrajektorie $r$ so gut wie möglich annähert.
-Der Abstand zwischen der Referenztrajektorie und der Ausgangsgröße wird mit dem Fehler $e$ bezeichnet, den es zu minimieren gilt.
+Dafür kalkuliert er für den \textit{Regelungshorizont} von Zeitpunkt $k+N_1$ bis $k+N_u$ die optimalen \textit{Stellgrößen} $u$, sodass sich $y$ der \textit{Referenztrajektorie} $r$ so gut wie möglich annähert.
+Der Abstand zwischen der Referenztrajektorie und der Ausgangsgröße wird mit dem \textit{Fehler} $e$ bezeichnet, den es zu minimieren gilt.
 Nach jedem Zeitschritt $T_s$ verschieben sich die Horizonte entsprechend, es wird eine neue Stellgröße an das System weitergegeben und die Optimierung wird erneut durchgeführt. \cite[S.3]{Schwenzer}
 
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=1\textwidth]{fig/mpcprinciple}}
+\fbox{\includegraphics[width=0.95\textwidth]{fig/mpcprinciple}}
 \caption[Funktionsprinzip eines MPC]{Funktionsprinzip eines MPC nach \cite[S.3]{Schwenzer} gemäß \cite{Richalet}}
     \label{fig_MPCVerhalten}
 \end{figure}
@@ -304,13 +304,13 @@ $p_{tv}$ für (zeitabhängige, \textbf{t}ime \textbf{v}arying) Modellparameter. 
 \myequations{\quad Ausgangsgleichung in der Modellbildung}
 
 
-\subsection{Kostenfunktion} \label{subsec_Modellbildung}
+\subsection{Kostenfunktion} \label{subsec_Kostenfunktion}
 Liegt dem Controller ein mathematisch hinreichend beschriebenes Modell vor, kann eine sogenannte Kostenfunktion aufgestellt werden.
-Während des Optimierungsprozesses wird der in Abbildung \ref{fig_RegelkreisMPC} dargestellte Optimizer diese Funktion minimieren.
+Während des Optimierungsprozesses wird der in Abbildung \ref{fig_RegelkreisMPC} dargestellte Optimizer diese Funktion minimieren und somit den Fehler $e$ reduzieren.
 In der Kostenfunktion sollte der Vergleich der zu regelnden Ausgangsvariablen mit der Referenztrajektorie über den Regelungshorizont in quadratischer Form abgebildet sein \cite[S.24]{Diehl}\cite[S.3]{Schwenzer}.
-Weiterhin ist es zumeist zielführend die Veränderung der Eingangsvariablen in jedem Zeitschritt in die Kostenfunktion mit aufzunehmen, um einem ruckartigen Regelverhalten vorzubeugen.
-Zuletzt ist es auch möglich einen Term in die Kostenfunktion einzubinden, welcher nicht über den gesamten Kontrollhorizont berechnet wird, sondern lediglich die abschließende Güte der Regelung bewertet \cite[S.24]{Diehl}.
-Ein mathematisches Beispiel einer solchen Kostenfunktion ist in Formel \ref{eq_Kostenfunktion} zu sehen, dabei stehen $W_1$, $W_2$ und $W_u$ für Gewichtungsfaktoren und $y(k+i\rvert k)$ für die zum Zeitpunkt $k$ bezüglich des Zeitpunktes $k+i$ vorhergesagte Ausgangsvariable. \cite[S.3]{Schwenzer}
+Weiterhin ist es zumeist zielführend, die Veränderung der Eingangsvariablen in jedem Zeitschritt in die Kostenfunktion mit aufzunehmen, um einem ruckartigen Regelverhalten vorzubeugen.
+Zuletzt ist es auch möglich, einen Term in die Kostenfunktion einzubinden, welcher nicht über den gesamten Kontrollhorizont berechnet wird, sondern lediglich die abschließende Güte der Regelung bewertet \cite[S.24]{Diehl}.
+Ein mathematisches Beispiel einer solchen Kostenfunktion ist in Formel \ref{eq_Kostenfunktion} zu sehen; dabei stehen $W_1$, $W_2$ und $W_u$ für Gewichtungsfaktoren und $y(k+i\rvert k)$ für die zum Zeitpunkt $k$ bezüglich des Zeitpunktes $k+i$ vorhergesagte Ausgangsvariable. \cite[S.3]{Schwenzer}
 
 \begin{equation} \label{eq_Kostenfunktion}
     J = \sum_{i=N_1}^{N_2-1}\left(\lVert r(k+i\rvert k)-y(k+i\rvert k)\rVert_{W_1} + \Delta u_i^T W_u \Delta u_i\right) + \lVert r(N_2\rvert k)-y(N_2\rvert k)\rVert_{W_2}
@@ -328,7 +328,7 @@ Im Gegensatz dazu sind harte Beschränkungen auf Ausgangsgrößen eher nur gewü
 Ein zusätzlicher Freiheitsgrad wird durch die Einführung von soft constraints und sogenannten \textit{Slack Variablen} $\xi$ geschaffen. \cite[S.4]{Schwenzer}
 
 Mathematisch lässt sich die in Gleichung \ref{eq_Kostenfunktion} dann um die constraints auf das gesamte Optimierungsproblem erweitern (siehe \ref{eq_Optimierungsproblem}).
-Dazu werden weitere Gewichtungsmatrizen nach \cite[S.4]{Schwenzer}$W_w$ und $W_\xi$ in der Kostenfunktion eingefügt, letztere als trade-off zwischen Dauer und Höhe der constraint Überschreitung \cite{Rawlings}.
+Dazu werden weitere Gewichtungsmatrizen nach \cite[S.4]{Schwenzer}$W_w$ und $W_\xi$ in der Kostenfunktion eingefügt, letztere als trade-off zwischen Dauer und Höhe der constraint-Überschreitung \cite{Rawlings}.
 Die Indizes \textit{lb} und \textit{ub} kennzeichnen die \textbf{l}ower bzw. \textbf{u}pper \textbf{b}ound, also die untere und obere Variablengrenze.
 
 \begin{equation} \label{eq_Optimierungsproblem}
@@ -351,7 +351,7 @@ Die durchdachte Aufstellung der Kostenfunktion ist für den Erfolg der Regelung 
 
 
 \section{Zielpunktregelung} \label{sec_Zielpunktregelung}
-Neben der in Abschnitt \ref{subsec_Receiver} erwähnten Notwendigkeit der Zielpunktregelung zur Vermeidung zu hoher Temperaturen auf der Receiver-Front, ist ein weiteres wesentliches Ziel jener, die Maximierung des wirtschaftlichen Ertrags des Kraftwerkes.
+Neben der in Abschnitt \ref{subsec_Receiver} erwähnten Notwendigkeit der Zielpunktregelung zur Vermeidung zu hoher Temperaturen auf der Receiver-Front, ist ein weiteres wesentliches Ziel, die Maximierung des wirtschaftlichen Ertrags des Kraftwerkes.
 Daher wird nachfolgend das daraus resultierende Optimierungsproblem erläutert sowie einige existierende Zielpunktregelungen aus der Literatur kurz vorgestellt.
 Im Anschluss wird die in dieser Arbeit verwendete Strategie detaillierter beschrieben.
 
@@ -416,7 +416,6 @@ Diesen Umstand zeigt umseitig die Abbildung \ref{fig_EinflussWolke}.
 Hier wird ein konstanter Luftmassenstrom im Inneren des Receivers vorausgesetzt, sodass die Temperatur auf der Vorderseite ($T_{abs}$) und der Innenseite des Receivers $T_{outlet}$ lediglich von der solaren Einstrahlung $P_{solar}$ abhängig ist.
 Die Details der Zusammenhänge dieser Größen werden in Kapitel \ref{sec_Ausgangszustand} beschrieben.
 
-\enlargethispage*{\baselineskip}
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
@@ -428,7 +427,7 @@ Die Details der Zusammenhänge dieser Größen werden in Kapitel \ref{sec_Ausgan
 
 \subsection{Existierende Algorithmen} \label{subsec_ZielpunktregelungLiteratur}
 Eine präzise Übersicht über verschiedene Algorithmen zur Zielpunktregelung wurde von Oberkirsch in \cite{DissOberkirsch} aufgestellt.
-An dieser Stelle werden beispielhaft einige dieser Regelungen kurz vorgestellt bevor nachfolgend in Absatz \ref{subsec_ZielpunktregelungGarcia} die in dieser Arbeit genutzte Zielpunktregelung detaillierter vorgestellt wird.
+An dieser Stelle werden beispielhaft einige dieser Regelungen kurz vorgestellt, bevor nachfolgend in Absatz \ref{subsec_ZielpunktregelungGarcia} die in dieser Arbeit genutzte Zielpunktregelung detaillierter erklärt wird.
 
 Maldonado \textit{et al.} \cite{Maldonado}\cite{Maldonado2} entwickelte beispielsweise einen iterativen Algorithmus mit dem Namen \textit{Local Search}.
 Dieser beginnt bei einer initialen Lösung zur Zielpunktverteilung und untersucht für jeden Zeitschritt, ob eine Verschiebung zu diskreten benachbarten Zielpunkten im Hinblick auf die Gesamtleistung des Receivers einen Vorteil bringt.
@@ -440,12 +439,12 @@ Das Problem wird durch eine zweistufige Optimierung gelöst; die erste Stufe bes
 
 
 Vant-Hull \textit{et al.} \cite{VantHull2}\cite{VantHull3} hat unter anderem das \textit{Dynamic Aimpoint Processing System} (\textit{DAPS}) entwickelt; eine Regelung die im Wesentlichen das Überschreiten maximaler Flussdichten verhindern soll.
-Dazu wird der Cup des Receivers mit der höchsten überschrittenen Flussdichte gemessen und simulativ bestimmt und anschließend identifiziert, welcher Heliostat den größten Einfluss auf diesen Cup nimmt; dieser Heliostat wird anschließend defokussiert.
+Dazu wird der Cup des Receivers mit der höchsten überschrittenen Flussdichte gemessen oder simulativ bestimmt und anschließend identifiziert, welcher Heliostat den größten Einfluss auf diesen Cup hat; dieser Heliostat wird anschließend defokussiert.
 In einem iterativen Prozess wird dieses Verfahren wiederholt, bis die Flussdichte an keinem Cup mehr überschritten wird.
 
 García \textit{et al.} \cite{Garcia1} stellte einen Algorithmus vor, der das Problem nicht als MIMO System definiert, also mit allen Heliostaten als Eingangsgrößen und allen Zielpunkten als separat zu berechnende Ausgangsgrößen, sondern als System aus 6 \textit{SISO} (\textbf{S}ingle \textbf{I}nput \textbf{S}ingle \textbf{O}utput) Subsystemen.
 Dazu werden die Heliostaten in drei Gruppen eingeteilt, je nach Entfernung zum Receiver.
-Für jede Gruppe werden dann zwei Faktoren eingeführt: Ein Faktor, der das \textit{shifting}, also die Verschiebung der Zielpunktmitte jeder Gruppe vom Zentrum her beschreibt und einer, der die \textit{dispersion}, also die Streuung der Heliostaten von dieser Gruppenmitte ausangibt.
+Für jede Gruppe werden dann zwei Faktoren eingeführt: Ein Faktor, der das \textit{shifting}, also die Verschiebung der Zielpunktmitte jeder Gruppe vom Zentrum her beschreibt und einer, der die \textit{dispersion}, also die Streuung der Heliostaten von dieser Gruppenmitte aus angibt.
 Auf diese Weise werden sechs Subsysteme gebildet, die von separaten \textit{PID}-Reglern geregelt werden.
 
 Die Algorithmen, die nicht auf Basis einer Gruppierung von Heliostaten funktionieren, haben einen hohen Rechen- und Zeitaufwand in der Optimierung.
@@ -549,8 +548,8 @@ Anschließend wird der Durchschnitt der berechneten Distanzen eines Zielpunktes 
 
 \textit{Kriterium 2:}\\
 Wie erläutert, kommt es nun also zu erforderlichen Bewegungen der Zielpunkte auf dem Receiver.
-Diese Bewegungen müssen nun so reguliert werden, dass der Schwerpunkt der Heliostatengruppe weiterhin dem vorgegebenen Gruppenmittelpunkt übereinstimmt.
-Dazu wird $\Delta D_{Centroid}$ bestimmt, ein Wert der angibt wie weit sich das Gruppenzentrum vom geforderten Punkt unterscheidet.
+Diese Bewegungen müssen nun so reguliert werden, dass der Schwerpunkt der Heliostatengruppe weiterhin mit dem vorgegebenen Gruppenmittelpunkt übereinstimmt.
+Dazu wird $\Delta D_{Centroid}$ bestimmt, ein Wert, der angibt, wie weit sich das Gruppenzentrum vom geforderten Punkt unterscheidet.
 Er berechnet sich nach Gleichung \ref{eq_GarciaGruppenzentrumbewegung}, wobei $k_2$ eine Konstante zur Berücksichtigung der zulässigen Stellgeschwindigkeiten der Heliostaten darstellt. \cite[S.10]{Garcia2}
 
 \begin{equation} \label{eq_GarciaGruppenzentrumbewegung}
@@ -588,7 +587,7 @@ Aufgrund des individuellen Parameters $\alpha$ sind die erforderlichen Mindestab
 \subsubsection*{Zusammenfassung} \label{subsubsec_Zusammenfassung}
 Letztlich handelt es sich bei dem vorgestellten Algorithmus von García um eine Strategie, um viele Heliostaten mit einer geringen Anzahl an Stellgrößen auf individuellen Bahnen zu bewegen.
 Dafür werden pro Gruppe lediglich zwei Stellgrößen eingeführt, von der im Verlauf der Arbeit nur noch eine weiter betrachtet wird.
-Ein wesentlicher Vorteil des gewählten Algorithmus ist die enorme Reduzierung der Stellgrößen; statt die vorhandenen 2153 Heliostaten am Standort Jülich einzeln positionieren zu müssen, geschieht dies durch lediglich 3 Stellgrößen.
+Ein wesentlicher Vorteil des gewählten Algorithmus ist die enorme Reduzierung der Stellgrößen; statt die vorhandenen 2153 Heliostaten am Standort Jülich einzeln positionieren zu müssen, geschieht dies durch lediglich drei Stellgrößen.
 Außerdem stehen als Endergebnis der Berechnung die einzelnen Zielpunkte der Heliostaten zur Verfügung.
 Dies sorgt für eine gute Kompatibilität in der Modellbildung des gesamten Systems, wie es in Kapitel \ref{sec_ErweiterungModellbildung} erläutert wird.
 
@@ -596,17 +595,17 @@ Dies sorgt für eine gute Kompatibilität in der Modellbildung des gesamten Syst
 \section{Verwendete Hard- und Software} \label{sec_HardSoftware}
 Die Modellbildung und die Simulationen in den nachfolgenden Kapiteln werden mithilfe der Programmiersprache \textit{Python} umgesetzt.
 Dabei handelt es sich Stand März 2023 um die populärste Programmiersprache weltweit \cite{Statista}.
-Nicht zuletzt aufgrund der Echtzeitfähigkeit \cite[S.9]{Python} und einfachen Syntax hat es sich besonders im Bereich des \textit{machine learning}s als Stand der Technik etabliert.
-Darüber hinaus zeichnet sich Python durch seine große Anzahl an professionellen Frameworks und Bibliotheken aus, welche es Entwicklern ermöglichen, auch komplexe Probleme mit geringem Aufwand zu lösen \cite[S.3]{Python}.
-Zwei wesentliche Beispiele für solche Frameworks, die auch in dieser Arbeit Verwendung finden sind \gans{CasADi} und \gans{do-mpc}.
+Nicht zuletzt aufgrund der Echtzeitfähigkeit \cite[S.9]{Python} und einfachen Syntax hat sie sich besonders im Bereich des \textit{machine learning}s als Stand der Technik etabliert.
+Darüber hinaus zeichnet sich Python durch ihre große Anzahl an professionellen Frameworks und Bibliotheken aus, welche es Entwicklern ermöglichen, auch komplexe Probleme mit geringem Aufwand zu lösen \cite[S.3]{Python}.
+Zwei wesentliche Beispiele für solche Frameworks, die auch in dieser Arbeit Verwendung finden, sind \gans{CasADi} und \gans{do-mpc}.
 
 CasADi ist eine Open-Source Bibliothek für MATLAB/Octave, C++ und Python.
 Sie dient der gradientenbasierten numerischen Optimierung mit einem besonderen Fokus auf der Regelungstechnik.
 Durch CasADi soll besonders die symbolische Formulierung von gewöhnlichen Differentialgleichungen (ODEs) und differential-algebraischen Gleichungen (DAEs) erleichtert und damit die Formulierung und Lösung nicht-linearer Programme und Regelungsprobleme ermöglicht werden. \cite{Casadi}
 
 Do-mpc ist ebenfalls eine Open-Source Toolbox.
-Sie basiert auf CasADi und ermöglicht die einfache Handhabung von Problemen mit Modellprädiktiven Regelung und der Zustandsvorhersage mittels \textit{moving horizon estimation} (MHE).
-Ihre Modelle vereinen modular Simulations- Vorhersage- und Regelungskomponeten aus diesem Bereich \cite{Dompc2}.
+Sie basiert auf CasADi und ermöglicht die einfache Handhabung von Problemen mit Modellprädiktiver Regelung und der Zustandsvorhersage mittels \textit{moving horizon estimation} (MHE).
+Ihre Modelle vereinen modular Simulations-, Vorhersage- und Regelungskomponenten aus diesem Bereich \cite{Dompc2}.
 Die gesamte Modellbildung, wie sie nachfolgend in Kapitel \ref{ch_Modellbildung} beschrieben ist, wird in do-mpc realisiert und ausgewertet.
 
 Für die Simulation der Ergebnisse wird in dieser Arbeit ein 4-Kern Intel Core i7-1185G7 Prozessor mit einem Basistakt von 3,0 GHz verwendet.

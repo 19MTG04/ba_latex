@@ -1,0 +1,80 @@
+% TODO comments
+\newcommand\TODO[1]{\noindent \textbf{\textcolor{green}{TODO: }}\textcolor{green}{#1}}
+
+% Parameters
+\newcommand{\SurfaceFront}{A_{\IndexAbsorber} }
+\newcommand{\SurfaceFrontSolid}{A_{\mathrm{solid}}}
+\newcommand{\HydraulicDiameter}{d_{\mathrm{h}} }
+
+
+\newcommand{\IndexAbsorber}{\mathrm{abs}}
+\newcommand{\IndexFront}{\mathrm{front}}
+\newcommand{\IndexBack}{\mathrm{back}}
+\newcommand{\UDotAbsorber}{\dot{U}_{\IndexAbsorber}}
+\newcommand{\UDotAbsorberFront}{\dot{U}_{\IndexAbsorber, \IndexFront}}
+\newcommand{\UDotAbsorberBack}{\dot{U}_{\IndexAbsorber, \IndexBack}}
+\newcommand{\TAbsorber}{T_{\IndexAbsorber}}
+\newcommand{\TAbsorberFront}{T_{\mathrm{abs,front}}}
+\newcommand{\TAbsorberBack}{T_{\mathrm{abs,back}}}
+% Ambient air
+\newcommand{\EnthalpyFlowTAmbient}{\dot{H}_{\mathrm{amb}}}
+\newcommand{\SpecificEnthalpyTAmbient}{h_{\mathrm{amb}}}
+% Inlet air
+\newcommand{\TAmbient}{T_{\mathrm{amb}}}
+\newcommand{\TInlet}[1]{T_{\mathrm{inlet,}#1}}
+\newcommand{\EnthalpyFlowTInlet}[1]{\dot{H}_{\mathrm{inlet,}#1}}
+\newcommand{\SpecificEnthalpyTInlet}[1]{h_{\mathrm{inlet,}#1}}
+% Return air
+\newcommand{\TReturn}[1]{T_{\mathrm{return,}#1}}
+\newcommand{\SpecificEnthalpyTReturn}[1]{h_{\mathrm{return,}#1}}
+\newcommand{\EnthalpyFlowTReturn}[1]{\dot{H}_{\mathrm{return,}#1}}
+% Header
+\newcommand{\IndexHeader}{\mathrm{h}}
+\newcommand{\EnthalpyFlowTHeader}[1]{\dot{H}_{\mathrm{header,}#1}}
+
+\newcommand{\QDotAbsorberComb}{\dot{Q}_{\mathrm{comb}}}
+\newcommand{\QDotAbsorberCombFront}{\dot{Q}_{\mathrm{comb,front}}}
+\newcommand{\QDotAbsorberCombBack}{\dot{Q}_{\mathrm{comb,back}}}
+\newcommand{\QDotConduction}{\dot{Q}_{\mathrm{cond}}}
+\newcommand{\PowerSolar}{P_{\mathrm{sol}}}
+\newcommand{\PowerSolarFront}{P_{\mathrm{sol,front}}}
+\newcommand{\PowerSolarBack}{P_{\mathrm{sol,back}}}
+\newcommand{\FluxSolar}{F}
+\newcommand{\QDotSol}{\dot{Q}_{\mathrm{sol}}}
+\newcommand{\QDotSolFront}{\dot{Q}_{\mathrm{sol,front}}}
+\newcommand{\QDotSolBack}{\dot{Q}_{\mathrm{sol,back}}}
+\newcommand{\QDotLoss}[1]{\dot{Q}_{\mathrm{loss,#1}}}
+\newcommand{\QDotLossAbsorberCupConvective}{\QDotLoss{conv}}
+\newcommand{\QDotLossAbsorberCupRadiative}{\QDotLoss{rad}}
+\newcommand{\QDotLossAbsorberCupInternal}{\QDotLoss{i \to r}}
+\newcommand{\MDotAbsorberCup}{\dot{m}_{\IndexAbsorber}}
+\newcommand{\MDotReceiver}{\dot{m}_{\mathrm{rec}}}
+\newcommand{\HeatTransferCoefficientAbsorber}{\alpha_{\mathrm{comb}}}
+\newcommand{\HeatTransferCoefficientAbsorberFront}{\alpha_{\mathrm{comb},\IndexFront}}
+\newcommand{\HeatTransferCoefficientAbsorberBack}{\alpha_{\mathrm{comb},\IndexBack}}
+\newcommand{\HeatTransferSurface}{A_{\mathrm{comb}}}
+\newcommand{\HeatTransferSurfaceFront}{A_{\mathrm{comb},\IndexFront}}
+\newcommand{\HeatTransferSurfaceBack}{A_{\mathrm{comb},\IndexBack}}
+\newcommand{\TemperatureWeightingFactor}{w_{\mathrm{T}}}
+\newcommand{\TemperatureWeightingFactorFront}{w_{\mathrm{T,front}}}
+\newcommand{\TemperatureWeightingFactorBack}{w_{\mathrm{T,back}}}
+\newcommand{\EtaAbsorber}{\eta_{\IndexAbsorber}}
+\newcommand{\OrificeDiameter}[1][]{d_{\mathrm{plate} #1}}
+
+% From: https://tex.stackexchange.com/questions/2705/typesetting-column-vector
+\newcount\colveccount
+\newcommand*\colvec[1]{
+    \global\colveccount#1
+    \begin{pmatrix}
+        \colvecnext
+        }
+        \def\colvecnext#1{
+        #1
+        \global\advance\colveccount-1
+        \ifnum\colveccount>0
+        \\
+        \expandafter\colvecnext
+        \else
+    \end{pmatrix}
+    \fi
+}

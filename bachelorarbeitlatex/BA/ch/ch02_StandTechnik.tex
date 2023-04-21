@@ -220,25 +220,66 @@ Da die Auflösung der deutschlandweiten Vorhersage lediglich rund $1km$ x $1km$ 
 Darüber hinaus ist auch die zeitliche Auflösung von 5 Minuten \cite{DWD2} unterhalb der Möglichkeiten anderer Nowcasting Systeme \cite{DLRNowcasting}\cite[S.272]{QuesadaRuiz}.
 
 Ein beliebtes Instrument für zeitlich und räumlich hochauflösende Vorhersagen sind die sogenannten \textit{ASIs}, kurz für \gans{All-sky imagers}.
-Dabei handelt es sich um nach oben gerichtete Kameras mit dem Zweck der Wolkenüberwachung.
+Dabei handelt es sich um nach oben gerichtete Kameras, welche $\SI{180}{\degree} \times \SI{180}{\degree}$ halbkugelförmige Bilder mit dem Zweck der Wolkenüberwachung erzeugen.
 Der Prozess zur Erstellung von Nowcasting Vorhersagen auf Basis dieser Bilder wird beispielsweise von Quesada-Ruiz et al. in \cite{QuesadaRuiz} beschrieben. \cite{Samu}
 
 Das DLR verwendet in Spanien bereits ein Nowcasting System auf Basis der ASIs.
 Es erstellt in subminütlicher Auflösung Einstrahlungskarten des betrachteten Solarfeldes.
-Räumlich gesehen können auf diese Weise Vorhersagen auf bis zu $20m$ x $20m$ getroffen werden. \cite[S.13]{Samu}\cite{DLRNowcasting}
+Räumlich gesehen können auf diese Weise Vorhersagen auf bis zu $\SI{20}{\metre} \times \SI{20}{\metre}$ getroffen werden.
+Tabelle~\ref{tab_VorgehenNowcasting} fasst alle Schritte zur Erstellung dieser Karten zusammen. \cite[S.4,S.13]{Samu}\cite{DLRNowcasting}.
 
-Die nachfolgende Abbildung \ref{fig_Nowcasting_Kamerabilder} zeigt links exemplarisch Bilder, die von solchen ASIs auf der PSA (Plataforma Solar de Almería) in Spanien, einem weiteren Standort eines Solarturmkraftwerkes, entstanden sind.
-Für die Erstellung dieser konkreten Bilder wurden 4 Kameras mit jeweils $500$ bis $1000m$ Entfernung voneinander am Heliostatenfeld aufgestellt.
-Aus diesen können anschließend die in Abbildung \ref{fig_Nowcasting_Kamerabilder} rechts sichtbaren Wolkenmasken erstellt und damit die benötigten hochauflösenden Einstrahlungskarten berechnet werden. \cite{DLRNowcasting}
+\begin{table}[ht!]
+    \caption[Vorgehen zur Erstellung der Einstrahlungskarten im Nowcasting mittels ASIs]{Vorgehen zur Erstellung der Einstrahlungskarten im Nowcasting mittels ASIs (nach\cite[S.4]{Samu})}
+    \centering
+    \begin{tabular}{m{0.1\textwidth}m{0.85\textwidth}}
+        \rowcolor{white}
+        Schritt & Beschreibung                                   \\
+        \midrule
+        1       & Wolkensegmentierung                            \\
+        2       & Bestimmung der 3D Koordinaten der Wolken       \\
+        3       & Extraktion der Wolkenbewegung                  \\
+        4       & Vorhersage der zukünftigen Wolkenpositionen    \\
+        5       & Ermittlung der Lichtdurchlässigkeit der Wolken \\
+        6       & Errechnen des Schattenwurfs                    \\
+        7       & Erstellung der Einstrahlungskarten             \\
+    \end{tabular}
+    \label{tab_VorgehenNowcasting}
+\end{table}
+
+Im Rahmen der Segmentierung (Schritt 1) wird durch Bilderkennung (z.~B. mittels neuronaler Netzwerke) festgestellt, welche der aufgenommenen Pixel zu Wolken gehören.
+Für die Bestimmung der Wolkenpositionen (2) werden mindestens zwei ASIs benötigt, welche den Himmel zeitgleich aus unterschiedlichen Winkeln aufnehmen.
+Der Effekt der Stereoskopie ermöglicht auf dieser Basis die Bestimmung der Position und Ausdehnung im dreidimensionalen Raum \cite[S.5]{Samu}.
+Durch Analyse aufeinander folgender Bilder der Kameras kann die jeweilige Wolkenbewegung erfasst werden (3), die Aufschluss über die zukünftigen Positionen dieser Wolken (4) gibt.
+Die nachfolgende Abbildung \ref{fig_Nowcasting} visualisiert exemplarisch, wie aus einem Bild der Kameras (Links) die Segmentierung (Mitte) und die Extraktion der Bewegungsvektoren (Rechts) geschieht.
+
+\begin{figure}[h!]
+\centering
+\setlength{\fboxsep}{1pt}
+\setlength{\fboxrule}{1pt}
+\fbox{\includegraphics[width=1\textwidth]{fig/Nowcasting}}
+\caption[Beispiel eines unbearbeiteten ASI-Bildes, eines segmentierten Bildes und eines Bildes inklusive visualisierter Bewegungsvektoren]{Beispiel eines unbearbeiteten ASI-Bildes (Links), eines segmentierten Bildes (Mitte) und eines Bildes inklusive visualisierter Bewegungsvektoren (Rechts) (nach \cite[S.8]{Sayeef})}
+\label{fig_Nowcasting}
+\end{figure}
+
+Die Ermittlung der Lichtdurchlässigkeit der Wolken (5) geschieht mithilfe von Pyrheliometern.
+Dies sind Messgeräte zur Ermittlung der direkten Sonneneinstrahlung.
+Sofern die betrachtete Wolke im direkten Weg zwischen Sonne und Pyrheliometer liegt, kann aus den Messwerten direkt die Lichtdurchlässigkeit der Wolke bestimmt werden.
+Andernfalls ergibt sich die Durchlässigkeit aus einer Wahrscheinlichkeitsanalyse mit historischen Wolkenhöhen- und Transmissionsmessungen sowie aktuellen Transmissionsmessungen anderer Wolken und deren Wolkenhöhen \cite{BijanNowcasting}.
+
+Durch Erfassung der Sonnenposition aus den Bildern der ASIs sowie der Wolkenpositionen und -bewegungsvektoren kann die resultierende lokale Verschattung geometrisch bestimmt werden (6).
+In Kombination mit der Lichtdurchlässigkeit ergeben sich zu dem aktuellen Zeitpunkt sowie prädiktiv in der benötigten zeitlichen Auflösung und über einen Horizont von $\SI{15}{\minute} \times \SI{60}{\minute}$ die Einstrahlungskarten (7).
+Beispielhaft ist dies als Ergebnis des Nowcastings in Abbildung \ref{fig_EinstrahlungNowcasting} zu sehen.
+Das insgesamt überwachte Feld erstreckt sich über $\SI{8}{\kilo\metre} \times \SI{8}{\kilo\metre}$, jedes einzelne Pixel stellt den Einstrahlungswert für eine Fläche von $\SI{20}{\metre} \times \SI{20}{\metre}$ dar.
 
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=1\textwidth]{fig/Nowcasting}}
-\caption[Aufnahmen der ASIs auf der PSA  und die daraus extrahierten Wolknemaske]{Aufnahmen der ASIs auf der PSA (links) und die daraus extrahierten Wolknemasken (rechts) \cite{DLRNowcasting}}
-    \label{fig_Nowcasting_Kamerabilder}
+    \fbox{\includegraphics[width=0.95\textwidth]{fig/NowcastingDNIMap}}
+    \caption[Beispielhafte Darstellung der Einstrahlungskarte als Ergebnis des Nowcastings]{Beispielhafte Darstellung der Einstrahlungskarte als Ergebnis des Nowcastings (nach \cite[S.14]{Samu})}
+    \label{fig_EinstrahlungNowcasting}
 \end{figure}
+
 
 
 \section{Modellprädiktive Regelung} \label{sec_ModellprädiktiveRegelung}
@@ -284,7 +325,7 @@ Nach jedem Zeitschritt $T_s$ verschieben sich die Horizonte entsprechend, es wir
 
 \subsection{Modellierung des Systems} \label{subsec_Modellbildung}
 Ein grundlegender Baustein zur erfolgreichen Regelung mit einem modellprädiktiven Regler ist die Abbildung des zu regelnden Systems durch mathematische Formeln – die Modellbildung.
-Dabei kann das System sowohl in diskreter als auch kontinuierlicher Form vorliegen; für die Optimierung werden kontinuierliche Systeme aus Differenzialgleichungen und algebraischen Gleichungen jedoch in aller Regel diskretisiert, sodass das System letztlich wie in den Gleichungen \ref{eq_Modellbildung1} - \ref{eq_Modellbildung3} zu beschreiben ist.
+Dabei kann das System sowohl in diskreter als auch kontinuierlicher Form beschrieben werden; für die Optimierung werden kontinuierliche Systeme aus Differenzialgleichungen und algebraischen Gleichungen jedoch in der Regel diskretisiert (vgl. Kapitel \ref{subsec_Diskretisierung}), sodass das System letztlich wie in den Gleichungen \ref{eq_Modellbildung1} - \ref{eq_Modellbildung3} zu beschreiben ist.
 Dabei steht $x$ für die dynamischen Modellzustände, $u$ für die Stellgrößen, $z$ für algebraische Größen und $p$ bzw.
 $p_{tv}$ für (zeitabhängige, \textbf{t}ime \textbf{v}arying) Modellparameter. \cite[S.3]{Schwenzer}\cite{Dompc1}
 
@@ -303,6 +344,115 @@ $p_{tv}$ für (zeitabhängige, \textbf{t}ime \textbf{v}arying) Modellparameter. 
 \end{equation}
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_Modellbildung1} - \ref{eq_Modellbildung3}:}} Diskretisierte mathematische Modelldarstellung}}
 \myequations{\quad Ausgangsgleichung in der Modellbildung}
+
+\subsection{Diskretisierung} \label{subsec_Diskretisierung}
+Im Vergleich zu diskreten Modellen ist der rechnerische Aufwand zur Lösung kontinuierlicher Modelle höher.
+Zur Lösung praktischer Probleme sind daher heutzutage Schieß- und Kollokationsverfahren, die das System diskretisieren und so in ein \textit{Nichtlineares Programm} (NLP) umformulieren, erfolgversprechender \cite[S.63]{DissGall}.
+Nachfolgend wird die Methode der orthogonalen Kollokation vorgestellt, da diese die inhärente Sensitivität eines Schießverfahrens vermeidet und weniger präzise Startwerte für eine erfolgreiche Lösung erfordert \cite[S.981]{Enright}.
+Für komplexe, nichtlineare Kraftwerksmodelle ist diese Methode zu bevorzugen \cite[S.247]{Bausa}.
+Bei der Kollokation werden die Zustands- und auch die Eingangstrajektorien diskretisiert und über ein Polynom angenähert.
+Die Optimierungsvariablen des NLPs bilden zum einen die Kollokationspunkte der Zustandstrajektorien, an denen die Systemdynamik erfüllt sein muss und zum anderen die Stützstellen der Eingangstrajektorien zu Beginn und Ende der finiten Elemente \cite[S.63-64]{DissGall}\cite[S.2]{Cizniar}.
+
+Abbildung \ref{fig_Collocationdompc} verdeutlicht das Prinzip der orthogonalen Kollokation.
+Die Zeit innerhalb der in Absatz \ref{subsec_GrundlagenMPC} erläuterten Sample Time wird in $i = 1,...,\mathrm{NE}$ finite Elemente der Dauer $\Delta t$ eingeteilt.
+Weiterhin werden für jedes Element $j = 0,...,K$ Kollokationspunkte eingeführt zu den diskreten Zeitpunkten $\tau\in [0,1]$.
+Die Ansatzfunktion der Approximationspolyome innerhalb der finiten Elemente ist $K$-ten Grades:
+\begin{equation} \label{eq_AnsatzApprox}
+    \boldsymbol{x}^{K}_{i}(t) = \boldsymbol{\alpha}_0+\boldsymbol{\alpha}_1t+...+\boldsymbol{\alpha}_{K}t^{K}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Ansatzfunktion der Approximationspolynome finiter Elemente}
+
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=0.95\textwidth]{fig/Collocationdompc}}
+    \caption[Beispielhafte orthogonale Kollokation auf finiten Elementen]{Beispielhafte orthogonale Kollokation auf finiten Elementen \cite{Dompc1}}
+    \label{fig_Collocationdompc}
+\end{figure}
+
+Die erforderliche Steigung der Polynome an den Kollokationspunkten ist durch die Zustandstrajektorien als Optimierungsvariable vorgegeben.
+In Abbildung \ref{fig_Collocationdompc} ist zu erkennen, dass auch die Kontinuität der einzelnen Polynome elementübergreifend erfüllt wird, wenn
+\begin{equation} \label{eq_KontiDompc}
+    \boldsymbol{X}^{K}_{i}(t_{i+1})=\boldsymbol{x}_{i+1,0}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Kontinuitätsbedingung der Kollokation im Beispiel der Abbildung \ref{fig_Collocationdompc}}
+
+\vspace*{-\baselineskip}gilt.
+Diese Kontinuität gilt jedoch nur für die Zustände und nicht deren zeitliche Ableitungen \cite[S.2]{Cizniar}.
+
+Die Verteilung der Kollokationspunkte innerhalb der finiten Elemente geschieht in der Regel nach vier Methoden \cite[S.48]{Huntington}:
+\begin{itemize}
+    \item Äquidistant,
+    \item Legendre-Gauss,
+    \item Legendre-Gauss-Radau,
+    \item Legendre-Gauss-Lobatto
+\end{itemize}
+Äquidistante Verteilungen werden in der Praxis nicht genutzt, je nach Systemdynamik muss zwischen den weiteren Methoden gewählt werden \cite{Huntington}.
+Die nachfolgende Abbildung \ref{fig_Kollokationspunkte} zeigt die unterschiedlichen Verteilungen für $K=10$ Kollokationspunkte.
+
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=0.9\textwidth]{fig/KollokPoints.pdf}}
+    \caption[$K=10$ Kollokationspunkte in Verteilungen nach Legendre-Gauss, Legendre-Gauss-Radau, Legendre-Gauss-Lobatto oder äquidistant im Intervall {$\left[0,1\right]$}]{$K=10$ Kollokationspunkte in Verteilungen nach Legendre-Gauss, Legendre-Gauss-Radau, Legendre-Gauss-Lobatto oder äquidistant im Intervall $\left[0,1\right]$ (gemäß \cite[S.48]{Huntington})}
+    \label{fig_Kollokationspunkte}
+\end{figure}
+
+Die Approximationspolynome berechnen sich aus
+\begin{equation} \label{eq_Approxpolynom2}
+    \boldsymbol{x}_i^{K}(t)=\sum_{j=0}^K L_j(\tau) \boldsymbol{x}_{i, j}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Berechnung der Approximationspolynome}
+
+\vspace*{-\baselineskip}wobei $L_j(\tau)$ das Lagrange-Polynom darstellt, welches nach Gleichung \ref{eq_LagragePloynom} beschrieben wird:
+\begin{equation} \label{eq_LagragePloynom}
+    \begin{gathered}
+        L_j(\tau)=\prod_{\substack{k=0 \\ k \neq j}}^K \frac{\left(\tau-\tau_k\right)}{\left(\tau_j-\tau_k\right)}, \quad \tau=\frac{t-t_i}{\Delta t_i}, \quad \Delta t_i=t_{i+1}-t_i\\
+        \forall~i\in \left\{1, \ldots, \mathrm{NE}\right\} \text{ and } j\in \left\{0, \ldots, K\right\}
+    \end{gathered}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Lagrange-Polynom}
+
+Die zeitliche Ableitung des Polynoms wird wie folgt bestimmt
+\begin{equation} \label{eq_AbleitungPolynomKollok}
+    \begin{gathered}
+        \left.\frac{d \boldsymbol{x}_i^K}{d t}\right|_{t_{i, k}}=\sum_{j=0}^K \frac{\boldsymbol{x}_{i, j}}{\Delta t_i} \underbrace{\left.\frac{d L_j}{d \tau}\right|_{\tau_k}}_{a_{j,k}},\\
+        \forall~i\in \left\{1, \ldots, \mathrm{NE}\right\}\text{ and }k\in \left\{0, \ldots, \mathrm{K}\right\}
+    \end{gathered}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Zeitliche Ableitung des Approximationspolynoms}
+
+\vspace*{-\baselineskip}wobei der Term $a_{j,k}$ konstant ist und vorberechnet werden kann.
+Die Erfüllung der Systemdynamiken durch das Polynom an den Kollokationspunkten kann anhand von Gleichheitsbedingungen formuliert werden.
+Dabei steht $\boldsymbol{\dot{x}}$ für die durch Differentialgleichungen beschriebene Systemdynamik \cite[S.70]{DissGall}.
+\begin{equation} \label{eq_GleichheitsbedAbleitungKollok}
+    \begin{gathered}
+        \dot{\boldsymbol{x}_i}(\tau) = \sum_{j=0}^K \frac{\boldsymbol{x}_{i, j}}{\Delta t_i} a_{j,k}\\
+        \forall~i\in \left\{1, \ldots, \mathrm{NE}\right\}\text{ and }k\in \left\{0, \ldots, \mathrm{K}\right\},
+    \end{gathered}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Gleichheitsbedingungen der Systemdynamik in der Kollokation}
+
+An den Stützstellen der Elemente werden die Gleichheitsbedingungen für die Übergänge der Elemente definiert.
+Der Startwert eines Polynoms ist festgelegt durch das Polynom des vorigen Elementes zum Zeitpunkt $\tau=1$, bei dem der Stetigkeitskoeffizient $d_j$ vorberechnet werden kann.
+\begin{equation} \label{eq_GleichheitsbedZustandKollok}
+    \begin{gathered}
+        \boldsymbol{x}_i^K\left(t_{i+1}\right)=\sum_{j=0}^K \underbrace{L_j(\tau=1)}_{d_j} \boldsymbol{x}_{i, j}\\
+        \forall~i\in \left\{1, \ldots, \mathrm{NE}\right\}
+    \end{gathered}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Gleichheitsbedingungen der Übergänge der finiten Elemente}
+
+Die Gleichungen \ref{eq_GleichheitsbedAbleitungKollok} und \ref{eq_GleichheitsbedZustandKollok} werden in das Optimierungsproblem der modellprädiktiven Regelung als Gleichheitsbedingungen eingebunden.
 
 
 \subsection{Kostenfunktion} \label{subsec_Kostenfunktion}
@@ -328,31 +478,437 @@ Nicht zu überschreitende, harte Limitierungen treten zumeist bei den Eingangsgr
 Im Gegensatz dazu sind harte Beschränkungen auf Ausgangsgrößen eher nur gewünscht als wirklich erforderlich und können das Optimierungsproblem unlösbar machen.
 Ein zusätzlicher Freiheitsgrad wird durch die Einführung von soft constraints und sogenannten \textit{Slack Variablen} $\xi$ geschaffen. \cite[S.4]{Schwenzer}
 
-Mathematisch lässt sich die in Gleichung \ref{eq_Kostenfunktion} dann um die constraints auf das gesamte Optimierungsproblem erweitern (siehe \ref{eq_Optimierungsproblem}).
-Dazu werden weitere Gewichtungsmatrizen nach \cite[S.4]{Schwenzer}$W_w$ und $W_\xi$ in der Kostenfunktion eingefügt, letztere als trade-off zwischen Dauer und Höhe der constraint-Überschreitung \cite{Rawlings}.
+Mathematisch lässt sich die in Gleichung \ref{eq_Kostenfunktion} dann um die constraints und die Gleichheitsbedingungen aus Gleichung \ref{eq_GleichheitsbedAbleitungKollok} und \ref{eq_GleichheitsbedZustandKollok} auf das gesamte Optimierungsproblem erweitern.
+Dazu werden weitere Gewichtungsmatrizen nach \cite[S.4]{Schwenzer} $W_w$ und $W_\xi$ in der Kostenfunktion eingefügt, letztere als trade-off zwischen Dauer und Höhe der constraint-Überschreitung \cite{Rawlings}.
 Die Indizes \textit{lb} und \textit{ub} kennzeichnen die \textbf{l}ower bzw. \textbf{u}pper \textbf{b}ound, also die untere und obere Variablengrenze.
+Die für die Diskretisierung eingeführten Indizes werden mit \textit{col} erweitert.
 
 \begin{equation} \label{eq_Optimierungsproblem}
 \begin{gathered}
-    \min_{u, \xi} \quad (2.7)_{W_w}+\underbrace{\left\|_{\xi}(k+i \mid k)\right\|_{W_{\xi}}}_{\text {softening }} \qquad\\
-    u_{l b} \leq(u(k+j \mid k)) \leq u_{u b}, \\
-    y_{l b}-(\xi(k+i \mid k)) \leq(y(k+j \mid k)) \leq y_{u b}+(\xi(k+i \mid k)), \\
-    \text { where } \xi \geq 0 \\
-    \forall i \in\left\{N_1, \ldots, N_2-i\right\} \text { and } j \in\left\{0, \ldots, N_u\right\}
+\min_{x, u, \xi, t} \quad (2.7)_{W_w}+\underbrace{\left\|_{\xi}(k+i \mid k)\right\|_{W_{\xi}}}_{\text {softening}} \qquad\\
+\dot{\boldsymbol{x}_i}(\tau) - \sum_{j_{\mathrm{col}}=0}^K \frac{\boldsymbol{x}_{i_{\mathrm{col}}, j_{\mathrm{col}}}}{\Delta t_{i_{\mathrm{col}}}} a_{j_{\mathrm{col}},k_{\mathrm{col}}} = 0\\
+\boldsymbol{x}_{i_{\mathrm{col}}}^K\left(t_{i_{\mathrm{col}}+1}\right) -\sum_{j_{\mathrm{col}}=0}^K d_{j_{\mathrm{col}}} \boldsymbol{x}_{i_{\mathrm{col}}, j_{\mathrm{col}}} = 0\\
+u_{l b} \leq(u(k+j \mid k)) \leq u_{u b}, \\
+y_{l b}-(\xi(k+i \mid k)) \leq(y(k+j \mid k)) \leq y_{u b}+(\xi(k+i \mid k)), \\
+\forall~\tau \in \left[0,1\right] \text{, } i_{\mathrm{col}} \in \left\{1, \ldots, \mathrm{NE}\right\} \text{ and } k_{\mathrm{col}} \in \left\{0, \ldots, \mathrm{K}\right\}\\
+\forall~\xi \in \mathbb{R}^{\geq0} \text{, }i \in\left\{N_1, \ldots, N_2-i\right\} \text { and } j \in\left\{0, \ldots, N_u\right\}
 \end{gathered}
 \end{equation}
 
-\vspace*{-5.2\baselineskip}
+\vspace*{-9.5\baselineskip}
 \qquad subject to:
-\vspace*{4.2\baselineskip}
+\vspace*{8.5\baselineskip}
 \myequations{\quad Beispielhaftes Optimierungsproblem für den MPC}
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_Optimierungsproblem}:}} Beispielhaftes Optimierungsproblem für den MPC}}
 
 Die durchdachte Aufstellung der Kostenfunktion ist für den Erfolg der Regelung unerlässlich; je besser diese an die Problemstellung und die gewünschte Lösung angepasst ist, desto größer sind die Erfolgsaussichten.
 
+\section{Initiale Modellbildung des Receivers} \label{sec_Ausgangszustand}
+In \cite[S.90ff]{DissGall} wird die Modellierung der Absorbercups im Receiver am Solarturm Jülich vorgestellt und in \cite{IdingSolarPaces} aufgegriffen.
+Die jeweiligen Ergebnisse werden an dieser Stelle verknüpft.
+Die Modellierung hat das Ziel eine einfache mathematische Beschreibung des Receivers zu erreichen, die ausgehend von aufgeprägtem Massenstrom, Temperatur der Rückführluft und Umgebung sowie solarer Einstrahlung, das Verhalten des Receivers, insbesondere die Luftaustrittstemperatur, hinreichend genau abbildet\cite[S.90]{DissGall}.
+
+\subsection{Grundlagen und Annahmen} \label{subsec_GrundlagenAnnahmen}
+Die modellierte Receiver Front besteht aus einzelnen, nicht miteinander interagierenden, \textit{Absorbercups}.
+Die Cups selbst bestehen aus drei Komponenten \cite[S.91]{DissGall}:
+\begin{itemize}
+\item \textbf{Absorberwabe} (\textit{Comb}): Sie besteht aus einer porösen Keramik und dient der Absorption der konzentrierten Solarstrahlung.
+Diese wird in der Keramik in thermische Energie gewandelt und als innere Energie gespeichert.
+Aufgrund der porösen Struktur kann Umgebungsluft als Wärmeübertragungsmedium durch die Wabe strömen, die Energie aufnehmen und diese dem nachgeschalteten Prozess (vgl. Abschnitt \ref{sec_Solartürme}) zur Verfügung stellen.
+\item \textbf{Absorberkelch} (\textit{Tub}): Er besteht aus demselben Material wie die Absorberwabe, ist jedoch massiv.
+Der Kelch ist wie ein quadratischer Pyramidenstumpf mit rundem Auslass geformt.
+\item \textbf{Rohrstück} (\textit{Tubing}): Dieses dient dem Transport der Luft zur weiteren Nutzung. Der vordere Teil des Rohrs besteht neben der Isolierung aus dem Endstück des Kelches.
+          Dies muss bei der Berechnung der Wärmeübertragung beachtet werden.
+\end{itemize}
+
+Zur Erhöhung des Wirkungsgrades und der Kühlung der Receiver Front wird die aus dem Prozess zurückgeführte, abgekühlte Luft (rund \SIrange{80}{120}{\degreeCelsius}) \cite{IdingSolarPaces} zu den Absorbercups zurückgeführt.
+Dort wird sie in Spalten zwischen den Cups vor den Receiver geleitet, wo sie sich teilweise mit der Umgebungsluft mischt und erneut für die Wärmeübertragung zur Verfügung steht.
+Dieser Prozess sowie die drei Komponenten sind schematisch in Abbildung \ref{fig_AufbauCup} dargestellt.
+
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=0.9\textwidth]{fig/AbsorberCupE}}
+    \caption[Schematische Darstellung eines Absorbercups]{Schematische Darstellung eines Absorbercups (nach \cite[S.90]{DissGall})}
+    \label{fig_AufbauCup}
+\end{figure}
+
+
+Die Cups werden in vier Sektoren unterteilt, welchen jeweils ein sogenannter primärer \textit{Header} nachgeschaltet ist.
+In diesen Headern wird die aus dem Rohrstück jedes einzelnen Cups im Sektor austretende, erwärmte Luft gemischt und ein bezüglich der Temperatur homogenisierter Luftmassenstrom entsteht.
+Über ein Ventil am Luftaustrittspunkt der Header kann theoretisch der Luftstrom durch die einzelnen Sektoren reguliert werden; in der Praxis ist dieses Ventil jederzeit geöffnet \cite{IdingSolarPaces}.
+An die vier primären Header schließt sich ein sekundärer Header an, welcher den identischen homogenisierenden Effekt mit der Luft aus allen vier Sektoren, also dem gesamten Luftmassenstrom des Receivers, erzielt.
+Die schematische Darstellung zeigt Abbildung \ref{fig_HeaderSchema}.
+
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{8pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=0.55\textwidth]{fig/Header_Darstellung}}
+    \caption[Schematische Darstellung der Header]{Schematische Darstellung der Header (nach \cite[S.90]{DissGall})}
+    \label{fig_HeaderSchema}
+\end{figure}
+
+Um das Modell des Receivers einfach zu halten, werden die folgenden Annahmen getroffen \cite[S.92]{DissGall}:
+\begin{itemize}
+    \item Das System wird als isobar angenommen, sodass die Enthalpie der Luft ausschließlich von der Temperatur abhängt.
+    \item Wärmeübertragung erfolgt nur in radialer Richtung.
+    \item Die Lufttemperaturen innerhalb von Bilanzräumen sind homogen und ändern sich diskret an Bilanzgrenzen.
+    \item Die Temperaturen der Rückführluft und der Luft hinter der Absorberwabe sind homogen.
+Dadurch wird die Berechnung der Wärmeübertragung vereinfacht, ohne die Genauigkeit der Berechnung zu stark zu beeinflussen, da die lokalen Temperaturänderungen relativ gering sind.
+    \item Die Absorberwabe ist die einzige Komponente, die Wärme speichert.
+\end{itemize}
+
+
+\subsection{Modellierung eines Absorbercups} \label{subsec_ModellCup}
+Zur Berechnung der Entahlpieströme und Temperaturen kann der Absorbercup vereinfacht in die Aufheizzone, (gemäß o.g. Annahme die Wabe), und die Transportzone (Kelch und Rohrstück), aufgeteilt werden.
+Die real auftretenden Temperaturunterschiede zwischen Kelch und Rohrstrück sind vernachlässigbar gering, sodass eine Einzelbetrachtung dieser beiden Komponenten nicht erforderlich ist.
+Abbildung \ref{fig_AbsorberBerechnung} zeigt die beiden Zonen und alle Größen zur nachfolgenden Berechnung.
+
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+\fbox{\includegraphics[width=1\textwidth]{fig/AbsorberCupGleichungen_new}}
+    \caption[Berechnungsgrößen des Absorbercups]{Berechnungsgrößen des Absorbercups (nach \cite{IdingSolarPaces})}
+    \label{fig_AbsorberBerechnung}
+\end{figure}
+
+\subsubsection*{Aufheizzone} \label{subsubsec_EnergiebilanzAufheizzone}
+Gemäß Abbildung \ref{fig_AbsorberBerechnung} ergibt sich die Energiebilanz an der Vorderseite der Absorberwabe zu
+\begin{equation} \label{eq_EnergiebilanzWabe}
+\UDotAbsorberFront =\QDotSolFront - \QDotLossAbsorberCupConvective -  \QDotLossAbsorberCupRadiative -\QDotAbsorberCombFront - \QDotConduction,
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{subsubsec_EnergiebilanzAufheizzone}:}} Energiebilanz der Absorberwabe}}
+\myequations{\quad Energiebilanz der Vorderseite der Absorberwabe}
+
+\vspace*{-\baselineskip}wobei $\UDotAbsorberFront$ die Änderung der inneren Energie der Wabenfront und $\QDotSolFront$ die von ihr aufgenommene solare Einstrahlung beschreibt.
+Die Terme $\QDotLossAbsorberCupConvective$ und $\QDotLossAbsorberCupRadiative$ beschreiben die thermischen Verluste in Folge von Wind und Wärmestrahlung.
+Der gewünschte Wärmeübergang von der Wabe in die durchströmende Luft wird mit $\QDotAbsorberCombFront$ ausgedrückt; $\QDotConduction$ steht für die Wärmeleitung des vorderen Teils der Wabe in den hinteren Teil.\\
+Die Änderung der inneren Energie kann weiterhin ausgedrückt werden als
+\begin{equation} \label{eq_InnereEnergie}
+\UDotAbsorberFront = m_{\mathrm{abs,front}} \cdot c_{\mathrm{abs}} \cdot \frac{d \TAbsorberFront}{d t},
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_InnereEnergie}:}} Änderung der inneren Energie der Absorberfornt}}
+\myequations{\quad Änderung der inneren Energie der Absorberfront}
+
+\vspace*{-\baselineskip}mit der Masse des vorderen Absorberwabenteils $m_{\mathrm{abs,front}}$ und der Wärmekapazität $c_{\mathrm{abs}}$, sowie der Änderung der Temperatur über die Zeit.\\
+Aufgrund der Struktur der Absorberwaben wird nicht die gesamte Einstrahlungsleistung an der Vorderseite der Wabe aufgenommen.
+Dies wird mit dem Faktor $\xi_{\mathrm{rad}}$ berücksichtigt, welcher diese Leistung in zwei Teile trennt.
+\begin{equation} \label{eq_SolareLeistung}
+    \begin{aligned}
+        \PowerSolarFront & = \xi_{\mathrm{rad}} \PowerSolar     \\
+        \PowerSolarBack  & = (1-\xi_{\mathrm{rad}}) \PowerSolar
+    \end{aligned}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_SolareLeistung}:}} Einteilung der aufgenommenen solaren Leistung mittels $\xi_{\mathrm{rad}}$}}
+\myequations{\quad Einteilung der aufgenommenen solaren Leistung mittels $\xi_{\mathrm{rad}}$}
+
+Mit der an der Wabenvorderseite aufgenommenen Leistung und dem Absorptionskoeffizienten $\alpha_{\mathrm{sol}}$ sowie der Absorberoberfläche $\SurfaceFront$ und der Flussdichte $\FluxSolar$ ergibt sich
+\begin{equation} \label{eq_SolareEinstrahlung}
+\QDotSolFront = \alpha_{\mathrm{sol}} \PowerSolarFront = \alpha_{\mathrm{sol}} \xi_{\mathrm{rad}} \SurfaceFront \FluxSolar.
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_SolareEinstrahlung}:}} Absorbierte solare Einstrahlung an der Wabenfront}}
+\myequations{\quad Absorbierte solare Einstrahlung an der Wabenfront}
+
+Zu einem Zeitpunkt, wenn kein Wind den Receiver beeinträchtigt, sind thermischen Verluste durch Konvektion $\QDotLossAbsorberCupConvective$ nicht vorhanden.
+Da außerdem die explizite Betrachtung dieser Verluste sehr komplex sind und ein eigenes Forschungsfeld darstellen, werden diese Verluste nicht weiter betrachtet \cite{IdingSolarPaces} und es gilt
+\begin{equation} \label{eq_KonvektiveVerluste}
+\QDotLossAbsorberCupConvective = 0.
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_KonvektiveVerluste}:}} Bestimmung der Verluste durch Konvektion}}
+\myequations{\quad Bestimmung der Verluste durch Konvektion}
+
+Die Verluste durch Wärmestrahlung können mit dem nach Stefan-Boltzmann-Gesetz beschrieben werden.
+Dabei ist $\epsilon$ der Emissionskoeffizient, welcher der Einfachheit halber gleich dem Absorptionskoeffizienten $\alpha_{\mathrm{sol}}$ gesetzt wird, $\sigma$ die Boltzmann-Konstante und $\TAmbient$ die Umgebungstemperatur.
+\begin{equation} \label{eq_StrahlungVerluste}
+    \QDotLossAbsorberCupRadiative = \epsilon \sigma \SurfaceFront (\TAbsorberFront^4-\TAmbient^4)
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Bestimmung der Verluste durch Wärmestrahlung}
+
+Die Konvektion an der Vorderseite der Absorberwabe auf die durchströmende Luft kann durch die Enthalpieströme oder die spezifischen Enthalpien beschrieben werden.
+Weiterhin ist auch die Berechnung mit dem Wärmeübergangskoeffizienten $\HeatTransferCoefficientAbsorberFront$ und der Kontaktfläche zwischen Luft und Absorberwabe $\HeatTransferSurfaceFront$ möglich:
+\begin{equation} \label{eq_gewünschteKonvektion}
+    \begin{aligned}
+        \QDotAbsorberCombFront & = \EnthalpyFlowTInlet{\mathrm{1b}} - \EnthalpyFlowTInlet{1}                                              \\
+                               & = \MDotAbsorberCup \cdot ( \SpecificEnthalpyTInlet{\mathrm{1b}} - \SpecificEnthalpyTInlet{1})            \\
+                               & = \HeatTransferCoefficientAbsorberFront \HeatTransferSurfaceFront (\TAbsorberFront-T_{\mathrm{m,front}})
+    \end{aligned}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Konvektion zwischen Wabenfront und Luftmassenstrom}
+
+Für diese Berechnung wird weiterhin die Durchschnittstemperatur $T_{\mathrm{m,front}}$ zwischen dem Lufteintritt $\TInlet{1}$ und der Mitte der Wabe $\TInlet{1b}$ mit dem einstellbaren Gewichtungsfaktor $\TemperatureWeightingFactor$ genutzt, welche sich gemäß Gleichung \ref{eq_MeanTempAbsFront} ergibt.
+\begin{equation} \label{eq_MeanTempAbsFront}
+    T_{\mathrm{m,front}} = (1-\TemperatureWeightingFactorFront) \TInlet{1} + \TemperatureWeightingFactorFront \TInlet{\mathrm{1b}}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Berechnung der durchschnittlichen Temperatur in der Wabenfront}
+
+Die Wärmeleitung von der Absorbervorderseite zur -rückseite ergibt sich unter Berücksichtigung der Wärmeleitfähigkeit $\lambda_{\mathrm{comb}}$, $\SurfaceFrontSolid$ als Oberfläche der Absorberfront $\SurfaceFront$ abzüglich der Kanäle für den Luftstrom und $l_{\mathrm{comb}}$ als Tiefe des Absorbers:
+\begin{equation} \label{eq_WärmeleitungVorneHinten}
+    \QDotConduction = \lambda_{\mathrm{comb}} \cdot \frac{\SurfaceFrontSolid \cdot (\TAbsorberFront-\TAbsorberBack)}{l_{\mathrm{comb}/2}}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Wärmeleitung der Absorbervorderseite zur -rückseite}
+
+Für die hintere Seite der Absorberwabe kann eine der Gleichung \ref{eq_EnergiebilanzWabe} ähnliche Energiebilanz aufgestellt werden, jedoch muss an dieser Stelle kein Verlust durch Wärmestrahlung beachtet werden:
+\begin{equation} \label{eq_EnergiebilanzWabeHinten}
+    \UDotAbsorberBack =\QDotSolBack -\QDotAbsorberCombBack + \QDotConduction
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Energiebilanz der Rückseite der Absorberwabe}
+
+$\QDotAbsorberCombBack$ kann dabei wie folgt beschrieben werden.
+\begin{equation} \label{eq_KonvektionWabeHinten}
+    \begin{aligned}
+        \QDotAbsorberCombBack & = \EnthalpyFlowTInlet{2} - \EnthalpyFlowTInlet{\mathrm{1b}}                                          \\
+                              & = \MDotAbsorberCup \cdot ( \SpecificEnthalpyTInlet{2} - \SpecificEnthalpyTInlet{\mathrm{1b}})        \\
+                              & = \HeatTransferCoefficientAbsorberBack \HeatTransferSurfaceBack (\TAbsorberBack-T_{\mathrm{m,back}})
+    \end{aligned}
+\end{equation}
+\myequations{\quad Konvektion zwischen Wabenfront und Luftmassenstrom}
+
+Die durchschnittliche Temperatur an der Rückseite der Absorberwabe errechnet sich nach Gleichung \ref{eq_MeanTempAbsBack}.
+\begin{equation} \label{eq_MeanTempAbsBack}
+    T_{\mathrm{m,back}}  = (1-\TemperatureWeightingFactorBack) \TInlet{\mathrm{1b}} + \TemperatureWeightingFactorBack \TInlet{2}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Berechnung der durchschnittlichen Temperatur in der Wabenrückseite}
+
+Durch Erweiterung von Gleichung \ref{eq_EnergiebilanzWabe} um die Gleichungen \ref{eq_InnereEnergie} bis \ref{eq_WärmeleitungVorneHinten} erhält man folgende Differentialgleichung für die vordere Seite der Absorberwabe:
+\setlength{\eqlinespacing}{25pt}
+\begin{dmath} \label{eq_GesamtgleichungEnergiebilanzWabeVorne}
+    m_{\mathrm{abs,front}}  c_{\mathrm{abs}} \frac{d \TAbsorberFront}{d t} = \epsilon \xi_{\mathrm{rad}} \SurfaceFront \FluxSolar -  \epsilon \sigma \SurfaceFront (\TAbsorberFront^4-\TAmbient^4) - \HeatTransferCoefficientAbsorberFront \HeatTransferSurfaceFront (\TAbsorberFront-T_{\mathrm{m,front}}) - \lambda_{\mathrm{comb}} \cdot \frac{\SurfaceFrontSolid \cdot (\TAbsorberFront-\TAbsorberBack)}{l_{\mathrm{comb}/2}}
+\end{dmath}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Gesamtgleichung der Energiebilanz an der Wabenvorderseite}
+
+Für den hinteren Teil der Wabe ergibt sich aus den Gleichungen \ref{eq_EnergiebilanzWabeHinten} bis \ref{eq_MeanTempAbsBack} eine weitere Differentialgleichung:
+\setlength{\eqlinespacing}{25pt}
+\begin{dmath} \label{eq_GesamtgleichungEnergiebilanzWabeHinten}
+    m_{\mathrm{abs,back}}  c_{\mathrm{abs}} \frac{d \TAbsorberBack}{d t} = \epsilon (1-\xi_{\mathrm{rad}}) \SurfaceFront \FluxSolar \qquad \qquad \qquad \qquad -  \HeatTransferCoefficientAbsorberBack \HeatTransferSurfaceBack (\TAbsorberBack-T_{\mathrm{m,back}}) + \lambda_{\mathrm{comb}} \cdot \frac{\SurfaceFrontSolid \cdot (\TAbsorberFront-\TAbsorberBack)}{l_{\mathrm{comb}/2}}
+\end{dmath}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Gesamtgleichung der Energiebilanz an der Wabenrückseite}
+
+
+Die Temperaturen $\TAbsorberFront$ und $\TAbsorberBack$ stellen dabei die Systemzustände dar; die Flussdichte $\FluxSolar$ eine Stellgröße.
+Weiterhin unbekannt sind die Temperaturen $\TInlet{1}$, $\TInlet{1b}$ und $\TInlet{2}$.
+
+$\TInlet{1}$ ergibt sich aus der Energiebilanz vor der Absorberwabe (siehe Abbildung \ref{fig_AbsorberBerechnung}), bei der $arr$ für Rückführrate der Luft (\textit{air return ratio}) steht, also den Anteil der in den Absorber strömenden Luft, der zuvor aus dem Prozess zurückgeführt wurde.
+\begin{equation} \label{eq_EnergiebilanzVorWabe}
+    \EnthalpyFlowTInlet{1} = arr \cdot \EnthalpyFlowTReturn{1} + (1-arr) \cdot \EnthalpyFlowTAmbient
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Energiebilanz vor der Absorberwabe}
+
+Diese Gleichung kann zu
+\begin{equation} \label{eq_EnergiebilanzVorWabe2}
+    \SpecificEnthalpyTInlet{1} = arr \cdot \SpecificEnthalpyTReturn{1} + (1-arr) \cdot \SpecificEnthalpyTAmbient
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Transformierte Energiebilanz vor der Absorberwabe}
+
+\vspace*{-\baselineskip}umgeschrieben werden.
+Auch die spezifische Enthalpie kann als Produkt der Wärmekapazität und Temperatur zu $h = c_p(T)T$ umgeschrieben werden.
+Dabei kann die spezifische Wärmekapazität aufgrund Temperaturschwankungen des Absorbers zwischen \SIrange{100}{1200}{\degreeCelsius} nicht als konstant angenommen werden und könnte mit einem höhergradigen Polynom angenähert werden \cite{IdingSolarPaces}. Allerdings ist der Rechenaufwand geringer, wenn ein Approximationspolynom der Form $T=f(h)$ verwendet wird, um die Temperatur zu bestimmen.
+Dies ist zulässig, da das Approximationspolynom im relevanten Bereich streng monoton steigend ist und so eine geschlossene Lösung erlaubt \cite[S.96]{DissGall}.
+Aus Gleichung \ref{eq_EnergiebilanzVorWabe2} ergibt sich demnach mit $\SpecificEnthalpyTReturn{1}$ eine neue Unbekannte, die aus der Energiebilanz der Transportzone errechnet wird.
+
+
+\subsubsection*{Transportzone} \label{subsubsec_EnergiebilanzTransportzone}
+Nach Abbildung \ref{fig_AbsorberBerechnung} ergibt sich die Energiebilanz der Transportzone zu
+\begin{equation} \label{eq_EnergiebilanzTransportzone}
+\EnthalpyFlowTReturn{1} = \EnthalpyFlowTReturn{3} +\QDotLossAbsorberCupInternal,
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Energiebilanz der Transportzone}
+
+\vspace*{-\baselineskip}was gleichbedeutend mit
+\begin{equation} \label{eq_EnergiebilanzTransportzone2}
+    \MDotAbsorberCup\SpecificEnthalpyTReturn{1} = \MDotAbsorberCup\SpecificEnthalpyTReturn{3}+\QDotLossAbsorberCupInternal
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Energiebilanz der Transportzone (Ausdruck mit spezifischer Enthalpie)}
+
+\vspace*{-\baselineskip}ist, wobei $\QDotLossAbsorberCupInternal$ der Verlustwärmestrom in die zurückgeführte Luft darstellt, der sich nach Abbildung \ref{fig_AbsorberBerechnung} aus drei in orange gekennzeichneten Teilen zusammensetzt.
+Mathematisch lässt sich dies nach Gleichung \ref{eq_VerlustwärmeTransportzone} beschreiben.
+\begin{equation} \label{eq_VerlustwärmeTransportzone}
+    \QDotLossAbsorberCupInternal = \QDotLoss{tub} + \QDotLoss{tube,1} + \QDotLoss{tube,2}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Aufteilung des Verlustwärmestroms der Transportzone}
+
+Der Wärmeverlust durch die Rohrstücke kann mittels herkömmlicher Formeln der Wärmeübertragung in mehrschichtigen Rohre geschehen.
+Durch die Umrechnung des Kelches in ein äquivalentes Rohr können die identischen Formeln auch hier angewandt werden.
+Daher gilt
+\begin{equation} \label{eq_VerlustwärmeTransportzone2}
+\QDotLossAbsorberCupInternal= \alpha_{\mathrm{i\to r}} \cdot A_{\mathrm{i\to r}} \cdot (\TInlet{2} - \TReturn{3}),
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Berechnung des Verlustwärmestroms der Transportzone}
+
+\vspace*{-\baselineskip}wobei $\alpha_{\mathrm{i\to r}}$ der Wärmeübergangskoeffizient und $A_{\mathrm{i\to r}}$ die entsprechende Kontaktfläche ist.
+Die Geometrie des Absorbers zeigt die Abbildung \ref{fig_GeometrieAbsorber}.
+
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=0.8\textwidth]{fig/GeometrieAbsorber}}
+    \caption[Geometrie des Absorbers]{Geometrie des Absorbers \cite[S.97]{DissGall}}
+    \label{fig_GeometrieAbsorber}
+\end{figure}
+
+Aus der Geometrie und den Wärmeleitfähigkeiten $\lambda$ der Keramik, der Dämmung und des Rohres sowie den lokalen Wärmeübergangskoeffizienten ergibt sich
+\begin{equation}
+\begin{aligned} \label{eq_WärmeübergangskoeffizientVerluste}
+\alpha_{\mathrm{i\to r}} & =\frac{\pi \cdot l_{\mathrm{B}}}{\frac{1}{\alpha_{\mathrm{inlet, 2}} \cdot d_{1, \mathrm{B}}}+\frac{1}{2} \cdot B+\frac{1}{\alpha_{\mathrm{return, 3}} \cdot d_{2, \mathrm{~B}}}} \\
+& +\frac{\pi \cdot l_{\mathrm{C}}}{\frac{1}{\alpha_{\mathrm{inlet, 2}} \cdot d_{1, \mathrm{C}}}
+        +\frac{1}{2} \cdot C+\frac{1}{\alpha_{\mathrm{return, 3}} \cdot d_{4, \mathrm{C}}}}
+\\
+& +\frac{\pi \cdot l_{\mathrm{D}}}{\frac{1}{\alpha_{\mathrm{inlet, 2}} \cdot d_{1, \mathrm{D}}}+\frac{1}{2} \cdot D+\frac{1}{\alpha_{\mathrm{return, 3}} \cdot d_{3, \mathrm{D}}}},
+\end{aligned}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Bestimmung Wärmeübergangskoeffizienten für den Verlustwärmestrom}
+
+\vspace*{-\baselineskip}mit
+\begin{equation}
+\begin{aligned} \label{eq_BestimmungHilfsgrößen}
+& B=\frac{1}{\lambda_{\text {cer}}} \cdot \ln \frac{d_{2, \mathrm{B}}}{d_{1, \mathrm{B}}}                                                                                                                                                                              \\
+& C=\frac{1}{\lambda_{\text {ins}}} \cdot \ln \frac{d_{2, \mathrm{C}}}{d_{1, \mathrm{C}}}+\frac{1}{\lambda_{\text {cer}}} \cdot \ln \frac{d_{3, \mathrm{C}}}{d_{2, \mathrm{C}}}+\frac{1}{\lambda_{\text {pipe}}} \cdot \ln \frac{d_{4, \mathrm{C}}}{d_{3, \mathrm{C}}} \\
+& D=\frac{1}{\lambda_{\text {ins}}} \cdot \ln \frac{d_{2, \mathrm{D}}}{d_{1, \mathrm{D}}}+\frac{1}{\lambda_{\text {pipe}}} \cdot \ln \frac{d_{3, \mathrm{D}}}{d_{2, \mathrm{D}}}.
+\end{aligned}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Bestimmung der Hilfsgrößen des Wärmeübergangskoeffizienten}
+
+Für die spezifische Enthalpie $\SpecificEnthalpyTInlet{1}$ folgt nach \ref{eq_EnergiebilanzVorWabe2} und \ref{eq_EnergiebilanzTransportzone2}:
+\begin{equation} \label{eq_Hinlet1}
+    \SpecificEnthalpyTInlet{1} = arr \cdot \left( \SpecificEnthalpyTReturn{3} + \frac{\alpha_{\mathrm{i\to r}} \cdot A_{\mathrm{i\to r}} \cdot (\TInlet{2} - \TReturn{3})}{\MDotAbsorberCup}\right) + (1-arr) \cdot \SpecificEnthalpyTAmbient
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Berechnung der spezifischen Enthalpie vor der Absorberwabe}
+
+Die Temperatur der Rückführluft $\TReturn{3}$ ist eine Messgröße im Kraftwerk und daher bekannt \cite[S.96]{DissGall}.\\
+$\TInlet{1b}$ und $\TInlet{2}$ können unter Berücksichtigung des Approximationspolynoms $T=f(h)$ durch die entsprechenden Bilanzräume in der Wabe errechnet werden.
+\begin{align}
+    0 & = \MDotAbsorberCup (\SpecificEnthalpyTInlet{1}-\SpecificEnthalpyTInlet{1b}) + \QDotAbsorberCombFront \label{eq_Hinlet1b} \\ \text{\myequations{\quad Algebraische Gleichung zur Bestimmung von $\TInlet{1b}$}}
+    0 & = \MDotAbsorberCup (\SpecificEnthalpyTInlet{1b}-\SpecificEnthalpyTInlet{2}) + \QDotAbsorberCombBack \label{eq_Hinlet2}
+\end{align}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Algebraische Gleichung zur Bestimmung von $\TInlet{2}$}
+
+Demnach beschreiben die Gleichungen \ref{eq_GesamtgleichungEnergiebilanzWabeVorne}, \ref{eq_GesamtgleichungEnergiebilanzWabeHinten} sowie \ref{eq_Hinlet1b} und \ref{eq_Hinlet2} ein mathematisches Modell mit zwei Differentialgleichungen und zwei algebraischen Gleichungen, bei dem $\TAbsorberFront$ und $\TAbsorberBack$ die Zustände darstellen und $\TInlet{1b}$ sowie $\TInlet{2}$ die algebraischen Variablen.
+
+Die Luftaustrittstemperatur $\TInlet{3}$ eines Cups ergibt sich gemäß
+\begin{equation} \label{eq_Hinlet3}
+\SpecificEnthalpyTInlet{3} = \SpecificEnthalpyTInlet{2} - \frac{\QDotLossAbsorberCupInternal}{\MDotAbsorberCup};
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Berechnung der spezifischen Enthalpie bei Absorberaustritt}
+
+\vspace*{-\baselineskip}auch hier gilt die Funktion $T(h)$. Somit ergibt sich ein vollständig definiertes Modell der Absorbercups.
+
+
+\subsubsection*{Header} \label{subsubsec_Header}
+Im primären Header mischen sich die Luft- und Enthalpieströme der einzelnen Cups jedes Sektors.
+Der Enthalpiestrom dieses Gemisches wird in Gleichung \ref{eq_EnthalpiestromMischung} beschrieben.
+\begin{equation} \label{eq_EnthalpiestromMischung}
+    \EnthalpyFlowTInlet{3,\mathrm{mixed}} = \sum_i \dot{m}_{\IndexAbsorber, i} \cdot \SpecificEnthalpyTInlet{3,i}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Enthalpiestrom im primären Header}
+
+Berücksichtigt man die Verluste durch Wärmeübertragung im Header, ergibt sich der Enthalpiestrom am Austritt des primären Headers zu
+\begin{equation} \label{eq_AustrittHeader1}
+\dot{H}_{\mathrm{sector}} = \EnthalpyFlowTInlet{3,\mathrm{mixed}} + \QDotLoss{header,1}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Enthalpiestrom am Austritt des primären Headers}
+
+Dieser Verlustwärmestrom $\QDotLoss{header,1}$ wird durch Umrechnung der konischen in äquivalente zylindrische Elemente errechnet und ist von der Leitfähigkeit $\lambda$ der Isolierung und des Rohres sowie den lokalen Wärmeübergangsparametern $\alpha$ abhängig (siehe Gleichung \ref{eq_VerlustwärmeHeader}).
+Die entsprechende Geometrie zeigt Abbildung \ref{fig_header}.
+\begin{equation} \label{eq_VerlustwärmeHeader}
+    \dot{Q}_{\text {loss}, \IndexHeader}=
+    \frac{\pi \cdot l_{\IndexHeader} \cdot\left(T_{\mathrm{inlet,3,mixed}}-T_{\text {amb}}\right)}
+{\frac{1}{\alpha_{\IndexHeader} \cdot d_{1, \IndexHeader}}+\frac{1}{2} \cdot P+\frac{1}{\alpha_{\mathrm{amb}} \cdot d_{3, \mathrm{\IndexHeader}}}},
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Berechnung des Verlustwärmestroms im Header}
+
+\vspace*{-\baselineskip}mit
+\begin{equation} \label{eq_BestimmungHilfsgrößenHeader}
+P=\frac{1}{\lambda_{\text {ins}}} \cdot \ln \frac{d_{2, \IndexHeader}}{d_{1, \IndexHeader}}+\frac{1}{\lambda_{\text {pipe}}} \cdot \ln \frac{d_{3, \IndexHeader}}{d_{2, \IndexHeader}}.
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Bestimmung der Hilfsgröße $P$ für den Verlustwärmestrom im Header}
+
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=0.6\textwidth]{fig/GeometrieHeader}}
+    \caption[Geometrie des primären Headers]{Geometrie des primären Headers \cite[S.97]{DissGall}}
+    \label{fig_header}
+\end{figure}
+
+\vspace*{-\baselineskip}Schließlich ergibt sich der Enthalpiestrom am Receiveraustritt durch äquivalente Inbezugnahme des zweiten Headers.
+Der Austrittsenthalpiestrom $\dot{H}_{\mathrm{out}}$ ergibt sich zu
+\begin{equation} \label{eq_Headerout1}
+\dot{H}_{\mathrm{out}} = \dot{H}_{\mathrm{sector,mixed}}\EnthalpyFlowTInlet + \QDotLoss{header,2},
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Entahlpiestrom am Receiveraustritt}
+
+\vspace*{-\baselineskip}was identisch mit
+\begin{equation} \label{eq_Headerout2}
+h_{\mathrm{out}} = h_{\mathrm{sector,mixed}} + \frac{\QDotLoss{header,2}}{\MDotReceiver}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Spezifische Entahlpie am Receiveraustritt}
+
+\vspace*{-\baselineskip}ist.
+Dabei ist $\MDotReceiver$ der Luftmassenstrom durch den gesamten Receiver, also der Summe der Luftmassenströme durch alle einzelnen Cups.
+Der Wärmeverlust im sekundären Header wird mit $\QDotLoss{header,2}$ berücksichtigt und die Austrittstemperatur $T_{\mathrm{out}}$ ergibt sich erneut aus der inversen Funktion $T(h)$.
+Der Massenstrom des Gesamtreceivers ist messbar und dient im System als Eingangsgröße. \cite[S.92]{DissGall}
+
+
+\subsubsection*{Massenbilanzen} \label{subsubsec_Massenbilanzen}
+Die Massenströme der Luft am Receivereintritt und -austritt werden als identisch angenommen, da keine Druckunterschiede in der Modellierung betrachtet werden.
+Die Massenströme jedes einzelnen Absorbercups $\dot{m}_{\IndexAbsorber, i}$ können über den Gesamtmassenstrom $\MDotReceiver$ errechnet werden.
+Da die Ventile an jedem Sektor als vollständig geöffnet betrachtet werden, sind die Absorbercupmassenströme lediglich von individuellen Blendendurchmessern abhängig.
+Der Luftmassenstrom ergibt sich aus
+\begin{equation} \label{eq_MassenstromBlende}
+    \dot{m} = \alpha_0 \frac{\pi \OrificeDiameter^2}{4} \sqrt{2 \rho_{\mathrm{air}} \Delta p }
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Berechnung des Massenstroms an einer Blende}
+
+\vspace*{-\baselineskip}wobei $\alpha_0$ ein Durchflusskoeffizient ist, $\OrificeDiameter$ der Blendendurchmesser, $\rho_{\mathrm{air}}$ die Dichte der Luft und $\Delta p$ die Druckdifferenz vor und hinter der Blende.
+Für in dem System vorliegende hohe Reynoldszahlen kann der Durchflusskoeffizient als konstant angesehen werden \cite{IdingSolarPaces}.
+Weiterhin ist für konstante Massenströme auch die Druckdifferenz konstant und die Dichte der Luft aufgrund der Vernachlässigung von Druckänderungen im System ebenfalls.
+Der Massenstrom ist daher direkt proportional vom Quadrat des Blendendurchmessers abhängig:
+\begin{equation} \label{eq_AbhängigkeitMassenstrom}
+    \dot{m} \propto \OrificeDiameter^2
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Zusammenhang zwischen Massenstrom und Blendendurchmesser}
+
+Der Massenstrom eines einzelnen Cups ergibt sich durch die Eingangsgröße $\MDotReceiver$ und alle Blendendurchmesser im Receiver gemäß
+\begin{equation} \label{eq_BerechnungMassenstrom}
+    \dot{m}_{\IndexAbsorber, i} =\MDotReceiver \cdot \frac{\OrificeDiameter[,i]^2}{\sum_j^{n_{\mathrm{cups}}}\OrificeDiameter[,j]^2}
+\end{equation}
+% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
+\myequations{\quad Berechnung der Massenströme einzelner Absorbercups}
+
 
 \section{Zielpunktregelung} \label{sec_Zielpunktregelung}
-Neben der in Abschnitt \ref{subsec_Receiver} erwähnten Notwendigkeit der Zielpunktregelung zur Vermeidung zu hoher Temperaturen auf der Receiver-Front, ist ein weiteres wesentliches Ziel, die Maximierung des wirtschaftlichen Ertrags des Kraftwerkes.
+Neben der in Abschnitt \ref{subsec_Receiver} erwähnten Notwendigkeit der Zielpunktregelung zur Vermeidung zu hoher Temperaturen auf der Receiver Front, ist ein weiteres wesentliches Ziel, die Maximierung des wirtschaftlichen Ertrags des Kraftwerkes.
 Daher wird nachfolgend das daraus resultierende Optimierungsproblem erläutert sowie einige existierende Zielpunktregelungen aus der Literatur kurz vorgestellt.
 Im Anschluss wird die in dieser Arbeit verwendete Strategie detaillierter beschrieben.
 
@@ -364,13 +920,13 @@ Das Optimierungsproblem sollte also nicht auf die Temperatur der einzelnen Cups 
 Das zugehörige Optimierungsproblem ergibt sich dann gemäß Gleichung \ref{eq_OptimierungZielpunkte}, wobei $T_{absorber,i}$ die jeweilige Temperatur am Cup $i$ darstellt und $(x_{z,h}, y_{z,h})$ the Zielpunktkoordinaten eines jeden Heliostaten $h$ darstellen. \cite[S.15]{DissZanger}
 
 \begin{equation} \label{eq_OptimierungZielpunkte}
-\begin{gathered}
-    \max \quad P_{\text {receiver }}  \qquad \\
-    \begin{aligned}
-        T_{front,i} \leq T_{front,max}, \qquad                 & \forall~i \in \left\{1, ..., n_{cups} \right\}       \\
-        \left(x_{z,h}, y_{z,h}\right) \in \mathbb{R}^2, \qquad & \forall~h \in \left\{1, ..., n_{heliostats} \right\}
-    \end{aligned}
-\end{gathered}
+    \begin{gathered}
+        \max \quad P_{\text {receiver }}  \qquad \\
+        \begin{aligned}
+            T_{front,i} \leq T_{front,max}, \qquad                 & \forall~i \in \left\{1, ..., n_{cups} \right\}       \\
+            \left(x_{z,h}, y_{z,h}\right) \in \mathbb{R}^2, \qquad & \forall~h \in \left\{1, ..., n_{heliostats} \right\}
+        \end{aligned}
+    \end{gathered}
 \end{equation}
 
 \vspace*{-2.95\baselineskip}
@@ -384,13 +940,13 @@ Die kontinuierliche Gleichung \ref{eq_OptimierungZielpunkte} erlaubt dem Heliost
 Eine Diskretisierung durch Definition einer Teilmenge möglicher Zielpunktkoordinaten $A$ erlaubt eine mathematische Beschreibung des Problems wie in Gleichung \ref{eq_OptimierungZielpunkteDiskret}.
 
 \begin{equation} \label{eq_OptimierungZielpunkteDiskret}
-\begin{gathered}
-    \max \quad P_{\text {receiver }}  \qquad \\
-    \begin{aligned}
-        T_{front,i} \leq T_{front,max}, \qquad      & \forall~i \in \left\{1, ..., n_{cups} \right\}       \\
-        \left(x_{z,h}, y_{z,h}\right) \in A, \qquad & \forall~h \in \left\{1, ..., n_{heliostats} \right\}
-    \end{aligned}
-\end{gathered}
+    \begin{gathered}
+        \max \quad P_{\text {receiver }}  \qquad \\
+        \begin{aligned}
+            T_{front,i} \leq T_{front,max}, \qquad      & \forall~i \in \left\{1, ..., n_{cups} \right\}       \\
+            \left(x_{z,h}, y_{z,h}\right) \in A, \qquad & \forall~h \in \left\{1, ..., n_{heliostats} \right\}
+        \end{aligned}
+    \end{gathered}
 \end{equation}
 
 \enlargethispage*{2\baselineskip}
@@ -401,7 +957,7 @@ Eine Diskretisierung durch Definition einer Teilmenge möglicher Zielpunktkoordi
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_OptimierungZielpunkteDiskret}:}} Diskretes Optimierungsproblem der Zielpunktregelung}}
 
 Um die Streuung der Heliostaten möglichst gering zu halten und somit die Energieeffizienz des Kraftwerkes zu verbessern, werden die Heliostaten bevorzugt auf die Mitte gerichtet.
-Werden jedoch alle Heliostaten auf die Mitte ausgerichtet, wird die zulässige Temperatur der Receiver-Front überschritten.
+Werden jedoch alle Heliostaten auf die Mitte ausgerichtet, wird die zulässige Temperatur der Receiver Front überschritten.
 Welcher Heliostatenzielpunkt nun also in welche Richtung verschoben werden muss, hängt von dessen Standort ab.
 Heliostaten, die einen kürzeren Abstand zum Receiver haben, streuen die Sonnenstrahlung über eine kleinere Fläche.
 Da sie die gleiche Leistung reflektieren, aber über eine kleinere Fläche als weiter entfernte Heliostaten, erreichen Heliostaten, die näher am Receiver stehen, höhere maximale Flussdichten und haben größeren Einfluss auf die Temperatur einzelner Cups.
@@ -421,7 +977,7 @@ Die Details der Zusammenhänge dieser Größen werden in Kapitel \ref{sec_Ausgan
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-\fbox{\includegraphics[width=0.65\textwidth]{fig/PassingCloud}}
+    \fbox{\includegraphics[width=0.65\textwidth]{fig/PassingCloud}}
     \caption[Darstellung der potenziellen Gefahr einer durchziehenden Wolke]{Darstellung der potenziellen Gefahr einer durchziehenden Wolke}
     \label{fig_EinflussWolke}
 \end{figure}
@@ -474,7 +1030,7 @@ Abbildung \ref{fig_VerteilungHeliostateGarcia} zeigt diese Einteilung in 18x3 Gr
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.6\textwidth]{fig/GarciaFeld}}
-\caption[Einteilung des Heliostatenfeldes des Gemasolar-Kraftwerkes in Sevilla in 54 Gruppen]{Einteilung des Heliostatenfeldes des Gemasolar-Kraftwerkes in Sevilla in 54 Gruppen \cite[S.10]{Garcia2}}
+    \caption[Einteilung des Heliostatenfeldes des Gemasolar-Kraftwerkes in Sevilla in 54 Gruppen]{Einteilung des Heliostatenfeldes des Gemasolar-Kraftwerkes in Sevilla in 54 Gruppen \cite[S.10]{Garcia2}}
     \label{fig_VerteilungHeliostateGarcia}
 \end{figure}
 
@@ -493,7 +1049,7 @@ Abbildung \ref{fig_DispersionVeranschaulichung} zeigt den Einfluss der beiden St
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.6\textwidth]{fig/GarciaDispersionSymbolisch}}
-\caption[Symbolische Veranschaulichung der Stellgrößen des gewählten Algorithmus]{Symbolische Veranschaulichung der Stellgrößen des gewählten Algorithmus \cite[S.7]{Garcia2}}
+    \caption[Symbolische Veranschaulichung der Stellgrößen des gewählten Algorithmus]{Symbolische Veranschaulichung der Stellgrößen des gewählten Algorithmus \cite[S.7]{Garcia2}}
     \label{fig_DispersionVeranschaulichung}
 \end{figure}
 
@@ -536,7 +1092,7 @@ Es ist erkennbar, dass die Wahl hoher Werte für $a$ kleine Abstände zwischen d
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.5\textwidth]{fig/GarciaVerteilungAlpha.png}}
-\caption[Minimalabstände der Zielpunkte je $\alpha$-Wert]{Minimalabstände der Zielpunkte je $\alpha$-Wert \cite[S.9]{Garcia2}}
+    \caption[Minimalabstände der Zielpunkte je $\alpha$-Wert]{Minimalabstände der Zielpunkte je $\alpha$-Wert \cite[S.9]{Garcia2}}
     \label{fig_Verteilunglpha}
 \end{figure}
 
@@ -567,8 +1123,8 @@ Die vollständige Darstellung des hier vorgestellten Algorithmus nach García \t
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-\fbox{\includegraphics[width=0.9\textwidth]{fig/AlgorithmusGarcia.pdf}}
-\caption[Übersicht der vollständigen Zielpunktstrategie nach García]{Übersicht der vollständigen Zielpunktstrategie nach García \cite[S.10]{Garcia2}}
+    \fbox{\includegraphics[width=0.9\textwidth]{fig/AlgorithmusGarcia.pdf}}
+    \caption[Übersicht der vollständigen Zielpunktstrategie nach García]{Übersicht der vollständigen Zielpunktstrategie nach García \cite[S.10]{Garcia2}}
     \label{fig_GarciaAlg}
 \end{figure}
 
@@ -581,7 +1137,7 @@ Aufgrund des individuellen Parameters $\alpha$ sind die erforderlichen Mindestab
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.75\textwidth]{fig/GarciaZielpunkte}}
-\caption[Beispielhafte Zielpunktverteilungen für einen zunehmenden $\kappa$ Wert]{Beispielhafte Zielpunktverteilungen für einen zunehmenden $\kappa$ Wert \cite[S.11]{Garcia2}}
+    \caption[Beispielhafte Zielpunktverteilungen für einen zunehmenden $\kappa$ Wert]{Beispielhafte Zielpunktverteilungen für einen zunehmenden $\kappa$ Wert \cite[S.11]{Garcia2}}
     \label{fig_GarciaZielpunkte}
 \end{figure}
 
@@ -591,408 +1147,6 @@ Dafür werden pro Gruppe lediglich zwei Stellgrößen eingeführt, von der im Ve
 Ein wesentlicher Vorteil des gewählten Algorithmus ist die enorme Reduzierung der Stellgrößen; statt die vorhandenen 2153 Heliostaten am Standort Jülich einzeln positionieren zu müssen, geschieht dies durch lediglich drei Stellgrößen.
 Außerdem stehen als Endergebnis der Berechnung die einzelnen Zielpunkte der Heliostaten zur Verfügung.
 Dies sorgt für eine gute Kompatibilität in der Modellbildung des gesamten Systems, wie es in Kapitel \ref{sec_ErweiterungModellbildung} erläutert wird.
-
-\section{Initiale Modellbildung des Receivers} \label{sec_Ausgangszustand}
-Die zur Simulation benötigte Modellierung der Absorbercups im Receiver am Solarturm Jülich wird bereits in \cite[S.91ff]{DissGall} vorgestellt und in \cite{IdingSolarPaces} erweitert.
-Nachfolgend werden die dort erläuterten mathematischen Zusammenhänge zur Beschreibung eines Cups vorgestellt, bevor anschließend das Gesamtsystem des Receivers betrachtet wird.
-
-\subsection{Grundlegendes und Annahmen} \label{subsec_GrundlagenAnnahmen}
-Die modellierte Receiver-Front besteht aus einzelnen, nicht miteinander interagierenden, Absorbercups.
-Die Cups bestehen aus drei Komponenten \cite[S.91]{DissGall}:
-\begin{itemize}
-    \item \textbf{Absorberwabe}: Sie besteht aus einer porösen Kermamik und dient der Absorption der konzentrierten Solarstrahlung.
-          Diese wird dann in thermische Energie gewandelt und als innere Energie gespeichert.
-          Aufgrund der porösen Struktur kann Umgebungsluft als Wärmeübertragungsmedium durch die Wabe strömen, die Energie aufnehmen und dem nachgeschalteten Prozess (vgl. Abschnitt \ref{sec_Solartürme}) zur Verfügung stellen.
-    \item \textbf{Absorberkelch}: Er besteht aus derselben Keramik wie die Absorberwabe, ist jedoch massiv.
-          Dabei ist er wie ein quadratischer Pyramidenstumpf mit rundem Auslass geformt.
-    \item \textbf{Rohrstück}: Dieses dient dem Transport der Luft zur weiteren Nutzung. Der vordere Teil des Rohrs besteht neben der Isolierung aus dem Endstück des Kelches.
-          Dies muss bei der Berechnung der Wärmeübertragung beachtet werden.
-\end{itemize}
-
-Zur Erhöhung des Wirkungsgrades und der Kühlung der Receiver-Front wird die aus dem Prozess zurückgeführte, abgekühlte Luft (rund \SIrange{80}{120}{\degreeCelsius}) \cite{IdingSolarPaces} zu den Absorbercups zurückgeführt.
-Dort wird sie in Lücken zwischen den Cups vor den Receiver geleitet, wo sie sich teilweise mit der Umgebungsluft mischt und erneut für die Wärmeübertragung zur Verfügung steht.
-Dieser Prozess sowie die drei Komponenten sind schematisch in Abbildung \ref{fig_AufbauCup} dargestellt.
-
-\begin{figure}[h!]
-    \centering
-    \setlength{\fboxsep}{1pt}
-    \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.9\textwidth]{fig/AbsorberCupE}}
-    \caption[Schematische Darstellung eines Absorbercups]{Schematische Darstellung eines Absorbercups (nach \cite[S.90]{DissGall})}
-    \label{fig_AufbauCup}
-\end{figure}
-
-
-Die Cups werden in vier Sektoren unterteilt, welchen jeweils ein sogenannter primärer \textit{Header} nachgeschaltet ist.
-In diesen Headern wird die aus dem Rohrstück jedes einzelnen Cups im Sektor austretende, erwärmte Luft gemischt und ein bezüglich der Temperatur homogenisierter Luftmassenstrom entsteht.
-Über ein Ventil am Luftaustrittspunkt der Header kann theoretisch der Luftstrom durch die einzelnen Sektoren reguliert werden; in der Praxis ist dieses Ventil jederzeit geöffnet \cite{IdingSolarPaces}.
-An die vier primären Header schließt sich ein sekundärer Header an, welcher den identischen homogenisierenden Effekt mit der Luft aus allen vier Sektoren, also dem gesamten Luftmassenstrom des Receivers, erzielt.
-Eine schematische Darstellung dessen zeigt Abbildung \ref{fig_HeaderSchema}.
-
-\begin{figure}[h!]
-    \centering
-    \setlength{\fboxsep}{8pt}
-    \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.55\textwidth]{fig/Header_Darstellung}}
-    \caption[Schematische Darstellung der Header]{Schematische Darstellung der Header (nach \cite[S.90]{DissGall})}
-    \label{fig_HeaderSchema}
-\end{figure}
-
-Um das Modell des Receivers einfach zu halten werden die folgenden Annahmen getroffen \cite[S.92]{DissGall}:
-\begin{itemize}
-    \item Das System wird als isobar angenommen, sodass die Enthalpie der Luft ausschließlich von der Temperatur abhängt.
-    \item Wärmeübertragung erfolgt nur in radialer Richtung.
-    \item Die Lufttemperaturen innerhalb von Bilanzräumen sind homogen und ändern sich diskret an Bilanzgrenzen.
-    \item Die Temperaturen der Rückführluft und der Luft hinter der Absorberwabe sind homogen.
-          Dadurch wird die Berechnung der Wärmeübertragung vereinfacht ohne die Genauigkeit der Berechnung zu stark zu beeinflussen, da die lokalen Temperaturänderungen relativ gering sind.
-    \item Die Absorberwabe ist die einzige Komponente, die Wärme speichert.
-\end{itemize}
-
-
-\subsection{Modellierung eines Absorbercups} \label{subsec_ModellCup}
-Der Absorbercup kann in die Aufheizzone, bestehend aus der Wabe, und die Transportzone, welche Kelch und Rohrstück beinhaltet, aufgeteilt werden.
-Es ist ebenfalls möglich die Transportzone feiner zu diskretisieren und die beiden Komponenten einzeln zu betrachten; aufgrund der geringen Temperaturunterschiede ist dies jedoch nicht notwendig.
-Abbildung \ref{fig_AbsorberBerechnung} zeigt die beiden Zonen und alle Größen zur nachfolgenden Berechnung.
-
-\begin{figure}[h!]
-    \centering
-    \setlength{\fboxsep}{1pt}
-    \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=1\textwidth]{fig/AbsorberCupGleichungen}}
-    \caption[Berechnungsgrößen des Absorbercups]{Berechnungsgrößen des Absorbercups (nach \cite{IdingSolarPaces})}
-    \label{fig_AbsorberBerechnung}
-\end{figure}
-
-\subsubsection*{Aufheizzone} \label{subsubsec_EnergiebilanzAufheizzone}
-Gemäß Abbildung \ref{fig_AbsorberBerechnung} ergibt sich die Energiebilanz an der Vorderseite der Absorberwabe zu
-\begin{equation} \label{eq_EnergiebilanzWabe}
-    \UDotAbsorberFront =\QDotSolFront - \QDotLossAbsorberCupConvective -  \QDotLossAbsorberCupRadiative -\QDotAbsorberCombFront - \QDotConduction
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{subsubsec_EnergiebilanzAufheizzone}:}} Energiebilanz der Absorberwabe}}
-\myequations{\quad Energiebilanz der Vorderseite der Absorberwabe}
-
-\vspace*{-\baselineskip}wobei $\UDotAbsorberFront$ die Änderung der inneren Energie der Wabenfront und $\QDotSolFront$ die von ihr aufgenommene solare Einstrahlung beschreibt.
-Die Terme $\QDotLossAbsorberCupConvective$ und $\QDotLossAbsorberCupRadiative$ beschreiben die thermischen Verluste in Folge von Wind und Wärmestrahlung.
-Der gewünschte Wärmeübergang von der Wabe in die durchströmende Luft wird mit $\QDotAbsorberCombFront$ ausgedrückt; $\QDotConduction$ steht für die Wärmeleitung des vorderen Teils der Wabe in den hinteren Teil.\\
-Die Änderung der inneren Energie kann weiterhin ausgedrückt werden als
-\begin{equation} \label{eq_InnereEnergie}
-    \UDotAbsorberFront = m_{\mathrm{abs,front}} \cdot c_{\mathrm{abs}} \cdot \frac{d \TAbsorberFront}{d t}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_InnereEnergie}:}} Änderung der inneren Energie der Absorberfornt}}
-\myequations{\quad Änderung der inneren Energie der Absorberfront}
-
-\vspace*{-\baselineskip}mit der Masse des vorderen Absorberwabenteils $m_{\mathrm{abs,front}}$ und der Wärmekapazität $c_{\mathrm{abs}}$, sowie der Änderung der Temperatur über die Zeit.\\
-Aufgrund der Struktur der Absorberwaben wird nicht die gesamte Einstrahlungsleistung an der Vorderseite der Wabe aufgenommen.
-Dies wird mit dem Faktor $\xi_{\mathrm{rad}}$ berücksichtigt, welcher diese Leistung in zwei Teile trennt.
-\begin{equation} \label{eq_SolareLeistung}
-    \begin{aligned}
-        \PowerSolarFront & = \xi_{\mathrm{rad}} \PowerSolar     \\
-        \PowerSolarBack  & = (1-\xi_{\mathrm{rad}}) \PowerSolar
-    \end{aligned}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_SolareLeistung}:}} Einteilung der aufgenommenen solaren Leistung mittels $\xi_{\mathrm{rad}}$}}
-\myequations{\quad Einteilung der aufgenommenen solaren Leistung mittels $\xi_{\mathrm{rad}}$}
-
-Mit der an der Wabenvorderseite aufgenommenen Leistung und dem Absorptionskoeffizienten $\alpha_{\mathrm{sol}}$ sowie der Absorberoberfläche $\SurfaceFront$ und der Flussdichte $\FluxSolar$ ergibt sich
-\begin{equation} \label{eq_SolareEinstrahlung}
-    \QDotSolFront = \alpha_{\mathrm{sol}} \PowerSolarFront = \alpha_{\mathrm{sol}} \xi_{\mathrm{rad}} \SurfaceFront \FluxSolar
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_SolareEinstrahlung}:}} Absorbierte solare Einstrahlung an der Wabenfront}}
-\myequations{\quad Absorbierte solare Einstrahlung an der Wabenfront}
-
-Zu einem Zeitpunkt an dem kein Wind den Receiver beeinträchtigt sind die thermischen Verluste durch Konvektion $\QDotLossAbsorberCupConvective$ nicht vorhanden.
-Da außerdem die explizite Betrachtung dieser Verluste sehr komplex sind und ein eigenes Forschungsfeld darstellen werden diese Verluste nicht weiter betrachtet \cite{IdingSolarPaces} und es gilt
-\begin{equation} \label{eq_KonvektiveVerluste}
-    \QDotLossAbsorberCupConvective = 0
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_KonvektiveVerluste}:}} Bestimmung der Verluste durch Konvektion}}
-\myequations{\quad Bestimmung der Verluste durch Konvektion}
-
-Die Verluste durch Wärmestrahlung können mit dem nach Stefan-Boltzmann-Gesetz mit
-\begin{equation} \label{eq_StrahlungVerluste}
-    \QDotLossAbsorberCupRadiative = \epsilon \sigma \SurfaceFront (\TAbsorberFront^4-\TAmbient^4)
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Bestimmung der Verluste durch Wärmestrahlung}
-
-\vspace*{-\baselineskip}beschrieben werden.
-Dabei ist $\epsilon$ der Emissionskoeffizient, welcher der Einfachheit halber gleich dem Absorptionskoeffizienten $\alpha_{\mathrm{sol}}$ gesetzt wird, $\sigma$ die Boltzmann-Konstante und $\TAmbient$ die Umgebungstemperatur.
-
-Die Konvektion an der Vorderseite der Absorberwabe auf die durchströmende Luft kann durch die Enthalpieströme oder die spezifischen Enthalpien beschrieben werden.
-Weiterhin ist auch die Berechnung mit dem Wärmeübergangskoeffizienten $\HeatTransferCoefficientAbsorberFront$ und der Kontaktfläche zwischen Luft und Absorberwabe $\HeatTransferSurfaceFront$ möglich.
-\begin{equation} \label{eq_gewünschteKonvektion}
-    \begin{aligned}
-        \QDotAbsorberCombFront & = \EnthalpyFlowTInlet{\mathrm{1b}} - \EnthalpyFlowTInlet{1}                                              \\
-                               & = \MDotAbsorberCup \cdot ( \SpecificEnthalpyTInlet{\mathrm{1b}} - \SpecificEnthalpyTInlet{1})            \\
-                               & = \HeatTransferCoefficientAbsorberFront \HeatTransferSurfaceFront (\TAbsorberFront-T_{\mathrm{m,front}})
-    \end{aligned}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Konvektion zwischen Wabenfront und Luftmassenstrom}
-
-Für diese Berechnung wird weiterhin die Durchschnittstemperatur $T_{\mathrm{m,front}}$ zwischen dem Lufteintritt $\TInlet{1}$ und -austritt $\TInlet{2}$ aus der Absorberwabe mit dem einstellbaren Gewichtungsfaktor $\TemperatureWeightingFactor$ genutzt, welche sich gemäß Gleichung \ref{eq_MeanTempAbsFront} ergibt.
-\begin{equation} \label{eq_MeanTempAbsFront}
-    T_{\mathrm{m,front}} = (1-\TemperatureWeightingFactorFront) \TInlet{1} + \TemperatureWeightingFactorFront \TInlet{\mathrm{1b}}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Berechnung der durchschnittlichen Temperatur in der Wabenfront}
-
-Die Wärmeleitung von der Absorbervorderseite zur -rückseite ergibt sich nach
-\begin{equation} \label{eq_WärmeleitungVorneHinten}
-    \QDotConduction = \lambda_{\mathrm{comb}} \cdot \frac{\SurfaceFrontSolid \cdot (\TAbsorberFront-\TAbsorberBack)}{l_{\mathrm{comb}/2}}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Wärmeleitung der Absorbervorderseite zur -rückseite}
-
-\vspace*{-\baselineskip}mit der Wärmeleitfähigkeit $\lambda_{\mathrm{comb}}$, $\SurfaceFrontSolid$ als Oberfläche der Absorberfront $\SurfaceFront$ abzüglich der Kanäle für den Luftstrom und $l_{\mathrm{comb}}$ als Tiefe des Absorbers.
-
-Für die hintere Seite der Absorberwabe kann eine der Gleichung \ref{eq_EnergiebilanzWabe} ähnliche Energiebilanz aufgestellt werden, jedoch muss an dieser Stelle kein Verlust durch Wärmestrahlung beachtet werden, sodass sich
-\begin{equation} \label{eq_EnergiebilanzWabeHinten}
-    \UDotAbsorberBack =\QDotSolBack -\QDotAbsorberCombBack + \QDotConduction
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Energiebilanz der Rückseite der Absorberwabe}
-
-\vspace*{-\baselineskip}ergibt und $\QDotAbsorberCombBack$ als
-\begin{equation} \label{eq_KonvektionWabeHinten}
-    \begin{aligned}
-        \QDotAbsorberCombBack & = \EnthalpyFlowTInlet{2} - \EnthalpyFlowTInlet{\mathrm{1b}}                                          \\
-                              & = \MDotAbsorberCup \cdot ( \SpecificEnthalpyTInlet{2} - \SpecificEnthalpyTInlet{\mathrm{1b}})        \\
-                              & = \HeatTransferCoefficientAbsorberBack \HeatTransferSurfaceBack (\TAbsorberBack-T_{\mathrm{m,back}})
-    \end{aligned}
-\end{equation}
-\myequations{\quad Konvektion zwischen Wabenfront und Luftmassenstrom}
-
-\vspace*{-\baselineskip}beschrieben werden kann.
-Die durchschnittliche Temperatur an der Rückseite der Absorberwabe errechnet sich dabei nach Gleichung \ref{eq_MeanTempAbsBack}.
-\begin{equation} \label{eq_MeanTempAbsBack}
-    T_{\mathrm{m,back}}  = (1-\TemperatureWeightingFactorBack) \TInlet{\mathrm{1b}} + \TemperatureWeightingFactorBack \TInlet{2}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Berechnung der durchschnittlichen Temperatur in der Wabenrückseite}
-
-\vspace*{-\baselineskip}Erweitert man die Gleichung \ref{eq_EnergiebilanzWabe} um die Gleichungen \ref{eq_InnereEnergie} bis \ref{eq_WärmeleitungVorneHinten} ergibt sich die Differentialgleichung
-\setlength{\eqlinespacing}{25pt}
-\begin{dmath} \label{eq_GesamtgleichungEnergiebilanzWabeVorne}
-    m_{\mathrm{abs,front}}  c_{\mathrm{abs}} \frac{d \TAbsorberFront}{d t} = \epsilon \xi_{\mathrm{rad}} \SurfaceFront \FluxSolar -  \epsilon \sigma \SurfaceFront (\TAbsorberFront^4-\TAmbient^4) - \HeatTransferCoefficientAbsorberFront \HeatTransferSurfaceFront (\TAbsorberFront-T_{\mathrm{m,front}}) - \lambda_{\mathrm{comb}} \cdot \frac{\SurfaceFrontSolid \cdot (\TAbsorberFront-\TAbsorberBack)}{l_{\mathrm{comb}/2}}
-\end{dmath}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Gesamtgleichung der Energiebilanz an der Wabenvorderseite}
-
-Aus den Gleichungen \ref{eq_EnergiebilanzWabeHinten} bis \ref{eq_MeanTempAbsBack} resultiert eine weitere Differentialgleichung:
-\setlength{\eqlinespacing}{25pt}
-\begin{dmath} \label{eq_GesamtgleichungEnergiebilanzWabeHinten}
-    m_{\mathrm{abs,back}}  c_{\mathrm{abs}} \frac{d \TAbsorberBack}{d t} = \epsilon (1-\xi_{\mathrm{rad}}) \SurfaceFront \FluxSolar \qquad \qquad \qquad \qquad -  \HeatTransferCoefficientAbsorberBack \HeatTransferSurfaceBack (\TAbsorberBack-T_{\mathrm{m,back}}) + \lambda_{\mathrm{comb}} \cdot \frac{\SurfaceFrontSolid \cdot (\TAbsorberFront-\TAbsorberBack)}{l_{\mathrm{comb}/2}}
-\end{dmath}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Gesamtgleichung der Energiebilanz an der Wabenrückseite}
-
-
-Die Temperaturen $\TAbsorberFront$ und $\TAbsorberBack$ stellen dabei die Systemzustände dar; die Flussdichte $\FluxSolar$ eine Stellgröße.
-Weiterhin unbekannt sind die Temperaturen $\TInlet{1}$, $\TInlet{1b}$ und $\TInlet{2}$.
-$\TInlet{1}$ ergibt sich aus der Energiebilanz vor der Absorberwabe (siehe Abbildung \ref{fig_AbsorberBerechnung}) bei der $arr$ für Rückführrate der Luft (\textit{air return ratio}) steht, also den Anteil der in den Absorber strömenden Luft, der zuvor aus dem Prozess zurückgeführt wurde.
-\begin{equation} \label{eq_EnergiebilanzVorWabe}
-    \EnthalpyFlowTInlet{1} = arr \cdot \EnthalpyFlowTReturn{1} + (1-arr) \cdot \EnthalpyFlowTAmbient
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Energiebilanz vor der Absorberwabe}
-
-Diese Gleichung kann zu
-\begin{equation} \label{eq_EnergiebilanzVorWabe2}
-    \SpecificEnthalpyTInlet{1} = arr \cdot \SpecificEnthalpyTReturn{1} + (1-arr) \cdot \SpecificEnthalpyTAmbient
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Transformierte Energiebilanz vor der Absorberwabe}
-
-\vspace*{-\baselineskip}umgeschrieben werden.
-Auch die spezifische Enthalpie kann als Produkt der Wärmekapazität und Temperatur zu $h = c_p(T)T$ umgeschrieben werden.
-Dabei kann die spezifische Wärmekapazität aufgrund Temperaturschwankungen des Absorbers zwischen \SIrange{100}{1200}{\degreeCelsius} nicht als konstant angenommen werden und könnte mit einem höhergradigen Polynom angenähert werden \cite{IdingSolarPaces}. Allerdings ist der Rechenaufwand geringer, wenn ein Approximationspolynom der Form $T=f(h)$ verwendet wird, um die Temperatur zu bestimmen.
-Dies ist zulässig, "da das Approximationspolynom im relevanten Bereich streng monoton steigend ist und so eine geschlossene Lösung erlaubt" \cite[S.96]{DissGall}.
-Aus Gleichung \ref{eq_EnergiebilanzVorWabe2} ergibt sich demnach mit $\SpecificEnthalpyTReturn{1}$ eine neue Unbekannte, die aus der Energiebilanz der Transportzone errechnet wird.
-
-
-\subsubsection*{Transportzone} \label{subsubsec_EnergiebilanzTransportzone}
-Nach Abbildung \ref{fig_AbsorberBerechnung} ergibt sich die Energiebilanz der Transportzone zu
-\begin{equation} \label{eq_EnergiebilanzTransportzone}
-    \EnthalpyFlowTReturn{1} = \EnthalpyFlowTReturn{3} +\QDotLossAbsorberCupInternal
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Energiebilanz der Transportzone}
-
-\vspace*{-\baselineskip}was gleichbedeutend mit
-\begin{equation} \label{eq_EnergiebilanzTransportzone2}
-    \MDotAbsorberCup\SpecificEnthalpyTReturn{1} = \MDotAbsorberCup\SpecificEnthalpyTReturn{3}+\QDotLossAbsorberCupInternal
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Energiebilanz der Transportzone (Ausdruck mit spezifischer Enthalpie)}
-
-\vspace*{-\baselineskip}ist, wobei $\QDotLossAbsorberCupInternal$ der Verlustwärmestrom in die zurückgeführte Luft darstellt, der sich nach Abbildung \ref{fig_AbsorberBerechnung} aus drei in orange gekennzeichneten Teilen zusammensetzt.
-Mathematisch lässt sich dies nach Gleichung \ref{eq_AufteilungVerlustwärmeTransport} beschreiben.
-\begin{equation} \label{eq_VerlustwärmeTransportzone}
-    \QDotLossAbsorberCupInternal = \QDotLoss{tub} + \QDotLoss{tube,1} + \QDotLoss{tube,2}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Aufteilung des Verlustwärmestroms der Transportzone}
-
-Der Wärmeverlust durch die Rohrstücke kann mittels herkömmlicher Formeln der Wärmeübertragung in mehrschichtigen Rohre geschehen.
-Durch die Umrechnung des Kelches in ein äquivalentes Rohr können die identischen Formeln auch hier angewandt werden.
-Daher gilt
-\begin{equation} \label{eq_VerlustwärmeTransportzone2}
-    \QDotLossAbsorberCupInternal= \alpha_{\mathrm{i\to r}} \cdot A_{\mathrm{i\to r}} \cdot (\TInlet{2} - \TReturn{3})
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Berechnung des Verlustwärmestroms der Transportzone}
-
-\vspace*{-\baselineskip}wobei $\alpha_{\mathrm{i\to r}}$ der Wärmeübergangskoeffizient und $A_{\mathrm{i\to r}}$ die entsprechende Kontaktfläche ist.
-Die Geometrie des Absorbers zeigt die Abbildung \ref{fig_GeometrieAbsorber}.
-
-\begin{figure}[h!]
-    \centering
-    \setlength{\fboxsep}{1pt}
-    \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.8\textwidth]{fig/GeometrieAbsorber}}
-    \caption[Geometrie des Absorbers]{Geometrie des Absorbers \cite[S.97]{DissGall}}
-    \label{fig_GeometrieAbsorber}
-\end{figure}
-
-Aus der Geometrie und den Wärmeleitfähigkeiten $\lambda$ der Kermaik, der Dämmung und des Rohres sowie den lokalen Wärmeübergangskoeffizienten ergibt sich
-\begin{align} \label{eq_WärmeübergangskoeffizientVerluste}
-    \alpha_{\mathrm{i\to r}} & =\frac{\pi \cdot l_{\mathrm{B}}}{\frac{1}{\alpha_{\mathrm{inlet, 2}} \cdot d_{1, \mathrm{B}}}+\frac{1}{2} \cdot B+\frac{1}{\alpha_{\mathrm{return, 3}} \cdot d_{2, \mathrm{~B}}}} \\
-                             & +\frac{\pi \cdot l_{\mathrm{C}}}{\frac{1}{\alpha_{\mathrm{inlet, 2}} \cdot d_{1, \mathrm{C}}}
-        +\frac{1}{2} \cdot C+\frac{1}{\alpha_{\mathrm{return, 3}} \cdot d_{4, \mathrm{C}}}}
-    \\
-                             & +\frac{\pi \cdot l_{\mathrm{D}}}{\frac{1}{\alpha_{\mathrm{inlet, 2}} \cdot d_{1, \mathrm{D}}}+\frac{1}{2} \cdot D+\frac{1}{\alpha_{\mathrm{return, 3}} \cdot d_{3, \mathrm{D}}}},
-\end{align}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Bestimmung Wärmeübergangskoeffizienten für den Verlustwärmestrom}
-
-\vspace*{-\baselineskip}mit
-\begin{align} \label{eq_BestimmungHilfsgrößen}
-     & B=\frac{1}{\lambda_{\text {cer}}} \cdot \ln \frac{d_{2, \mathrm{B}}}{d_{1, \mathrm{B}}}                                                                                                                                                                              \\
-     & C=\frac{1}{\lambda_{\text {ins}}} \cdot \ln \frac{d_{2, \mathrm{C}}}{d_{1, \mathrm{C}}}+\frac{1}{\lambda_{\text {cer}}} \cdot \ln \frac{d_{3, \mathrm{C}}}{d_{2, \mathrm{C}}}+\frac{1}{\lambda_{\text {pipe}}} \cdot \ln \frac{d_{4, \mathrm{C}}}{d_{3, \mathrm{C}}} \\
-     & D=\frac{1}{\lambda_{\text {ins}}} \cdot \ln \frac{d_{2, \mathrm{D}}}{d_{1, \mathrm{D}}}+\frac{1}{\lambda_{\text {pipe}}} \cdot \ln \frac{d_{3, \mathrm{D}}}{d_{2, \mathrm{D}}}
-\end{align}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Bestimmung der Hilfsgrößen des Wärmeübergangskoeffizienten}
-
-Für die spezifische Enthalpie $\SpecificEnthalpyTInlet{1}$ folgt nach \ref{eq_EnergiebilanzVorWabe2} und \ref{eq_EnergiebilanzTransportzone2}
-\begin{equation} \label{eq_Hinlet1}
-    \SpecificEnthalpyTInlet{1} = arr \cdot \left( \SpecificEnthalpyTReturn{3} + \frac{\alpha_{\mathrm{i\to r}} \cdot A_{\mathrm{i\to r}} \cdot (\TInlet{2} - \TReturn{3})}{\MDotAbsorberCup}\right) + (1-arr) \cdot \SpecificEnthalpyTAmbient
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Berechnung der spezifischen Enthalpie vor der Absorberwabe}
-
-Die Temperatur der Rückführluft $\TReturn{3}$ ist eine Messgröße im Kraftwerk und daher bekannt \cite[S.96]{DissGall}. Es verbleiben die Unbekannten $\TInlet{1b}$ und $\TInlet{2}$, die durch die entsprechenden Bilanzräume in der Wabe errechnet werden.
-\begin{align}
-    0 & = \MDotAbsorberCup (\SpecificEnthalpyTInlet{1}-\SpecificEnthalpyTInlet{1b}) + \QDotAbsorberCombFront \label{eq_Hinlet1b} \\ \text{\myequations{\quad Algebraische Gleichung zur Bestimmung von $\TInlet{1b}$}}
-    0 & = \MDotAbsorberCup (\SpecificEnthalpyTInlet{1b}-\SpecificEnthalpyTInlet{2}) + \QDotAbsorberCombBack \label{eq_Hinlet2}
-\end{align}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Algebraische Gleichung zur Bestimmung von $\TInlet{2}$}
-
-Demnach beschreiben die Gleichungen \ref{eq_GesamtgleichungEnergiebilanzWabeVorne}, \ref{eq_GesamtgleichungEnergiebilanzWabeHinten} sowie \ref{eq_Hinlet1b} und \ref{eq_Hinlet2} ein mathematisches Modell mit zwei Differentialgleichungen und zwei algebraischen Gleichungen, bei dem $\TAbsorberFront$ und $\TAbsorberBack$ die Zustände darstellen und $\TInlet{1b}$ sowie $\TInlet{2}$ die algebraischen Variablen.
-
-Die Luftaustrittstemperatur eines Cups ergibt sich gemäß
-\begin{equation} \label{eq_Hinlet3}
-    \SpecificEnthalpyTInlet{3} = \SpecificEnthalpyTInlet{2} - \frac{\QDotLossAbsorberCupInternal}{\MDotAbsorberCup}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Berechnung der spezifischen Enthalpie bei Absorberaustritt}
-
-\vspace*{-\baselineskip}da sie sich aus der inversen Funktion $T(h)$ berechnen lässt. Somit ergibt sich ein vollständig definiertes Modell der Absorbercups.
-
-
-\subsubsection*{Header} \label{subsubsec_Header}
-Im primären Header mischen sich die Luft- und Enthalpieströme der einzelnen Cups jedes Sektors.
-Der Enthalpiestrom dieses Gemisches wird in Gleichung \ref{eq_EnthalpiestromMischung} beschrieben.
-\begin{equation} \label{eq_EnthalpiestromMischung}
-    \EnthalpyFlowTInlet{3,\mathrm{mixed}} = \sum_i \dot{m}_{\IndexAbsorber, i} \cdot \SpecificEnthalpyTInlet{3,i}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Enthalpiestrom im primären Header}
-
-Berücksichtigt man die Verluste durch Wärmeübertragung im Header ergibt sich der Enthalpiestrom am Austritt des primären Headers zu
-\begin{equation} \label{eq_AustrittHeader1}
-    \EnthalpyFlowTInlet{4} = \EnthalpyFlowTInlet{3,\mathrm{mixed}} + \QDotLoss{header,1}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Enthalpiestrom am Austritt des primären Headers}
-
-Dieser Verlustwärmestrom $\QDotLoss{header,1}$ wird durch Umrechnung der konischen in äquivalente zylindrische Elemente errechnet und ist von der Leitfähigkeit $\lambda$ der Isolierung und des Rohres sowie den lokalen Wärmeübergangsparametern $\alpha$ abhängig (siehe Gleichung \ref{eq_VerlustwärmeHeader}).
-Die entsprechende Geometrie ist in Abbildung \ref{fig_header} zu sehen.
-\begin{equation} \label{eq_VerlustwärmeHeader}
-    \dot{Q}_{\text {loss}, \IndexHeader}=
-    \frac{\pi \cdot l_{\IndexHeader} \cdot\left(T_{\mathrm{inlet,3,mixed}}-T_{\text {amb}}\right)}
-    {\frac{1}{\alpha_{\IndexHeader} \cdot d_{1, \IndexHeader}}+\frac{1}{2} \cdot P+\frac{1}{\alpha_{\mathrm{amb}} \cdot d_{3, \mathrm{\IndexHeader}}}}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Berechnung des Verlustwärmestroms im Header}
-
-\vspace*{-\baselineskip}mit
-\begin{equation} \label{eq_BestimmungHilfsgrößenHeader}
-    P=\frac{1}{\lambda_{\text {ins}}} \cdot \ln \frac{d_{2, \IndexHeader}}{d_{1, \IndexHeader}}+\frac{1}{\lambda_{\text {pipe}}} \cdot \ln \frac{d_{3, \IndexHeader}}{d_{2, \IndexHeader}}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Bestimmung der Hilfsgröße $P$ für den Verlustwärmestrom im Header}
-
-\begin{figure}[h!]
-    \centering
-    \setlength{\fboxsep}{1pt}
-    \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.6\textwidth]{fig/GeometrieHeader}}
-    \caption[Geometrie des primären Headers]{Geometrie des primären Headers \cite[S.97]{DissGall}}
-    \label{fig_header}
-\end{figure}
-
-\vspace*{-\baselineskip}Letztlich ergibt sich der Enthalpiestrom am Receiveraustritt durch äquivalente Inbezugnahme des zweiten Headers.
-Der Austrittsenthalpiestrom $\dot{H}_{\mathrm{out}}$ ergibt sich zu
-\begin{equation} \label{eq_Headerout1}
-    \dot{H}_{\mathrm{out}} = \EnthalpyFlowTInlet{5} = \EnthalpyFlowTInlet{4,\mathrm{mixed}} + \QDotLoss{header,2}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Entahlpiestrom am Receiveraustritt}
-
-\vspace*{-\baselineskip}was identisch zu
-\begin{equation} \label{eq_Headerout2}
-    h_{\mathrm{out}} = \SpecificEnthalpyTInlet{4,\mathrm{mixed}} + \frac{\QDotLoss{header,2}}{\MDotReceiver}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Spezifische Entahlpie am Receiveraustritt}
-
-\vspace*{-\baselineskip}ist.
-Dabei ist $\MDotReceiver$ der Luftmassenstrom durch dengesamten Receiver, also der Summe der Luftmassenströme durch alle einzelnen Cups.
-Der Wärmeverlust im sekundären Header wird mit $\QDotLoss{header,2}$ berücksichtigt und die Austrittstemperatur $T_{\mathrm{out}}$ ergibt sich erneut aus der inversen Funktion $T(h)$.
-Der Massenstrom des Gesamtreceivers ist messbar und dient im System als Eingangsgröße. \cite[S.92]{DissGall}
-
-
-\subsubsection*{Massenbilanzen} \label{subsubsec_Massenbilanzen}
-Die Massenströme am Receivereintritt und -austritt werden als identisch angenommen, da keine Druckunterschiede in der Modellierung betrachtet werden.
-Die Massenströme jedes einzelnen Absorbercups $\dot{m}_{\IndexAbsorber, i}$ können über den Gesamtmassenstrom $\MDotReceiver$ errechnet werden.
-Da die Ventile an jedem Sektor als vollständig geöffnet betrachtet werden, sind die Absorbercupmassenströme lediglich von individuellen Blendendurchmessern abhängig.
-Der Luftmassenstrom ergibt sich aus
-\begin{equation} \label{eq_MassenstromBlende}
-    \dot{m} = \alpha_0 \frac{\pi \OrificeDiameter^2}{4} \sqrt{2 \rho_{\mathrm{air}} \Delta p }
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Berechnung des Massenstroms an einer Blende}
-
-\vspace*{-\baselineskip}wobei $\alpha_0$ ein Durchflusskoeffizient ist, $\OrificeDiameter$ der Blendendurchmesser, $\rho_{\mathrm{air}}$ die Dichte der Luft und $\Delta p$ die Durckdifferenz vor und hinter der Blende.
-Für in dem System vorliegende hohe Reynoldszahlen kann der Durchflusskoeffizient als konstant angesehen werden \cite{IdingSolarPaces}.
-Weiterhin ist für konstante Massenströme auch die Druckdifferenz konstant und die Dichte der Luft aufgrund der Vernachlässigung von Durckänderungen im System ebenfalls.
-Der Massenstrom ist daher direkt proportional vom Quadrat des Blendendurchmessers abhängig (siehe Gleichung \ref{eq_AbhängigkeitMassenstrom})
-\begin{equation} \label{eq_AbhängigkeitMassenstrom}
-    \dot{m} \propto \OrificeDiameter^2
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Zusammenhang zwischen Massenstrom und Blendendurchmesser}
-
-Letztlich berechnet sich der Massenstrom eines einzelnen Cups durch die Eingangsgröße $\MDotReceiver$ und alle Blendendurchemsser im Receiver gemäß
-\begin{equation} \label{eq_BerechnungMassenstrom}
-    \dot{m}_{\IndexAbsorber, i} =\MDotReceiver \cdot \frac{\OrificeDiameter[,i]^2}{\sum_j^{n_{\mathrm{cups}}}\OrificeDiameter[,j]^2}
-\end{equation}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Berechnung der Massenströme einzelner Absorbercups}
-
 
 
 \section{Verwendete Hard- und Software} \label{sec_HardSoftware}

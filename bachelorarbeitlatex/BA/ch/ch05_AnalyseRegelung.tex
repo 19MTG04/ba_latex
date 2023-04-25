@@ -10,9 +10,19 @@ Spätestens hier sollte auch aus Davids Intro Presi die Folie 5 rein.
 Also hier soll das Systemverhalten beschrieben werden, dann soll gezeigt werden wie es ist, wenn der Regler von allem weiß, dann wenn er von nichts weiß, dann erst geht es um die fehlerhaften Informationen.
 Dabei wird dann speed, shading und Richtung untersucht.
 
+% VON VORHER UND IN KORREKTUR HIERHER VERSCHOBEN:
+Die vorliegenden Einschränkungen bezüglich thermischen Maximalbelastungen des Receivers werden dem Betriebshandbuch entnommen.
+Dort wird die maximale lokale Temperatur der Absorberfläche, welche direkt von der Flussdichte $\phi$ abhängig ist, mit $\SI{1275.15}{\kelvin}$ angegeben \cite{HandbuchJülich}. Dieser Wert dient in den Simulationen als Indikator für eine erfolgreiche Regelung, welche die Einhaltung dieses Limits als Grundvoraussetzung beinhaltet.
+
 Vergleich vorlegen in der Regelung mit Szenario, wenn keine Regelung vorliegt!
 Außerdem auch die Enthalpien darstellen, wie sie als Ergebnis in dem process result data Skript herauskommen.
 Dabei ist sowohl der Enthalpiestrom als auch die gesamte ins System aufgenommene Energie als integrale Größe interessant.
+
+% Von vorher und hierher verschoben
+Die gesamte Modellbildung, wie sie in Kapitel \ref{ch_Modellbildung} beschrieben ist, wird in do-mpc realisiert und ausgewertet.
+Für die Simulation der Ergebnisse wird in dieser Arbeit ein 4-Kern Intel Core i7-1185G7 Prozessor mit einem Basistakt von 3,0 GHz verwendet.
+Als Arbeitsspeicher stehen 16 GB RAM mit 4267 MHz zur Verfügung.
+Das Betriebssystem ist Windows 10 Enterprise (Version 21H2).
 
 \section{Repräsentative Wolkenfälle} \label{sec_Wolkenfälle}
 Was ist das und warum ist das wichtig?

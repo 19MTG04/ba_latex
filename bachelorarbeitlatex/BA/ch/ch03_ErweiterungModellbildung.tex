@@ -2,6 +2,23 @@
 Bisschen drauf eingehen was jetzt als nächstes kommt.
 Erst das alte und dann das kombinierte System darstellen.
 
+% Vorher schon beschrieben und von David hierher gewollt!
+Für die Analyse des Systems wird nachfolgend mit vorberechneten Strahlungskarten aus dem in \cite[S.53ff]{DissBelhomme} vorgestellten Programm \textit{STRAL} verwendet.
+Die Software berücksichtigt das reale Heliostatenfeld am Standort Jülich und bietet auch die Möglichkeit optische Verluste zu einem gewissen Grad mit einzubeziehen.
+
+% Schon geschrieben: Welchen Regelalgorithmus wähle ich warum?!
+Die Algorithmen, die nicht auf Basis einer Gruppierung von Heliostaten funktionieren, haben einen hohen Rechen- und Zeitaufwand in der Optimierung.
+Weiterhin ist der DAPS-Algorithmus aufgrund anderer Nachteile für diese Arbeit ungeeignet.
+Dazu zählt, dass er nicht für die Inbezugnahme von Wolken ausgelegt ist und keine Leistungsmaximierung geschieht, sondern lediglich die Einhaltung der Grenztemperaturen gewährleistet wird.
+Darüber hinaus besteht die Notwendigkeit einer sehr präzisen Modellbildung, um den exakten Einfluss einzelner Heliostaten nutzen zu können.
+Weiterhin wird immer der Heliostat mit dem größten Einfluss manipuliert, welcher nicht zwangsläufig der ideale Heliostat in Bezug auf die Optimierung ist. \cite[S.35]{DissOberkirsch}
+Die Einteilung des Systems in SISO-Subsysteme ist für stark gekoppelte Systeme mit großen Abhängigkeiten nicht sinnvoll. \cite[S.33]{DissZanger}
+
+% Schon geschrieben: Änderungen an dem Algorithmus
+Für die vorliegende Arbeit entfällt die Unterteilung in 18 Gruppen aufgrund der Receiver- und Heliostatenfeldstruktur, sodass das gesamte Feld in lediglich drei Teile eingeteilt wird.
+Weiterhin unterscheiden sich in dieser Ausarbeitung auch die erste und zweite Gruppe in der Distanz bezogen auf den Receiver, wie in Kapitel \ref{sec_ErweiterungModellbildung} erläutert wird.
+
+Dann auch rein mit der linearen Approximierung.
 
 
 \section{Erweiterung der Modellbildung} \label{sec_ErweiterungModellbildung}

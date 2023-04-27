@@ -1,4 +1,12 @@
 \chapter{Modellbildung} \label{ch_Modellbildung}
+Das in Kapitel \ref{sec_Ausgangszustand} beschriebene Modell eines Absorbercups muss zur vollständigen Beschreibung des betrachteten System erweitert werden.
+Einerseits wird die Dynamik des Luftmassenstroms integriert, anderseits wird
+
+Das thermische Modell wird um die Dynamik des Massenstroms erweitert.
+Darüber hinaus wird das optische Modell vorgestellt und mit dem thermischen Modell zu einem Gesamtsystem verknüpft.
+
+
+
 Bisschen drauf eingehen was jetzt als nächstes kommt.
 Erst das alte und dann das kombinierte System darstellen.
 
@@ -17,13 +25,6 @@ Die Einteilung des Systems in SISO-Subsysteme ist für stark gekoppelte Systeme 
 % Schon geschrieben: Änderungen an dem Algorithmus
 Für die vorliegende Arbeit entfällt die Unterteilung in 18 Gruppen aufgrund der Receiver- und Heliostatenfeldstruktur, sodass das gesamte Feld in lediglich drei Teile eingeteilt wird.
 Weiterhin unterscheiden sich in dieser Ausarbeitung auch die erste und zweite Gruppe in der Distanz bezogen auf den Receiver, wie in Kapitel \ref{sec_ErweiterungModellbildung} erläutert wird.
-
-Dann auch rein mit der linearen Approximierung.
-
-
-\section{Erweiterung der Modellbildung} \label{sec_ErweiterungModellbildung}
-Hier komtm dann alles bezüglich der Erweuterung des thermischen Modells hin zb um den Fan und dann das Coupling mit dem optischen Modell.
-Dafür habe ich ja schon all die Bilder vorbereitet.
 
 
 Hier auch hinschreiben, dass linear approximiert wurde
@@ -44,4 +45,8 @@ Erläutern, dass direktes Mapping auf die Flussdichte nicht funktionieren kann?
 Daher Berechnung der Flussdichteverteilung über gruppierte Zielpunktregelung, Wolken können am einfachsten implementiert werden.
 
 Vorberechnete Strahlungskarten verwendet.
-Welche Fehler wurden dabei berücksichtigt? David fragen!!
+Welche Fehler wurden dabei berücksichtigt? David fragen!! (mirror error Prozentsatz etc)
+
+% Wichtig:
+Modell muss sich in den Details mit dem decken, was der David in seinem Paper mit meinem Namen darauf beschreibt!
+Besonders auch, dass die Heliostaten als quasi-statisch anzunehmen sind.

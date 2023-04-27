@@ -4,6 +4,7 @@ Es soll aus der Zielsetzung klar werden, dass das das Kapitel ist, auf das es an
 Die Ergebnisse müssen dann am Ende aber natürlich auch das aussagen, was ich aussagen möchte und vernünftig analysiert und ausgewertet werden.
 
 Erstmal etwas Feldanalyse wie staedy state Antwort und die Vergleiche zwischen rechts, links, oben und unten.
+Refernzszenario ganz wichtig.
 
 Spätestens hier sollte auch aus Davids Intro Presi die Folie 5 rein.
 
@@ -14,9 +15,10 @@ Dabei wird dann speed, shading und Richtung untersucht.
 Die vorliegenden Einschränkungen bezüglich thermischen Maximalbelastungen des Receivers werden dem Betriebshandbuch entnommen.
 Dort wird die maximale lokale Temperatur der Absorberfläche, welche direkt von der Flussdichte $\phi$ abhängig ist, mit $\SI{1275.15}{\kelvin}$ angegeben \cite{HandbuchJülich}. Dieser Wert dient in den Simulationen als Indikator für eine erfolgreiche Regelung, welche die Einhaltung dieses Limits als Grundvoraussetzung beinhaltet.
 
-Vergleich vorlegen in der Regelung mit Szenario, wenn keine Regelung vorliegt!
+Vergleich vorlegen in der Regelung mit Szenario, wenn keine Regelung vorliegt! (cloud standby)
 Außerdem auch die Enthalpien darstellen, wie sie als Ergebnis in dem process result data Skript herauskommen.
 Dabei ist sowohl der Enthalpiestrom als auch die gesamte ins System aufgenommene Energie als integrale Größe interessant.
+Diese kommen aus dem process_result_data Skript und der Funktion calculate_enthalpy_flow_from_simulation_data.
 
 % Von vorher und hierher verschoben
 Die gesamte Modellbildung, wie sie in Kapitel \ref{ch_Modellbildung} beschrieben ist, wird in do-mpc realisiert und ausgewertet.
@@ -55,5 +57,14 @@ Wie präzise kann der MPC dennoch die Temperatur halten?
 \section{Einfluss der Wolkenrichtung} \label{sec_EinflussRichtung}
 Hier muss rauskommen, warum sich das System anders verhält, wenn die Wolken in andere Richtungen ziehen (Weil die vorderen Heliostate natürlich deutlich mehr Einfluss auf das Ergebnis haben).
 
+Hier vllt eine Wolke einführen die ganz genau so groß wie das Feld ist.
+Wenn die Wolke schräg verläuft, wird das Feld weniger stark verschattet.
+Ergebnis soll eine Art umgekehrte Gaus Funktion sein wenn der RMSE über der vorhergesagten Richtung (-45 bis 45 Grad, die eigentlich 00 gerade nach oben ist) aufgetragen wird.
+
+
 Generell muss erläutert werden, auf welcher Maschine die Analysen laufen.
 Begründen, warum für die Szenarien die Bewegung von unten nach oben genommen wird: Dadurch wird bei plötzlicher Belichtung des Feldes der Receiver der maximalen Belastung ausgesetzt, da die Heliostaten unten die meiste Leistung übertragen.
+
+% Wichtig:
+Analyse muss sich in den Details mit dem decken, was David in dem Paper mit meinem Namen darauf sagt.
+Besonders auch, dass der Simulator mit anderen Flussdichtekarten rechnet als der Controller.

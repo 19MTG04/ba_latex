@@ -11,33 +11,34 @@ Jede der Gebläse/Ventil-Kombinationen wird mittels eines Einstellwertes angeste
 In einer integrierten zweistufigen Regelung werden abhängig von diesem Einstellwert Ventilstellung und Gebläsedrehzahl angepasst, um einen gewünschten Luftmassenstrom zu erreichen.
 Im Rahmen dieser Arbeit wird lediglich die Gebläse/Ventil-Kombination geregelt, die den Massenstrom im Receiver einstellt, da die weitere Verwendung dieser Luft zur Stromerzeugung oder Speicherung nicht betrachtet wird.
 
-\subsection{Analyse der Lüftungsdynamik}
+\subsection{Analyse der Lüftungsdynamik} \label{subsec_AnalyseLüftungsDyn}
 Durch die Vereinigung von Ventil und Gebläse entsteht bei einem Sprung des Einstellwertes eine gedämpft schwingende Anpassung des Luftstroms mit Verzögerung zweiter Ordnung.
 Dieses Verhalten zeigt die in Abbildung \ref{fig_LuftstromSolarturm} dargestellte Messung am Solarturm vom 07.08.2022.
 Auf der rechten Achse ist der dimensionslose Einstellwert der Gebläse/Ventil-Kombination erkennbar, während links der zugehörige Massenstrom aufgetragen ist.
-Es ist ersichtlich, dass die Änderung des Luftmassenstroms um 12:20 Uhr Störungen unterlag. \newpage
+Es ist zu erwähnen, dass die Änderung des Luftmassenstroms um 12:20 Uhr Störungen unterlag. \newpage
 
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.95\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/12_fan_parameter/measured_fan_data.png}}
-    \caption[Luftstrommessung für unterschiedliche Einstellwerte am Solarturm Jülich (07.08.2022)]{Luftstrommessung für unterschiedliche Einstellwerte am Solarturm Jülich (07.08.2022)}
+\caption[Luftstrommessung für unterschiedliche Einstellwerte am Solarturm Jülich\linebreak (07.08.2022)]{Luftstrommessung für unterschiedliche Einstellwerte am Solarturm Jülich\linebreak (07.08.2022)}
     \label{fig_LuftstromSolarturm}
 \end{figure}
 
 Um die Veränderung des Luftmassenstroms bei Einstellwertänderungen simulativ annähern zu können, wird dieser durch ein PT2-Verhalten modelliert.
-Die zugehörige Übertragungsfunktion beschreibt das Verhältnis zwischen den Ein- und Ausgangsgrößen, also zwischen dem Einstellwert und dem Massenstrom.
-Formel \ref{eq_ÜbertrgaungsfunktionPT2} zeigt die allgemeine Übertragungsfunktion eines schwingungsfähigen PT2-Gliedes als Funktion der Laplace-Variablen $s$ \cite[S.60]{ProfMueller}.
+Ein solches Verhalten zeigt Abbildung \ref{fig_SprungantwortSymbolisch}.
+Die zugehörige Differentialgleichung beschreibt die Änderung der Ausgangsgröße~$y$ und deren Ableitungen bei Änderung der Eingangsgröße $u$.
+Gleichung \ref{eq_ÜbertrgaungsfunktionPT2} zeigt die allgemeine Differentialgleichung eines PT2-Gliedes in Abhängigkeit von der Zeit $t$ \cite[S.200]{Lunze}\cite[S.60]{ProfMueller}.
 
 \begin{equation} \label{eq_ÜbertrgaungsfunktionPT2}
-    G(s)=\frac{Y(s)}{U(s)}=\frac{K_p}{T^2 \cdot s^2+2 \cdot D \cdot T \cdot s+1}
+K_p u(t) = T^2 \ddot{y}(t)+2 D T \dot{y}(t)+y(t)
 \end{equation}
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Übertragungsfunktion eines schwingungsfähigen PT2 Gliedes (gemäß \cite[S.60]{ProfMueller})}
+\myequations{\quad Übertragungsfunktion eines schwingungsfähigen PT2 Gliedes}
 
-Zur Beschreibung des vorliegenden PT2-Verhaltens werden die drei unbekannten Größen der Formel \ref{eq_ÜbertrgaungsfunktionPT2} benötigt.
-Dies ist die Zeitkonstante $T$ zur Beschreibung der Geschwindigkeit der Veränderung, die Dämpfungskonstante $D$, die das Einschwingverhalten beschreibt und ein Proportionalitätsfaktor $K_p$.
+Zur Beschreibung des PT2-Verhaltens der Lüftungsdynamik werden die drei unbekannten Größen aus Gleichung \ref{eq_ÜbertrgaungsfunktionPT2} ermittelt.
+Dies sind die Zeitkonstante $T$ zur Beschreibung der Geschwindigkeit der Veränderung, die Dämpfungskonstante $D$, die das Einschwingverhalten beschreibt, und der Proportionalitätsfaktor $K_p$.
 Anhand der nachfolgenden Abbildung \ref{fig_SprungantwortSymbolisch} werden die Messgrößen einer Einheitssprungantwort $h(t)$ identifiziert, die zur Bestimmung dieser Größen benötigt werden.
 
 \begin{figure}[h!]
@@ -85,9 +86,9 @@ Sie berechnet sich wie folgt:
 \myequations{\quad Berechnung des Dämpfungsfaktors $T$ bei PT2-Gliedern}
 
 
-\subsection{Mathematische Beschreibung der Lüftungsdynamik}
-Unter Betrachtung der verwertbaren Einstellwertänderungen in Abbildung \ref{fig_LuftstromSolarturm} werden die konkreten Parameter der Lüftungsdynamik bestimmt.
-Dazu werden die drei Parameter $K_p$, $D$ und $T$ für jeden Eingangssprung errechnet und anschließend gemittelt.
+\subsection{Mathematische Beschreibung der Lüftungsdynamik} \label{subsec_BeschreibungLüftungsDyn}
+Unter Betrachtung der störungsfreien Einstellwertänderungen aus Abbildung \ref{fig_LuftstromSolarturm} werden die konkreten Parameter der Lüftungsdynamik bestimmt.
+Dazu werden die drei Parameter $K_p$, $D$ und $T$ für jeden Eingangssprung separat errechnet und anschließend gemittelt.
 Es ergibt sich \linebreak$K_p = \SI{3.55e-4}{}$, $D = \SI{0.35}{}$ und $T = \SI{11.60}{}$.
 Die Plausibilität dieser Berechnungen zeigt nachfolgend Abbildung \ref{fig_LuftstromplusSimulativ}, in der erkennbar ist, dass das simulierte Verhalten des Massenstroms mit den Messwerten übereinstimmt.
 Die Wurzel des mittleren quadratischen Fehlers (der \textit{RMSE}) liegt über den Simulationszeitraum unter Ausschluss der invaliden Daten zwischen 12:20 Uhr und 12:40 Uhr bei $\SI{0.043}{\kilo\gram\per\second}$.
@@ -101,11 +102,11 @@ Die Wurzel des mittleren quadratischen Fehlers (der \textit{RMSE}) liegt über d
     \label{fig_LuftstromplusSimulativ}
 \end{figure}
 
-Im Zeitbereich ergibt sich Gleichung \ref{eq_ÜbertrgaungsfunktionPT2} mit der Ausgangsgröße $Y$ als Luftmassenstrom $\MDotReceiver$ zu der in Gleichung \ref{eq_GesamtDGL} dargestellten Differentialgleichung zweiter Ordnung.
+Konkret ergibt sich Gleichung \ref{eq_ÜbertrgaungsfunktionPT2} mit der Ausgangsgröße $y$ als Luftmassenstrom $\MDotReceiver$ zu der in Gleichung \ref{eq_GesamtDGL} dargestellten Differentialgleichung zweiter Ordnung.
 Dabei steht $u_{\mathrm{setpoint}}(t)$ für den zeitlich veränderlichen Einstellwert.
 
 \begin{equation} \label{eq_GesamtDGL}
-    K_p \cdot u_{\mathrm{setpoint}}(t) = T^2 \cdot \frac{d^2\MDotReceiver}{dt^2} + 2 \cdot D \cdot T \cdot \frac{d\MDotReceiver}{dt} + \MDotReceiver
+K_p u_{\mathrm{setpoint}}(t) = T^2 \frac{d^2\MDotReceiver}{dt^2} + 2 D T \frac{d\MDotReceiver}{dt} + \MDotReceiver
 \end{equation}
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
 \myequations{\quad Differentialgleichung der Lüftungsdynamik}
@@ -129,58 +130,239 @@ Die erste Differentialgleichung ergibt sich zu:
 
 Aus Gleichung \ref{eq_GesamtDGL} folgt außerdem:
 \begin{equation} \label{eq_ZweiteDGLMassflow}
-    T^2 \cdot \frac{d\ddot{m}_{\mathrm{rec}}}{dt} = K_p\cdot u_{\mathrm{setpoint}}(t) - 2 \cdot D \cdot T \cdot \ddot{m}_{\mathrm{rec}} - \MDotReceiver
+T^2 \frac{d\ddot{m}_{\mathrm{rec}}}{dt} = K_p  u_{\mathrm{setpoint}}(t) - 2 D T \ddot{m}_{\mathrm{rec}} - \MDotReceiver
 \end{equation}
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
 \myequations{\quad Differentialgleichung zur Beschreibung der Massenstromänderung}
 
 Das vollständige thermische Teilmodell ergibt sich durch die Modellierung der Absorbercups nach Kapitel \ref{sec_Ausgangszustand} wobei die ursprüngliche Betrachtung des Massenstroms als Eingangsgröße (vgl. Absatz \ref{subsubsec_Header}) verändert wird.
-Durch Einführung des Massenstroms und dessen Ableitung als Systemzustände ist der dimensionslose Einstellfaktor $u_{\mathrm{setpoint}}$ die einzige Eingangsgröße des thermischen Modells.
-
-Der Solarturm in Jülich besteht aus $\SI{36}{} \times \SI{30}{}$ Absorbercups.
-Jeder dieser $1080$ Cups wird wie in Kapitel \ref{subsec_ModellCup} erläutert durch zwei Differnzialgleichungen und zwei algebraische Gleichungen beschrieben.
-Aufgrund des daraus resultierenden hohen Rechenaufwandes zur Lösung eines Optimierungsproblems dieser Größe wird das thermische Modell auf $\SI{6}{} \times \SI{5}{}$ Cups reduziert.
-Dafür werden je $36$ Blendendurchmesser der Absorbercups gemittelt, um den Massenstrom durch einen repräsentativen Cup des jeweiligen Receiverbereiches zu erhalten.
-Insgesamt ergibt sich ein System aus $60$ algebraischen Gleichungen und $60+2$ Differentialgleichungen zur Modellierung des thermischen Systems.
-
+Durch Einführung des Massenstroms und dessen Ableitung als Systemzustände ist der dimensionslose Einstellfaktor $u_{\mathrm{setpoint}}$ neben der Flussdichte $F$ (vgl. Gleichung \ref{eq_GesamtgleichungEnergiebilanzWabeHinten}) die einzige Eingangsgröße des thermischen Modells.
 
 
 \section{Optisches Teilmodell} \label{sec_optischesModell}
-% Vorher schon beschrieben und von David hierher gewollt!
-Für die Analyse des Systems wird nachfolgend mit vorberechneten Strahlungskarten aus dem in \cite[S.53ff]{DissBelhomme} vorgestellten Programm \textit{STRAL} verwendet.
-Die Software berücksichtigt das reale Heliostatenfeld am Standort Jülich und bietet auch die Möglichkeit optische Verluste zu einem gewissen Grad mit einzubeziehen.
+Das optische Teilmodell hat das Ziel, die Flussdichteverteilung auf dem Receiver in Jülich anhand der solaren Einstrahlung und unter Berücksichtigung des Wolkendurchzugs abzubilden.
+Nachfolgend werden zwei leicht unterschiedliche optische Modelle vorgestellt:
+Ein Modell dient Simulationszwecken und verwendet präzise berechnete Einstrahlungskarten, während das andere Modell für Optimierungszwecke entwickelt wird und den Berechnungsaufwand durch Approximationen dieser Karten reduziert.
 
-% Schon geschrieben: Welchen Regelalgorithmus wähle ich warum?!
-Die Algorithmen, die nicht auf Basis einer Gruppierung von Heliostaten funktionieren, haben einen hohen Rechen- und Zeitaufwand in der Optimierung.
-Weiterhin ist der DAPS-Algorithmus aufgrund anderer Nachteile für diese Arbeit ungeeignet.
-Dazu zählt, dass er nicht für die Inbezugnahme von Wolken ausgelegt ist und keine Leistungsmaximierung geschieht, sondern lediglich die Einhaltung der Grenztemperaturen gewährleistet wird.
-Darüber hinaus besteht die Notwendigkeit einer sehr präzisen Modellbildung, um den exakten Einfluss einzelner Heliostaten nutzen zu können.
-Weiterhin wird immer der Heliostat mit dem größten Einfluss manipuliert, welcher nicht zwangsläufig der ideale Heliostat in Bezug auf die Optimierung ist \cite[S.35]{DissOberkirsch}.
-Die Einteilung des Systems in SISO-Subsysteme ist für stark gekoppelte Systeme mit großen Abhängigkeiten nicht sinnvoll \cite[S.33]{DissZanger}.
-
-% Schon geschrieben: Änderungen an dem Algorithmus
-Für die vorliegende Arbeit entfällt die Unterteilung in 18 Gruppen aufgrund der Receiver- und Heliostatenfeldstruktur, sodass das gesamte Feld in lediglich drei Teile eingeteilt wird.
-Weiterhin unterscheiden sich in dieser Ausarbeitung auch die erste und zweite Gruppe in der Distanz bezogen auf den Receiver, wie in Kapitel \ref{sec_ErweiterungModellbildung} erläutert wird.
+Zunächst wird einer der in Kapitel \ref{subsec_ZielpunktregelungLiteratur} und \ref{subsec_ZielpunktregelungGarcia} vorgestellten Zielpunktalgorithmen ausgewählt.
+Anschließend wird dieser Algorithmus den konkreten Anforderungen zur Nutzung in dieser Arbeit angepasst.
+Darauf aufbauend wird vorgestellt, wie sich durch Kombination der Zielpunkte auf dem Receiver mit der solaren Einstrahlung auf dem Heliostatenfeld die Flussdichteverteilung auf dem Receiver ergibt.
+Abschließend werden die Unterschiede zwischen den beiden optischen Teilmodellen hervorgehoben.
 
 
-Hier auch hinschreiben, dass linear approximiert wurde
+\subsection{Auswahl der Zielpunktstrategie} \label{subsec_AuswahlAlgorithmus}
+Aufgrund des Sachkontextes ergeben sich folgende Anforderungen an den zu wählenden Zielpunktstrategie:
+\begin{itemize}
+    \item Die Lösung des Optimierungsproblems zur Leistungsoptimierung nach Kapitel \ref{subsec_OptimierungZielpunkte} muss möglich sein.
+    \item Die Möglichkeit zur Inbezugnahme von Wolken muss gegeben sein.
+    \item Der Berechnungs- und Zeitaufwand soll so gering wie möglich sein.
+\end{itemize}
 
-Warum haben wir uns für die Überlagerung der Flussdichtekarten entschieden?
-Wie groß ist der prozentuale Fehler durch Vorkalkulation in der Mitte und Verschiebung zum Zielpunkt im Vergleich zur direkten Simulation an der richtigen Stelle?
+Der in Kapitel \ref{subsec_ZielpunktregelungLiteratur} vorgestellte DAPS-Algorithmus \cite{VantHull2}\cite{VantHull3} ist lediglich zur Beschränkung der maximalen Flussdichte auf dem Receiver geeignet.
+Daher wird immer der Heliostat mit dem größten Einfluss auf den heißesten Cup manipuliert, welcher nicht zwangsläufig der ideale Heliostat in Bezug auf den Leistungserhalt auf dem Receiver darstellt.
+Bei Defokussierung ist dieser Algorithmus nicht zur erneuten Optimierung der absorbierten Leistung gedacht.
+Weiterhin ist dieser nicht für die Kombination mit Wolkendaten vorgesehen \cite[S.35]{DissOberkirsch}.
+
+Der Local-Search \cite{Maldonado}\cite{Maldonado2} sowie der von Cruz \textit{et al.} \cite{Cruz} vorgestellte Algorithmus basieren nicht auf der Gruppierung von Heliostaten, sodass diese einzeln zu regeln sind.
+Daher ist für diese Algorithmen ein hoher Rechenaufwand zu erwarten.
+Jedoch ist die Gruppierung der Heliostaten mit Einteilung des Systems in SISO-Subsysteme, wie von García in \cite{Garcia1} beschrieben, für stark gekoppelte Sub-Systeme mit großen Abhängigkeiten nicht sinnvoll \cite[S.33]{DissZanger}.
+
+Gewählt wird der Algorithmus mit Ventil-Analogie von García \cite{Garcia2}, welcher in Kapitel \ref{subsec_ZielpunktregelungGarcia} vorgestellt wurde.
+Aufgrund der starken Reduzierung der Stellgrößen ist mit einem vergleichsweise geringen Aufwand in der Optimierung zu rechnen.
+Der Algorithmus bietet mit den Zielpunkten als Ausgangsgröße eine gute Kompatibilität mit der darauf aufbauenden Modellierung.
 
 
+\subsection{Modifikation der gewählten Zielpunktstrategie} \label{subsec_ModifikationAlgorithmus}
+Aufgrund der Betrachtung des Jülicher Nord-Heliostatenfeldes mit einem rechteckigen Receiver entfällt die von García vorgestellte Gruppierung der Heliostaten bezüglich der nächstgelegenen Receiver-Teilfläche.
+Somit geschieht lediglich eine Einteilung der Heliostaten bezüglich des Abstandes zum Receiver in drei Gruppen.
+García teilt die Heliostaten dabei so ein, dass zwei Gruppen mit einem Radius von $< \SI{400}{\metre}$ Abstand zum Receiver entstehen, die im gleichen Teil des Feldes stehen.
+Eine weitere Gruppe umfasst die restlichen Heliostaten.
+Im Rahmen dieser Arbeit wird aufgrund der geringeren Größe des Feldes die folgende Einteilung vorgenommen:
+\begin{itemize}
+    \item Gruppe 1: Alle Heliostaten mit einem Abstand von $< \SI{120}{\metre}$ zum Receiver.
+    \item Gruppe 2: Alle Heliostaten mit einem Abstand von $\SIrange{120}{240}{\metre}$.
+    \item Gruppe 3: Alle Heliostaten mit einem Abstand von $\geq \SI{240}{\metre}$.
+\end{itemize}
 
-Alles bezüglich der Heliostaten und deren Gruppierung (Warum 20x20, wegen NowCasting) sowie der Fluxmap 6x5 Verteilung.
-Erläutern, dass direktes Mapping auf die Flussdichte nicht funktionieren kann?
-Daher Berechnung der Flussdichteverteilung über gruppierte Zielpunktregelung, Wolken können am einfachsten implementiert werden.
+Wie in Kapitel \ref{sec_Nowcasting} erläutert wurde, beträgt die Auflösung der vom DLR verwendeten Nowcasting-Systeme $\SI{20}{\metre} \times \SI{20}{\metre}$.
+Dies hat zur Folge, dass die separate Betrachtung von Heliostaten innerhalb dieses Bereiches nicht notwendig ist.
+Aus diesem Grund werden alle Heliostaten in einem Bereich von $\SI{20}{\metre} \times \SI{20}{\metre}$ zu einem repräsentativen Heliostaten zusammengefasst, der die identische Leistung reflektiert, wie alle Heliostaten des Bereiches zusammen.
+Insgesamt ergibt sich die Gruppeneinteilung der Jülicher Heliostaten für die Modellbildung gemäß Abbildung \ref{fig_HeliostatenfeldGruppen}.
 
-Vorberechnete Strahlungskarten verwendet.
-Welche Fehler wurden dabei berücksichtigt? David fragen!! (mirror error Prozentsatz etc)
+\begin{figure}[p]
+    \centering
+    \setlength{\fboxsep}{5pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[height=0.9\textheight]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/11_analysis_optical_model/heliostat_field_analysis.png}}
+    \caption[Gruppierung der Heliostaten am Standort Jülich. Links ist das vollständige Heliostatenfeld zu sehen, rechts die repräsentativen Heliostaten eines $\SI{20}{\metre} \times \SI{20}{\metre}$ Bereiches inklusive Einteilung in drei Gruppen nach Receiverabstand.]{Gruppierung der Heliostaten am Standort Jülich. Links ist das vollständige Heliostatenfeld zu sehen, rechts die repräsentativen Heliostaten eines $\SI{20}{\metre} \times \SI{20}{\metre}$ Bereiches inklusive Einteilung in drei Gruppen nach Receiverabstand.}
+    \label{fig_HeliostatenfeldGruppen}
+\end{figure}
+
+Aufgrund des rechteckigen Receiverdesigns in Jülich entfällt die Notwendigkeit der von García vorgestellten Stellgröße $y_{\mathrm{Cent}}$, sodass lediglich ein \textit{dispersion factor} $\kappa$ als Stellgröße jeder der drei Gruppen betrachtet wird.
+Gemäß Kapitel \ref{subsubsec_Gruppenverhalten} berechnet sich in Abhängigkeit dieses Faktors ein individueller Zielpunkt jedes Heliostaten auf dem Receiver.
+
+In \cite{Garcia2} wird neben dem finalen Zielpunkt der Heliostaten auch die maximal erlaubte Geschwindigkeit der Nachführung beachtet, sodass jede Zielpunktposition neben dem Streuungsfaktor auch von der jeweils vorigen Positionierung des Heliostaten abhängig ist.
+Im Rahmen dieser Arbeit wird diese Dynamik vernachlässigt.
+Es wird angenommen, dass die Heliostaten sich innerhalb der \textit{Sample Time} (vgl. Kapitel \ref{subsec_GrundlagenMPC}) zu einem statischen Zustand unabhängig von der vorigen Position des Zielpunktes bewegen können.
+Diese Annahme basiert darauf, dass die Heliostaten am Standort Jülich mit $\SI{8.3}{\metre\squared}$ \cite[S.13]{DissBelhomme} Reflexionsfläche wesentlich kleiner als die von García verwendeten Heliostaten mit einer Reflexionsfläche von $\SI{115.72}{\metre\squared}$ \cite[S.386]{Wang} am Gemasolar Solarkraftwerk in Sevilla sind und demnach eine schnellere Bewegung möglich ist.
+
+Durch diese quasistatische Betrachtung des optischen Modells ergibt sich die Möglichkeit, die Heliostatenpositionen in Abhängigkeit des Streuungsfaktors linear zu approximieren.
+Dies vermeidet die komplexe Berechnungsvorschrift nach García (vgl. Abbildung \ref{fig_GarciaAlg}) während der Optimierung.
+Weiterhin entsteht auf diese Weise eine differenzierbare Funktion zur Beschreibung der Zielpunktpositionen.
+Die Güte dieser Approximation zeigt Abbildung \ref{fig_GüteApprox}.
+Für die exemplarischen Faktoren $\kappa_1 = 25$, $\kappa_2 = 42$ und $\kappa_3 = 12$ sind links die Zielpunkte der $216$ repräsentativen Heliostaten nach García zu sehen, während mittig die approximierten Zielpunkte dargestellt sind.
+Auf der rechten Seite ist für jeden Zielpunkt der Unterschied zwischen diesen Berechnungen zu erkennen.
+Die durchschnittliche Abweichung liegt bei $\SI{16}{\centi\metre}$.
+
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=0.98\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/11_analysis_optical_model/aimpoint_analysis.png}}
+    \caption[Darstellung der Zielpunktverteilung auf dem Receiver für exemplarische Streuungsfaktoren nach García und gemäß der Approximation, sowie Visualisierung der Unterschiede dieser beiden Berechnungen.]{Darstellung der Zielpunktverteilung auf dem Receiver für exemplarische Streuungsfaktoren nach García (Links) und gemäß der Approximation (Mitte), sowie Visualisierung der Unterschiede dieser beiden Berechnungen (Rechts).}
+    \label{fig_GüteApprox}
+\end{figure}
+
+\subsection{Verknüpfung der Zielpunkte mit der solaren Einstrahlung} \label{subsec_VerknüfungZielpunkteEinstrahlung}
+Um auf der Grundlage der Zielpunkte die Flussdichteverteilung auf dem Receiver errechnen zu können, wird von jedem repräsentativen Heliostaten ein Brennfleck ermittelt, den dieser auf dem Receiver erzeugt.
+Zur Berechnung dieses Brennfleckes werden vorberechnete Strahlungskarten aus dem in \cite[S.53ff]{DissBelhomme} vorgestellten Programm \textit{STRAL} (\textbf{S}olar \textbf{T}ower \textbf{Ra}ytracing \textbf{L}aboratory) verwendet.
+Dabei handelt es sich um ein Strahlverfolgungsprogramm, welches Sonnenstrahlen auf dem Weg von der Sonne zum Receiver simuliert.
+
+Das Programm nutzt zur Simulation das reale Heliostatenfeld am Standort Jülich.
+Auf Basis des Sonnenstandes, der Zielpunktverteilung und der direkt damit einhergehenden Heliostatenpositionen wird pro Heliostat der Verlauf von $2000$ eintreffenden Sonnenstrahlen berechnet.
+Optische Verluste (vgl. Kapitel \ref{subsec_OptischeVerluste}), die sich durch geometrische Beziehungen ergeben werden durch die Strahlungsverfolgung bei der Berechnung des Brennfleckes berücksichtigt.
+Dazu zählt der Kosinus-Verlust, die Blockierung/Abschattung und die Streuung.
+Zusätzlich können in der Berechnung auch optische Verluste in Folge von Heliostateneigenschaften berücksichtigt werden.
+Die Reflexionsverluste werden mit $\SI{8}{\percent}$ angenommen, der Spiegelfehler mit $\SI{2}{\milli\radian}$ und der Nachführfehler mit $\SI{1}{\milli\radian}$.
+Auch die atmosphärische Abschwächung wird in Abhängigkeit der Entfernung zwischen Receiver und Solarturm berücksichtigt.
+
+Für eine normierte solare Einstrahlungsleistung von $\SI{1}{\watt\per\metre\squared}$ wird mittels STRAL für jeden der 2153 Heliostaten die Flussdichteverteilung Receiver ermittelt.
+Dafür wird als Zielpunkt zunächst die Mitte des Receivers angenommen während die Sonnenposition vom 21.06.2022 um 13 Uhr übernommen wird ($\SI{17.72}{\degree}$ in der Azimuth und $\SI{61.65}{\degree}$ in der Elevationsebene).
+Durch Überlagerung aller Flussdichteverteilungen von Heliostaten aus einem $\SI{20}{\metre} \times \SI{20}{\metre}$ Bereich, entstehen die Brennflecke der repräsentativen Heliostaten dieses Bereiches.
+Wie in Kapitel \ref{sec_Nowcasting} erläutert, ist das Ziel des Nowcastings die Prädiktion der direkten Einstrahlung in dieser Auflösung (vgl. Abbildung \ref{fig_EinstrahlungNowcasting}).
+Der entsprechende DNI-Wert jedes Bereiches wird anschließend mit der normierten Flussdichteverteilung der repräsentativen Heliostaten multipliziert.
+Für einen wolkenfreien Himmel wird eine direkte Einstrahlung von $\SI{850}{\watt\per\metre\squared}$ angenommen (XXX).
+Abbildung \ref{fig_CasadiFluxmap} zeigt exemplarisch die Flussdichteverteilung des repräsentativen Heliostaten mit dem geringsten Receiverabstand für wolkenlose Bedingungen.
+
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/11_analysis_optical_model/2D visualization of casadi fluxmap interpolant.png}
+            \label{fig_CasadiFluxmap2D}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/11_analysis_optical_model/3D visualization of casadi fluxmap interpolant.png}
+            \label{fig_CasadiFluxmap3D}
+        \end{subfigure}
+        \hfill}
+    \caption[Exemplarische Flussdichteverteilung des repräsentativen Heliostaten mit dem geringsten Abstand zum Receiver in 2D und 3D]{Exemplarische Flussdichteverteilung des repräsentativen Heliostaten mit dem geringsten Abstand zum Receiver in 2D (Links) und 3D (Rechts)}
+    \label{fig_CasadiFluxmap}
+\end{figure}
+
+Es ist erkennbar, dass für jeden der $1080$ Cups ein diskreter Wert der Flussdichte vorliegt.
+Durch Überlagerung der Flussdichteverteilungen aller repräsentativer Heliostaten wird die gesamte Flussdichte auf dem Receiver bestimmt.
+Wie in Kapitel \ref{sec_optischesModell} erwähnt, dient das bis hier vorgestellte optische Modell der Simulation, da es auf den exakten Strahlungskarten basiert.
+
+Im Gegensatz dazu werden die Einstrahlungskarten für das optische Teilmodell zur Optimierung durch 2D-Gauss-Verteilungen approximiert.
+Dies verringert den Rechenaufwand auf Kosten der Genauigkeit.
+Die Abbildung \ref{fig_GaussFluxmap} zeigt die approximierte Flussdichteverteilung für den receivernächsten repräsentativen Heliostaten.
+
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/11_analysis_optical_model/2D visualization of gaussian fluxmap interpolant.png}
+            \label{fig_GaussFluxmap2D}
+        \end{subfigure}
+        \hfill
+        \begin{subfigure}[b]{0.48\textwidth}
+            \centering
+            \includegraphics[width=\linewidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/11_analysis_optical_model/3D visualization of gaussian fluxmap interpolant.png}
+            \label{fig_GaussFluxmap3D}
+        \end{subfigure}
+        \hfill}
+    \caption[Exemplarische approximierte Flussdichteverteilung des repräsentativen Heliostaten mit dem geringsten Abstand zum Receiver in 2D und 3D]{Exemplarische approximierte Flussdichteverteilung des repräsentativen Heliostaten mit dem geringsten Abstand zum Receiver in 2D (Links) und 3D (Rechts)}
+    \label{fig_GaussFluxmap}
+\end{figure}
 
 
 \section{Kopplung der Teilmodelle} \label{sec_KopplungModelle}
-Hier muss stehen, dass entsprechend dem optischen Modell 62 Differenzialgleichungen und 60 algebraische Gleichungen das vollständige Modell beschreiben.
+Der Solarturm in Jülich besteht aus $\SI{36}{} \times \SI{30}{}$ Absorbercups.
+Jeder dieser $1080$ Cups wird wie in Kapitel \ref{subsec_ModellCup} erläutert durch zwei Differentialgleichungen und zwei algebraische Gleichungen beschrieben.
+Aufgrund des daraus resultierenden hohen Rechenaufwandes zur Lösung eines Optimierungsproblems dieser Größe wird das Modell auf $\SI{6}{} \times \SI{5}{}$ Cups reduziert.
 
-% Wichtig:
-Modell muss sich in den Details mit dem decken, was der David in seinem Paper mit meinem Namen darauf beschreibt!
-Besonders auch, dass die Heliostaten als quasi-statisch anzunehmen sind.
+Zur Modifikation des thermischen Modells werden dazu je $36$ Blendendurchmesser der Absorbercups gemittelt, um den Massenstrom durch einen repräsentativen Cup des jeweiligen Receiverbereiches zu erhalten.
+Insgesamt ergibt sich so ein System aus $30$ repräsentativen Cups.
+Dieses kann unter Inbezugnahme der Lüftungsdynamik durch $60+2$ Differentialgleichungen und $60$ algebraischen Gleichungen beschrieben werden.
+
+Die gemeinsame Größe des optischen und des thermischen Teilmodells ist die Flussdichte der Absorbercups.
+Durch die Reduzierung des thermischen Modells auf $30$ Cups muss auch optische Modell entsprechend angepasst werden.
+Abbildung \ref{fig_statischerZielpunkt363065} zeigt die erforderliche Diskretisierung des optischen Modells zur Simulation exemplarisch, für den Fall, dass alle Zielpunkte auf den Mittelpunkt des Receivers eingestellt sind.
+
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=0.93\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/11_analysis_optical_model/model_discretization.png}}
+    \caption[Überlagerung der Flussdichteverteilungen aller repräsentativer Heliostaten des simulativen optischen Modells am Receivermittelpunkt für das Modell mit 1080 Cups und das vereinfachte Modell mit 30 Cups]{Überlagerung der Flussdichteverteilungen aller repräsentativer Heliostaten des simulativen optischen Modells am Receivermittelpunkt für das Modell mit 1080 Cups (Links) und das vereinfachte Modell mit 30 Cups (Rechts)}
+    \label{fig_statischerZielpunkt363065}
+\end{figure}
+
+Aus dem Optimierungsproblem bezüglich der Leistungsoptimierung des Receivers (Gleichung \ref{eq_OptimierungZielpunkteDiskret}) folgt, dass jeder der betrachten Cups möglichst nah an der maximal zulässigen Temperatur betrieben wird.
+Dementsprechend sind im Realbetrieb nicht alle Heliostaten in die Mitte ausgerichtet, sodass eine homogenere Flussdichteverteilung auf dem Receiver entsteht und der Einfluss dieser Diskretisierung weniger extrem ist, als aufgrund von Abbildung \ref{fig_statischerZielpunkt363065} anzunehmen ist.
+Für die drei Faktoren $\kappa_1 = 25$, $\kappa_2 = 42$ und $\kappa_3 = 12$ ergibt sich für das simulative optische Modell beispielhaft die in Abbildung \ref{fig_dispersionSTRAL36300605} erkennbare Flussdichteverteilung.
+
+\enlargethispage{\baselineskip}
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=0.93\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/11_analysis_optical_model/discretization_differences_dispersion_distribution_casadi.png}}
+    \caption[Homogenere Flussdichteverteilung im vollständigen Modell und im vereinfachten Modell]{Homogenere Flussdichteverteilung im vollständigen Modell (Links) und im vereinfachten Modell (Rechts)}
+    \label{fig_dispersionSTRAL36300605}
+\end{figure}
+
+Der Betrag des Unterschieds zwischen dem optischen Modell zur Simulation auf Basis der Flussdichtekarten nach STRAL und dem optischen Modell zur Optimierung ist nachfolgend in Abbildung \ref{fig_UnterschiedoptischeModelle} zu sehen.
+Es ist erkennbar, dass die Approximation nur geringfügige Flussdichteunterschiede von durchschnittlich $\SI{14.4}{\kilo\watt\per\metre\squared}$ verursacht.
+
+\begin{figure}[h!]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+    \fbox{\includegraphics[width=0.98\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/11_analysis_optical_model/interpolant_differences.png}}
+    \caption[Visualisierung der Unterschiede der optischen Teilmodelle für eine beispielhafte Zielpunktverteilung]{Visualisierung der Unterschiede der optischen Teilmodelle für eine beispielhafte Zielpunktverteilung}
+    \label{fig_UnterschiedoptischeModelle}
+\end{figure}
+
+Beide optischen Teilmodelle resultieren in der Flussdichteverteilung für $30$ Absorbercups.
+Somit wird jedem der Cups im thermischen Modell eine individuelle Flussdichte vorgegeben.
+
+
+Insgesamt entstehen in der Modellbildung zwei unterschiedliche Modelle.
+Eines, welches Simulatitonszwecken dient und auf mit STRAL berechneten normierten Einstrahlungskarten basiert.
+Das zweite Modell nutzt approximierte normierte Einstrahlungskarten, um den Rechenaufwand in Optimierungsproblemen zu verringern.
+Durch diese Einstrahlungskarten wird in beiden optischen Modellen die Flussdichteverteilung auf dem Receiver für $\SI{6}{} \times \SI{5}{}$ Cups anhand von drei Streuungsfaktoren $\kappa$ und dem lokalen DNI-Wert beschrieben.
+
+Die Eingangsgrößen des thermischen Modells sind einerseits die Flussdichte auf jedem der 30 Absorbercups und andererseits der Einstellwert $u_{\mathrm{setpoint}}$ für die Gebläse/Ventil-Kombination.
+Durch $62$ Differentialgleichungen und $60$ algebraische Gleichungen ergibt sich der Enthalpiestrom der Luft am Receiveraustritt $\dot{H}_{\mathrm{out}}$ und die Fronttemperatur des Receivers $\TAbsorberFront$ sowie alle weiteren Berechnungsgrößen.
+Die wesentlichen Schritte der Modellbildung sowie die Kopplung der Teilmodelle sind nachfolgend in Abbildung \ref{fig_ZusammenfassungKopplung} zu erkennen.
+
+\begin{figure}[p]
+    \centering
+    \setlength{\fboxsep}{1pt}
+    \setlength{\fboxrule}{1pt}
+    \rotatebox{90}{\fbox{\includegraphics[height=0.48\textheight]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/11_analysis_optical_model/Modellbildung.png}}}
+    \caption[Visualisierung der wesentlichen Schritte der Modellbildung]{Visualisierung der wesentlichen Schritte der Modellbildung}
+    \label{fig_ZusammenfassungKopplung}
+\end{figure}

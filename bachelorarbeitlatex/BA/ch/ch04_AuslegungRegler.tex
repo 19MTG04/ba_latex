@@ -59,17 +59,17 @@ Im Anwendungsfall dieser Arbeit sind bezüglich der geeigneten Regelung die folg
     \item Limitierungen auf die Ein- und Ausgangsgrößen des Systems müssen implementierbar sein.
 \end{itemize}
 Klassische Regler wie der PID- oder LQR-Regler, die lediglich auf Basis der Abweichung von aktuellen Soll- und Istwerten Stellgrößen für das System vorgeben \cite[S.408]{Lunze} eignen sich daher nicht für die vorgesehene Regelung des Solarturms.
-Wie in Kapitel \ref{subsec_GrundlagenMPC} dargestellt, eignet sich eine modellprädiktive Regelung für das dargestellte Anforderungsprofil.
+Wie in Kapitel \ref{subsec_GrundlagenMPC} dargestellt, erfüllen modellprädiktive Regeler das dargestellte Anforderungsprofil.
 
 
 \subsection{Parametrisierung des MPC} \label{subsec_ParameterMPC}
-Neben der für jede Art von Regelung relevanten Abtastzeit (\textit{Sample Time}) $T_s$, also der Zeit zwischen zwei Berechnungsschritten, werden nachfolgend die MPC-spezifischen Regelparameter bestimmt.
+Neben der für jede Art von Regelung relevanten Abtastzeit (\textit{Sample Time}) $T_s$, also der Zeit zwischen zwei Berechnungsschritten des Reglers, werden nachfolgend die MPC-spezifischen Regelparameter bestimmt.
 Dazu gehören, wie in Kapitel \ref{subsec_GrundlagenMPC} ersichtlich, der Prädiktionshorizont $N_2$ sowie der untere und obere Regelungshorizont $N_1$ bzw. $N_u$.
 Weiterhin werden die Constraints, also die Parameterlimitierungen, eingeführt und die Kostenfunkton der Regelung bestimmt.
 
 \subsubsection*{Abtastzeit} \label{subsubsec_sampletime}
 Die Abtastzeit wird durch eine untere und eine obere Grenze limtiert.
-Die untere Grenze ergibt sich daraus, dass das System als quasistatisch angesehen wird (vgl. Kapitel \ref{subsec_ModifikationAlgorithmus}).
+Die untere Grenze ist so zu wählen, dass das System als quasistatisch angesehen werden kann (vgl. Kapitel \ref{subsec_ModifikationAlgorithmus}).
 Daher muss zwischen zwei Berechnungsschritten genug Zeit vergehen, dass der Regler die optimalen Streuungsfaktoren errechnen kann und die Heliostaten den nächsten Zielpunkt auf dem Receiver erreichen können.
 In \cite[S.25-26]{DissZanger} ist die Dynamik der Heliostaten in Jülich dargestellt.
 Bei Vernachlässigung der Rechenzeit ergibt sich die minimale Abtastzeit zu $\SI{2.79}{\second}$.
@@ -78,7 +78,7 @@ Die obere Grenze ist davon abhängig, nach welcher Zeit eine erhöhte Flussdicht
 Dabei entsteht die Schädigung des Receivers nicht durch die erhöhte Einstrahlung an sich, sondern durch die Überschreitung der thermischen Spannungen durch die erhöhte Fronttemperatur.
 Daher muss die Abtastzeit kleiner sein, als die Zeit, in der eine erhöhte Flussdichte kritische Spannungen erzeugt.
 
-Im schlechtesten Fall tritt die Überschreitung der Flussdichte unmittelbar nach dem vorigen Berechnungsschritt auf, sodass diese Information erst beim nächsten Abtastzeitpunkt zur Verfügung steht und der Regler erst in der darauf folgenden Berechnung reagieren kann.
+Im schlechtesten Fall tritt die Überschreitung der Flussdichte unmittelbar nach dem vorigen Berechnungsschritt auf, sodass diese Information beim nächsten Abtastzeitpunkt zur Verfügung steht und der Regler erst in der darauf folgenden Berechnung reagieren kann.
 Folglich benötigt der Regler zwei Abtastzeitpunkte um auf eine überhöhte Einstrahlung reagieren zu können.
 Daher darf die maximale Abtastzeit bei der Hälfte einer kritischen Zeit $t_{\mathrm{max}}$ liegen, in der eine erhöhte Flussdichte den Receiver beschädigt.
 
@@ -106,41 +106,111 @@ Dies stellt einen guten Kompromiss zwischen einem zu hohen Berechnungsaufwand au
 
 
 \subsubsection*{Prädiktions- und Regelungshorizont} \label{subsubsec_horizonte}
-Für Dauer des Prädiktionshorizontes ist nach \cite{XXX} in erster Iteration die Ausregelzeit zu betrachten.
+Für Dauer des Prädiktionshorizontes ist nach \cite{Bemporad} in erster Iteration die Ausregelzeit zu betrachten.
 Auf diese Weise steht dem Regler zur Optimierung die gesamte Systemdynamik von der Anregung bis zum folgenden Gleichgewichtszustand zur Verfügung.
 Daran angepasst kann der Kontrollhorizont bestimmt werden.
 Dieser sollte $\SIrange{10}{20}{\percent}$ des Prädiktionshorizontes abdecken.
 
-Gemäß Kapitel \ref{subsec_Systemdynamik} wird der Prädiktionshorizont zunächst mit $T_{\mathrm{settling}} = N_{2,\mathrm{initial}} = \SI{450}{\second}$ angenommen.
+Gemäß Kapitel \ref{subsec_Systemdynamik} wird der Prädiktionshorizont zunächst mit der Ausregelzeit $T_{\mathrm{settling}} = N_{2,\mathrm{initial}} = \SI{450}{\second}$ angenommen.
 Auf dieser Basis ergibt sich der obere Kontrollhorizont zu $N_u = 0.15\cdot N_{2,\mathrm{initial}} = \SI{60}{\second}$.
-Für den unteren Kontrollhorizont gilt $N_1 = 0$, sodass bereits in erster Iteration des Reglers die Stellgrößen verändert werden und eine schnelle Regelung erfolgen kann.
+Der untere Kontrollhorizont $N_1$ wird gleich $0$ gesetzt, sodass der Regler in jeder Iteration die Stellgrößen verändern und schnell auf äußere Änderungen reagieren kann.
 Da das Ziel der Arbeit die effektive Regelung bei kurzfristiger Änderung der solaren Einstrahlung darstellt, ist die Berechnung der Prädiktionen über einen Horizont von $\SI{7.5}{\minute}$ allerdings sehr hoch.
 Um den Berechnungsaufwand zu verringern wird der Prädiktionshorizont dem Regelungshorizont angeglichen.
 Daher gilt $N_2 = N_u = \SI{60}{\second}$.
 
 \subsubsection*{Constraints} \label{subsubsec_constraints}
-Der Einstellwert des Gebläses als Eingangswert des Modells ist gemäß Betriebshandbuch des Solarturms in Jülich so zu wählen, dass der Luftmassenstrom einen Bereich immer im Bereich zwischen XXX und XXX bleibt.
-Gemäß der Umrechnung von Kapitel XXX ergibt sich daher für das diskretisierte Teilsystem ein zulässiger Massenstrom von XXX bis XXX.
-Dies entspricht einem Einstellwert von $XXX <= usetpoint <= XXX$.
+Gemäß dem Betriebshandbuch des Solarturmherstellers ist das Kraftwerk mit einem Luftmassenstrom im Bereich von $\SIrange{2.93}{11.7}{\kilo\gram\per\second}$ zu betreiben \cite[S.28]{HandbuchJülich}.
+Der zulässige Bereich des Gebläse-Einstellwertes als Stellgröße des Reglers ist dementsprechend zu wählen (vgl. Kapitel \ref{subsec_BeschreibungLüftungsDyn}).
+Durch die Diskretisierung des Systems auf 30 repräsentative Absorbercups nach Abschnitt \ref{sec_KopplungModelle} ergibt sich in der Simulation ein zulässiger Massenstrom von $\SIrange{80.82}{322.74}{\gram\per\second}$.
+Dies entspricht einem Einstellwert von $\SI{227.5}{\metre\cubed\per\hour} \leq u_{\mathrm{setpoint}} \leq \SI{908.3}{\metre\cubed\per\hour}$.
 
-Wie in Kapitel XXX dargestellt gilt für kleine Streuungsfaktoren eine Ausrichtung der Zielpunkte auf die Receivermitte.
+Wie in Kapitel \ref{subsubsec_Gruppenverhalten} dargestellt gilt für kleine Streuungsfaktoren eine Ausrichtung der Zielpunkte auf die Receivermitte.
 Für größere Werte werden die Heliostaten defokussiert und die vom Receiver absorbierte Leistung sinkt.
 Ein sinnvoller Rahmen der Defokussierung ergibt sich empirisch im Kontext des Modells zu $0 \leq \kappa \leq 50$.
-Die Stellgrößen der Regelung werden gemäß XXX als harte Limitierungen gewählt (vgl. Kapitel XXX was hart überhaupt heißt).
 
-Die sichere Betriebsführung des Kraftwerkes ist gewährleistet, wenn die Temperatur BLABLA Quelle.
-Jedoch ist gemäß so und so soft zu wählen.
+Die vier Stellgrößen der Regelung werden gemäß Kapitel \ref{subsec_Constraints} als harte Limitierungen gewählt.
+Im Rahmen der Optimierung können diese Variablen nur Werte innerhalb der jeweiligen Beschränkungen annehmen.
+Dies ist notwendig, um die Betriebssicherheit des Kraftwerkes und die Sinnhaftigkeit der Lösungen der Optimierung zu gewährleisten.
+
+Weiterhin ist bezüglich der Betriebssicherheit des Solarturmkraftwerkes zu sicherzustellen, dass die thermische Spannung in den Absorbercups den zulässigen Grenzwert nicht überschreitet.
+Dazu darf die Fronttemperatur des Receivers $\TAbsorberFront~\SI{1002}{\celsius}$ nicht überschreiten \cite[S.29]{HandbuchJülich}.
+Um die Lösbarkeit des Gleichungssystems der Regelung nicht zu gefährden (vgl. Kapitel \ref{subsec_Constraints}), wird zur Einhaltung dieser Temperatur eine weiche Limitierung bei $\SI{982}{\celsius}$ eingeführt.
+Ein Überschreiten dieses Limits sorgt somit nicht automatisch für die Unlösbarkeit des Gleichungssystems.
+Auch die Sicherheit des Absorbers ist bei Überschreitung dieses Wertes noch nicht gefährdet.
+
+\subsubsection*{Kostenfunktion} \label{subsubsec_Kostenfunktion}
+Die Kostenfunktion der Regelung ergibt sich nach dem in Gleichung \ref{eq_Optimierungsproblem} vorgestellten Muster.
+Tabelle \ref{tab_Kostenfunktion} fasst alle Werte der verwendeten Größen zusammen:
+
+\begingroup
+\renewcommand{\arraystretch}{1.7}
+\begin{table}[ht!]
+    \caption[Übersicht über die Parameter zur Erstellung der Kostenfunktion]{Übersicht über die Parameter zur Erstellung der Kostenfunktion}
+    \centering
+    \begin{tabular}{>{\centering\arraybackslash}m{0.2\textwidth}>{\centering\arraybackslash}m{0.6\textwidth}}
+        \rowcolor{white}
+        \toprule
+        Parameter der Kostenfunktion & Wert                                                                                                                                                                                \\
+        \midrule
+        $\boldsymbol{r}$             & $\SI{740}{\celsius}$                                                                                                                                                                \\
+        $\boldsymbol{y}$             & $T_{\mathrm{out}}$                                                                                                                                                                  \\[-0.5cm]
+        $\Delta \boldsymbol{u}$      & \vspace*{-0.5\baselineskip}\[\arraycolsep=0pt\def\arraystretch{1} \Delta \left(\begin{array}{c} \kappa_1 \\ \kappa_2 \\ \kappa_3 \\ u_{\mathrm{setpoint}} \end{array}\right) \] \\[-0.2cm]
+        $\boldsymbol{\xi}$           & $
+        \begin{cases}
+                0                                    & \text{für } \TAbsorberFront \leq \SI{982}{\celsius} \\
+                \TAbsorberFront - \SI{982}{\celsius} & \text{für } \TAbsorberFront > \SI{982}{\celsius}    \\
+            \end{cases}$                                                                                                                         \\[0.4cm]
+        $\boldsymbol{W_w}$           & $1$                                                                                                                                                                                 \\[-0.7cm]
+        $\boldsymbol{W_u}$           & \[\arraycolsep=0pt\def\arraystretch{1.2} \left(\begin{array}{c} 10 \\ 10 \\ 10 \\ \SI{0.01}{} \end{array}\right) \]                                                                 \\[-0.5cm]
+        $\boldsymbol{W_{\xi}}$       & $\SI{1e4}{}$                                                                                                                                                                        \\
+        \toprule
+    \end{tabular}
+    \label{tab_Kostenfunktion}
+\end{table}
+\endgroup
 
 
-\subsubsection*{Aufstellen der Kostenfunktion} \label{subsubsec_Kostenfunktion}
-Hier soll die Auswahl der Regelungsmethode und der Kollokationsmethode mit Radau kommen.
+Das stationäre Ziel der Regelung ist die Temperatur des erwärmten Luftmassenstroms $T_{\mathrm{out}}$ als indirekte Modellausgangsgröße $\boldsymbol{y}$ der Referenz $\boldsymbol{r}$ von $\SI{740}{\celsius}$ anzupassen.
+Dieser Referenzwert stellt die mittlere Luftaustrittstemperatur aus den Absorbermodulen im Nennlastpunkt dar \cite[\S.29]{HandbuchJülich}.
+Während der Regelung wird zusätzlich die Änderung der Eingangsgrößen zwischen zwei Abtastzeitpunkten $\Delta \boldsymbol{u}$ betrachtet.
+Die Slack Variable $\boldsymbol{\xi}$ kennzeichnet die Überschreitung der weichen Limitierungen.
+Für den Fall, dass die Limitierung nicht überschritten wird, ergibt sich der Wert zu 0.
+Die in der Kostenfunktion genutzten Gewichtungsmatrizen $\boldsymbol{W_w}$, $\boldsymbol{W_u}$ und $\boldsymbol{W_{\xi}}$ werden empirisch gewählt.
+
+
+Das vollständige Optimierungsproblem der modellprädiktiven Regelung ergibt sich durch die Wahl der Diskretisierungsmethode gemäß Kapitel \ref{subsec_Diskretisierung}.
+Demnach wird die orthogonale Kollokation mittels finiter Elemente angewandt.
+Die Verteilung der Kollokationspunkte geschieht nach Legendre-Gauss-Radau (vgl. Abbildung \ref{fig_Kollokationspunkte}), die besonders bei sogenannten \gans{steifen} Systemen gute Ergebnisse erzielt \cite[S.178]{Diehl2}.
+Gemäß \cite[S.171ff]{Diehl2} sind dies Systeme, bei denen verschiedene Systemdynamiken signifikante Unterscheide in ihren jeweiligen Zeitkonstanten aufweisen.
 
 \section{Vorstellung der gesamten Regelung} \label{sec_VorstelungRegelung}
+Eine Darstellung des vollständigen Regelkreises zeigt Abbildung \ref{fig_Regelkreisvollst}.
+Die Rückführgrößen stellen die vier Systemzustände $\TAbsorberFront$, $\TAbsorberBack$, $\MDotReceiver$ und $\ddot{m}_{\mathrm{rec}}$ dar.
+Es ist erkennbar, dass das Modell mit approximierten Flussdichtekarten der Optimierung dient während das Modell mit den unveränderten Daten aus STRAL zur Simulation des Solarturms verwendet wird.
+Weiterhin werden unterschiedliche Einstrahlungskarten des Nowcastings für die Optimierung und die Simulation verwendet.
+Dies ist sinnvoll, da sich Einstrahlungsprdäiktionen in realer Anwendung von der tatsächlichen Einstrahlung unterscheiden.
+
+\begin{figure}[h!]
+   \centering
+   \setlength{\fboxsep}{1pt}
+   \setlength{\fboxrule}{1pt}
+   \fbox{\includegraphics[width=0.99\textwidth]{fig/regelkreis_konkretessystem.pdf}}
+   \caption[Vollständiger Regelkreis des Gesamtmodells inklusive aller Ein- und Ausgangsgrößen]{Vollständiger Regelkreis des Gesamtmodells inklusive aller Ein- und Ausgangsgrößen}
+   \label{fig_Regelkreisvollst}
+\end{figure}
+
 
 \section{Übertragbarkeit auf das Realsystem} \label{sec_RealsystemRegelung}
+In \cite[S.1]{Skogestad} wird im Rahmen der Systemanalyse auch die Betrachtung von Sensorik und Aktorik sowie erforderlichen Messgrößen vorgeschlagen.
+Im Rahmen dieser Arbeit ist dies nicht erforderlich, da ein rein simulatives Modell betrachtet wird.
+Für eine potenzielle Übertragung der Regelung auf den Solarturm ist diese Betrachtung jedoch essenziell und wird nachfolgend eingeführt.
 
-Stellgrößen sind Motor am Heliostaten und Motor der Pumpe.
+Die Rückführgrößen der vorgestellten Regelung sind die Systemzustände, deren Messung am Solarturm in Jülich jedoch nicht vorgesehen ist.
+Messbare Größen sind unter anderem die Flussdichteverteilung $F$ auf dem Receiver, die Fronttemperatur der Absorbercups $\TAbsorberFront$, die Austrittstemperatur des aufgeheizten Luftstroms an der Receiverinnenseite $T_{\mathrm{out}}$ und der Luftmassenstrom $\MDotReceiver$.
+Zur Ermittlung der beiden fehlenden Zustände $\TAbsorberBack$ und $\ddot{m}_{\mathrm{rec}}$ wird demnach ein Zustandsbeobachter benötigt.
 
-Durch das in Kapitel \ref{sec_Nowcasting} beschriebene Verfahren des Nowcastings kann die jeweils aktuelle Vorhersage der solaren Einstrahlung über dem Heliostatenfeld in der Optimierung berücksichtigt werden.
+Eine weitere Messgröße stellt, wie in Kapitel \ref{subsubsec_EnergiebilanzTransportzone} erwähnt, die Temperatur der Rückführluft $\TReturn{3}$ dar.
+Simulativ wird diese als konstant angenommen, ist jedoch in der Realität von der Nutzung der erhitzten Luft abhängig.
 
-
+Auch die Betrachtung expliziter Aktoren und Stellglieder sowie deren Eigenschaften entfällt simulativ.
+Bei Regelung des Realsystems erweitert sich der Regelkreis jedoch um die Motoren der Heliostaten und der Pumpe.

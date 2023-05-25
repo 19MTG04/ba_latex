@@ -4,20 +4,20 @@ Anschließend wird ein geeigneter Regler vorgestellt und der resultierende Regel
 Zuletzt wird die Übertragbarkeit der Regelung auf das Realsystem des Solarturmkraftwerkes in Jülich untersucht.
 
 \section{Systemeigenschaften} \label{sec_Systemeigenschaften}
-Die in Kapitel \ref{ch_Modellbildung} vorgestellte Modellierung des Solarturms bildet sowohl den Einfluss der 2153 Heliostaten als auch den des Luftstroms im Receiver ab.
+Die in Kapitel \ref{ch_Modellbildung} vorgestellte Modellierung des Solarturms bildet sowohl das optische Modell mit 2153 Heliostaten als auch das thermische Modell inklusive der Gebläsedynamik ab.
 An der Innenseite des Receivers tritt einzig die aufgeheizte Luft aus und steht dem nachfolgenden Prozess zur Verfügung.
 Daher gehört das System zu den sogenannten \mbox{\textit{MISO}-Systemen} (\textbf{M}ulti \textbf{I}nput \textbf{S}ingle \textbf{O}utput), mit mehreren Eingangs- und einer Ausgangsvariablen.
 
 Das Modell zeichnet sich durch die Inbezugnahme zeitabhängiger Parameter aus.
 Die modellierte Einstrahlung auf das Heliostatenfeld wird mithilfe einer Wolkensimulation beeinflusst.
-Auf diese Weise ergibt sich ein dynamisches System bei dem die Ausgangsgröße nicht ausschließlich von den Regelungsgrößen abhängig ist.
+Auf diese Weise ergibt sich ein dynamisches System, bei dem die Ausgangsgröße nicht ausschließlich von den Regelungsgrößen abhängig ist.
 
 
 \subsection{Wahl der Stell- und Regelgrößen} \label{subsec_EinAusgangsgrößen}
 In der vorliegenden, rein simulativen Betrachtung ergeben sich die Stellgrößen direkt aus den Eingangsgrößen des in Kapitel \ref{ch_Modellbildung} vorgestellten Modells, da die explizite Betrachtung von Stellgliedern wie den Motoren der Heliostaten entfällt.
 Somit sind die Stellgrößen:
 \begin{itemize}
-    \item Die drei Streuungsfaktoren $\kappa_1$, $\kappa_2$ und $\kappa_3$ zur Beeinflussung der Heliostatpositionen
+    \item Die drei Streuungsfaktoren $\kappa_1$, $\kappa_2$ und $\kappa_3$ zur Beeinflussung der Heliostatenpositionen
     \item Der Einstellwert $u_{\mathrm{Setpoint}}$ der Gebläse-/Ventil-Kombination im Receiver
 \end{itemize}
 Die solare Einstrahlung dient dem Modell zwar als Eingangsgröße, wird jedoch nicht vom Regler beeinflusst und stellt daher keine Stellgröße dar.
@@ -37,7 +37,7 @@ Die Angaben zu den Grenzen der Fronttemperatur sowie dem Sollwert der Austrittst
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/00_no_control/100_to_25.png}}
+    \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/07_system_analysis/100_to_25.png}}
     \caption[Sprungantwort des Modells im offenen Regelkreis bei Veränderung der solaren Einstrahlung von $\SI{100}{\percent}$ auf $\SI{25}{\percent}$]{Sprungantwort des Modells im offenen Regelkreis bei Veränderung der solaren Einstrahlung von $\SI{100}{\percent}$ auf $\SI{25}{\percent}$}
     \label{fig_Sprungantwort}
 \end{figure}
@@ -55,11 +55,11 @@ Ergebnisse der Regelung werden in Kapitel \ref{ch_AnalyseRegelung} diskutiert.
 Im Anwendungsfall dieser Arbeit sind bezüglich der geeigneten Regelung die folgenden Kriterien relevant:
 \begin{itemize}
     \item Zukünftige Modellparameter müssen prädiktiv in die Regelung einbezogen werden können,
-    \item die Regelung von MISO-Systemen soll unter ohne Untergliederung in kleinere Teilsysteme geschehen können,
+    \item die Regelung von MISO-Systemen soll ohne Untergliederung in kleinere Teilsysteme geschehen können,
     \item Limitierungen auf die Ein- und Ausgangsgrößen des Systems müssen implementierbar sein.
 \end{itemize}
-Klassische Regler wie der PID- oder LQR-Regler, die lediglich auf Basis der Abweichung von aktuellen Soll- und Istwerten Stellgrößen für das System vorgeben \cite[S.408]{Lunze} eignen sich daher nicht für die vorgesehene Regelung des Solarturms.
-Wie in Kapitel \ref{subsec_GrundlagenMPC} dargestellt, erfüllen modellprädiktive Regeler das dargestellte Anforderungsprofil.
+Klassische Regler wie der PID- oder LQR-Regler, die lediglich auf Basis der Abweichung von aktuellen Soll- und Istwerten Stellgrößen für das System vorgeben \cite[S.408]{Lunze}, eignen sich daher nicht für die vorgesehene Regelung des Solarturms.
+Wie in Kapitel \ref{subsec_GrundlagenMPC} dargestellt, erfüllen modellprädiktive Regler das dargestellte Anforderungsprofil.
 
 
 \subsection{Parametrisierung des MPC} \label{subsec_ParameterMPC}
@@ -78,8 +78,8 @@ Die obere Grenze ist davon abhängig, nach welcher Zeit eine erhöhte Flussdicht
 Dabei entsteht die Schädigung des Receivers nicht durch die erhöhte Einstrahlung an sich, sondern durch die Überschreitung der thermischen Spannungen durch die erhöhte Fronttemperatur.
 Daher muss die Abtastzeit kleiner sein, als die Zeit, in der eine erhöhte Flussdichte kritische Spannungen erzeugt.
 
-Im schlechtesten Fall tritt die Überschreitung der Flussdichte unmittelbar nach dem vorigen Berechnungsschritt auf, sodass diese Information beim nächsten Abtastzeitpunkt zur Verfügung steht und der Regler erst in der darauf folgenden Berechnung reagieren kann.
-Folglich benötigt der Regler zwei Abtastzeitpunkte um auf eine überhöhte Einstrahlung reagieren zu können.
+Im schlechtesten Fall tritt die Überschreitung der Flussdichte unmittelbar nach dem vorigen Berechnungsschritt auf, sodass diese Information zwar bereits beim nächsten Abtastzeitpunkt zur Verfügung steht, der Regler aber erst in der darauf folgenden Berechnung reagieren kann.
+Folglich benötigt der Regler zwei Abtastzeitpunkte, um auf eine überhöhte Einstrahlung zu reagieren zu.
 Daher darf die maximale Abtastzeit bei der Hälfte einer kritischen Zeit $t_{\mathrm{max}}$ liegen, in der eine erhöhte Flussdichte den Receiver beschädigt.
 
 Die kritische Zeit $t_{\mathrm{max}}$ wird in dieser Arbeit als die Zeit definiert, in der eine um $\SI{10}{\percent}$ höhere Flussdichte als vom Regler erwartet einen Anstieg der Fronttemperatur von $\SI{20}{\kelvin}$ verursacht.
@@ -96,17 +96,17 @@ Daher ergibt sich die maximale Abtastzeit nach Gleichung \ref{eq_SampleTimeberec
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/00_no_control/10prc_overflux_Temperatures_only_labeld.png}}
+    \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/07_system_analysis/10prc_overflux_Temperatures_only_labeld.png}}
     \caption[Simulative Bestimmung der kritischen Zeit $t_{\mathrm{max}}$ bis zur Erhöhung der Receiver-Fronttemperatur um $\SI{10}{\kelvin}$]{Simulative Bestimmung der kritischen Zeit $t_{\mathrm{max}}$ bis zur Erhöhung der Receiver-Fronttemperatur um $\SI{20}{\kelvin}$}
     \label{fig_SampleTimebestimmen}
 \end{figure}
 
 Nach empirischer Analyse von Simulationen mit unterschiedlichen Abtastzeiten wird eine Abtastzeit von $T_s=\SI{10}{\second}$ gewählt.
-Dies stellt einen guten Kompromiss zwischen einem zu hohen Berechnungsaufwand aufgrund kleiner Abtastzeiten und langsamer Reaktion des Reglers aufgrund zu großer Abtastzeiten dar.
+Dies stellt einen akzeptablen Kompromiss zwischen einem zu hohen Berechnungsaufwand aufgrund kleiner Abtastzeiten und langsamer Reaktion des Reglers aufgrund zu großer Abtastzeiten dar.
 
 
 \subsubsection*{Prädiktions- und Regelungshorizont} \label{subsubsec_horizonte}
-Für Dauer des Prädiktionshorizontes ist nach \cite{Bemporad} in erster Iteration die Ausregelzeit zu betrachten.
+Für die Dauer des Prädiktionshorizontes ist nach \cite{Bemporad} in erster Iteration die Ausregelzeit zu betrachten.
 Auf diese Weise steht dem Regler zur Optimierung die gesamte Systemdynamik von der Anregung bis zum folgenden Gleichgewichtszustand zur Verfügung.
 Daran angepasst kann der Kontrollhorizont bestimmt werden.
 Dieser sollte $\SIrange{10}{20}{\percent}$ des Prädiktionshorizontes abdecken.
@@ -124,7 +124,7 @@ Der zulässige Bereich des Gebläse-Einstellwertes als Stellgröße des Reglers 
 Durch die Diskretisierung des Systems auf 30 repräsentative Absorbercups nach Abschnitt \ref{sec_KopplungModelle} ergibt sich in der Simulation ein zulässiger Massenstrom von $\SIrange{80.82}{322.74}{\gram\per\second}$.
 Dies entspricht einem Einstellwert von $\SI{227.5}{\metre\cubed\per\hour} \leq u_{\mathrm{setpoint}} \leq \SI{908.3}{\metre\cubed\per\hour}$.
 
-Wie in Kapitel \ref{subsubsec_Gruppenverhalten} dargestellt gilt für kleine Streuungsfaktoren eine Ausrichtung der Zielpunkte auf die Receivermitte.
+Wie in Kapitel \ref{subsubsec_Gruppenverhalten} dargestellt, gilt für kleine Streuungsfaktoren eine Ausrichtung der Zielpunkte auf die Receivermitte.
 Für größere Werte werden die Heliostaten defokussiert und die vom Receiver absorbierte Leistung sinkt.
 Ein sinnvoller Rahmen der Defokussierung ergibt sich empirisch im Kontext des Modells zu $0 \leq \kappa \leq 50$.
 
@@ -170,7 +170,7 @@ Tabelle \ref{tab_Kostenfunktion} fasst alle Werte der verwendeten Größen zusam
 \endgroup
 
 
-Das stationäre Ziel der Regelung ist die Temperatur des erwärmten Luftmassenstroms $T_{\mathrm{out}}$ als indirekte Modellausgangsgröße $\boldsymbol{y}$ der Referenz $\boldsymbol{r}$ von $\SI{740}{\celsius}$ anzupassen.
+Das stationäre Ziel der Regelung ist, die Temperatur des erwärmten Luftmassenstroms $T_{\mathrm{out}}$ als indirekte Modellausgangsgröße $\boldsymbol{y}$ der Referenz $\boldsymbol{r}$ von $\SI{740}{\celsius}$ anzupassen.
 Dieser Referenzwert stellt die mittlere Luftaustrittstemperatur aus den Absorbermodulen im Nennlastpunkt dar \cite[\S.29]{HandbuchJülich}.
 Während der Regelung wird zusätzlich die Änderung der Eingangsgrößen zwischen zwei Abtastzeitpunkten $\Delta \boldsymbol{u}$ betrachtet.
 Die Slack Variable $\boldsymbol{\xi}$ kennzeichnet die Überschreitung der weichen Limitierungen.
@@ -186,9 +186,9 @@ Gemäß \cite[S.171ff]{Diehl2} sind dies Systeme, bei denen verschiedene Systemd
 \section{Vorstellung der gesamten Regelung} \label{sec_VorstelungRegelung}
 Eine Darstellung des vollständigen Regelkreises zeigt Abbildung \ref{fig_Regelkreisvollst}.
 Die Rückführgrößen stellen die vier Systemzustände $\TAbsorberFront$, $\TAbsorberBack$, $\MDotReceiver$ und $\ddot{m}_{\mathrm{rec}}$ dar.
-Es ist erkennbar, dass das Modell mit approximierten Flussdichtekarten der Optimierung dient während das Modell mit den unveränderten Daten aus STRAL zur Simulation des Solarturms verwendet wird.
+Es ist erkennbar, dass das Modell mit approximierten Flussdichtekarten der Optimierung dient, während das Modell mit den unveränderten Daten aus STRAL zur Simulation des Solarturms verwendet wird.
 Weiterhin werden unterschiedliche Einstrahlungskarten des Nowcastings für die Optimierung und die Simulation verwendet.
-Dies ist sinnvoll, da sich Einstrahlungsprdäiktionen in realer Anwendung von der tatsächlichen Einstrahlung unterscheiden.
+Dies ist erforderlich, da sich Einstrahlungsprädiktionen in realer Anwendung von der tatsächlichen Einstrahlung unterscheiden.
 
 \begin{figure}[h!]
    \centering
@@ -207,7 +207,7 @@ Für eine potenzielle Übertragung der Regelung auf den Solarturm ist diese Betr
 
 Die Rückführgrößen der vorgestellten Regelung sind die Systemzustände, deren Messung am Solarturm in Jülich jedoch nicht vorgesehen ist.
 Messbare Größen sind unter anderem die Flussdichteverteilung $F$ auf dem Receiver, die Fronttemperatur der Absorbercups $\TAbsorberFront$, die Austrittstemperatur des aufgeheizten Luftstroms an der Receiverinnenseite $T_{\mathrm{out}}$ und der Luftmassenstrom $\MDotReceiver$.
-Zur Ermittlung der beiden fehlenden Zustände $\TAbsorberBack$ und $\ddot{m}_{\mathrm{rec}}$ wird demnach ein Zustandsbeobachter benötigt.
+Zur Ermittlung der beiden fehlenden Zustände $\TAbsorberBack$ und $\ddot{m}_{\mathrm{rec}}$ wird daher ein Zustandsbeobachter benötigt.
 
 Eine weitere Messgröße stellt, wie in Kapitel \ref{subsubsec_EnergiebilanzTransportzone} erwähnt, die Temperatur der Rückführluft $\TReturn{3}$ dar.
 Simulativ wird diese als konstant angenommen, ist jedoch in der Realität von der Nutzung der erhitzten Luft abhängig.

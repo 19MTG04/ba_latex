@@ -2,7 +2,7 @@
 Dieses Kapitel schafft alle relevanten Grundlagen bezüglich verwendeter Methodiken und Komponenten am Solarturm.
 Darüber hinaus wird die für diese Arbeit benötigte Theorie der modellprädiktiven Regelung erläutert.
 Zusätzlich werden verschiedene Ansätze der Zielpunktregelung und Nowcasting-Systeme dargestellt.
-Zum Abschluss des Kapitels wird die in dieser Arbeit genutzte Software vorgestellt.
+Abschließend beinhaltet das Kapitel eine Vorstellung der für diese Arbeit relevanten Software.
 
 \section{Solartürme} \label{sec_Solartürme}
 Ein Solarturmkraftwerk wandelt Sonnenstrahlung durch einen Energieumwandlungsprozess in Strom um oder nutzt sie zur Unterstützung thermochemischer Prozesse.
@@ -20,7 +20,7 @@ Der linke Turm wird zur Stromerzeugung genutzt, der rechte dient experimentellen
 \end{figure}
 
 Die solare Strahlung wird durch gezielte Ausrichtung der Heliostaten auf die Spitze des Solarturms, an der sich der Receiver befindet, konzentriert.
-Dieser absorbiert die Strahlung, und gibt sie an ein Wärmeträgermedium ab, welches dann dem sich anschließenden Prozess zur Verfügung steht.
+Dieser absorbiert die Strahlung und gibt sie an ein Wärmeträgermedium ab, welches dann dem sich anschließenden Prozess zur Verfügung steht.
 Alternativ kann das erhitzte Medium auch zur späteren Verwendung in einem Energiespeicher zwischengespeichert werden \cite[S.11]{DissBelhomme}.
 Die schematische Darstellung eines Solarturmkraftwerkes zeigt Abbildung \ref{fig_SchemaSolarturmkraftwerk}, der in dieser Arbeit fokussierte Teil ist hervorgehoben.
 
@@ -69,7 +69,7 @@ Die nachfolgende Abbildung \ref{fig_DarstellungHeliostat} soll die grundsätzlic
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=1\textwidth]{fig/Heliostat.png}}
+\fbox{\includegraphics[width=0.99\textwidth]{fig/Heliostat.png}}
 \caption[Ausra Heliostat am Forschungsstandort Jülich mit $\SI{8.3}{\metre\squared}$  und Sanlúcar-120-Heliostat auf der PS10 bei Sevilla mit $\SI{120}{\metre\squared}$ Reflexionsfläche]{Ausra Heliostat am Forschungsstandort Jülich mit $\SI{8.3}{\metre\squared}$  (links) und Sanlúcar-120-Heliostat auf der PS10 bei Sevilla mit $\SI{120}{\metre\squared}$ Reflexionsfläche (rechts) \cite[S.13]{DissBelhomme}}
     \label{fig_DarstellungHeliostat}
 \end{figure}
@@ -85,7 +85,7 @@ Wie in Abbildung \ref{fig_Solarturm} zu sehen ist, handelt es sich in Jülich um
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=1\textwidth]{fig/Vergleich_Heliostatenfelder.png}}
+\fbox{\includegraphics[width=0.99\textwidth]{fig/Vergleich_Heliostatenfelder.png}}
 \caption[Verschiedene Heliostatfeld-Layouts auf der Nordhalbkugel: Rundum-Feld und Nordfeld]{Verschiedene Heliostatfeld-Layouts auf der Nordhalbkugel: Rundum-Feld (links) und Nordfeld (rechts) \cite[S.14]{DissBelhomme}}
     \label{fig_AnordnungHeliostatfeld}
 \end{figure}
@@ -150,7 +150,7 @@ Die Sonnenstrahlen (\textit{solar radiation}) treffen auf die Spiegeloberfläche
 Dieser Winkel bestimmt die effektive Reflexionsfläche (\textit{effective refelction surface}), welche senkrecht zur Einfallsrichtung der Strahlung projiziert wird.
 Wie in Abbildung \ref{fig_KosinusVerlust} zu erkennen ist, entspricht das Verhältnis zwischen der effektiven Fläche und der Gesamtfläche jedes Heliostaten dem Kosinus des Winkels zwischen der Einfallsrichtung und der Hauptnormalen der Spiegelfläche (\textit{main normal}).
 Bei zunehmendem Winkel $\beta$, also ungünstigeren Lichteinfallswinkeln, nimmt die effektive Fläche ab und die Effizienz der Heliostaten wird geringer.
-Diese wird mit dem Kosinus-Wirkungsgrad $\cos\beta$ ausgedrückt, der also in direktem Zusammenhang mit der reflektierten Sonnenleistung steht.
+Diese wird mit dem Kosinus-Wirkungsgrad $\cos\beta$ ausgedrückt, der folglich in direktem Zusammenhang mit der reflektierten Sonnenleistung steht.
 Der Einfluss der Kosinus-Verluste zeigt sich beispielsweise an Untersuchungen am Solar One Tower in Süd-Kalifornien, dort schwankt der Kosinus-Wirkungsgrad in dieser Gegend\linebreak jährlich zwischen $\SI{0.65}{}$ und $\SI{0.9}{}$, je nach Sonnenstand und damit verbundener Heliostatenposition. \cite{Holl}
 
 \begin{figure}[h!]
@@ -181,7 +181,7 @@ Durch ein geeignetes Felddesign kann diesen Verlusten entgegengewirkt werden. \c
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=1\textwidth]{fig/BlockingShading.png}}
+\fbox{\includegraphics[width=0.99\textwidth]{fig/BlockingShading.png}}
 \caption[Blockierung und Abschattung von Heliostaten]{Blockierung (links) und Abschattung (rechts) von Heliostaten \cite[S.15]{DissBelhomme}}
     \label{fig_AbschattungBlockieren}
 \end{figure}
@@ -208,7 +208,7 @@ Bei einem Abstand von $\SI{1000}{\metre}$ kann dir Abschwächung bis zu $\SI{1.2
 
 
 \section{Nowcasting-Systeme zur Wettervorhersage} \label{sec_Nowcasting}
-Ein wesentlicher Schwerpunkt dieser Arbeit liegt in der Analyse des Wolkeneinflusses, welcher als meteorologischer optischen Verlust auf das Gesamtsystem des Solarturms einwirkt.
+Ein wesentlicher Schwerpunkt dieser Arbeit liegt in der Analyse des Wolkeneinflusses, welcher als meteorologischer optischer Verlust auf das Gesamtsystem des Solarturms einwirkt.
 Um eine zuverlässige Regelung hinsichtlich der im Kapitel \ref{subsec_Receiver} beschriebenen physikalischen Grenzen des Receivermaterials zu gewährleisten, ist eine möglichst genaue Wolkenvorhersage unerlässlich.
 In der Praxis wird dies durch die sogenannten \textit{Nowcasting Systeme} erreicht, die im Gegensatz zu den klassischen Modellen der Wettervorhersage durch zeitlich und räumlich hochauflösende Beobachtungen genauere lokale Vorhersagen liefern \cite{DWD1}.
 
@@ -221,13 +221,13 @@ Da die Auflösung der deutschlandweiten Vorhersage lediglich rund $\SI{1}{\kilo\
 Darüber hinaus ist auch die zeitliche Auflösung von 5 Minuten \cite{DWD2} unterhalb der Möglichkeiten anderer Nowcasting Systeme \cite{DLRNowcasting}\cite[S.272]{QuesadaRuiz}.
 
 Ein Instrument für zeitlich und räumlich hochauflösende Vorhersagen sind die sogenannten \gans{All-sky imagers} (\textit{ASI}) in Kombination mit Pyrheliometern.
-Bei ASIs handelt es sich um nach oben gerichtete Kameras, welche $\SI{180}{\degree} \times \SI{180}{\degree}$ halbkugelförmige Bilder mit dem Zweck der Wolkenüberwachung erzeugen.
+Bei ASIs handelt es sich um nach oben gerichtete Kameras, welche $\SI{180}{\degree} \times \SI{180}{\degree}$ halbkugelförmige Bilder mit dem\linebreak Zweck der Wolkenüberwachung erzeugen.
 Pyrheliometer sind Messgeräte zur Ermittlung der direkten Sonneneinstrahlung (der \textit{direct normal irradiation}, kurz: \textit{DNI}).
 Der Prozess zur Erstellung von Nowcasting Vorhersagen auf Basis dieser Bilder und Messdaten wird beispielsweise von Samu \textit{et al.} in \cite{Samu} beschrieben.
 
 Das DLR verwendet in Spanien und Jülich bereits ein Nowcasting System auf Basis der ASIs.
 Es erstellt in subminütlicher Auflösung Einstrahlungskarten des betrachteten Solarfeldes mit einer räumlichen Auflösung von bis zu $\SI{20}{\metre} \times \SI{20}{\metre}$.
-Tabelle \ref{tab_VorgehenNowcasting} fasst alle Schritte zur Erstellung dieser Karten zusammen. \cite[S.4,S.13]{Samu}\cite{DLRNowcasting}.
+Tabelle \ref{tab_VorgehenNowcasting} fasst alle Schritte zur\linebreak Erstellung dieser Karten zusammen. \cite[S.4,S.13]{Samu}\cite{DLRNowcasting}.
 
 \begingroup
 \renewcommand{\arraystretch}{1.2}
@@ -263,10 +263,10 @@ Die nachfolgende Abbildung \ref{fig_Nowcasting} visualisiert exemplarisch, den j
 \centering
 \setlength{\fboxsep}{1pt}
 \setlength{\fboxrule}{1pt}
-\fbox{\includegraphics[width=1\textwidth]{fig/Nowcasting}}
+\fbox{\includegraphics[width=0.99\textwidth]{fig/Nowcasting}}
 \caption[Beispiel eines unbearbeiteten ASI-Bildes, eines segmentierten Bildes und eines Bildes inklusive visualisierter Bewegungsvektoren]{Beispiel eines unbearbeiteten ASI-Bildes (Links), eines segmentierten Bildes (Mitte) und eines Bildes inklusive visualisierter Bewegungsvektoren (Rechts) (nach \cite[S.8]{Sayeef})}
 \label{fig_Nowcasting}
-\end{figure}
+\end{figure} \pagebreak
 
 Die Ermittlung der Lichtdurchlässigkeit der Wolken (5) geschieht mithilfe der Messwerte von Pyrheliometern.
 Sofern die betrachtete Wolke im direkten Weg zwischen Sonne und Pyrheliometer liegt, kann aus den Messwerten direkt die Lichtdurchlässigkeit der Wolke bestimmt werden.
@@ -282,7 +282,7 @@ Das insgesamt überwachte Feld erstreckt sich über $\SI{8}{\kilo\metre} \times 
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-\fbox{\includegraphics[width=0.77\textwidth]{fig/NowcastingDNIMap}}
+\fbox{\includegraphics[width=0.71\textwidth]{fig/NowcastingDNIMap}}
     \caption[Beispielhafte Darstellung der Einstrahlungskarte als Ergebnis des Nowcastings]{Beispielhafte Darstellung der Einstrahlungskarte als Ergebnis des Nowcastings (nach \cite[S.14]{Samu})}
     \label{fig_EinstrahlungNowcasting}
 \end{figure}
@@ -333,7 +333,7 @@ Auf Basis der Rückführung von Messgrößen des Systems ergibt sich das Optimie
 \subsection{Modellierung des Systems} \label{subsec_Modellbildung}
 Ein grundlegender Baustein zur erfolgreichen Regelung mit einem modellprädiktiven Regler ist die Abbildung des zu regelnden Systems durch mathematische Formeln – die Modellbildung.
 Je präziser das zu regelnde Realmodell in der Modellbildung beschrieben wird, desto genauer werden auch die Ergebnisse der Regelung.
-Dabei kann das System sowohl in diskreter als auch kontinuierlicher Form beschrieben werden; für die Optimierung werden kontinuierliche Systeme aus Differenzialgleichungen und algebraischen Gleichungen jedoch in der Regel diskretisiert (vgl. Kapitel \ref{subsec_Diskretisierung}), sodass das System letztlich wie in den Gleichungen \ref{eq_Modellbildung1} - \ref{eq_Modellbildung3} zu beschreiben ist.
+Dabei kann das System sowohl in diskreter als auch kontinuierlicher Form beschrieben werden; für die Optimierung werden kontinuierliche Systeme aus Differenzialgleichungen und algebraischen Gleichungen jedoch in der Regel diskretisiert (vgl. Kapitel \ref{subsec_Diskretisierung}), sodass das System letztlich wie in den\linebreak Gleichungen \ref{eq_Modellbildung1} - \ref{eq_Modellbildung3} zu beschreiben ist.
 Dabei steht $\boldsymbol{x}$ für die dynamischen Modellzustände, $\boldsymbol{u}$ für die Stellgrößen, $\boldsymbol{z}$ für algebraische Größen und $\boldsymbol{p}$ bzw.
 $\boldsymbol{p}_{tv}$ für (zeitabhängige, \textbf{t}ime \textbf{v}arying) Modellparameter. \cite[S.3]{Schwenzer}\cite{Dompc1}
 
@@ -371,11 +371,12 @@ Die Ansatzfunktion der Approximationspolyome innerhalb der finiten Elemente ist 
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
 \myequations{\quad Ansatzfunktion der Approximationspolynome finiter Elemente}
 
+\vspace*{-\baselineskip}
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.95\textwidth]{fig/Collocationdompc}}
+\fbox{\includegraphics[width=0.91\textwidth]{fig/Collocationdompc}}
     \caption[Beispielhafte orthogonale Kollokation auf finiten Elementen]{Beispielhafte orthogonale Kollokation auf finiten Elementen \cite{Dompc1}}
     \label{fig_Collocationdompc}
 \end{figure}
@@ -405,7 +406,7 @@ Die nachfolgende Abbildung \ref{fig_Kollokationspunkte} zeigt die unterschiedlic
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.9\textwidth]{fig/KollokPoints.pdf}}
+\fbox{\includegraphics[width=0.83\textwidth]{fig/KollokPoints.pdf}}
     \caption[$K=10$ Kollokationspunkte in Verteilungen nach Legendre-Gauss, Legendre-Gauss-Radau, Legendre-Gauss-Lobatto oder äquidistant im Intervall {$\left[0,1\right]$}]{$K=10$ Kollokationspunkte in Verteilungen nach Legendre-Gauss, Legendre-Gauss-Radau, Legendre-Gauss-Lobatto oder äquidistant im Intervall $\left[0,1\right]$ (gemäß \cite[S.48]{Huntington})}
     \label{fig_Kollokationspunkte}
 \end{figure}
@@ -492,7 +493,7 @@ Dazu wird nach \cite[S.4]{Schwenzer} eine weitere Gewichtungsmatrix $\boldsymbol
 Die Indizes \textit{lb} und \textit{ub} kennzeichnen die \textbf{l}ower bzw. \textbf{u}pper \textbf{b}ound, also die untere und obere Variablengrenze.
 Die für die Diskretisierung eingeführten Indizes werden mit \textit{col} erweitert.
 
-\begin{equation} \label{eq_Optimierungsproblem}
+\begin{equation*} \label{eq_Optimierungsproblem}
 \begin{gathered}
 \min_{\boldsymbol{x}, \boldsymbol{u}, \boldsymbol{\xi}, t} \quad \sum_{i=N_1}^{N_2}\|\boldsymbol{r}(k+i \mid k)-\boldsymbol{y}(k+i \mid k)\|_{\boldsymbol{W_w}}+\sum_{j=1}^{N_u-1}\|\Delta \boldsymbol{u}(k+j \mid k)\|_{\boldsymbol{W_u}}+\sum_{i=N_1}^{N_2}\|\boldsymbol{\xi}(k+i \mid k)\|_{\boldsymbol{W_{\xi}}} \qquad\\
 \dot{\boldsymbol{x}}_{i_{\mathrm{col}}}(\tau) - \sum_{j_{\mathrm{col}}=0}^K \frac{\boldsymbol{x}_{i_{\mathrm{col}}, j_{\mathrm{col}}}}{\Delta t_{i_{\mathrm{col}}}} a_{j_{\mathrm{col}},k_{\mathrm{col}}} = \mathbf{0}\\
@@ -502,14 +503,18 @@ Die für die Diskretisierung eingeführten Indizes werden mit \textit{col} erwei
 \forall~\tau \in \left[0,1\right] \text{, } i_{\mathrm{col}} \in \left\{1, \ldots, \mathrm{NE}\right\} \text{ and } k_{\mathrm{col}} \in \left\{0, \ldots, \mathrm{K}\right\}\\
 \forall~\boldsymbol{\xi} \geq \mathbf{0} \text{, }i \in\left\{N_1, \ldots, N_2-i\right\} \text { and } j \in\left\{0, \ldots, N_u\right\}
 \end{gathered}
-\end{equation}
+\end{equation*}
 
-\vspace*{-10\baselineskip}
+\vspace*{-9.7\baselineskip}
 \qquad subject to:
-\vspace*{9\baselineskip}
-\myequations{\quad Beispielhaftes Optimierungsproblem für den MPC}
-% \centerline{\small{\textsf{\textbf{Formel \ref{eq_Optimierungsproblem}:}} Beispielhaftes Optimierungsproblem für den MPC}}
+\vspace*{0.5\baselineskip}
 
+\begin{equation}
+    ~
+\end{equation}
+\myequations{\quad Beispielhaftes Optimierungsproblem für die modellprädiktive Regelung}
+
+\vspace*{4.3\baselineskip}
 Eine gut konstruierte Kostenfunktion ermöglicht es, das Ziel des Modells oder Systems präzise zu definieren, unerwünschte Effekte oder Fehler zu minimieren und die gewollten Ergebnisse zu erzielen.
 Dazu sind die Zielvariablen, die Gewichtungen und die constraints sinnvoll zu wählen.
 
@@ -522,7 +527,7 @@ Ausgehend vom aufgeprägten Massenstrom, der Temperatur der Rückführluft und U
 \subsection{Grundlagen und Annahmen} \label{subsec_GrundlagenAnnahmen}
 Die modellierte Receiver Front besteht aus einzelnen \textit{Absorbercups}.
 Es wird davon ausgegangen, dass die einzelnen Cups nicht miteinander interagieren, das heißt thermisch voneinander isoliert sind \cite[S.91]{DissGall}.
-Die Cups selbst bestehen aus drei Komponenten, wie in Abbildung \ref{fig_AufbauCup} zu sehen ist.
+Die Cups selbst bestehen aus drei Komponenten, wie in Abbildung \ref{fig_AufbauCup} zu sehen ist. \pagebreak
 
 \begin{figure}[h!]
     \centering
@@ -536,7 +541,7 @@ Die Cups selbst bestehen aus drei Komponenten, wie in Abbildung \ref{fig_AufbauC
 Die dargestellten Komponenten sind:
 \begin{itemize}
     \item \textbf{Absorberwabe} (\textit{Comb}): Sie besteht aus einer porösen Keramik und dient der Absorption der konzentrierten Solarstrahlung.
-          Diese wird in der Keramik in thermische Energie gewandelt und als innere Energie gespeichert.
+Diese wird in der Keramik in thermische Energie umgewandelt und als innere Energie gespeichert.
           Aufgrund der porösen Struktur kann Umgebungsluft als Wärmeübertragungsmedium durch die Wabe strömen, die Energie aufnehmen und diese dem nachgeschalteten Prozess (vgl. Abschnitt \ref{sec_Solartürme}) zur Verfügung stellen.
     \item \textbf{Absorberkelch} (\textit{Tub}): Er besteht aus demselben Material wie die Absorberwabe, ist jedoch massiv.
           Der Kelch ist wie ein quadratischer Pyramidenstumpf mit rundem Auslass geformt und sammelt die warme Luft nach Durchströmen der Wabe.
@@ -583,7 +588,7 @@ Abbildung \ref{fig_AbsorberBerechnung} zeigt die beiden Zonen und alle Größen 
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-\fbox{\includegraphics[width=1\textwidth]{fig/AbsorberCupGleichungen_new}}
+\fbox{\includegraphics[width=0.99\textwidth]{fig/AbsorberCupGleichungen_new}}
     \caption[Berechnungsgrößen des Absorbercups]{Berechnungsgrößen des Absorbercups (nach \cite{IdingSolarPaces})}
     \label{fig_AbsorberBerechnung}
 \end{figure}
@@ -653,7 +658,7 @@ Weiterhin ist auch die Berechnung mit dem Wärmeübergangskoeffizienten $\HeatTr
     \end{aligned}
 \end{equation}
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Konvektion zwischen Wabenfront und Luftmassenstrom}
+\myequations{\quad Konvektion zwischen Wabenfront und Luftmassenstrom} \pagebreak
 
 Für diese Berechnung wird die Durchschnittstemperatur $T_{\mathrm{m,front}}$ zwischen dem Lufteintritt $\TInlet{1}$ und der Mitte der Wabe $\TInlet{1b}$ mit dem einstellbaren Gewichtungsfaktor $\TemperatureWeightingFactor$ genutzt, welche sich gemäß Gleichung \ref{eq_MeanTempAbsFront} ergibt.
 \begin{equation} \label{eq_MeanTempAbsFront}
@@ -694,7 +699,7 @@ Die durchschnittliche Temperatur an der Rückseite der Absorberwabe errechnet si
     T_{\mathrm{m,back}}  = (1-\TemperatureWeightingFactorBack) \TInlet{\mathrm{1b}} + \TemperatureWeightingFactorBack \TInlet{2}
 \end{equation}
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
-\myequations{\quad Berechnung der durchschnittlichen Temperatur in der Wabenrückseite}
+\myequations{\quad Berechnung der durchschnittlichen Temperatur in der Wabenrückseite} \pagebreak
 
 Durch Erweiterung von Gleichung \ref{eq_EnergiebilanzWabe} um die Gleichungen \ref{eq_InnereEnergie} bis \ref{eq_WärmeleitungVorneHinten} erhält man folgende Differentialgleichung für die vordere Seite der Absorberwabe:
 \setlength{\eqlinespacing}{25pt}
@@ -876,7 +881,7 @@ P=\frac{1}{\lambda_{\text {ins}}} \cdot \ln \frac{d_{2, \IndexHeader}}{d_{1, \In
     \label{fig_header}
 \end{figure}
 
-\newpage
+\pagebreak
 Schließlich ergibt sich der Enthalpiestrom am Receiveraustritt durch äquivalente Inbezugnahme des zweiten Headers.
 Der Austrittsenthalpiestrom $\dot{H}_{\mathrm{out}}$ ergibt sich zu
 \begin{equation} \label{eq_Headerout1}
@@ -1125,7 +1130,7 @@ Diese bezeichnen Strecken in beiden Dimensionen, die auf dem Receiver zwischen z
 In Abbildung \ref{fig_AbständeGarcia} ist für eine Gruppe aus fünf Heliostaten dargestellt, welche Zeilpunktabstände dabei alle relevant sind.
 Exemplarisch ist die notwendige Evaluation der Radien $r_1$ und $r_2$ sowie der zugehörigen Distanz $d_{1-2}$ dargestellt.
 
-\newpage
+\pagebreak
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
@@ -1139,7 +1144,7 @@ Exemplarisch ist die notwendige Evaluation der Radien $r_1$ und $r_2$ sowie der 
 Um sicherzustellen, dass der Abstand eines jeden Zielpunktes zu allen anderen Zielpunkten der Gruppe eingehalten wird, wiederholen sich diese Berechnungsvorschriften für jedes mögliche Pärchen aus Heliostaten \cite[S.9]{Garcia2}.
 Anschließend wird der Durchschnitt der berechneten Distanzen eines Zielpunktes relativ zu den anderen Heliostaten ($\overline{\Delta x_{\mathrm{TP_n}}}$) und ($\overline{\Delta y_{\mathrm{TP_n}}}$) errechnet \cite[S.10]{Garcia2}.
 
-\newpage
+\pagebreak
 \textit{Kriterium 2:}\\
 Wie erläutert, kommt es nun also zu erforderlichen Bewegungen der Zielpunkte auf dem Receiver.
 Diese Bewegungen müssen nun so reguliert werden, dass der Schwerpunkt der Heliostatengruppe weiterhin mit dem vorgegebenen Gruppenmittelpunkt übereinstimmt.
@@ -1189,7 +1194,7 @@ Aufgrund des individuellen Parameters $\alpha$ sind die erforderlichen Mindestab
 \end{figure}
 
 \subsubsection*{Zusammenfassung} \label{subsubsec_Zusammenfassung}
-Letztlich handelt es sich bei dem vorgestellten Algorithmus von García um eine Strategie, um viele Heliostaten mit einer geringen Anzahl an Stellgrößen auf individuellen Bahnen zu bewegen.
+Letztlich handelt es sich bei dem vorgestellten Algorithmus von García um eine Strategie, die es ermöglicht, viele Heliostaten mit einer geringen Anzahl an Stellgrößen auf individuellen Bahnen zu bewegen.
 Dafür werden pro Gruppe lediglich zwei Stellgrößen eingeführt, von der für rechteckige Receiver nur eine, der \textit{dispersion factor} $\kappa$, weiter betrachtet wird.
 Dieser streut die Zielpunkte so, dass die Konzentration der Flussdichte wie durch ein Ventil geregelt wird.
 Ein wesentlicher Vorteil des gewählten Algorithmus ist die enorme Reduzierung der Stellgrößen; statt die vorhandenen 2153 Heliostaten am Standort Jülich einzeln positionieren zu müssen, geschieht dies durch lediglich drei Stellgrößen.

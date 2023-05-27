@@ -57,7 +57,7 @@ Der Proportionalitätsfaktor $K_p$ ergibt sich unter Betrachtung des stationäre
 \end{equation}
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_Label}:}} Beschriftung}}
 \myequations{\quad Berechnung des Proportionalitätsfaktors $K_p$ bei PT2-Gliedern}
-s
+
 Für schwingfähige Systeme lässt sich der Dämpfungsfaktor $D$ aus der relativen Überschwingweite $os$ der Sprungantwort ermitteln.
 Es gilt:
 \begin{equation} \label{eq_BerechnungD}
@@ -233,7 +233,7 @@ Dabei handelt es sich um ein Strahlverfolgungsprogramm, welches Sonnenstrahlen a
 
 Das Programm nutzt zur Simulation das reale Heliostatenfeld am Standort Jülich.
 Auf Basis des Sonnenstandes, der Zielpunktverteilung und der direkt damit einhergehenden Heliostatenpositionen wird für jeden Heliostaten der Verlauf eintreffender Sonnenstrahlen berechnet.
-Optische Verluste (vgl. Kapitel \ref{subsec_OptischeVerluste}), die sich geometrische bedingt ergeben werden durch die Strahlungsverfolgung bei der Berechnung des Brennfleckes berücksichtigt.
+Optische Verluste (vgl. Kapitel \ref{subsec_OptischeVerluste}), die sich geometrisch bedingt ergeben, werden durch die Strahlungsverfolgung bei der Berechnung des Brennfleckes berücksichtigt.
 Dazu zählt der Kosinus-Verlust, die Blockierung/Abschattung und die Streuung.
 
 Zusätzlich können in der Berechnung auch optische Verluste in Folge von Heliostateneigenschaften berücksichtigt werden.
@@ -392,14 +392,7 @@ Abbildung \ref{fig_RMSEüberdispersion} visualisiert den Betrag des RMSE für ei
 
 Beide optischen Teilmodelle resultieren in der Flussdichteverteilung für $30$ Absorbercups.
 Somit wird jedem der Cups im thermischen Modell eine individuelle Flussdichte vorgegeben.
-
 Die wesentlichen Schritte der Modellbildung sowie die Kopplung der Teilmodelle sind in Abbildung \ref{fig_ZusammenfassungKopplung} zu sehen.
-Es ist erkennbar, dass zwei unterschiedliche optische Modelle entstehen.
-Eines, welches Simulatitonszwecken dient und auf mit STRAL berechneten normierten Einstrahlungskarten basiert.
-Das zweite Modell nutzt approximierte normierte Einstrahlungskarten, um den Rechenaufwand in dem Optimierungsproblem zu verringern.
-Durch diese Einstrahlungskarten wird in beiden optischen Modellen die Flussdichteverteilung auf dem Receiver für $\SI{6}{} \times \SI{5}{}$ Cups anhand von drei Streuungsfaktoren $\kappa$ und dem lokalen DNI-Wert beschrieben.\\
-Die Eingangsgrößen des thermischen Modells sind die Flussdichte auf jedem der 30 Absorbercups und der Einstellwert $u_{\mathrm{setpoint}}$ für die Gebläse/Ventil-Kombination.
-Durch $62$ Differentialgleichungen und $60$ algebraische Gleichungen ergibt sich der Enthalpiestrom der Luft am Receiveraustritt $\dot{H}_{\mathrm{out}}$ und die Fronttemperatur des Receivers $\TAbsorberFront$ sowie alle weiteren Zustandsmesswerte.
 
 \begin{figure}[p]
     \centering
@@ -409,3 +402,11 @@ Durch $62$ Differentialgleichungen und $60$ algebraische Gleichungen ergibt sich
     \caption[Visualisierung der wesentlichen Schritte der Modellbildung]{Visualisierung der wesentlichen Schritte der Modellbildung}
     \label{fig_ZusammenfassungKopplung}
 \end{figure}
+
+Es ist erkennbar, dass zwei unterschiedliche optische Modelle entstehen.
+Eines, welches Simulatitonszwecken dient und auf mit STRAL berechneten normierten Einstrahlungskarten basiert.
+Das zweite Modell nutzt approximierte normierte Einstrahlungskarten, um den Rechenaufwand in dem Optimierungsproblem zu verringern.
+Durch diese Einstrahlungskarten wird in beiden optischen Modellen die Flussdichteverteilung auf dem Receiver für $\SI{6}{} \times \SI{5}{}$ Cups anhand von drei Streuungsfaktoren $\kappa$ und dem lokalen DNI-Wert beschrieben.\\
+Die Eingangsgrößen des thermischen Modells sind die Flussdichte auf jedem der 30 Absorbercups und der Einstellwert $u_{\mathrm{setpoint}}$ für die Gebläse/Ventil-Kombination.
+Durch $62$ Differentialgleichungen und $60$ algebraische Gleichungen ergibt sich der Enthalpiestrom der Luft am Receiveraustritt $\dot{H}_{\mathrm{out}}$ und die Fronttemperatur des Receivers $\TAbsorberFront$ sowie alle weiteren Zustandsmesswerte.
+

@@ -1,24 +1,68 @@
 \chapter{Einleitung} \label{ch_Einleitung}
-Paar einleitende Worte.
-Hier auch schreiben, dass die Abbildungen und Formeln in englischer Sprache sind und die Texte in Deutsch.
+Der Ausbau von Anlagen zur erneuerbaren Energieerzeugung nimmt stetig zu, insbesondere aufgrund des Klimawandels und der damit verbundenen Dringlichkeit Klimaziele zu erreichen.
+Langfristig hat die EU das Ziel, dass Europa bis 2050 zum ersten treibhausgasneutralen Kontinenten wird \cite{Umweltbundesamt}.
+Im März 2023 wurde eine vorläufige politische Einigung erzielt, den Anteil erneuerbarer Energiequellen am Gesamtenergieverbrauch der EU bis 2030 auf $\SI{42.5}{\percent}$ zu erhöhen \cite{RatEU}.
+Im Jahr 2021 betrug dieser Anteil $\SI{21.8}{\percent}$ \cite{Destatis}, was eine Steigerung um mehr als 20 Prozentpunkte in den nächsten 7 Jahren erforderlich macht.
 
+Im Bereich der Solarenergie werden verschiedene Technologien zur Stromerzeugung eingesetzt, darunter Photovoltaik, Parabolrinnen oder Solartürme.
+Letztere können aufgrund der großen Temperaturen einen höheren theoretischen Gesamtwirkungsgrad erreichen, sind kostengünstig skalierbar und bieten eine Möglichkeit der Energiespeicherung, um Lastschwankungen auszugleichen \cite{Breeze}.
+Diese Vorteile machen Solartürme zu einer vielversprechenden Technologie zur nachhaltigen Stromgewinnung.
 
-\section{Motivation} \label{sec_Motivation}
-Motivation, siehe Davids Masterarbeit, siehe Gall Diss.
+In einem Solarturmkraftwerk erfolgt die Stromerzeugung durch Konzentration von Sonnenlicht mittels zahlreicher beweglicher Spiegel auf einen Receiver im Turm.
+Die thermische Energie des Sonnenlichtes wird von einem Wärmeträgermedium im Receiver absorbiert.
+Das erhitzte Medium wird klassischerweise zur Stromerzeugung in einem Dampfkraftprozess oder aber für andere Hochtemperaturanwendungen verwendet.
 
-Hier muss hin warum Solartürme überhaupt betrachtet werden sollten und wichtig sind.
+Weltweit existieren derzeit 28 Solarturmkraftwerke, von denen 25 betriebsbereit sind \cite{NREL1}.
+Das größte seiner Art ist das Ivanpah Kraftwerk mit einer installierten Leistung von $\SI{377}{\mega\watt}$ \cite{NREL2}.
+In Deutschland existiert derzeit nur ein Versuchskraftwerk in Jülich mit $\SI{1.5}{\mega\watt}$ Nennleistung \cite{NREL3}.
+Drei weitere Kraftwerke werden derzeit in China, Südafrika und den vereinigten arabischen Emiraten gebaut \cite{NREL4}.
+
+Um die Wirtschaftlichkeit von Solarturmkraftwerken zu verbessern und dadurch ihren Ausbau voranzutreiben, ist es von großer Bedeutung den Wirkungsgrad zu erhöhen, ohne die Sicherheit der Kraftwerkskomponenten zu gefährden.
+Wolkendurchzug und damit einhergehende Verschattung ist eine schwer beherrschbare Störgröße und führt zu ineffizientem Betrieb.
+Aufgrund dynamischer Änderungen der Einstrahlung während des Betriebs ist daher eine Regelung erforderlich, die auf Abschattung des Heliostatenfeldes reagieren kann.
+In der Literatur wird die Regelung des Massenstroms des Wärmeträgermediums oder die Regelung der Zielpunkte der Spiegel zur Lösung dieser Problematik vorgeschlagen.
+Es gibt jedoch nur wenige Ansätze, die eine gemeinsame Betrachtung beider Stellgrößen umfassen.
 
 
 \section{Zielsetzung} \label{sec_Zielsetzung}
-Zielsetzung, siehe Zielsetzung an Kim und auf Bachelorarbeit Einreichung.
-Außerdem siehe David Ziele was die Simulationen angeht:
-\begin{itemize}
-    \item Wie viel besser ist der MPC, wenn er von den Wolken weiß?
-    \item Wo sind zu jedem Szenario die Grenzen? Also wie viel \% darf die MPC Vorhersage vor der eigentlichen Simulation abweichen?
-\end{itemize}
-Außerdem hat David schon hier seine Quelle drin, wie man einen Controller auslegt.
-Wohin mit diesem Inhalt?
+Ziel der Arbeit ist es, eine geeignete Regelung für das Solarturmkraftwerk in Jülich auszulegen.
+Diese soll die Austrittstemperatur des Wärmeträgermediums aus dem Receiver auch während eines Wolkendurchzugs möglichst konstant halten, um somit den Wirkungsgrad des Kraftwerkes und die Langlebigkeit der Komponenten zu erhöhen.
+Weiterhin sollen Schäden am Receiver vermieden werden, indem die maximale Oberflächentemperatur begrenzt wird.
+Zur Vorhersage lokaler Wolkenbedingungen wird ein Nowcasting System verwendet, welches die solare Einstrahlung auf die Spiegel vorhersagt.
+Diese Prädiktionen sollen in die Regelung einbezogen werden können.
+
+Da klassische Regelverfahren nicht unter Berücksichtigung zukünftiger Modellparameter rechnen, lässt sich schlussfolgern, dass ein alternatives Regelverfahren zu wählen ist.
+Dieses sollte auch bei Abweichung der Wolkenvorhersage von den realen Einstrahlungsbedingungen eine sichere Regelung des Kraftwerkes gewährleisten.
+Ein solcher Regler wird im Rahmen dieser Arbeit ausgewählt und parametrisiert.
+Neben der Analyse der Regelungsgüte unter verschieden Wolkenszenarien ist auch die Robustheit gegenüber Fehlern des Nowcastings zu untersuchen.
+
+Um eine Regelung zu entwickeln, die den Anforderungen gerecht wird, folgt diese Arbeit im Wesentlichen dem Prozess des Regelungsentwurfes, wie er von Skogestad und Postlethwaite in \cite[S.1]{Skogestad} beschrieben wird.
+Der leicht angepasste Prozess des Regelungsentwurfes umfasst die folgenden Schritte:
+\begin{enumerate}
+    \item Untersuchung des zu regelnden Systems und Erfassung erster Informationen über die Regelungsziele.
+    \item Modellierung des Systems, sowie Vereinfachung des Modells bei Bedarf.
+    \item Analyse der Eigenschaften des resultierenden Modells.
+    \item Festlegung der Ausgangsgrößen der Regelung.
+    \item Wahl der Mess- und Stellgrößen sowie der Sensorik und Aktorik.
+    \item Auswahl eines geeigneten Reglertyps.
+    \item Entwurf des Reglers.
+    \item Analyse der resultierenden Regelstrecke.
+\end{enumerate}
+
 
 \section{Struktur der Arbeit} \label{sec_Struktur}
-Hier die Struktur hin.
+Die vorliegende Arbeit besteht aus sechs Teilen.
+Im Hinblick auf den Prozess des Entwurfs eines Regelungssystems wurden in diesem Kapitel bereits die Regelungsziele festgelegt (Schritt 1).
+Kapitel \ref{ch_StandTechnik} gibt eine Einführung in das Solarturmkraftwerk und erläutert die Grundlagen der Regelungstheorie.
+Darüber hinaus werden in diesem Abschnitt Strategien zur Zielpunktregelung aus der Literatur vorgestellt und die initiale Modellbildung des Receivers in Jülich erläutert.
+Darauf aufbauend wird in Kapitel \ref{ch_Modellbildung} die Modellbildung des Solarturmkraftwerkes vervollständigt (Schritt 2).
+Anschließend werden in Kapitel \ref{ch_Reglerentwurf} die resultierenden Modelleigenschaften untersucht (Schritt 3) und Ausgangs-, Stell- und Rückführgrößen definiert (Schritt 4 und 5).
+Weiterhin wird ein geeigneter Regler ausgewählt und parametrisiert (Schritt 6 und 7).
+Die vollständige Regelstrecke wird in Kapitel \ref{ch_AnalyseRegelung} analysiert und mit einem Referenzszenario aus der Literatur sowie einem alternativen Regelverfahren verglichen (Schritt 8).
+Weiterhin erfolgt die Analyse der notwendigen Präzision des verwendeten Nowcasting Systems.
+Kapitel \ref{ch_Fazit} fasst schließlich die Ergebnisse zusammen und gibt einen Ausblick auf zukünftige Forschung in diesem Bereich.
+
+Die Arbeit ist in deutscher Sprache geschrieben, jedoch werden in Formeln und Abbildungen englische Indizes und Erläuterungen verwendet.
+Dies hilft dabei, die Ergebnisse dieser Arbeit universell zur weiteren Forschung nutzen und vergleichen zu können.
+
 

@@ -113,25 +113,25 @@ Eine Möglichkeit, die Einhaltung der maximalen thermischen Spannungen zu gewäh
 Dabei ist der zulässige Wert auch stark vom verwendeten Wärmeträgermedium abhängig.
 Für Rohrreceiver, die mit flüssigem Natrium gekühlt werden, sind beispielsweise maximale Strahlungsflussdichten von $\SI{2.5}{\mega\watt\per\square\metre}$ erlaubt, während bei luftgekühlten Rohrreceivern nur $\SI{200}{\kilo\watt\per\square\meter}$ \cite[S.17]{DissBelhomme} erreicht werden dürfen.
 
-Die Flussdichte $\phi$ ist dabei als Strahlungsfluss $F$ pro Fläche $A$ zu verstehen, wobei $F$ das Verhältnis aus absorbierter Strahlungsenergie $Q$ pro Zeiteinheit $t$ darstellt (siehe Formel \ref{eq_Strahlungsfluss} und \ref{eq_Flussdichte}).
+Die Flussdichte $F$ ist dabei als Strahlungsfluss $\phi$ pro Fläche $A$ zu verstehen, wobei $\phi$ das Verhältnis aus absorbierter Strahlungsenergie $Q$ pro Zeiteinheit $t$ darstellt (siehe Formel \ref{eq_Strahlungsfluss} und \ref{eq_Flussdichte}).
 
 \begin{equation} \label{eq_Strahlungsfluss}
-    F = \frac{\text{d}Q}{\text{d} t}
+    \phi = \frac{\text{d}Q}{\text{d} t}
 \end{equation}
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_Strahlungsfluss}:}} Berechnung des Strahlungsflusses $F$}}
-\myequations{\quad Berechnung des Strahlungsflusses $F$}
+\myequations{\quad Berechnung des Strahlungsflusses $\phi$}
 \vspace*{-\baselineskip}
 \begin{equation} \label{eq_Flussdichte}
-    \phi = \frac{\text{d}F}{\text{d} A}
+    F = \frac{\text{d}\phi}{\text{d} A}
 \end{equation}
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_Flussdichte}:}} Berechnung der Flussdichte $\phi$}}
-\myequations{\quad Berechnung der Flussdichte $\phi$}
+\myequations{\quad Berechnung der Flussdichte $F$}
 
 Zur Bestimmung der Leistung, die dem System auf diese Weise zugeführt wird, kann die Flussdichte verwendet werden.
-Sie ergibt sich aus der Integration der Flussdichte $\phi$ über der Fläche des Receivers.
+Sie ergibt sich aus der Integration der Flussdichte $F$ über der Fläche des Receivers.
 
 \begin{equation} \label{eq_LeistungReceiver}
-    P = \int_{A}\phi~\text{d} A
+    P = \int_{A}F~\text{d} A
 \end{equation}
 % \centerline{\small{\textsf{\textbf{Formel \ref{eq_LeistungReceiver}:}} Berechnung Bruttoleistung $P$ auf dem Receiver}}
 \myequations{\quad Berechnung Leistung $P$ auf dem Receiver}
@@ -210,7 +210,7 @@ Bei einem Abstand von $\SI{1000}{\metre}$ kann dir Abschwächung bis zu $\SI{1.2
 \section{Nowcasting-Systeme zur Wettervorhersage} \label{sec_Nowcasting}
 Ein wesentlicher Schwerpunkt dieser Arbeit liegt in der Analyse des Wolkeneinflusses, welcher als meteorologischer optischer Verlust auf das Gesamtsystem des Solarturms einwirkt.
 Um eine zuverlässige Regelung hinsichtlich der im Kapitel \ref{subsec_Receiver} beschriebenen physikalischen Grenzen des Receivermaterials zu gewährleisten, ist eine möglichst genaue Wolkenvorhersage unerlässlich.
-In der Praxis wird dies durch die sogenannten \textit{Nowcasting Systeme} erreicht, die im Gegensatz zu den klassischen Modellen der Wettervorhersage durch zeitlich und räumlich hochauflösende Beobachtungen genauere lokale Vorhersagen liefern \cite{DWD1}.
+In der Praxis wird dies durch die sogenannten \textit{Nowcasting-Systeme} erreicht, die im Gegensatz zu den klassischen Modellen der Wettervorhersage durch zeitlich und räumlich hochauflösende Beobachtungen genauere lokale Vorhersagen liefern \cite{DWD1}.
 
 Für deutschlandweit flächendeckende Vorhersagen nutzt der deutsche Wetterdienst u.~a. Sensorik zur Überwachung von Luftdruck, -temperatur und -feuchte sowie Radarsysteme und Satellitenbilder \cite{DWD1}\cite{DWD0}.
 Durch Abruf und Verarbeitung dieser Daten im 5-Minutentakt können regionale Wetterprognosen für die kommenden Stunden generiert werden.
@@ -218,14 +218,14 @@ Durch Abruf und Verarbeitung dieser Daten im 5-Minutentakt können regionale Wet
 Für den Anwendungsfall des Solarturms ist eine solche Prognose jedoch nicht ausreichend.
 Je präziser die jeweils lokale Vorhersage für das Heliostatenfeld ist, desto effektiver ist die Regelung.
 Da die Auflösung der deutschlandweiten Vorhersage lediglich rund $\SI{1}{\kilo\metre} \times \SI{1}{\kilo\metre}$\linebreak beträgt \cite{DWD1}\cite{DWD2}, während sich das Heliostatenfeld in Jülch auf eine Fläche von rund\linebreak $\SI{330}{\metre} \times \SI{310}{\metre}$ beschränkt, sind lediglich sehr grobe Vorhersagen zu erwarten.
-Darüber hinaus ist auch die zeitliche Auflösung von 5 Minuten \cite{DWD2} unterhalb der Möglichkeiten anderer Nowcasting Systeme \cite{DLRNowcasting}\cite[S.272]{QuesadaRuiz}.
+Darüber hinaus ist auch die zeitliche Auflösung von 5 Minuten \cite{DWD2} unterhalb der Möglichkeiten anderer Nowcasting-Systeme \cite{DLRNowcasting}\cite[S.272]{QuesadaRuiz}.
 
 Ein Instrument für zeitlich und räumlich hochauflösende Vorhersagen sind die sogenannten \gans{All-sky imagers} (\textit{ASI}) in Kombination mit Pyrheliometern.
 Bei ASIs handelt es sich um nach oben gerichtete Kameras, welche $\SI{180}{\degree} \times \SI{180}{\degree}$ halbkugelförmige Bilder mit dem\linebreak Zweck der Wolkenüberwachung erzeugen.
 Pyrheliometer sind Messgeräte zur Ermittlung der direkten Sonneneinstrahlung (der \textit{direct normal irradiation}, kurz: \textit{DNI}).
 Der Prozess zur Erstellung von Nowcasting Vorhersagen auf Basis dieser Bilder und Messdaten wird beispielsweise von Samu \textit{et al.} in \cite{Samu} beschrieben.
 
-Das DLR verwendet in Spanien und Jülich bereits ein Nowcasting System auf Basis der ASIs.
+Das DLR verwendet in Spanien und Jülich bereits ein Nowcasting-System auf Basis der ASIs.
 Es erstellt in subminütlicher Auflösung Einstrahlungskarten des betrachteten Solarfeldes mit einer räumlichen Auflösung von bis zu $\SI{20}{\metre} \times \SI{20}{\metre}$.
 Tabelle \ref{tab_VorgehenNowcasting} fasst alle Schritte zur\linebreak Erstellung dieser Karten zusammen. \cite[S.4,S.13]{Samu}\cite{DLRNowcasting}.
 

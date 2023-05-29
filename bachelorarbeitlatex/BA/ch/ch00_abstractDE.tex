@@ -1,22 +1,13 @@
-% !TeX encoding = utf8
-% !TeX program = pdflatex
-% !TeX spellcheck = de-DE
-%\clearpage \thispagestyle{empty}
 \chapter*{Abstract}
-Dies soll eine Vorlage für den Einstieg in LaTeX darstellen.
-Notwendig für die Nutzung dieser ist VSCode mit den entsprechenden Einstellungen in der settings.json, Strawberry Pearl sowie MikTex.
-
-Generell ist das Hauptdokument die Main.tex. Die ist die einzige Datei, die letztlich ausgeführt wird. Alle anderen Dateien sollten in diese Datei eingebunden werden.
-
-In der Documentclass in der Main.tex sowie in der Packages.tex entscheidet sich das Layout des Berichts. In der Misc.tex werden Informationen für die Titelseite hinzugefügt.
-Es ist sehr empfehlenswert für jedes Kapitel eine neue *.tex Datei im Ordner \gans{ch} hinzuzufügen. Das Ergebnis der Kompilierung zeigt immer die Main.pdf.
-
-Schreibt man einfach nur In VSCode in eine neue Zeile wird in der entstehenden PDF einfach in derselben Zeile weiter geschrieben.
-Dennoch ist es sehr nützlich in neue Zeilen zu schreiben, sodass nachträglich zu korrigierende Sätze nicht in ewig langen Passagen untergehen. \\
-Vor diesem Satz wurde nicht nur eine neue Zeile in VSCode eingefügt, sondern auch ein Doppel-Backslash \gans{\textbackslash\textbackslash} ans Ende der letzten Zeile gestellt. Dadurch entsteht eine neue Zeile ohne Abstand zum vorigen Abschnitt.
-
-Lässt man eine Zeile in VSCode leer, entsteht ein wie oben gezeigter Abstand zwischen den verschiedenen Sätzen.\\
-
-Lässt man eine Leerzeile und fügt sogar noch ein Doppel-Backslash \gans{\textbackslash\textbackslash} ans Ende des vorangestellten Abschnittes, so entsteht dieser Textabstand.
-
-Gerade zu Beginn eines Kapitels oder Abschnittes hilft manchmal der \gans{\textbackslash noindent}-Befehl um das Einrücken zu Beginn einer Passage zu verhindern.
+In dieser Arbeit wird die Modellbildung des Heliostatenfeldes und des Receivers vom Solarturm in Jülich vorgestellt.
+Außerdem wird eine modellprädiktive Regelung eingeführt, um die Luftaustrittstemperatur des Receivers unter Berücksichtigung zukünftiger Wolkenbedingungen zu regeln.
+Die Stellgrößen des Regelers sind einerseits der Luftmassenstrom im Receiver sowie andererseits drei Streuungsfaktoren, die jedem Heliostaten ihren individuellen Zielpunkt auf dem Receiver zuweisen.
+Die Strategie der Zielpunktverteilung basiert auf einer Veröffentlichung von García et al. \cite{Garcia2} und wurde differenzierbar approximiert.
+Zur Bewertung der Regelung wurde ein Refernzszenario aus der Literatur eingeführt und verschiedene Wolkenszenarien definiert.
+Die Güte der Regelung bemisst sich an der Abweichung der Luftaustrittstemperatur von der Referenztemperatur bei Nennlast.
+Die Simulation der Regelstrecke zeigt, dass bei abweichungsfreier Vorhersage des Nowcastings eine Verringerung dieser Abweichung von bis zu $\SI{86.4}{\percent}$ erreicht wird.
+Der Exergieeintrag in den Folgeprozess ist je nach Lichtdurchlässigkeit der Wolken um bis zu $\SI{19.2}{\percent}$ größer.
+Besonders bei geringer Verschattungsintensität ist die Regelung dabei sehr effektiv.
+Die Betriebssicherheit des Kraftwerkes wird maßgeblich durch die Oberflächentemperatur des Receivers beeinflusst.
+Eine Analyse fehlerhafter Wolkenprognosen zeigt, dass die Sicherheit für Vorhersagen der Wolkengeschwindigkeit von $\geq\SI{-11}{\percent}$ und für Vorhersagen der Lichtdurchlässigkeit von $\geq\SI{-5}{\percent}$ des Realwertes durch die Regelung gewährleistet ist.
+Auf Basis dieser Arbeit kann die Regelung durch zusätzliche Testszenarien und alternative Software verbessert und an der Realanlage getestet werden.

@@ -74,7 +74,7 @@ Die gewünschte Austrittstemperatur des Mediums bei Wolkendurchzug ist dabei ger
 Das in dieser Arbeit verwendete CSS unterscheidet sich von dieser Methode dahingehend, dass die Fokussierung der Heliostaten und der Luftmassenstrom gegenüber einem Gleichgewichtszustand bei Normalbetrieb konstant gehalten werden.
 Daher wäre mit den Einstellungen zum CSS bei wolkenlosen Bedingungen die identische Austrittstemperatur der Luft zu erwarten wie während regulärer Betriebsbedingungen.
 
-Exemplarisch ist dieser Betriebszustand bei Verschattung um $\SI{50}{\percent}$ bei einer Wolkengeschwindigkeit von $\SI{30}{\metre\per\second}$ in Abbildung \ref{fig_cloudstandby5030} dargestellt.
+Exemplarisch ist dieser Betriebszustand bei Verschattung von $\SI{50}{\percent}$ bei einer Wolkengeschwindigkeit von $\SI{30}{\metre\per\second}$ in Abbildung \ref{fig_cloudstandby5030} dargestellt.
 Da der Einstellwert und die Streuungsfaktoren konstant bleiben, sinkt die Einstrahlungsleistung auf dem Receiver und damit die Fronttemperatur des Absorbers und die Temperatur der austretenden Luft.
 Der größte Nachteil dieses Szenarios ist, dass durch die große Abweichung der Temperatur der Austrittsluft gegenüber der Nennlasttemperatur von $\SI{1013.15}{\kelvin}$ \cite[S.29]{HandbuchJülich} der Wirkungsgrad des jeweiligen Folgeprozesses sinkt (vgl. \cite[S.15ff]{DissGall}).
 Weiterhin erhöht eine möglichst konstante Temperatur die Langlebigkeit der Komponenten.
@@ -85,7 +85,7 @@ Im dargestellten Szenario liegt die Wurzel der mittleren quadratischen Abweichun
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/00_no_control/shading_120sec_50_30mps.png}}
-\caption[Exemplarischer Simulationsverlauf für das CSS bei Verschattung um $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit]{Exemplarischer Simulationsverlauf für das CSS bei Verschattung um $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit}
+\caption[Exemplarischer Simulationsverlauf für das CSS bei Verschattung von $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit]{Exemplarischer Simulationsverlauf für das CSS bei Verschattung von $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit}
     \label{fig_cloudstandby5030}
 \end{figure}
 
@@ -122,7 +122,7 @@ Dies ist das identische Szenario wie in Abbildung \ref{fig_cloudstandby5030} fü
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/01_mpc_all_information/shading_120sec_50_30mps.png}}
-    \caption[Exemplarischer Simulationsverlauf für den Normalbetrieb mit abweichungsfreier Einstrahlungsvorhersage bei Verschattung um $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit]{Exemplarischer Simulationsverlauf für den Normalbetrieb mit abweichungsfreier Einstrahlungsvorhersage bei Verschattung um $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit}
+\caption[Exemplarischer Simulationsverlauf für den Normalbetrieb mit abweichungsfreier Einstrahlungsvorhersage bei Verschattung von $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit]{Exemplarischer Simulationsverlauf für den Normalbetrieb mit abweichungsfreier Einstrahlungsvorhersage bei Verschattung von $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit}
     \label{fig_MPCallwissend5030}
 \end{figure}
 
@@ -202,7 +202,7 @@ Analog zu Abbildung \ref{fig_cloudstandby5030} und \ref{fig_MPCallwissend5030} z
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/02_mpc_thinking_clearsky/shading_120sec_50_30mps.png}}
-    \caption[Exemplarischer Simulationsverlauf ohne Einstrahlungsvorhersage bei Verschattung um $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit]{Exemplarischer Simulationsverlauf ohne Einstrahlungsvorhersage bei Verschattung um $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit}
+\caption[Exemplarischer Simulationsverlauf ohne Einstrahlungsvorhersage bei Verschattung von $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit]{Exemplarischer Simulationsverlauf ohne Einstrahlungsvorhersage bei Verschattung von $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit}
     \label{fig_unwissend5030}
 \end{figure}
 
@@ -232,7 +232,7 @@ Ein Vergleich der beiden vorgestellten Regelungen zeigt Tabelle \ref{tab_Verglei
 \begingroup
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[ht!]
-    \caption[Vergleich der Regelung mit abweichungsfreier Einstrahlungsvorhersage und der ohne Wolkenprädiktion]{Vergleich der Regelung mit abweichungsfreier Einstrahlungsvorhersage und der ohne Wolkenprädiktion}
+\caption[Vergleich der Regelung mit abweichungsfreier Einstrahlungsvorhersage und der Regelung ohne Wolkenprädiktion]{Vergleich der Regelung mit abweichungsfreier Einstrahlungsvorhersage und der Regelung ohne Wolkenprädiktion}
     \centering
     \begin{tabular}{>{\centering\arraybackslash}m{0.24\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}}
         \rowcolor{white}
@@ -269,7 +269,7 @@ Auffällig ist dabei aber auch in diesem Vergleich die hohe prozentuale Verbesse
 \begingroup
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[ht!]
-    \caption[Vergleich der Regelung mit abweichungsfreier Einstrahlungsvorhersage und der ohne Wolkenprädiktion]{Vergleich der Regelung mit abweichungsfreier Einstrahlungsvorhersage und der ohne Wolkenprädiktion}
+\caption[Vergleich der Regelung ohne Wolkenprädiktion und dem Cloud Standby Szenario]{Vergleich der Regelung ohne Wolkenprädiktion und dem Cloud Standby Szenario}
     \centering
     \begin{tabular}{>{\centering\arraybackslash}m{0.24\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}}
         \rowcolor{white}
@@ -359,7 +359,7 @@ Ist die Vorhersage der Abschattung jedoch mehr als $\SI{5}{\percent}$ zu gering,
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/20_analyze_shading_uncertainty/safe_simulations.png}}
-    \caption[Analyse der erlaubten Abweichung in der Prädiktion der Lichtdurchlässigkeit für die Lichtdurchlässigkeit von $\SI{30}{\metre\per\second}$]{Analyse der erlaubten Abweichung in der Prädiktion der Lichtdurchlässigkeit für die Lichtdurchlässigkeit von $\SI{30}{\metre\per\second}$}
+\caption[Analyse der erlaubten Abweichung in der Prädiktion der Lichtdurchlässigkeit für die Wolkengeschwindigkeit von $\SI{30}{\metre\per\second}$]{Analyse der erlaubten Abweichung in der Prädiktion der Lichtdurchlässigkeit für die Wolkengeschwindigkeit von $\SI{30}{\metre\per\second}$}
     \label{fig_shadingsafe}
 \end{figure}
 

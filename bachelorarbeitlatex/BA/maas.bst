@@ -481,7 +481,7 @@ FUNCTION {format.isbn}
 { isbn "isbn" bibinfo.check
   duplicate$ empty$ 'skip$
     {
-      "ISBN " swap$ *
+      "ISBN: " swap$ *
     }
   if$
 }
@@ -1269,7 +1269,7 @@ FUNCTION {begin.bib}
   write$ newline$
   "\providecommand{\url}[1]{\texttt{#1}}"
   write$ newline$
-  "\providecommand{\urlprefix}{[Online] verfügbar unter: }"
+  "\providecommand{\urlprefix}{Online verfügbar unter: }"
   write$ newline$
   "\input{babelbst.tex}" write$ newline$
   "\newcommand{\Capitalize}[1]{\uppercase{#1}}" write$ newline$

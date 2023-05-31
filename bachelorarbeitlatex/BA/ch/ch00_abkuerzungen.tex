@@ -7,51 +7,129 @@
 \section*{Griechische Symbole}
 \begin{table}[ht!]
     \centering
-\begin{tabular}{m{0.12\textwidth}m{0.68\textwidth}m{0.12\textwidth}}
+\begin{tabular}{m{0.15\textwidth}m{0.75\textwidth}}
         \rowcolor{white}
-Symbol   & Bedeutung          & Einheit  \\
+Symbol   & Bedeutung          \\
         \midrule
-$\alpha$ & Hilfswert zur Berechnung des Zielpunktabstandes     & $-$ \\
-$\HeatTransferCoefficientAbsorberBack$ & Wärmeübergangskoeffizient der Rückseite der Absorberwabe     & $\SI{}{\watt\per\metre\squared\per\kelvin}$ \\
-$\HeatTransferCoefficientAbsorberFront$ & Wärmeübergangskoeffizient der Vorderseite der Absorberwabe     & $\SI{}{\watt\per\metre\squared\per\kelvin}$ \\
-$\alpha_{\mathrm{i\to r}}$ & Wärmeübergangskoeffizient der Transportzone     & $\SI{}{\watt\per\metre\squared\per\kelvin}$ \\
-$\alpha_{\mathrm{sol}}$ & Absorptionskoeffizient     & $\SI{}{\watt\per\metre\squared\per\kelvin}$ \\
-$\beta$ & Lichteinfallswinkel & $\SI{}{\radian}$  \\
-$\epsilon$ & Emissionskoefizient & $\SI{}{\watt\per\metre\squared\per\kelvin}$  \\
-$\kappa$ & Streuungsfaktor & $-$  \\
-$\lambda_{\mathrm{cer}}$ & Wärmeleitfähigkeit der Keramik & $\SI{}{\watt\per\metre\per\kelvin}$  \\
-$\lambda_{\mathrm{comb}}$ & Wärmeleitfähigkeit der Absorberwabe & $\SI{}{\watt\per\metre\per\kelvin}$  \\
-$\lambda_{\mathrm{ins}}$ & Wärmeleitfähigkeit der Isolierung & $\SI{}{\watt\per\metre\per\kelvin}$  \\
-$\lambda_{\mathrm{pipe}}$ & Wärmeleitfähigkeit des Rohrs & $\SI{}{\watt\per\metre\per\kelvin}$  \\
-$\xi$ & Boltzmann-Konstante & $W/m^2$  \\
-$\xi_{\mathrm{rad}}$ & Boltzmann-Konstante & $W/m^2$  \\
-$\sigma$ & Boltzmann-Konstante & $W/m^2$  \\
-$\tau$ & Boltzmann-Konstante & $W/m^2$  \\
-$\phi$ & Boltzmann-Konstante & $W/m^2$  \\
+$\alpha$ & Hilfswert zur Berechnung des Zielpunktabstandes     \\
+$\HeatTransferCoefficientAbsorberBack$ & Wärmeübergangskoeffizient der Rückseite der Absorberwabe     \\
+$\HeatTransferCoefficientAbsorberFront$ & Wärmeübergangskoeffizient der Vorderseite der Absorberwabe      \\
+$\alpha_{\mathrm{i\to r}}$ & Wärmeübergangskoeffizient der Transportzone     \\
+$\alpha_{\mathrm{sol}}$ & Absorptionskoeffizient des Receivers    \\
+$\beta$ & Lichteinfallswinkel auf die Heliostaten \\
+$\epsilon$ & Emissionskoeffizient der Absorberoberfläche \\
+$\kappa$ & Streuungsfaktor der Zielpunktstrategie \\
+$\lambda_{\mathrm{cer}}$ & Wärmeleitfähigkeit der Keramik \\
+$\lambda_{\mathrm{comb}}$ & Wärmeleitfähigkeit der Absorberwabe  \\
+$\lambda_{\mathrm{ins}}$ & Wärmeleitfähigkeit der Isolierung   \\
+$\lambda_{\mathrm{pipe}}$ & Wärmeleitfähigkeit des Rohrs   \\
+$\xi$ & Slack Variable für soft constraints   \\
+$\xi_{\mathrm{rad}}$ & Gewichtungsfaktor zur Verteilung der Einstrahlungsleistung  \\
+$\sigma$ & Boltzmann-Konstante   \\
+$\tau$ & Diskrete Zeitpunkte auf den finiten Elementen der Kollokation   \\
+$\phi$ & Strahlungsfluss   \\
     \end{tabular}
 \end{table}
 \clearpage
 \newpage \vspace*{-1cm}
 
+\renewcommand{\arraystretch}{0.93}
 \section*{Lateinische Symbole}
-\begin{table}[ht!]
-    \centering
-\begin{tabular}{m{0.12\textwidth}m{0.68\textwidth}m{0.12\textwidth}}
-        \rowcolor{white}
-        Symbol               & Bedeutung                  & Einheit \\
-        \midrule
-        l                    & Länge                      & $m$     \\
-        y\textsubscript{ref} & Referenzmesswert           & $W/m^2$ \\
-        U\textsubscript{th}  & Thermoelektrische Spannung & $V$     \\
-    \end{tabular}
-\end{table}
+\begin{longtable}{p{0.15\textwidth}p{0.75\textwidth}}
+    Symbol                           & Bedeutung                                                        \\
+    \hline
+    \endfirsthead
+    Symbol                           & Bedeutung                                                        \\
+    \hline
+    \endhead
+    \endfoot
+    \endlastfoot
+    $A$                              & Fläche des Receivers                                             \\
+    $A_{\mathrm{abs}}$               & Oberfläche des Absorbers                                         \\
+    $A_{\mathrm{comb,back}}$         & Freiliegende Oberfläche der Rückseite der Absorberwabe           \\
+    $A_{\mathrm{comb,front}}$        & Freiliegende Oberfläche der Vorderseite der Absorberwabe         \\
+    $A_{\mathrm{i\to r}}$            & Oberfläche der Transportzone                                     \\
+    $A_{\mathrm{solid}}$             & Oberfläche des Absorbers abzüglich der Luftschlitze              \\
+    $c_{\mathrm{abs}}$               & Wärmekapazität des Absorbers                                     \\
+    $D$                              & Dämpfungsfaktor eines PT2-Gliedes                                \\
+    $d_{\mathrm{plate}}$             & Blendendurchmesser                                               \\
+    $\boldsymbol{e}$                 & Regelfehler                                                      \\
+    $F$                              & Flussdichte                                                      \\
+    $\SpecificEnthalpyTAmbient$      & Spezifische Enthalpie der Umgebungsluft                          \\
+    $\EnthalpyFlowTAmbient$          & Enthalpiestrom der Umgebungsluft                                 \\
+    $\SpecificEnthalpyTInlet{x}$     & Spezifische Enthalpie der Luft an der Stelle x                   \\
+    $\EnthalpyFlowTInlet{x}$         & Enthalpiestrom der Luft an der Stelle x                          \\
+    $h_{\mathrm{out}}$               & Spezifische Enthalpie der Austrittsluft                          \\
+    $\dot{H}_{\mathrm{out}}$         & Enthalpiestrom der Austrittsluft                                 \\
+    $\SpecificEnthalpyTReturn{x}$    & Spezifische Enthalpie der Rückführluft an der Stelle x           \\
+    $\EnthalpyFlowTReturn{x}$        & Enthalpiestrom der Rückführluft an der Stelle x                  \\
+    $\dot{H}_{\mathrm{sector}}$      & Enthalpiestrom eines Sektors                                     \\
+    $\boldsymbol{J}$                 & Kostenfunktion                                                   \\
+    $K_p$                            & Proportionalitätsfaktor eines PT2-Gliedes                        \\
+    $l_{\mathrm{comb}}$              & Tiefe der Absorberwabe                                           \\
+    $\MDotAbsorberCup$               & Luftmassenstrom durch einen Absorbercup                          \\
+    $m_{\mathrm{abs}}$               & Masse der Absorberwabe                                           \\
+    $\MDotReceiver$                  & Luftmassenstrom durch den gesamten Receiver                      \\
+    $N_1$                            & Oberer Regelungshorizont                                         \\
+    $N_2$                            & Prädiktionshorizont                                              \\
+    NE                               & Anzahl der finiten Elemente für die Kollokation                  \\
+    $N_u$                            & Unterer Regelungshorizont                                        \\
+    $\boldsymbol{p}$                 & Modellparameter                                                  \\
+    $P$                              & Hilfsgröße zur Bestimmung des Wärmeverlustes eines Headers       \\
+    $P_{\mathrm{sol}}$               & Absorbierte solare Einstrahlungsleistung                         \\
+    $\boldsymbol{p}_{tv}$            & Zeitveränderliche Modellparameter                                \\
+    $Q$                              & Strahlungsenergie                                                \\
+    $\QDotAbsorberCombBack$          & Wärmestrom in die Luft an der Vorderseite der Absorberwabe       \\
+    $\QDotAbsorberCombFront$         & Wärmestrom in die Luft an der Rückseite der Absorberwabe         \\
+    $\QDotConduction$                & Wärmeleitung von der Vorder- zur Rückseite der Absorberwabe      \\
+    $\QDotLossAbsorberCupInternal$   & Wärmeverlust der Transportzone                                   \\
+    $\QDotLossAbsorberCupConvective$ & Wärmeverlust der Absorberwabe durch Konvektion                   \\
+    $\QDotLoss{header}$              & Wärmeverlust eines Headers                                       \\
+    $\QDotLossAbsorberCupRadiative$  & Wärmeverlust durch Strahlung                                     \\
+    $\QDotLoss{tub}$                 & Wärmeverlust des Absorberkelches                                 \\
+    $\QDotLoss{tube,1}$              & Wärmeverlust des Rohrstücks inklusive Endstück des Kelches       \\
+    $\QDotLoss{tube,2}$              & Wärmeverlust des Rohrstücks exklusive Endstück des Kelches       \\
+    $\QDotSol$                       & Wärmestrom durch die solare Einstrahlung                         \\
+    $\boldsymbol{r}$                 & Referenztrajektorie                                              \\
+    $r$                              & Abstand zweier Zielpunkte                                        \\
+    $t$                              & Zeit                                                             \\
+    $T$                              & Zeitkonstante eines PT2-Gliedes                                  \\
+    $\TAbsorberBack$                 & Temperatur der Vorderseite der Absorberwabe                      \\
+    $\TAbsorberFront$                & Temperatur der Rückseite der Absorberwabe                        \\
+    $\TAmbient$                      & Temperatur der Umgebungsluft                                     \\
+    $\TInlet{x}$                     & Temperatur der Luft an der Stelle x                              \\
+    $T_{\mathrm{m,back}}$            & Mittlere Temperatur zwischen Mitte und Rückseite des Absorbers   \\
+    $T_{\mathrm{m,front}}$           & Mittlere Temperatur zwischen Vorderseite und Mitte des Absorbers \\
+    ${t_{\mathrm{max}}}^{(1)}$       & Zeit bis zum maximalen Überschwingen eines PT2-Gliedes           \\
+    ${t_{\mathrm{max}}}^{(2)}$       & Kritische Zeitspanne bis der Receiver beschädigt wird            \\
+    $\TReturn{x}$                    & Temperatur der Rückführluft an der Stelle x                      \\
+    $t_{\mathrm{settling}}$          & Ausregelzeit                                                     \\
+    $T_s$                            & Abtastzeit                                                       \\
+    $\boldsymbol{u}$                 & Stellgrößen                                                      \\
+    $\UDotAbsorberBack$              & Änderung der inneren Energie der Absorberwabenrückseite          \\
+    $\UDotAbsorberFront$             & Änderung der inneren Energie der Absorberwabenvorderseite        \\
+    $u_{\mathrm{setpoint}}$          & Einstellwert der Gebläse/Ventil Kombination                      \\
+    $\boldsymbol{w}$                 & Führungsgrößen                                                   \\
+    $w_T$                            & Gewichtungsfaktor zur Bestimmung der mittleren Temperaturen      \\
+    $\boldsymbol{W_{u}}$             & Gewichtungsmatrix für die Eingangsgrößen in der Kostenfunktion   \\
+    $\boldsymbol{W_{w}}$             & Gewichtungsmatrix für die Regelabweichung in der Kostenfunktion  \\
+    $\boldsymbol{W_{\xi}}$           & Gewcihtungsmatrix für die soft constraints in der Kostenfunktion \\
+    $\boldsymbol{x}$                 & Modellzustände                                                   \\
+    $x_{\mathrm{Cent}}$              & Schwerpunkt der Zielpunkte in x-Richtung  \\
+    $\boldsymbol{y}$                 & Ausgangsgrößen                                                   \\
+    $y_{\mathrm{Cent}}$              & Schwerpunkt der Zielpunkte in y-Richtung  \\
+    $\boldsymbol{z}^{(1)}$           & Algebraische Größen                                              \\
+    $\boldsymbol{z}^{(2)}$           & Störgrößen                                                       \\
+\end{longtable}
+
 \clearpage
 \newpage \vspace*{-1cm}
 
+\renewcommand{\arraystretch}{1.5}
 \section*{Abkürzungen}
 \begin{table}[ht!]
     \centering
-\begin{tabular}{m{0.2\textwidth}m{0.75\textwidth}}
+\begin{tabular}{m{0.15\textwidth}m{0.75\textwidth}}
         \rowcolor{white}
 Symbol & Bedeutung                                 \\
         \midrule
@@ -68,7 +146,8 @@ LQR     & Linear-Quadratischer Regler                    \\
 MHE     & Moving Horizon Estimation                     \\
 MIMO     & Multi Input Multi Output                     \\
 MISO     & Multi Input Single Output                     \\
-MPC / MPR     & Modellprädiktiver Regeler / Modellprädiktive Regelung                     \\
+MPC     & Modellprädiktiver Regeler / Modellprädiktive Regelung                     \\
+MPR     & Modellprädiktiver Regeler / Modellprädiktive Regelung                     \\
 NLP     & Nichtlineares Programm                     \\
 ODE     & Gewöhnliche Differentialgleichung                     \\
 PID     & Proportional-Integral-Differential                     \\

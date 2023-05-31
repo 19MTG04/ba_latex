@@ -44,7 +44,7 @@ Die Angaben zu den Grenzen der Fronttemperatur sowie dem Sollwert der Austrittst
 
 Die sogenannte Ausregelzeit zeigt, wie lange die Dauer zwischen dem Gleichgewichtszustand vor und nach der Anregung ist.
 Dabei wird nach \cite[S.223]{Zacher} eine Toleranz von $\SI{4}{\percent}$ angesetzt, um den Zeitpunkt zu ermitteln, bei dem der resultierende Gleichgewichtszustand erreicht wird.
-An der Temperatur der Austrittsluft in Abbildung \ref{fig_Sprungantwort} ist erkennbar, dass die Ausregelzeit des Modells bei $T_{\mathrm{settling}} = \SI{450}{\second}$ liegt.
+An der Temperatur der Austrittsluft in Abbildung \ref{fig_Sprungantwort} ist erkennbar, dass die Ausregelzeit des Modells bei $t_{\mathrm{settling}} = \SI{450}{\second}$ liegt.
 
 \section{Eigenschaften des Reglers} \label{sec_Reglereigenschaften}
 Zur effektiven Regelung des Modells wird nachfolgend ein geeigneter Reglertyp ausgewählt und parametrisiert.
@@ -111,7 +111,7 @@ Auf diese Weise steht dem Regler zur Optimierung die gesamte Systemdynamik von d
 Daran angepasst kann der Kontrollhorizont bestimmt werden.
 Dieser sollte $\SIrange{10}{20}{\percent}$ des Prädiktionshorizontes abdecken.
 
-Gemäß Kapitel \ref{subsec_Systemdynamik} wird der Prädiktionshorizont zunächst mit der Ausregelzeit $T_{\mathrm{settling}} = N_{2,\mathrm{initial}} = \SI{450}{\second}$ angenommen.
+Gemäß Kapitel \ref{subsec_Systemdynamik} wird der Prädiktionshorizont zunächst mit der Ausregelzeit $t_{\mathrm{settling}} = N_{2,\mathrm{initial}} = \SI{450}{\second}$ angenommen.
 Auf dieser Basis ergibt sich der obere Kontrollhorizont zu $N_u = 0.15\cdot N_{2,\mathrm{initial}} = \SI{60}{\second}$.
 Der untere Kontrollhorizont $N_1$ wird gleich $0$ gesetzt, sodass der Regler in jeder Iteration die Stellgrößen verändern und schnell auf äußere Änderungen reagieren kann.
 Da das Ziel der Arbeit die effektive Regelung bei kurzfristiger Änderung der solaren Einstrahlung darstellt, ist die Berechnung der Prädiktionen über einen Horizont von $\SI{7.5}{\minute}$ allerdings sehr hoch.

@@ -1,12 +1,20 @@
-\chapter{Zusammenfassung und Fazit} \label{ch_Fazit}
-In dieser Arbeit wurde ein thermisches Teilmodell zur Beschreibung der Luftaustrittstemperatur des Receivers am Solarturm in Jülich vorgestellt und um die Gebläsedynamik erweitert.
+\chapter{Zusammenfassung und Ausblick} \label{ch_Fazit}
+In dieser Arbeit wurde ein modellprädiktiver Regler für die Regelung der Luftaustrittstemperatur des Receivers am Solarturm in Jülich nach der Struktur von Skogestad und Postlethwaite \cite[S.1]{Skogestad} ausgelegt.
+Dazu wurde ein thermisches Teilmodell zur Beschreibung der Luftaustrittstemperatur des Receivers am Solarturm in Jülich vorgestellt und um die Gebläsedynamik erweitert.
 Zur Beschreibung der Zielpunktverteilung und des thermischen Einflusses auf den Receiver wurden weiterhin zwei optische Modelle entwickelt.
-Eines dieser Modelle dient dem Optimierungsprozess der Regelung und arbeitet mit einer simulierten Wolkenvorhersage, die in der Realität durch ein Nowcasting-System ersetzt werden kann.
+Diese basieren auf dem Zielpunktalgorithmus mit Ventil-Analogie nach García \cite{Garcia2}, welcher differenzierbar approximiert wurde.
+Eines dieser optischen Modelle dient der Optimierung der Regelung und arbeitet mit einer simulierten Wolkenvorhersage, die in der Realität durch ein Nowcasting-System ersetzt werden kann.
 Das andere optische Modell wurde zur Simulation des Solarturms entwickelt.
-Die optischen Modelle wurden mit dem thermischen Modell zu zwei verschiedenen Gesamtmodellen kombiniert.
+Die optischen Modelle wurden mit dem thermischen Modell zu zwei verschiedenen Gesamtmodellen kombiniert und mit dem Regler zu einem Regelkreis verknüpft.
 
-Weiterhin wurde ein modellprädiktiver Regler ausgelegt und mit den Modellen zu einem Regelkreis verknüpft.
-Für verschiedene Wolkenszenarien wurde die Regelgüte bezüglich der Abweichung der Luftaustrittstemperatur von dem entsprechenden Sollwert im Vergleich zu einem Referenzszenario bestimmt.
+Die Führungs- und die Ausgangsgröße der Regelung stellt die Temperatur des aus dem Receiver austretenden Enthalpiestroms dar.
+Stellgrößen sind dabei der Luftmassenstrom sowie drei Streuungsfaktoren, die jedem der Heliostaten einen individuellen Zielpunkt auf dem Receiver zuweisen.
+Als Rückführgrößen dienen vier in der Modellbildung eingeführte Zustände, die die Temperaturen der Vorder- und Rückseite der Absorberwaben sowie den Luftmassenstrom und dessen zeitliche Ableitung beschreiben.
+
+Für verschiedene Wolkenszenarien wurde die Regelgüte bezüglich der Abweichung der Luftaustrittstemperatur von dem entsprechenden Sollwert bestimmt.
+Zum Vergleich wird ein Referenzszenario aus der Literatur vorgestellt, welches besonders bei Receivern mit Salzschmelzen als Wärmeübertragungsmedium zum Einsatz kommt.
+Das sogenannte Cloud Standby Szenario zeichnet sich dadurch aus, dass die Stellgrößen des Systems für den Zeitraum des Wolkeneinflusses konstant bleiben.
+
 Zusätzlich wurde auch der Einfluss der Regelung auf den Exergieeintrag ins System analysiert.
 Durch die Regelung mit abweichungsfreier Wolkenprädiktion kann die Temperaturabweichung um $\SIrange{26.0}{86.4}{\percent}$ reduziert werden, wobei besonders für Wolkenszenarien mit moderater Abschattung gute Regelungsergebnisse erzielt werden.
 Der Exergieeintrag, der nicht direkt als Optimierungsgröße in die Kostenfunktion des Reglers einbezogen wird, schwankt gegenüber dem Referenzszenario zwischen $\SI{-0.8}{\percent}$ für vollständige Abschattung und $\SI{+19.2}{\percent}$ bei hoher Lichtdurchlässigkeit der Wolken.
@@ -24,23 +32,27 @@ Zusätzlich wird unter der aufgezeigten Toleranz der Genauigkeit des Nowcastings
 Wie in Kapitel \ref{sec_Hardsoftanalyse} erwähnt ist es mit der genutzen Hard- und Software nicht problemlos möglich, die Berechnung zu jedem Abtastzeitpunkt der Optimierung bis zur Konvergenz durchzuführen, da sonst Berechnungsdauern oberhalb der Abtastzeit erreicht werden.
 Eine Lösung dieses Problems könnte die Nutzung alternativer Solver sein.
 Auf der Grundlage dieser Arbeit können auch weitere Arbeiten zur Verbesserung der Regelung eines Solarturms durchgeführt werden.
-Einige dieser Ansätze zur weiteren Forschung werden nachträglich vorgestellt.
+Einige dieser Ansätze zur weiteren Forschung werden hier vorgestellt.
 
 \subsubsection*{Weitere Testszenarien}
 Der Regler wurde nur für einige Testfälle zur Wolkengeschwindigkeit und Verschattungsdauer getestet und kann daher in anderen Szenarien mit längerer Verschattungszeit oder anderer Wolkenrichtung womöglich schlechtere Ergebnisse liefern.
 Auch die Robustheit der Regelung bezüglich dieser Größen bei fehlerhafter Prädiktion des Nowcastings ist zu prüfen.
-Weiterhin wurde kein Test vorgenommen, der für mehrere gleichzeitig fehlerhaft vorhergesagte Parameter die Robustheit prüft.
+Weiterhin wurde kein Test vorgenommen, der für Modellfehler oder mehrere gleichzeitig fehlerhaft vorhergesagte Parameter die Robustheit prüft.
 
 \subsubsection*{Robuste MPC}
 Für Regelstrecken mit vorhergesagten Parametern ist die Implementierung einer robusten modellprädiktiven Regelung womöglich sinnvoll.
-Die Grundidee besteht darin, abhängig von als \gans{unsicher} deklarierten Variablen, verschiedene Modelle oder Modellparameter für die Berechnung in jedem Abtastzeitpunkt zu nutzen.
+Die Grundidee besteht darin, abhängig von mit Unsicherheit behafteten Variablen, verschiedene Modelle oder Modellparameter für die Berechnung in jedem Abtastzeitpunkt zu nutzen.
 Auf diese Weise steigt die Robustheit gegenüber Fehlern der Prädiktion, da die Optimierung bereits für verschiedene Szenarien der unsichereren Parameter durchgeführt wurde.
 Dies ist jedoch mit einem erhöhten Rechenaufwand verbunden \cite[S.6ff]{Schwenzer}.
 
 \subsubsection*{Implementierung der Regelung an der Realanlage}
 Die Validierung der Forschungsergebnisse dieser Arbeit soll am Solarturm in Jülich geschehen.
 Notwendige Teilschritte diesbezüglich wurden bereits in Kapitel \ref{sec_RealsystemRegelung} aufgeführt.
-Bei erfolgreicher Testung der Regelung kann diese für die allgemeinere Nutzung mit verschiedenen Receiver- und Heliostatentypen generalisiert werden.
+Besonders die Betrachtung von Sensorik und Aktorik sowie die Implementierung eines Zustandsbeobachters sind dafür nötig.
+
+\subsubsection*{Übertragung auf weitere Receivertypen}
+Bei erfolgreicher Testung der Regelung in Jülich kann diese für die allgemeinere Nutzung mit verschiedenen Receiver- und Heliostatentypen generalisiert werden.
+Das Ziel ist dabei, unabhängig von Wärmeübertragungsmedium und physikalischen Gegebenheiten des Solarturms eine effiziente Regelung des Kraftwerkes bei Wolkendurchzug zu gewährleisten.
 
 Zusammenfassend lässt die vorgestellte Regelung als vielversprechend bewerten.
 Allerdings bestehen noch viele Möglichkeiten für zukünftige Arbeiten zur Verbesserung und Erweiterung der Funktionalität.

@@ -1,13 +1,29 @@
-\chapter*{Kurzfassung / Abstract}
-In dieser Arbeit wird die Modellbildung des Heliostatenfeldes und des Receivers des Solarturms in Jülich vorgestellt.
-Außerdem wird eine modellprädiktive Regelung eingeführt, um die Luftaustrittstemperatur des Receivers unter Berücksichtigung zukünftiger Wolkenbedingungen zu regeln.
-Die Stellgrößen des Reglers sind einerseits der Luftmassenstrom im Receiver sowie andererseits drei Streuungsfaktoren, die jedem Heliostaten ihren individuellen Zielpunkt auf dem Receiver zuweisen.
-Die Strategie der Zielpunktverteilung basiert auf einer Veröffentlichung von García et al. \cite{Garcia2} und wurde differenzierbar approximiert.
-Zur Bewertung der Regelung wurde ein Referenzszenario aus der Literatur eingeführt und verschiedene Wolkenszenarien definiert.
+\chapter*{Kurzfassung}
+In dieser Arbeit wird eine modellprädiktive Regelung eingeführt, um die Luftaustrittstemperatur des Receivers am Solarturm in Jülich unter Berücksichtigung zukünftiger Wolkenbedingungen zu regeln.
+Zu diesem Zweck wird auch die Modellbildung des Heliostatenfeldes und des Receivers des Solarturms vorgestellt.
+Die Stellgrößen des Reglers sind der Luftmassenstrom im Receiver sowie drei Streuungsfaktoren, die jedem Heliostaten ihren individuellen Zielpunkt auf dem Receiver zuweisen.
+Die Strategie der Zielpunktverteilung basiert auf dem von García et al. veröffentlichten Algorithmus mit Ventil-Analogie \cite{Garcia2} und wurde differenzierbar approximiert.
+Zur Bewertung der Regelung wurde ein Referenzszenario aus der Literatur vorgestellt und verschiedene Wolkenszenarien definiert.
 Die Güte der Regelung bemisst sich an der Abweichung der Luftaustrittstemperatur von der Referenztemperatur bei Nennlast.
-Die Simulation der Regelstrecke zeigt, dass bei abweichungsfreier Vorhersage des Nowcastings eine Verringerung dieser Abweichung von bis zu $\SI{86.4}{\percent}$ erreicht wird.
+Die Simulation der Regelstrecke zeigt, dass bei exakter Wolkenvorhersage des Nowcastings eine Verringerung dieser Temperaturabweichung von bis zu $\SI{86.4}{\percent}$ erreicht wird.
 Der Exergieeintrag in den Folgeprozess ist je nach Lichtdurchlässigkeit der Wolken um bis zu $\SI{19.2}{\percent}$ größer als im Referenzszenario.
 Besonders bei geringer Verschattungsintensität ist die Regelung dabei sehr effektiv.
 Die Betriebssicherheit des Kraftwerkes wird maßgeblich durch die Oberflächentemperatur des Receivers beeinflusst.
 Eine Analyse fehlerhafter Wolkenprognosen zeigt, dass die Sicherheit für Vorhersagen der Wolkengeschwindigkeit von $\geq\SI{-11}{\percent}$ und für Vorhersagen der Lichtdurchlässigkeit von $\geq\SI{-5}{\percent}$ des Realwertes durch die Regelung gewährleistet ist.
+Prädiktionen schnellerer Wolken oder höherer Lichtdurchlässigkeiten als real auftretend stellen keine Gefahr für die Sicherheit des Kraftwerkes dar.
 Auf Basis dieser Arbeit kann die Regelung durch zusätzliche Testszenarien und alternative Software verbessert und an der Realanlage getestet werden.
+
+\chapter*{Abstract}
+In this work, a model predictive control is introduced to control the air outlet temperature of the receiver at the solar tower in Jülich considering future cloud conditions.
+For this purpose, the modeling of the heliostat field and the receiver of the solar tower is also presented.
+The manipulated variables of the controller are the air mass flow in the receiver and three dispersion factors, which assign each heliostat its individual target point on the receiver.
+The target point distribution strategy is based on the algorithm with valve analogy published by García et al \cite{Garcia2} and was differentially approximated.
+To evaluate the control, a reference scenario from the literature was presented and different cloud scenarios were defined.
+The quality of the control is measured by the deviation of the air outlet temperature from the reference temperature at nominal operation conditions.
+The simulation of the controlled system shows that a reduction of this temperature deviation of up to $\SI{86.4}{\percent}$ is achieved with accurate cloud prediction of the nowcasting.
+The exergy input to the downstream process is up to $\SI{19.2}{\percent}$ larger than in the reference scenario, depending on the light transmission of the clouds.
+Especially at low shading intensity, the control is very effectiv.
+The operational safety of the power plant is significantly influenced by the surface temperature of the receiver.
+An analysis of erroneous cloud predictions shows that the safety is ensured by the control for cloud speed predictions of $\geq\SI{-11}{\percent}$ and for light transmittance predictions of $\geq\SI{-5}{\percent}$ of the real value.
+Predictions of faster clouds or higher light transmittances than actually occur do not pose a threat to power plant safety.
+Based on this work, the control can be improved by additional test scenarios and alternative software and can be tested on the real plant.

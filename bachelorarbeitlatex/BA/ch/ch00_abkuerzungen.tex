@@ -7,27 +7,27 @@
 \section*{Griechische Symbole}
 \begin{table}[ht!]
     \centering
-\begin{tabular}{m{0.15\textwidth}m{0.75\textwidth}}
+    \begin{tabular}{m{0.15\textwidth}m{0.75\textwidth}}
         \rowcolor{white}
-Symbol   & Bedeutung          \\
+        Symbol                                  & Bedeutung                                                     \\
         \midrule
-$\alpha$ & Hilfswert zur Berechnung des Zielpunktabstandes     \\
-$\HeatTransferCoefficientAbsorberBack$ & Wärmeübergangskoeffizient der Rückseite der Absorberwabe     \\
-$\HeatTransferCoefficientAbsorberFront$ & Wärmeübergangskoeffizient der Vorderseite der Absorberwabe      \\
-$\alpha_{\mathrm{i\to r}}$ & Wärmeübergangskoeffizient der Transportzone     \\
-$\alpha_{\mathrm{sol}}$ & Absorptionskoeffizient des Receivers    \\
-$\beta$ & Lichteinfallswinkel auf die Heliostaten \\
-$\epsilon$ & Emissionskoeffizient der Absorberoberfläche \\
-$\kappa$ & Streuungsfaktor der Zielpunktstrategie \\
-$\lambda_{\mathrm{cer}}$ & Wärmeleitfähigkeit der Keramik \\
-$\lambda_{\mathrm{comb}}$ & Wärmeleitfähigkeit der Absorberwabe  \\
-$\lambda_{\mathrm{ins}}$ & Wärmeleitfähigkeit der Isolierung   \\
-$\lambda_{\mathrm{pipe}}$ & Wärmeleitfähigkeit des Rohrs   \\
-$\xi$ & Slack Variable für soft constraints   \\
-$\xi_{\mathrm{rad}}$ & Gewichtungsfaktor zur Verteilung der Einstrahlungsleistung  \\
-$\sigma$ & Boltzmann-Konstante   \\
-$\tau$ & Diskrete Zeitpunkte auf den finiten Elementen der Kollokation   \\
-$\phi$ & Strahlungsfluss   \\
+        $\alpha$                                & Hilfswert zur Berechnung des Zielpunktabstandes               \\
+        $\HeatTransferCoefficientAbsorberBack$  & Wärmeübergangskoeffizient der Rückseite der Absorberwabe      \\
+        $\HeatTransferCoefficientAbsorberFront$ & Wärmeübergangskoeffizient der Vorderseite der Absorberwabe    \\
+        $\alpha_{\mathrm{i\to r}}$              & Wärmeübergangskoeffizient der Transportzone                   \\
+        $\alpha_{\mathrm{sol}}$                 & Absorptionskoeffizient des Receivers                          \\
+        $\beta$                                 & Lichteinfallswinkel auf die Heliostaten                       \\
+        $\epsilon$                              & Emissionskoeffizient der Absorberoberfläche                   \\
+        $\kappa$                                & Streuungsfaktor der Zielpunktstrategie                        \\
+        $\lambda_{\mathrm{cer}}$                & Wärmeleitfähigkeit der Keramik                                \\
+        $\lambda_{\mathrm{comb}}$               & Wärmeleitfähigkeit der Absorberwabe                           \\
+        $\lambda_{\mathrm{ins}}$                & Wärmeleitfähigkeit der Isolierung                             \\
+        $\lambda_{\mathrm{pipe}}$               & Wärmeleitfähigkeit des Rohrs                                  \\
+        $\xi$                                   & Slack Variable für soft constraints                           \\
+        $\xi_{\mathrm{rad}}$                    & Gewichtungsfaktor zur Verteilung der Einstrahlungsleistung    \\
+        $\sigma$                                & Boltzmann-Konstante                                           \\
+        $\tau$                                  & Diskrete Zeitpunkte auf den finiten Elementen der Kollokation \\
+        $\phi$                                  & Strahlungsfluss                                               \\
     \end{tabular}
 \end{table}
 \clearpage
@@ -103,21 +103,20 @@ $\phi$ & Strahlungsfluss   \\
     ${t_{\mathrm{max}}}^{(1)}$       & Zeit bis zum maximalen Überschwingen eines PT2-Gliedes           \\
     ${t_{\mathrm{max}}}^{(2)}$       & Kritische Zeitspanne bis der Receiver beschädigt wird            \\
     $\TReturn{x}$                    & Temperatur der Rückführluft an der Stelle x                      \\
-    $t_{\mathrm{settling}}$          & Ausregelzeit                                                     \\
+    $t_{\mathrm{settling}}$          & Einschwingzeit                                                   \\
     $T_s$                            & Abtastzeit                                                       \\
     $\boldsymbol{u}$                 & Stellgrößen                                                      \\
     $\UDotAbsorberBack$              & Änderung der inneren Energie der Absorberwabenrückseite          \\
     $\UDotAbsorberFront$             & Änderung der inneren Energie der Absorberwabenvorderseite        \\
     $u_{\mathrm{setpoint}}$          & Einstellwert der Gebläse/Ventil Kombination                      \\
-    $\boldsymbol{w}$                 & Führungsgrößen                                                   \\
     $w_T$                            & Gewichtungsfaktor zur Bestimmung der mittleren Temperaturen      \\
     $\boldsymbol{W_{u}}$             & Gewichtungsmatrix für die Eingangsgrößen in der Kostenfunktion   \\
     $\boldsymbol{W_{w}}$             & Gewichtungsmatrix für die Regelabweichung in der Kostenfunktion  \\
     $\boldsymbol{W_{\xi}}$           & Gewcihtungsmatrix für die soft constraints in der Kostenfunktion \\
     $\boldsymbol{x}$                 & Modellzustände                                                   \\
-    $x_{\mathrm{Cent}}$              & Schwerpunkt der Zielpunkte in x-Richtung  \\
+    $x_{\mathrm{Cent}}$              & Schwerpunkt der Zielpunkte in x-Richtung                         \\
     $\boldsymbol{y}$                 & Ausgangsgrößen                                                   \\
-    $y_{\mathrm{Cent}}$              & Schwerpunkt der Zielpunkte in y-Richtung  \\
+    $y_{\mathrm{Cent}}$              & Schwerpunkt der Zielpunkte in y-Richtung                         \\
     $\boldsymbol{z}^{(1)}$           & Algebraische Größen                                              \\
     $\boldsymbol{z}^{(2)}$           & Störgrößen                                                       \\
 \end{longtable}
@@ -129,33 +128,33 @@ $\phi$ & Strahlungsfluss   \\
 \section*{Abkürzungen}
 \begin{table}[ht!]
     \centering
-\begin{tabular}{m{0.15\textwidth}m{0.75\textwidth}}
+    \begin{tabular}{m{0.15\textwidth}m{0.75\textwidth}}
         \rowcolor{white}
-Symbol & Bedeutung                                 \\
+        Symbol & Bedeutung                                             \\
         \midrule
-arr    & air return ratio \\
-ASI     & All-sky imager                     \\
-CSS     & Cloud Standby Szenario                    \\
-DAE     & Algebraische Gleichung                    \\
-DAPS     & Dynamic Aimpoint Processing System                     \\
-DLR     & Deutsches Zentrum für Luft- und Raumfahrt                    \\
-DNI     & Direct Normal Irradiation                     \\
-EU     & Europäische Union                     \\
-IPOPT     & Interior Point Optimizer                     \\
-LQR     & Linear-Quadratischer Regler                    \\
-MHE     & Moving Horizon Estimation                     \\
-MIMO     & Multi Input Multi Output                     \\
-MISO     & Multi Input Single Output                     \\
-MPC     & Modellprädiktiver Regeler / Modellprädiktive Regelung                     \\
-MPR     & Modellprädiktiver Regeler / Modellprädiktive Regelung                     \\
-NLP     & Nichtlineares Programm                     \\
-ODE     & Gewöhnliche Differentialgleichung                     \\
-PID     & Proportional-Integral-Differential                     \\
-RAM     & Random Access Memory                     \\
-RMSE     & Root Mean Squared Error                     \\
-SISO     & Single Input Single Output                     \\
-STRAL     & Solar Tower Raytracing Laboratory                     \\
-TH     & Technische Hochschule                     \\
+        arr    & air return ratio                                      \\
+        ASI    & All-sky imager                                        \\
+        CSS    & Cloud Standby Szenario                                \\
+        DAE    & Algebraische Gleichung                                \\
+        DAPS   & Dynamic Aimpoint Processing System                    \\
+        DLR    & Deutsches Zentrum für Luft- und Raumfahrt             \\
+        DNI    & Direct Normal Irradiation                             \\
+        EU     & Europäische Union                                     \\
+        IPOPT  & Interior Point Optimizer                              \\
+        LQR    & Linear-Quadratischer Regler                           \\
+        MHE    & Moving Horizon Estimation                             \\
+        MIMO   & Multi Input Multi Output                              \\
+        MISO   & Multi Input Single Output                             \\
+        MPC    & Modellprädiktiver Regeler / Modellprädiktive Regelung \\
+        MPR    & Modellprädiktiver Regeler / Modellprädiktive Regelung \\
+        NLP    & Nichtlineares Programm                                \\
+        ODE    & Gewöhnliche Differentialgleichung                     \\
+        PID    & Proportional-Integral-Differential                    \\
+        RAM    & Random Access Memory                                  \\
+        RMSE   & Root Mean Squared Error                               \\
+        SISO   & Single Input Single Output                            \\
+        STRAL  & Solar Tower Raytracing Laboratory                     \\
+        TH     & Technische Hochschule                                 \\
     \end{tabular}
 \end{table}
 \clearpage

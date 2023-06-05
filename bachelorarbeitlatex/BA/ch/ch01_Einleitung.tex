@@ -5,23 +5,26 @@ Im März 2023 wurde eine vorläufige politische Einigung erzielt, den Anteil ern
 Im Jahr 2021 betrug dieser Anteil $\SI{21.8}{\percent}$ \cite{Destatis}, was nahezu eine Verdopplung des Anteils in den nächsten 7 Jahren erforderlich macht.
 
 Im Bereich der Solarenergie werden verschiedene Technologien zur Stromerzeugung eingesetzt, darunter Photovoltaik, Parabolrinnen oder Solartürme.
-Letztere können aufgrund der großen Temperaturen einen höheren theoretischen Gesamtwirkungsgrad erreichen, sind kostengünstig skalierbar und bieten eine Möglichkeit der Energiespeicherung, um Lastschwankungen auszugleichen \cite{Breeze}.
+Letztere können aufgrund der hohen Temperaturen einen höheren theoretischen Gesamtwirkungsgrad erreichen, sind kostengünstig skalierbar und bieten eine Möglichkeit der Energiespeicherung, um Lastschwankungen auszugleichen \cite{Breeze}.
 Diese Vorteile machen Solartürme zu einer vielversprechenden Technologie zur nachhaltigen Stromgewinnung.
 
 In einem Solarturmkraftwerk erfolgt die Stromerzeugung durch Konzentration von Sonnenlicht mittels zahlreicher beweglicher Spiegel auf einen Receiver im Turm.
 Die thermische Energie des Sonnenlichtes wird von einem Wärmeträgermedium im Receiver absorbiert.
-Das erhitzte Medium wird klassischerweise zur Stromerzeugung in einem Dampfkraftprozess, aber auch aber für andere Hochtemperaturanwendungen verwendet.
+Das erhitzte Medium wird klassischerweise zur Stromerzeugung in einem Dampfkraftprozess, aber auch für andere Hochtemperaturanwendungen verwendet.
 
 Weltweit existieren zurzeit 28 Solarturmkraftwerke, von denen 25 betriebsbereit sind \cite{NREL1}.
 Das größte seiner Art ist das Ivanpah-Kraftwerk mit einer installierten Leistung von $\SI{377}{\mega\watt}$ \cite{NREL2}.
-In Deutschland existiert derzeit nur ein Versuchskraftwerk in Jülich mit $\SI{1.5}{\mega\watt}$ Nennleistung \cite{NREL3}.
-Drei weitere Kraftwerke mit jeweils rund $\SI{100}{\mega\watt}$ Leistung werden aktuell in China, Südafrika und den vereinigten arabischen Emiraten gebaut \cite{NREL4}.
+In Deutschland existiert ein Versuchskraftwerk in Jülich mit $\SI{1.5}{\mega\watt}$ Nennleistung \cite{NREL3}.
+Drei weitere Kraftwerke mit jeweils rund $\SI{100}{\mega\watt}$ Leistung werden aktuell in China, Südafrika und den Vereinigten Arabischen Emiraten gebaut \cite{NREL4}.
 
 Um die Wirtschaftlichkeit von Solarturmkraftwerken zu verbessern und dadurch ihren Ausbau voranzutreiben, ist es von großer Bedeutung den Wirkungsgrad zu erhöhen, ohne die Sicherheit der Kraftwerkskomponenten zu gefährden.
 Wolkendurchzug und damit einhergehende Verschattung ist hierbei eine schwer beherrschbare Störgröße und führt zu ineffizientem Betrieb.
+Weiterhin können durch unzureichende Regeleingriffe bei Verschattung physikalische Limitierungen, wie die thermische Spannung einzelner Bauteile, überschritten werden.
+
 Aufgrund dynamischer Änderungen der Einstrahlung während des Betriebs ist daher eine Regelung erforderlich, die auf Abschattung des Heliostatenfeldes reagieren kann.
 In der Literatur wird die Regelung des Massenstroms des Wärmeträgermediums oder die Regelung der Zielpunkte der Spiegel zur Lösung dieser Problematik vorgeschlagen.
-Es gibt jedoch nur wenige Ansätze, die eine gemeinsame Betrachtung beider Stellgrößen umfassen.
+In Kraftwerken mit Salzschmelzen als Wärmeübertragungsmedium ist das Cloud Standby Szenario gängige\linebreak Praxis, bei dem während des Wolkendurchzugs keine Regelung stattfindet und die Stellgrößen auf einem vorkalkulierten Wert konstant gehalten werden \cite[S.25ff]{Zavoico}.
+Es gibt nur wenige Ansätze, die eine gemeinsame Betrachtung der Zielpunkt- und Massenstromregelung umfassen, obwohl auf diese Weise der effizienteste Kraftwerksbetrieb zu erwarten ist.
 
 
 \section{Zielsetzung} \label{sec_Zielsetzung}
@@ -31,9 +34,9 @@ Weiterhin sollen Schäden am Receiver vermieden werden, indem die maximale Oberf
 Zur Vorhersage lokaler Wolkenbedingungen wird ein Nowcasting-System verwendet, welches die solare Einstrahlung auf die Spiegel vorhersagt.
 Diese Prädiktionen sollen in die Regelung einbezogen werden können.
 
-Da klassische Regelverfahren nicht unter Berücksichtigung zukünftiger Modellparameter rechnen, ist ein alternatives Regelverfahren erforderlich.
+Da klassische Regelverfahren nicht unter Berücksichtigung zukünftiger Störgrößen rechnen, ist ein alternatives Regelverfahren erforderlich.
 Dieses soll auch bei Abweichung der Wolkenvorhersage von den tatsächlich eintretenden Einstrahlungsbedingungen eine sichere Regelung des Kraftwerkes gewährleisten.
-Ein solcher Regler wird im Rahmen dieser Arbeit ausgewählt und parametrisiert.
+Ein solcher Regler wird im Rahmen dieser Arbeit entworfen und parametrisiert.
 Neben der Analyse der Regelungsgüte unter verschieden Wolkenszenarien ist auch die Robustheit gegenüber Fehlern des Nowcastings zu untersuchen.
 
 Um eine Regelung zu entwickeln, die den oben genannten Anforderungen gerecht wird, folgt diese Arbeit im Wesentlichen dem Prozess des Regelungsentwurfes, wie er von Skogestad und Postlethwaite in \cite[S.1]{Skogestad} beschrieben wird.
@@ -52,8 +55,8 @@ Der für diese Arbeit leicht angepasste Prozess des Regelungsentwurfes umfasst d
 
 \section{Struktur der Arbeit} \label{sec_Struktur}
 Die vorliegende Arbeit besteht aus sechs Teilen.
-Im Hinblick auf den Prozess des Entwurfs eines Regelungssystems wurden in diesem Kapitel bereits die Regelungsziele festge-\linebreak legt (Schritt 1).
-Kapitel \ref{ch_StandTechnik} gibt eine Einführung in das Solarturmkraftwerk und erläutert die Grundlagen der Regelungstheorie.
+Mit Hinblick auf den Prozess des Entwurfs eines Regelungssystems wurden in diesem Kapitel bereits die Regelungsziele festge-\linebreak legt (Schritt 1).
+Kapitel \ref{ch_StandTechnik} gibt eine Einführung in die Technologie der Solarturmkraftwerke und erläutert die Grundlagen der Regelungstheorie.
 Darüber hinaus werden in diesem Teil Strategien zur Zielpunktregelung aus der Literatur vorgestellt und die initiale Modellbildung des Receivers in Jülich erläutert.
 Darauf aufbauend wird in Kapitel \ref{ch_Modellbildung} die Modellbildung des Solarturmkraftwerkes vervollständigt (Schritt 2).
 Anschließend werden in Kapitel \ref{ch_Reglerentwurf} die resultierenden Modelleigenschaften untersucht (Schritt 3) und Ausgangs-, Stell- und Rückführgrößen definiert (Schritt 4 und 5).

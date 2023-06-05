@@ -2,17 +2,45 @@
 Nachfolgend wird die in Kapitel \ref{ch_Reglerentwurf} vorgestellte Regelung analysiert.
 Zunächst wird die genutzte Hard- und Software vorgestellt, bevor anschließend repräsentative Wolkenfälle definiert werden.
 Mithilfe eines Referenzszenarios bezüglich der Regelung aus der Literatur kann die Güte der modellprädiktiven Regelung bestimmt werden.
-Analysiert wird, ob die thermischen Spannungen der Receiverfront die Grenzwerte überschreiten, wie stark die Temperatur des austretenden Enthalpiestroms bei Wolkeneinfluss vom Referenzwert abweicht und wie hoch der Exergieeintrag in den Folgeprozess ist.
+Analysiert wird, ob die Temperatur der Receiverfront einen festgelegten Grenzwert überschreitet, wie stark die Temperatur des austretenden Enthalpiestroms bei Wolkeneinfluss vom Referenzwert abweicht und wie hoch der Exergieeintrag in den Folgeprozess ist.
 Dabei werden einerseits Simulationen untersucht, bei denen der Regler abweichungsfreie Kenntnis über die Einstrahlung besitzt, sowie andererseits solche, bei denen kein Nowcasting genutzt wird.
 Abschließend wird die notwendige Güte der Wolkenvorhersage bezüglich der Wolkengeschwindigkeiten und der Lichtdurchlässigkeit ermittelt.
 
 Die in Jülich vorliegenden Einschränkungen bezüglich der thermischen Maximalbelastungen des Receivers werden dem Betriebshandbuch entnommen (vgl. Kapitel \ref{subsubsec_constraints}).
-Dort wird die maximale lokale Temperatur der Absorberfläche, welche direkt von der Flussdichte $\phi$ abhängig ist, mit $\SI{1275.15}{\kelvin}$ angegeben \cite[S.29]{HandbuchJülich}. Dieser Wert dient in den Simulationen als Indikator für eine erfolgreiche Regelung, welche die Einhaltung dieses Limits als Grundvoraussetzung beinhaltet.
+Dort wird die maximale lokale Temperatur der Absorberfläche mit $\SI{1275.15}{\kelvin}$ angegeben \cite[S.29]{HandbuchJülich}. Dieser Wert dient in den Simulationen als Indikator für eine erfolgreiche Regelung, welche die Einhaltung dieses Limits als Grundvoraussetzung beinhaltet.
 
 \section{Verwendete Hard- und Software} \label{sec_Hardsoftanalyse}
 Die in Kapitel \ref{ch_Modellbildung} vorgestellte Modellbildung wird vollständig in do-mpc (siehe Kapitel \ref{sec_HardSoftware}) realisiert und ausgewertet.
 Die Berechnung erfolgt mittels der Optimierungssoftware IPOPT (\textbf{I}nterior \textbf{P}oint \textbf{OPT}imizer) in Kombination mit dem HSL ma27 solver.
 Aufgrund der Größe des Optimierungsproblems wird die Optimierung nach 100 Iterationsschritten ohne Konvergenz abgebrochen, um die maximale Berechnungsdauer der Optimierung nicht zu überschreiten und quasistatisches Verhalten voraussetzen zu können (vgl. Kapitel \ref{subsubsec_sampletime}).
+Für den Fall, dass die Optimierung nicht konvergiert, werden die in der letzten Iteration berechneten Stellgrößen an das System übergeben.
+
+Die Konvergenz ist erreicht, wenn der Optimierungsfehler 10 Iterationen am Stück einen Wert von $\SI{5e-3}{}$ unterschreitet.
+Während der Optimierung werden die Hesse-Matrizen nach Newton approximiert, um die Berechnungsdauer so gering wie möglich zu halten.
+Diese Approximation wird, mit Ausnahme der Slack Variablen, auf alle Variablen des Systems angewandt.
+Die verwendeten Einstellungen können Tabelle \ref{tab_IPOPT} entnommen werden.
+
+\begingroup
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[ht!]
+    \caption[Übersicht der verwendeten Einstellungen in IPOPT]{Übersicht der verwendeten Einstellungen in IPOPT}
+    \centering
+    \begin{tabular}{m{0.5\textwidth}m{0.3\textwidth}}
+        \rowcolor{white}
+        \toprule
+        IPOPT-Einstellung (gemäß \cite{IPOPT}) & Wert             \\
+        \midrule
+        linear_solver                          & ma27             \\
+        max_iter                               & 100              \\
+        accepatable_tol                        & $\SI{5e-3}{}$    \\
+        acceptable_iter                        & 10               \\
+        hessian_approximation                  & 'limited-memory' \\
+        hessian_approximation_space            & 'all-variables'  \\
+        \toprule
+    \end{tabular}
+    \label{tab_IPOPT}
+\end{table}
+\endgroup
 
 Die Simulationen werden auf einem 4-Kern Intel Core i7-1185G7 Prozessor mit einem Basistakt von 3,0 GHz durchgeführt.
 Als Arbeitsspeicher stehen 16 GB RAM mit 4267 MHz zur Verfügung.
@@ -30,6 +58,7 @@ Ein Parameter des Szenarios ist dabei die Intensität des Einstrahlungseinbruche
 Diese ist davon abhängig, wie hoch die Lichtdurchlässigkeit der Wolken und der Anteil der verschatteten Heliostaten ist.
 Weiterhin ist die Dauer der Verschattung (\textit{duration}) zu definieren; diese beschreibt den Zeitraum zwischen dem Beginn der Verschattung des Heliostatfeldes und dem Beginn des Abklingens dieser Verschattung.
 Zuletzt ist auch die Wolkengeschwindigkeit relevant, welche indirekt die Zeitspanne beschreibt, bis die Verschattungsintensität ihr Maximum erreicht (\textit{ramp length}).
+Es ist zu erwähnen, dass die für diese Szenarien definierte Wolkengeschwindigkeit keinen Einfluss auf die Verschattungsdauer nimmt, sondern lediglich bestimmt, wie lange das Absinken bzw. der Anstieg der Einstrahlung über dem Heliostatenfeld dauert.
 In Abbildung \ref{fig_TestszenarioWolken} ist die solare Einstrahlung über der Zeit für ein solches Wolkenszenario mit einer Gesamtabschattung von $\SI{75}{\percent}$ zu sehen.
 Diese kann beispielsweise Auftreten, wenn das gesamte Heliostatenfeld verschattet wird und die Lichtdurchlässigkeit der Wolken $\SI{25}{\percent}$ beträgt.
 
@@ -37,10 +66,10 @@ Diese kann beispielsweise Auftreten, wenn das gesamte Heliostatenfeld verschatte
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.92\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/23_cloud_scenarios/cloud_sceanrio_clarification_modified.png}}
+\fbox{\includegraphics[width=0.87\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/23_cloud_scenarios/cloud_sceanrio_clarification_modified.png}}
     \caption[Visualisierung eines beispielhaften Wolkenszenarios]{Visualisierung eines beispielhaften Wolkenszenarios (gemäß \cite[S.62]{DissHirsch})}
     \label{fig_TestszenarioWolken}
-\end{figure}
+\end{figure} \pagebreak
 
 Zur Identifizierung realistischer Wolkenszenarien werden Windmessungen auf der PSA (Plataforma Solar de Almería) in Spanien zur Hilfe genommen.
 In Messungen von 2016 und 2017 wurden die Messergebnisse in Gruppen mit einer Breite von $\SI{3}{\metre\per\second}$ eingeteilt.
@@ -50,7 +79,7 @@ Die relative Häufigkeit dieser Windgeschwindigkeiten zeigt Abbildung \ref{fig_W
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/23_cloud_scenarios/windspeed_measurements.png}}
+\fbox{\includegraphics[width=0.87\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/23_cloud_scenarios/windspeed_measurements.png}}
     \caption[Relative Häufigkeit der Windgeschwindigkeiten auf der PSA 2016 und 2017]{Relative Häufigkeit der Windgeschwindigkeiten auf der PSA 2016 und 2017}
     \label{fig_Windklassen}
 \end{figure}
@@ -65,27 +94,29 @@ Durch diese Annahme wird hiermit die kritischste Zugrichtung simuliert, da die f
 Die Verschattungsdauer wird auf $\SI{120}{\second}$ festgelegt.
 
 \section{Referenzszenario} \label{sec_Referenzszenario}
-Als Referenzszenario wird ein sogenanntes \gans{Cloud Standby} Szenraio (nachfolgend CSS genannt) nach dem von Zavoico \cite[S.25ff]{Zavoico} vorgestellten Vorbild eingeführt.
+Als Referenzszenario wird ein sogenanntes \gans{Cloud Standby} Szenraio (nachfolgend CSS genannt) nach dem von Zavoico \cite[S.25ff]{Zavoico} vorgestellten Vorbild eingeführt, welches besonders für Receiver mit Salzschmelzen als Wärmeübertragungsmedium genutzt wird.
 Dieses dient dazu, die Güte der vorgestellten Regelung gegenüber einem in der Literatur erprobten Verfahren einschätzen zu können.
 Zavoico beschreibt das Cloud Standby als Szenario, das bei Wolkendurchzug über dem Heliostatenfeld einsetzt.
 Dabei werden alle verfügbaren Heliostaten auf vorberechnete Zielpunkte fokussiert und der Massenstrom so eingestellt, dass das Medium bei wolkenlosen Bedingungen mit einer bestimmten Temperatur austreten würde.
 Die gewünschte Austrittstemperatur des Mediums bei Wolkendurchzug ist dabei geringer als während des Normalbetriebs.
 
-Das in dieser Arbeit verwendete CSS unterscheidet sich von dieser Methode dahingehend, dass die Fokussierung der Heliostaten und der Luftmassenstrom gegenüber einem Gleichgewichtszustand bei Normalbetrieb konstant gehalten werden.
-Daher wäre mit den Einstellungen zum CSS bei wolkenlosen Bedingungen die identische Austrittstemperatur der Luft zu erwarten wie während regulärer Betriebsbedingungen.
+Das in dieser Arbeit verwendete CSS unterscheidet sich von dieser Methode dahingehend, dass die Fokussierung der Heliostaten und der Luftmassenstrom konstant gehalten werden.
+Daher wäre mit den Einstellungen zum CSS bei wolkenlosen Bedingungen die identische Austrittstemperatur der Luft zu erwarten wie während regulärer Betriebsbedingungen, anders als im CSS nach Zavoico.
 
 Exemplarisch ist dieser Betriebszustand bei Verschattung von $\SI{50}{\percent}$ bei einer Wolkengeschwindigkeit von $\SI{30}{\metre\per\second}$ in Abbildung \ref{fig_cloudstandby5030} dargestellt.
 Da der Einstellwert und die Streuungsfaktoren konstant bleiben, sinkt die Einstrahlungsleistung auf dem Receiver und damit die Fronttemperatur des Absorbers und die Temperatur der austretenden Luft.
+Der Exergieeintrag in den Folgeprozess errechnet sich aus der Entahlpie des austretenden Luftmassenstroms bezogen auf die Umgebungstemperatur.
+
 Der größte Nachteil dieses Szenarios ist, dass durch die große Abweichung der Temperatur der Austrittsluft gegenüber der Nennlasttemperatur von $\SI{1013.15}{\kelvin}$ \cite[S.29]{HandbuchJülich} der Wirkungsgrad des jeweiligen Folgeprozesses sinkt (vgl. \cite[S.15ff]{DissGall}).
-Weiterhin erhöht eine möglichst konstante Temperatur die Langlebigkeit der Komponenten.
-Im dargestellten Szenario liegt die Wurzel der mittleren quadratischen Abweichung zwischen Luftaustrittstemperatur und Referenzwert bei $\SI{62.6}{\kelvin}$.
+Weiterhin erhöht eine möglichst konstante Temperatur die Langlebigkeit der Komponenten \cite{DissUtz}.
+Im dargestellten Szenario liegt die Wurzel der mittleren quadratischen Abweichung zwischen Luftaustrittstemperatur und Referenzwert über die gesamte Simulationsdauer von $\SI{395}{\second}$ bei $\SI{62.6}{\kelvin}$.
 
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/00_no_control/shading_120sec_50_30mps.png}}
-\caption[Exemplarischer Simulationsverlauf für das CSS bei Verschattung von $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit]{Exemplarischer Simulationsverlauf für das CSS bei Verschattung von $\SI{50}{\percent}$ und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit}
+\caption[Simulation des CSS bei $\SI{50}{\percent}$ Abschattung und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit]{Simulation des CSS bei $\SI{50}{\percent}$ Abschattung und $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit}
     \label{fig_cloudstandby5030}
 \end{figure}
 
@@ -93,12 +124,13 @@ Abbildung \ref{fig_RMSEcloudstandby} zeigt den RMSE der Temperaturabweichungen f
 Es ist erkennbar, dass der RMSE maßgeblich von der Stärke der Verschattung abhängig ist.
 Durch die konstanten Systemeingangsgrößen ergibt sich ein nahezu linearer Zusammenhang zwischen Verschattungsintensität und Temperaturabweichung.
 
+\enlargethispage{2\baselineskip}
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
-    \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/22_compare_controller_RMSE/00_no_control.png}}
-\caption[Analyse des RMSE der Temperaturabweichungen für das CSS bei unterschiedlichen Wolkenfällen]{Analyse des RMSE der Temperaturabweichungen für das CSS bei unterschiedlichen Wolkenfällen}
+\fbox{\includegraphics[width=0.92\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/22_compare_controller_RMSE/00_no_control.png}}
+\caption[Analyse des RMSE der Temperaturabweichungen für das CSS bei den betrachteten Wolkenfällen]{Analyse des RMSE der Temperaturabweichungen für das CSS bei den betrachteten Wolkenfällen}
     \label{fig_RMSEcloudstandby}
 \end{figure}
 
@@ -112,7 +144,7 @@ Das ist darauf zurückzuführen, dass die Einstellungen für das CSS so gewählt
 Damit handelt es sich um ein betriebssicheres Szenario bezüglich der Temperaturfestigkeit des Receivers, jedoch auf Kosten des Wirkungsgrades im Folgeprozess und zumeist auch der Exergiegewinnung, wie in den Kapiteln \ref{sec_AllwissendeMPC} und \ref{subsec_wolkenfreivorhergesagt} erläutert.
 
 
-\section{Regelung bei vollständiger Einstrahlungskenntnis} \label{sec_AllwissendeMPC}
+\section{Regelung bei genauer Kenntnis der Einstrahlung} \label{sec_AllwissendeMPC}
 Bei abweichungsfreier Vorhersage der Einstrahlung über dem Heliostatenfeld ist die geringste Abweichung der Luftaustrittstemperatur gegenüber dem Referenzwert zu erwarten.
 Abbildung \ref{fig_MPCallwissend5030} zeigt das Systemverhalten für das Wolkenszenario mit $\SI{50}{\percent}$ Abschattung und einer Wolkengeschwindigkeit von $\SI{30}{\metre\per\second}$ bei vollständiger Kenntnis der Einstrahlung.
 Dies ist das identische Szenario wie in Abbildung \ref{fig_cloudstandby5030} für das CSS.
@@ -127,7 +159,7 @@ Dies ist das identische Szenario wie in Abbildung \ref{fig_cloudstandby5030} fü
 \end{figure}
 
 
-Es ist erkennbar, dass der Regler bereits vor Eintreten des Wolkeneinflusses prädiktiv die Heliostaten fokussiert (Absenken der Streuungsfaktoren) und den Luftmassenstrom durch Senken des Einstellwertes verringert.
+Es ist erkennbar, dass der Regler bereits vor Eintreten des Wolkeneinflusses prädiktiv die Heliostaten fokussiert (Absenken der Streuungsfaktoren nach $\SI{80}{\second}$) und den Luftmassenstrom durch Senken des Einstellwertes verringert (nach $\SI{90}{\second}$).
 Auf diese Weise sinkt die Luftaustrittstemperatur über die Dauer der Regelung weniger stark ab als im Referenzszenario; der RMSE beträgt nur $\SI{15.6}{\kelvin}$ anstatt $\SI{62.6}{\kelvin}$ im CSS.
 Auch nachdem die Wolke keinen Einfluss mehr auf das Feld nimmt, sind die Heliostaten im Vergleich zur Ausgangssituation weiterhin fokussiert, um die Temperaturen so schnellstmöglich wieder an den Nennlastpunkt anzupassen.
 Es ist erkennbar, dass zu diesem Zweck die in Kapitel \ref{subsubsec_Kostenfunktion} erwähnte weiche Limitierung der Fronttemperatur nach $\SI{260}{\second}$ kurzzeitig überschritten wird, ohne die thermische Belastungsgrenze des Receivers zu gefährden.
@@ -142,20 +174,21 @@ In Abbildung \ref{fig_RMSEallwissend} ist der Einfluss der Regelung auf den RMSE
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/22_compare_controller_RMSE/01_mpc_all_information.png}}
-    \caption[Analyse des RMSE der Temperaturabweichungen für die Regelung mit abweichungsfreier Einstrahlungsvorhersage bei unterschiedlichen Wolkenfällen]{Analyse des RMSE der Temperaturabweichungen für die Regelung mit abweichungsfreier Einstrahlungsvorhersage bei unterschiedlichen Wolkenfällen}
+\caption[Analyse des RMSE der Temperaturabweichungen für die Regelung mit abweichungsfreier Einstrahlungsvorhersage bei den betrachteten Wolkenfällen]{Analyse des RMSE der Temperaturabweichungen für die Regelung mit abweichungsfreier Einstrahlungsvorhersage bei den betrachteten Wolkenfällen}
     \label{fig_RMSEallwissend}
 \end{figure}
 
 Es ist auffällig, dass die Abhängigkeit der Temperaturabweichung bezüglich der Verschattung nahezu quadratisch ist.
 Bei starker Verschattung steigt der RMSE wie auch im Referenzszenario auf über $\SI{100}{\kelvin}$.
-Geringere Verschattungsintensitäten hingegen werden durch die Regelung besser kompensiert.
+Durch die Regelung nähert sich die Temperatur jedoch nach der Abschattung der Nennlasttemperatur schnell wieder an, sodass der RMSE über die gesamte Simulation geringer ist als im CSS.
+Geringere Verschattungsintensitäten werden durch die Regelung auch während des Wolkendurchzugs besser kompensiert.
 Einen Vergleich der Regelung auf Basis abweichungsfreier Einstrahlungsvorhersage mit dem Cloud Standby Referenzszenario zeigt nachfolgend Tabelle \ref{tab_Vergleich1} durch die nähere RMSE-Betrachtung.
 Der Durchschnitt je Lichtdurchlässigkeit bezieht sich dabei auf die verschiedenen Wolkengeschwindigkeiten.
 
 \begingroup
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[ht!]
-    \caption[Vergleich des Cloud Standby Szenarios mit dem MPC (abweichungsfreie Einstrahlungsvorhersage)]{Vergleich des Cloud Standby Szenarios mit dem MPC (abweichungsfreie Einstrahlungsvorhersage)}
+\caption[Vergleich des Cloud Standby Szenarios mit dem MPC (abweichungsfreie Einstrahlungsvorhersage) bezüglich der Temperaturabweichung]{Vergleich des Cloud Standby Szenarios mit dem MPC (abweichungsfreie Einstrahlungsvorhersage) bezüglich der Temperaturabweichung}
     \centering
     \begin{tabular}{>{\centering\arraybackslash}m{0.24\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}}
         \rowcolor{white}
@@ -178,24 +211,45 @@ Die größte prozentuale Veränderung ergibt sich bei der geringsten betrachtete
 
 Zum Vergleich des Referenzszenarios mit den Regelungsszenarien ist ebenfalls der Exergieeintrag in den Solarturm relevant.
 Dieser ist neben der Austrittstemperatur der Luft auch vom Luftmassenstrom abhängig.
-Im CSS bleibt der Luftmassenstrom unverändert, während er, wie in Abbildung \ref{fig_RMSEallwissend} dargestetllt, im Rahmen der Regelung bei Verschattung reduziert wird, da gemäß Kapitel \ref{subsubsec_Kostenfunktion} der Exergiestrom keine Optimierungsgröße der Regelung ist.
+Im CSS bleibt der Luftmassenstrom unverändert, während er, wie in Abbildung \ref{fig_MPCallwissend5030} dargestetllt, im Rahmen der Regelung bei Verschattung reduziert wird, da gemäß Kapitel \ref{subsubsec_Kostenfunktion} der Exergiestrom keine Optimierungsgröße der Regelung ist.
 Daher ist der Unterschied des Exergieeintrages in das System zwischen Referenzszenario und Regelung weniger signifikant als der RMSE der Luftaustrittstemperatur.
 
 Für eine Verschattung von $\SI{25}{\percent}$ bei $\SI{30}{\metre\per\second}$ Wolkengeschwindigkeit ist die Steigerung des Exergieeintrages ins System durch den Regler mit $\SI{19.2}{\percent}$ von $\SI{2122}{\mega\joule}$ (siehe Abbildung \ref{fig_nocontrol7530} im Anhang) auf $\SI{2529}{\mega\joule}$ (Abbildung \ref{fig_allwissend7530}) am größten.
 Bei vollständiger Abschattung und ebenfalls $\SI{30}{\metre\per\second}$ Geschwindigkeit der Wolken ist die Regelung bezüglich der Exergie $\SI{0.8}{\percent}$ weniger effizient (vgl. Abbildungen \ref{fig_cloudstandby0030} und \ref{fig_allwissend0030}).
 Beim Vergleich von Abbildung \ref{fig_cloudstandby5030} und \ref{fig_MPCallwissend5030} zeigt sich, dass für längere Abschattungszeiträume eine Verstärkung der jeweiligen Effekte zu erwarten ist.
+Eine Übersicht über die Auswirkungen der Regelung bezüglich des Exergieertrages im Vergleich zum CSS zeigt Tabelle \ref{tab_exergie1}.
+
+\begingroup
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[ht!]
+    \caption[Vergleich des Cloud Standby Szenarios mit dem MPC (abweichungsfreie Einstrahlungsvorhersage) bezüglich des Exergieertrages]{Vergleich des Cloud Standby Szenarios mit dem MPC (abweichungsfreie Einstrahlungsvorhersage) bezüglich des Exergieertrages}
+    \centering
+    \begin{tabular}{>{\centering\arraybackslash}m{0.24\textwidth}>{\centering\arraybackslash}m{0.20\textwidth}>{\centering\arraybackslash}m{0.20\textwidth}>{\centering\arraybackslash}m{0.23\textwidth}}
+        \rowcolor{white}
+        \toprule
+        Exergieeintrag in den Folgeprozess                       & Cloud Standby (Referenzszenario) & MPC mit abweichungsfreier Vorhersage & Unterschiede\linebreak (Bezug:\linebreak Cloud Standby) \\
+        \midrule
+        $\diameter$ bei $\SI{0}{\percent}$ Lichtdurchlässigkeit  & $\SI{1844.8}{\mega\joule}$       & $\SI{1842.3}{\mega\joule}$           & $\SI{-2.5}{\mega\joule}$, $\SI{-0.1}{\percent}$         \\
+        $\diameter$ bei $\SI{25}{\percent}$ Lichtdurchlässigkeit & $\SI{1940.5}{\mega\joule}$       & $\SI{2006.5}{\mega\joule}$           & $+\SI{66.0}{\mega\joule}$, $+\SI{3.4}{\percent}$        \\
+        $\diameter$ bei $\SI{50}{\percent}$ Lichtdurchlässigkeit & $\SI{2033.8}{\mega\joule}$       & $\SI{2229.3}{\mega\joule}$           & $+\SI{195.5}{\mega\joule}$, $+\SI{9.6}{\percent}$       \\
+        $\diameter$ bei $\SI{75}{\percent}$ Lichtdurchlässigkeit & $\SI{2122.5}{\mega\joule}$       & $\SI{2469.3}{\mega\joule}$           & $+\SI{346.8}{\mega\joule}$, $+\SI{16.3}{\percent}$      \\
+        \toprule
+    \end{tabular}
+    \label{tab_exergie1}
+\end{table}
+\endgroup
 
 
-\section{Regelung bei Ungenauigkeit des Nowcastings} \label{sec_Ungenauigkeit}
+\section{Regelung bei Unsicherheiten in der Wolkenvorhersage} \label{sec_Ungenauigkeit}
 In diesem Unterkapitel wird analysiert, welchen Einfluss ungenaue Einstrahlungsvorhersagen auf die Regelungsergebnisse haben.
-Zunächst wird die Regelung für den Fall vorgestellt, dass das Nowcasting keinerlei Informationen über eine mögliche Verschattung in der Zukunft liefert.
-Anschließend wird herausgestellt, wie weit die Vorhersage des Nowcastings in Bezug auf die Wolkengeschwindigkeit und die Lichtdurchlässigkeit von der Realität abweichen darf, ohne dass die Betriebssicherheit des Receivers gefährdet wird.
+Zunächst wird die Regelung für den Fall betrachtet, dass das Nowcasting keinerlei Informationen über eine mögliche Verschattung in der Zukunft liefert.
+Anschließend wird bewertet, wie weit die Vorhersage des Nowcastings in Bezug auf die Wolkengeschwindigkeit und die Lichtdurchlässigkeit von der Realität abweichen darf, ohne dass die Betriebssicherheit des Receivers gefährdet wird.
 
 \subsection{Wolkenfreie Vorhersage} \label{subsec_wolkenfreivorhergesagt}
 Aufgrund der Rückführung der Systemzustände als Messwerte (siehe Abbildung \ref{fig_Regelkreisvollst}) wird sich auch ohne Kenntnis der zeitlichen Änderung der solaren Einstrahlung ein typisches Regelverhalten einstellen.
 Im Gegensatz zum Referenzszenario werden somit auch unter Wolkeneinfluss die Stellgrößen manipuliert.
 Jedoch ist keine prädiktive Regelung möglich, sodass im Vergleich zur Regelung bei vollständiger Einstrahlungskenntnis eine größere Abweichung der Luftaustrittstemperatur zu erwarten ist.
-Analog zu Abbildung \ref{fig_cloudstandby5030} und \ref{fig_MPCallwissend5030} zeigt Abbildung \ref{fig_unwissend5030} die Simulationsergebnisse für die Abschattung von $\SI{50}{\percent}$ und eine Wolkengeschwindigkeit von $\SI{30}{\metre\per\second}$ für eine wolkenfreie Vorhersage.
+Analog zu Abbildung \ref{fig_cloudstandby5030} und \ref{fig_MPCallwissend5030} zeigt\linebreak Abbildung \ref{fig_unwissend5030} die Simulationsergebnisse für die Abschattung von $\SI{50}{\percent}$ und eine Wolkengeschwindigkeit von $\SI{30}{\metre\per\second}$ für eine wolkenfreie Vorhersage.
 
 \begin{figure}[h!]
     \centering
@@ -208,7 +262,7 @@ Analog zu Abbildung \ref{fig_cloudstandby5030} und \ref{fig_MPCallwissend5030} z
 
 Es wird deutlich, dass die Leistung auf dem Receiver nach $\SI{120}{\second}$ abnimmt.
 Erst danach fokussiert der Regler die Heliostaten und verringert den Luftmassenstrom.
-Wie im Vergleich zwischen Abbildung  \ref{fig_MPCallwissend5030} und \ref{fig_unwissend5030} auffällt, ist das Regelverhalten des MPC ohne Kenntnis der solaren Einstrahlung weniger aggressiv, da keine Informationen zur Verfügung stehen, warum die Receiverleistung abnimmt und welche Gegenmaßnahme diesbezüglich optimal ist.
+Wie im Vergleich zwischen Abbildung  \ref{fig_MPCallwissend5030} und \ref{fig_unwissend5030} auffällt, ist das Regelverhalten des MPC ohne Kenntnis der solaren Einstrahlung weniger aggressiv, da keine Informationen zur Verfügung stehen, wann oder warum die Receiverleistung abnimmt und welche Gegenmaßnahme diesbezüglich optimal ist.
 Ist der Einfluss der Wolke abgeklungen, nähert sich die Luftaustrittstemperatur der Zieltemperatur durch die Regelung schnell wieder an.
 Der daraus resultierende RMSE ist mit $\SI{38.5}{\kelvin}$ niedriger als für das CSS ($\SI{62.6}{\kelvin}$), liegt jedoch deutlich über dem der Regelung mit abweichungsfreier Vorhersage ($\SI{15.6}{\kelvin}$).
 
@@ -221,7 +275,7 @@ Bei vollständiger Abschattung ist der Einfluss am größten und der Wert liegt 
     \setlength{\fboxsep}{1pt}
     \setlength{\fboxrule}{1pt}
     \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/22_compare_controller_RMSE/02_mpc_thinking_clearsky.png}}
-    \caption[Analyse des RMSE der Temperaturabweichungen für die Regelung ohne Einstrahlungsvorhersage bei unterschiedlichen Wolkenfällen]{Analyse des RMSE der Temperaturabweichungen für die Regelung ohne Einstrahlungsvorhersage bei unterschiedlichen Wolkenfällen}
+\caption[Analyse des RMSE der Temperaturabweichungen für die Regelung ohne Einstrahlungsvorhersage bei den betrachteten Wolkenfällen]{Analyse des RMSE der Temperaturabweichungen für die Regelung ohne Einstrahlungsvorhersage bei den betrachteten Wolkenfällen}
     \label{fig_RMSE3Dunwissend}
 \end{figure}
 
@@ -232,7 +286,7 @@ Ein Vergleich der beiden vorgestellten Regelungen zeigt Tabelle \ref{tab_Verglei
 \begingroup
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[ht!]
-\caption[Vergleich der Regelung mit abweichungsfreier Einstrahlungsvorhersage und der Regelung ohne Wolkenprädiktion]{Vergleich der Regelung mit abweichungsfreier Einstrahlungsvorhersage und der Regelung ohne Wolkenprädiktion}
+\caption[Vergleich der Regelung mit abweichungsfreier Einstrahlungsvorhersage und der Regelung ohne Wolkenprädiktion bezüglich der Temperaturabweichung]{Vergleich der Regelung mit abweichungsfreier Einstrahlungsvorhersage und der Regelung ohne Wolkenprädiktion bezüglich der Temperaturabweichung}
     \centering
     \begin{tabular}{>{\centering\arraybackslash}m{0.24\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}}
         \rowcolor{white}
@@ -252,7 +306,7 @@ Ein Vergleich der beiden vorgestellten Regelungen zeigt Tabelle \ref{tab_Verglei
 Tabelle \ref{tab_Vergleich2} zeigt, dass die Regelung des Systems ohne Kenntnis der Einstrahlungsveränderung bezüglich der Temperaturabweichung deutlich schlechter ist als die Regelung mit abweichungsfreier Vorhersage.
 Der größte relative Unterschied der Regelungen tritt bei einer Lichtdurchlässigkeit von $\SI{75}{\percent}$ auf: Der RMSE ist bei fehlerfreier Vorhersage $\SI{77.6}{\percent}$ geringer.
 Die größte absolute Verbesserung liegt bei einer Verschattung des Feldes von $\SI{50}{\percent}$ vor.
-Hier ist der RMSE $\SI{23.0}{\kelvin}$ geringer als ohne Wolkenvorhersage.
+Hier ist der RMSE $\SI{23.0}{\kelvin}$ geringer als ohne Wolkenvorhersage.\pagebreak
 
 Exergetisch ist der größte Unterschied dieser beiden Regelungsarten ebenfalls bei einer Lichtdurchlässigkeit von $\SI{75}{\percent}$ erkennbar.
 Für eine Wolkengeschwindigkeit von $\SI{20}{\metre\per\second}$ steigt die Exergieausbeute mit abweichungsfreier Vorhersage von $\SI{2196}{\mega\joule}$ auf $\SI{2438}{\mega\joule}$ um $\SI{11.0}{\percent}$ an (vgl. Abbildung \ref{fig_unwissend7520} und \ref{fig_allwissend7520}).
@@ -261,7 +315,6 @@ Bei Vergleich der Abbildungen \ref{fig_unwissend0020} und \ref{fig_allwissend002
 
 In Hinsicht auf die Temperaturabweichung als Indikator der Regelungsgüte ergibt sich die Überlegenheit der Regelung mit Wolkenprädiktion.
 Die exergetische Ausbeute ist für starke Abschattungen zwar bei prädiktionsfreier Regelung höher, aber für geringere Abschattungsszenarien verspricht die Regelung auf Basis des Nowcastings höhere Exergieerträge.
-
 Tabelle \ref{tab_Vergleich3} zeigt den Vergleich der RMSE-Unterschiede bei Regelung ohne Wolkenvorhersage und dem Cloud Standby Referenzszenario.
 Es zeigt sich, dass auch die Regelung ohne Wolkenprädiktion für jede Verschattungsintensität geringere Temperaturabweichungen von der Nennlasttemperatur erreicht.
 Auffällig ist dabei aber auch in diesem Vergleich die hohe prozentuale Verbesserung bei niedriger Verschattungsintensität.
@@ -269,7 +322,7 @@ Auffällig ist dabei aber auch in diesem Vergleich die hohe prozentuale Verbesse
 \begingroup
 \renewcommand{\arraystretch}{1.2}
 \begin{table}[ht!]
-\caption[Vergleich der Regelung ohne Wolkenprädiktion und dem Cloud Standby Szenario]{Vergleich der Regelung ohne Wolkenprädiktion und dem Cloud Standby Szenario}
+\caption[Vergleich der Regelung ohne Wolkenprädiktion und dem Cloud Standby Szenario bezüglich der Temperaturabweichung]{Vergleich der Regelung ohne Wolkenprädiktion und dem Cloud Standby Szenario bezüglich der Temperaturabweichung}
     \centering
     \begin{tabular}{>{\centering\arraybackslash}m{0.24\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}>{\centering\arraybackslash}m{0.21\textwidth}}
         \rowcolor{white}
@@ -290,11 +343,33 @@ Auffällig ist dabei aber auch in diesem Vergleich die hohe prozentuale Verbesse
 Der exergetische Vergleich des CSS mit der Regelung ohne Nowcasting zeigt, dass die Regelung für jedes der betrachteten Wolkenszenarien vorteilhaft ist.
 Die geringste Verbesserung ist bei $\SI{75}{\percent}$ Lichtdurchlässigkeit erkennbar.
 Bei $\SI{20}{\metre\per\second}$ Wolkengeschwindigkeit steigt der Exergieertrag durch die Regelung um $\SI{3.4}{\percent}$ (Abbildungen \ref{fig_unwissend7520} und \ref{fig_cloudstandby7520}), bei vollständiger Abschattung um bis zu $\SI{9.5}{\percent}$ (Abbildungen \ref{fig_unwissend0020} und \ref{fig_cloudstandby0020}).
+Einen exergetischen Vergleich über die verschiedenen betrachteten Wolkenszenarien zeigt Tabelle \ref{tab_exergie2}.
+
+\enlargethispage{2\baselineskip}
+\begingroup
+\renewcommand{\arraystretch}{1.2}
+\begin{table}[ht!]
+    \caption[Vergleich der Regelung ohne Wolkenprädiktion und dem Cloud Standby Szenario bezüglich des Exergieeintrages]{Vergleich der Regelung ohne Wolkenprädiktion und dem Cloud Standby Szenario bezüglich des Exergieeintrages}
+    \centering
+    \begin{tabular}{>{\centering\arraybackslash}m{0.24\textwidth}>{\centering\arraybackslash}m{0.20\textwidth}>{\centering\arraybackslash}m{0.20\textwidth}>{\centering\arraybackslash}m{0.23\textwidth}}
+        \rowcolor{white}
+        \toprule
+        Exergieeintrag in den Folgeprozess                       & Cloud Standby (Referenzszenario) & MPC ohne Wolkenvorhersage  & Unterschiede\linebreak (Bezug:\linebreak Cloud Standby) \\
+        \midrule
+        $\diameter$ bei $\SI{0}{\percent}$ Lichtdurchlässigkeit  & $\SI{1844.8}{\mega\joule}$       & $\SI{2001.0}{\mega\joule}$ & $+\SI{156.2}{\mega\joule}$, $+\SI{8.5}{\percent}$       \\
+        $\diameter$ bei $\SI{25}{\percent}$ Lichtdurchlässigkeit & $\SI{1940.5}{\mega\joule}$       & $\SI{2081.5}{\mega\joule}$ & $+\SI{141.0}{\mega\joule}$, $+\SI{7.3}{\percent}$       \\
+        $\diameter$ bei $\SI{50}{\percent}$ Lichtdurchlässigkeit & $\SI{2033.8}{\mega\joule}$       & $\SI{2165.5}{\mega\joule}$ & $+\SI{131.7}{\mega\joule}$, $+\SI{6.5}{\percent}$       \\
+        $\diameter$ bei $\SI{75}{\percent}$ Lichtdurchlässigkeit & $\SI{2122.5}{\mega\joule}$       & $\SI{2227.5}{\mega\joule}$ & $+\SI{105.0}{\mega\joule}$, $+\SI{4.9}{\percent}$       \\
+        \toprule
+    \end{tabular}
+    \label{tab_exergie2}
+\end{table}
+\endgroup
 
 
 \subsection{Vorhersageungenauigkeit der Wolkengeschwindigkeit} \label{subsec_speedpräd}
 Wie erläutert sind die Schwankungen der Luftaustrittstemperatur in dem in Kapitel \ref{sec_AllwissendeMPC} vorgestellten Regelungsszenario mit vollständiger Kenntnis des solaren Einstrahlungsverlaufes für jede Verschattungsintensität am geringsten.
-In der Realität ist eine exakte, abweichungsfreie Vorhersage der Wolkengeschwindigkeit jedoch nicht immer möglich.
+In der Realität ist eine exakte, abweichungsfreie Vorhersage der Wolkengeschwindigkeit jedoch nicht möglich.
 
 Eine fehlerhafte Vorhersage der zukünftigen Wolkenbedingungen kann im schlechtesten Fall zur Folge haben, dass zum Zeitpunkt hoher solarer Einstrahlung eine starke Fokussierung der Zielpunkte vorliegt, sodass die Grenztemperatur des Receivers überschritten wird.
 Daher dient dieser Abschnitt der Analyse, wie exakt die Vorhersage des Nowcastings bezüglich der Wolkengeschwindigkeit sein muss, um die Betriebssicherheit des Kraftwerkes nicht zu gefährden.
@@ -302,6 +377,7 @@ Weiterhin wird der Einfluss dieser fehlerhaften Vorhersagen auf den RMSE der Luf
 
 Abbildung \ref{fig_speed25} zeigt Simulationen mit ungenauen Informationen des Nowcastings bezüglich der Wolkengeschwindigkeit bei einer Lichtdurchlässigkeit von $\SI{25}{\percent}$, da hier die kritischsten Ergebnisse bezüglich der notwendigen Prädiktionsgenauigkeit auftreten.
 Ein grüner Punkt kennzeichnet die Regelungsszenarien, bei denen der Receiver unterhalb der Grenztemperatur bleibt, während ein rotes Kreuz zeigt, dass die thermische Belastung des Receivers überschritten wurde.
+Auf der y-Achse sind die vorhergesagten Wolkengeschwindigkeiten über den simulativ verwendeten Geschwindigkeiten auf der x-Achse aufgetragen.
 Die Analyse der Simulationen mit den weiteren Abschattungsszenarien zeigen die Abbildungen \ref{fig_speed00} bis \ref{fig_speed75} im Anhang.
 
 \begin{figure}[h!]
@@ -319,7 +395,7 @@ Dies entspricht einer maximal zulässigen Abweichung von $\SI{-11}{\percent}$.
 Jedoch zeigt Abbildung \ref{fig_speed25} auch, dass die vorhergesagte Wolkengeschwindigkeit die reale Geschwindigkeit durchaus überschreiten darf.
 Grund dafür ist, dass eine schnellere Einstrahlungszunahme am Ende der Verschattungsdauer erwartet wird, als eigentlich auftritt.
 Daher werden die Heliostaten schneller defokussiert und die maximale Fronttemperatur des Receivers wird nicht erreicht.
-Dem gegenüber werden die Heliostaten zu langsam defokussiert, wenn die Wolkengeschwindigkeit höher ist vorhergesagt.
+Dem gegenüber werden die Heliostaten zu langsam defokussiert, wenn die Wolkengeschwindigkeit höher ist als vorhergesagt.
 Beim Vergleich der Abbildung \ref{fig_speed25} mit den Analysen der ungenauen Geschwindigkeitsprädiktion für andere Einstrahlungsintensitäten (Abbildung \ref{fig_speed00} bis \ref{fig_speed75}) zeigt sich, dass die Vorhersage schnellerer Wolken in keinem der betrachteten Szenarien bedenklich ist.
 
 Die Analyse der Temperaturabweichungen für die verschiedenen Geschwindigkeitsprädiktionen bei solarer Einstrahlung von $\SI{25}{\percent}$ zeigt Abbildung \ref{fig_speed25RMSE}.
@@ -335,9 +411,9 @@ Dies ist auf mangelnde Konvergenz im Optimierungsprozess zurückzuführen, wenn 
     \fbox{\includegraphics[width=0.99\textwidth]{C:/Users/gesc_ma/VSCode MPC Projekt/dynaovrcontroller/dynaovrcontroller/aimpoint_control_scenarios/plots/21_analyze_speed_uncertainty/rmse_per_speed_shading_25.png}}
     \caption[Analyse des RMSE für unterschiedliche Prädiktionen der Wolkengeschwindigkeiten für eine Lichtdurchlässigkeit der Wolke von $\SI{25}{\percent}$]{Analyse des RMSE für unterschiedliche Prädiktionen der Wolkengeschwindigkeiten für eine Lichtdurchlässigkeit der Wolke von $\SI{25}{\percent}$}
     \label{fig_speed25RMSE}
-\end{figure}
+\end{figure} \pagebreak
 
-Die Auswertungen des RMSE für die weiteren Verschattungsintensitäten (Abbildung \ref{fig_speed00RMSE} bis \ref{fig_speed75RMSE}) zeigen ebenfalls, dass die Vorhersage leicht höherer Wolkengeschwindigkeiten auch bezüglich des RMSE unproblematisch ist.
+Die Auswertungen des RMSE für die weiteren Verschattungsintensitäten (Abbildung \ref{fig_speed00RMSE}\linebreak bis \ref{fig_speed75RMSE}) zeigen ebenfalls, dass die Vorhersage leicht höherer Wolkengeschwindigkeiten auch bezüglich des RMSE unproblematisch ist.
 Daraus lässt sich schlussfolgern, dass die Prädiktion der Wolkengeschwindigkeit durch das Nowcasting eine Abweichung von $\SI{-11}{\percent}$ nicht unterschreiten darf.
 Schnellere Wolkenvorhersagen resultieren ebenfalls in betriebssicheren Ergebnissen und nur geringfügig höherer Temperaturabweichung.
 
@@ -354,6 +430,7 @@ Wie in Kapitel \ref{sec_AllwissendeMPC} aufgezeigt, ist dies der Bereich, in dem
 Der Verschattung des Heliostatenfeldes kann durch Konzentration der Zielpunkte weitestgehend entgegengewirkt werden.
 Ist die Vorhersage der Abschattung jedoch mehr als $\SI{5}{\percent}$ zu gering, kann dies zu einer Überschreitung der Grenztemperatur führen.
 
+\enlargethispage{\baselineskip}
 \begin{figure}[h!]
     \centering
     \setlength{\fboxsep}{1pt}
@@ -363,10 +440,12 @@ Ist die Vorhersage der Abschattung jedoch mehr als $\SI{5}{\percent}$ zu gering,
     \label{fig_shadingsafe}
 \end{figure}
 
-Grund dafür, dass besonders schlechte Prädiktionen für die Lichtdurchlässigkeit von $\SI{25}{\percent}$ bis $\SI{75}{\percent}$ trotzdem zu Simulationen führen, bei denen die Grenztemperatur nicht überschritten wird, ist die fehlende Konvergenz in der Optimierung (vgl. Abschnitt \ref{sec_Hardsoftanalyse}).
+Grund dafür, dass besonders schlechte Prädiktionen für die Lichtdurchlässigkeit von $\SI{25}{\percent}$ bis $\SI{75}{\percent}$ trotzdem zu Simulationen führen, bei denen die Grenztemperatur nicht überschritten wird, ist die fehlende Konvergenz in der Optimierung (vgl. Abschnitt \ref{sec_Hardsoftanalyse}).\linebreak
 Abbildung \ref{fig_uncertain753050} zeigt für die Lichtdurchlässigkeit von $\SI{75}{\percent}$, dass bei $\SI{50}{\percent}$ vorhergesagter Abschattung die Grenztemperatur des Receivers überschritten wird.
 Es ist erkennbar, dass der Regler mit einer geringeren Abschattung rechnet und die Heliostaten zu stark fokussiert.
-Bei einer vorhergesagten Abschattung von $\SI{0}{\percent}$ konvergiert die Optimierung nicht, sodass kaum Regelungsverhalten zu erkennen ist und die Grenztemperatur nicht überschritten wird (vgl. Abbildung \ref{fig_uncertain753000}).
+Bei einer vorhergesagten Abschattung von $\SI{0}{\percent}$ ist die Abweichung der Rückführgrößen von den in der Optimierung berechneten Größen so stark, dass der Optimierungsprozess über nahezu die gesamte Simulation nicht konvergiert.
+In der Folge ist kaum Regelungsverhalten zu erkennen, sodass die Heliostaten nicht fokussieren und die Austrittstemperatur stark absinkt.
+Jedoch wird durch dieses fehlende Regelverhalten die Grenztemperatur eingehalten (vgl. Abbildung \ref{fig_uncertain753000}).
 
 \begin{figure}[h!]
     \centering
@@ -381,7 +460,7 @@ Bei Analyse des RMSE Verlaufes über die verschiedenen Abschattungen in Abbildun
 Es ist erkennbar, dass der RMSE bei starker Abschattung unabhängig von der Güte der Vorhersage über $\SI{100}{\kelvin}$ liegt.
 Für andere Verschattungsszenarien ist die Temperaturabweichung geringer, wenn eine geringfügig schwächere Lichtdurchlässigkeit der Wolken prognostiziert wird.
 Ursache dafür sind die unterschiedlichen optischen Modelle in der Modellbildung (vgl. Kapitel \ref{sec_optischesModell}).
-Dies zeigt sich an der bleibenden Regeldifferenz zwischen der Luftaustrittstemperatur und der Temperaturreferenz am Ende der Simulationen mit abweichungsfreier Vorhersage (vgl. Abbildung \ref{fig_MPCallwissend5030}, \ref{fig_allwissend7530} und \ref{fig_allwissend7520}).
+Dies zeigt sich an der bleibenden Regeldifferenz zwischen der Luftaustrittstemperatur und der Temperaturreferenz am Ende der Simulationen mit abweichungsfreier Vorhersage (vgl. Abbildung \ref{fig_MPCallwissend5030}, \ref{fig_allwissend7530} und \ref{fig_allwissend7520}).\pagebreak
 
 \begin{figure}[t]
     \centering

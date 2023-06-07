@@ -1,0 +1,86 @@
+<mxfile host="Electron" modified="2023-04-24T19:17:46.403Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.2.1 Chrome/112.0.5615.87 Electron/24.1.2 Safari/537.36" etag="dIQgHgwF4T2a_fkYziXw" version="21.2.1" type="device">
+  <diagram name="Seite-1" id="A6S29_sGXdXD3qdOOlDM">
+    <mxGraphModel dx="780" dy="496" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=4;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" source="F5RFSt0ZtSQc1648nNTS-1" target="F5RFSt0ZtSQc1648nNTS-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-1" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Computer+Modern&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Latin+Modern+Math&quot;&gt;From controller:&lt;/font&gt;&lt;br&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Latin+Modern+Math&quot;&gt;&lt;i&gt;\(\kappa\), \(y_{\mathrm{Cent}}\)&lt;/i&gt;&lt;/font&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" vertex="1">
+          <mxGeometry x="510" y="40" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=4;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" source="F5RFSt0ZtSQc1648nNTS-2" target="F5RFSt0ZtSQc1648nNTS-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-2" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Computer+Modern&quot;&gt;&lt;font&gt;Assign &lt;/font&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Latin+Modern+Math&quot;&gt;&lt;i&gt;\(\alpha\)&lt;/i&gt;&lt;/font&gt;&lt;font&gt;&lt;i&gt; &lt;/i&gt;to each heliostat&lt;/font&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" vertex="1">
+          <mxGeometry x="520" y="100" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=4;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" source="F5RFSt0ZtSQc1648nNTS-3" target="F5RFSt0ZtSQc1648nNTS-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-3" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Computer+Modern&quot;&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Latin+Modern+Math&quot;&gt;Obtain the &lt;/font&gt;&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Latin+Modern+Math&quot;&gt;&lt;i&gt;\(r\)&lt;/i&gt; value&lt;/font&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" vertex="1">
+          <mxGeometry x="520" y="160" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=4;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" source="F5RFSt0ZtSQc1648nNTS-4" target="F5RFSt0ZtSQc1648nNTS-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-4" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Latin+Modern+Math&quot;&gt;Calculate &lt;i&gt;\(\Delta D\)&lt;/i&gt; for each pair of aiming points&lt;br&gt;&lt;font style=&quot;font-size: 8px;&quot;&gt;(under constant &lt;i&gt;\(\kappa\)&lt;/i&gt; and&lt;i&gt; \(y_{\mathrm{Cent}}\)&lt;/i&gt; values, &lt;i&gt;\(\Delta D\longrightarrow0\))&lt;/i&gt;&lt;/font&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" vertex="1">
+          <mxGeometry x="440" y="220" width="240" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=4;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" source="F5RFSt0ZtSQc1648nNTS-5" target="F5RFSt0ZtSQc1648nNTS-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-5" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Latin+Modern+Math&quot;&gt;Calculate&lt;br&gt;&lt;i style=&quot;font-size: 11px;&quot;&gt;\(\Delta x_{\mathrm{TP_n}}, \Delta y_{\mathrm{TP_n}}\)&lt;br&gt;\(\Delta X_{\mathrm{Group}}, \Delta Y_{\mathrm{Group}}\)&lt;/i&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" vertex="1">
+          <mxGeometry x="490" y="280" width="140" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endSize=4;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" source="F5RFSt0ZtSQc1648nNTS-7" target="F5RFSt0ZtSQc1648nNTS-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endSize=4;dashed=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;dashPattern=8 8;" parent="1" source="F5RFSt0ZtSQc1648nNTS-7" target="F5RFSt0ZtSQc1648nNTS-11" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-7" value="&lt;font&gt;Values for&amp;nbsp; &lt;i&gt;\(x_{\mathrm{TP_n}}, y_{\mathrm{TP_n}}\) &lt;/i&gt;at&lt;i&gt; \(t_n\)&lt;/i&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" vertex="1">
+          <mxGeometry x="510" y="420" width="100" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-8" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Latin+Modern+Math&quot;&gt;Values to process&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" vertex="1">
+          <mxGeometry x="520" y="480" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endSize=4;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" source="F5RFSt0ZtSQc1648nNTS-10" target="F5RFSt0ZtSQc1648nNTS-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-10" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Latin+Modern+Math&quot;&gt;Calculate&lt;br&gt;&lt;/font&gt;&lt;i style=&quot;border-color: var(--border-color); font-size: 8px;&quot;&gt;&lt;font style=&quot;font-size: 8px;&quot; data-font-src=&quot;https://fonts.googleapis.com/css?family=Latin+Modern+Math&quot;&gt;\(x_{\mathrm{TP_n}}=x_{\mathrm{TP_n}}^{\mathrm{Previous}}+\overline{\Delta x_{\mathrm{TP_n}}}+\Delta X_{\mathrm{Group}}\)&lt;font style=&quot;border-color: var(--border-color); font-size: 8px; font-style: normal;&quot;&gt;&lt;br style=&quot;border-color: var(--border-color);&quot;&gt;&lt;/font&gt;&lt;i style=&quot;border-color: var(--border-color);&quot;&gt;\(y_{\mathrm{TP_n}}=y_{\mathrm{TP_n}}^{\mathrm{Previous}}+\overline{\Delta y_{\mathrm{TP_n}}}+\Delta Y_{\mathrm{Group}}\)&lt;/i&gt;&lt;/font&gt;&lt;br&gt;&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" vertex="1">
+          <mxGeometry x="460" y="350" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endSize=4;dashed=1;dashPattern=8 8;" parent="1" source="F5RFSt0ZtSQc1648nNTS-11" target="F5RFSt0ZtSQc1648nNTS-12" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="310" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-11" value="&lt;font data-font-src=&quot;https://fonts.googleapis.com/css?family=Latin+Modern+Math&quot;&gt;Time step delay&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" vertex="1">
+          <mxGeometry x="360" y="350" width="60" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-30" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endSize=4;dashed=1;dashPattern=8 8;" parent="1" source="F5RFSt0ZtSQc1648nNTS-12" target="F5RFSt0ZtSQc1648nNTS-15" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-12" value="&lt;i&gt;\(t_n=0\)&lt;/i&gt;?" style="rhombus;whiteSpace=wrap;html=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" vertex="1">
+          <mxGeometry x="290" y="290" width="80" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endSize=4;dashed=1;dashPattern=8 8;" parent="1" source="F5RFSt0ZtSQc1648nNTS-14" target="F5RFSt0ZtSQc1648nNTS-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-14" value="Values for&amp;nbsp;&amp;nbsp;&lt;i style=&quot;border-color: var(--border-color);&quot;&gt;\(x_{TP_n}, y_{TP_n}\) &lt;/i&gt;&lt;span style=&quot;border-color: var(--border-color);&quot;&gt;at&lt;/span&gt;&lt;i style=&quot;border-color: var(--border-color);&quot;&gt; \(t_n=0\)&lt;/i&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" vertex="1">
+          <mxGeometry x="240" y="350" width="60" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-25" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endSize=4;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" source="F5RFSt0ZtSQc1648nNTS-15" target="F5RFSt0ZtSQc1648nNTS-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="F5RFSt0ZtSQc1648nNTS-15" value="&lt;font&gt;Values for&amp;nbsp; &lt;i&gt;\(x_{\mathrm{TP_n}}, y_{\mathrm{TP_n}}\) &lt;/i&gt;at&lt;i&gt; \(t_{n-1}\)&lt;/i&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontFamily=Computer Modern;fontSource=https%3A%2F%2Ffonts.googleapis.com%2Fcss%3Ffamily%3DLatin%2BModern%2BMath;" parent="1" vertex="1">
+          <mxGeometry x="280" y="220" width="100" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
